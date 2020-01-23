@@ -1,3 +1,39 @@
+# Setup Maven
+
+## Credentials for cloudsmith artifact repository
+
+You can get your Cloudsmith API Key from [Cloudsmith Settings](https://cloudsmith.io/user/settings/api/). Use it as password in your personal maven settings ~/.m2/settings.xml:
+
+```xml
+<servers>
+  <server>
+    <id>docuteam</id>
+    <username>cloudsmith-user</username>
+    <password>74ce4b089e3c2cxxxxxxxxx</password>
+  </server>
+  <server>
+    <id>docuteam-releases</id>
+    <username>cloudsmith-user</username>
+    <password>74ce4b089e3c2cxxxxxxxxx</password>
+  </server>
+  <server>
+    <id>docuteam-snapshots</id>
+    <username>cloudsmith-user</username>
+    <password>74ce4b089e3c2cxxxxxxxxx</password>
+  </server>
+  <server>
+    <id>docuteam-installers</id>
+    <username>cloudsmith-user</username>
+    <password>74ce4b089e3c2cxxxxxxxxx</password>
+  </server>
+  <server>
+    <id>third-party</id>
+    <username>cloudsmith-user</username>
+    <password>74ce4b089e3c2cxxxxxxxxx</password>
+  </server>
+</servers>
+```
+
 # Checkstyle and Code Formatting in Eclipse
 
 The coding style is automatically checked during a maven build. In Eclipse there exists a plugin to check the code.
@@ -16,14 +52,14 @@ https://raw.githubusercontent.com/duraspace/codestyle/master/ide-support/eclipse
   * An "Unresolved Properties Error" box will appear; click 'Edit Properties'
   	* Add a new property
   	  * Name: checkstyle.suppressions.file
-  	  * Value: `${config_loc}/checkstyle-suppressions.xml` 
+  	  * Value: `${config_loc}/checkstyle-suppressions.xml`
   	  NOTE: If an error occurs at checkstyle run ("Internal Error", see .log -> "Unable to find: checkstyle-suppressions.xml", change the path to be an absolute path)
   			* Click OK
   * Set as Default: 'Docuteam Checkstyle'
   * Clear checkstyle cache by pressing the yellow refresh button on the top right, if anything chages in the checkstyle profile
 * Right click your project; select Properties → Checkstyle
 * Select the tab 'Main'
-  * Select "Docuteam Checkstyle" from the drop down 
+  * Select "Docuteam Checkstyle" from the drop down
   * Click OK
 * Right click your project; select Checkstyle > Clear checkstyle violations
 * Right click your project; select Checkstyle > Check Code with checkstyle
@@ -84,7 +120,7 @@ Instructions adapted from: https://github.com/fcrepo4/fcrepo4/tree/master/src/si
       * Check "Remove unused imports"
 
 Instructions adapted from: https://github.com/fcrepo4/fcrepo4/tree/master/src/site/eclipse
- 
+
 
 ## Refresh checkstyle
 

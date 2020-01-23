@@ -3,7 +3,7 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>5.4.0</version>
+    <version>${revision}${sha1}${changelist}</version>
 
   </parent>
   <artifactId>docuteam-packer</artifactId>
@@ -11,8 +11,6 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.scriptSourceDirectory>src/main/resources/distribution</project.build.scriptSourceDirectory>
-    <project.internal.config.directory>${project.build.outputDirectory}</project.internal.config.directory>
   </properties>
 
   <build>
@@ -49,26 +47,26 @@
 			<filtering>false</filtering>
 		</testResource>
 	</testResources>
-    <plugins>      
-      <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-      	<artifactId>maven-failsafe-plugin</artifactId>
-      	<executions>
-			<execution>
-				<id>integrationTest</id>
-					<phase>integration-test</phase>
-					<goals>
-						<goal>integration-test</goal>
-						<goal>verify</goal>
-					</goals>
-			</execution>
-		</executions>
-      	<configuration>
-			<skipTests>${skipGUITests}</skipTests>
-			<forkCount>1</forkCount>
-            <reuseForks>true</reuseForks>
-      	</configuration>
-      </plugin>
+    <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>integrationTest</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skipTests>${skipGUITests}</skipTests>
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+				</configuration>
+			</plugin>
       
       <plugin>
   		<groupId>org.apache.maven.plugins</groupId>
@@ -84,19 +82,6 @@
         	<artifactId>maven-jar-plugin</artifactId>
        	 	<version>${maven-jar-plugin.plugin.version}</version>
         	<configuration>
-        		<excludes>	
-        			<!-- compact: exclude all from jar except images and translations  -->					  
-					<exclude>**/agreements</exclude>
-					<exclude>**/agreements/*</exclude>	
-					<exclude>**/config</exclude>	
-					<exclude>**/config/*</exclude>	
-					<exclude>**/distribution</exclude>	
-					<exclude>**/distribution/*</exclude>	
-					<exclude>**/distribution/**/*</exclude>
-					<exclude>**/templates</exclude>
-					<exclude>**/templates/**/*</exclude>
-					<exclude>**/templates/*</exclude>									
-                </excludes>
           		<archive>
           			<manifest>
           			 	<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -113,82 +98,7 @@
           		</archive>
         	</configuration>        
       	</plugin>
-				<!-- create a packer.exe with LAUNCH4J (s. http://launch4j.sourceforge.net/docs.html#Configuration_file) (executed before assembly)
-		      	mvn -pl docuteam-packer clean package -Pwin assembly:single
-		      	-->
-		     	<plugin>
-		        	<groupId>com.akathist.maven.plugins.launch4j</groupId>
-		            <artifactId>launch4j-maven-plugin</artifactId>
-		            <version>${launch4j-maven-plugin.plugin.version}</version>
-		            <executions>
-		                 <execution>
-		                        <id>l4j-clui</id>
-		                        <phase>package</phase>
-		                        <goals>
-		                            <goal>launch4j</goal>
-		                        </goals>
-		                        <configuration>
-		                            <headerType>gui</headerType>
-		                            <dontWrapJar>true</dontWrapJar>
-		                            <!-- this is a workaround because the content of the <jar> is put as the first element of the classpath, 
-		                            	even before the <preCp>. However, we want some directories as first elements of the classpath, 
-		                            	and therefore the jar is added as part of the classpath instead -->
-		                            <jar>does-not-exist.jar</jar>
-		                            <outfile>${project.build.outputDirectory}/distribution/docuteam packer.exe</outfile>
-		                            <!-- WARNING: Only '.' is allowed in change directory (chdir), according to documentation -->
-		                            <chdir>./docuteam packer.app/Contents/docuteam packer</chdir>
-		                            <classPath>
-		                                <mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
-		                                <addDependencies>false</addDependencies>
-			                            <preCp>config\;.\;${project.artifactId}-${project.version}.jar</preCp>
-		                            </classPath>
-		                            <cmdLine>-configDir="./config"</cmdLine>
-		                            <icon>${project.build.outputDirectory}/images/DocuteamPacker.ico</icon>
-		                                        
-		                            <jre>
-		                                <path>jre</path>
-		                                <bundledJre64Bit>true</bundledJre64Bit>
-		                                <bundledJreAsFallback>false</bundledJreAsFallback>
-		                                <minVersion>1.8.0</minVersion>
-		                                <jdkPreference>preferJre</jdkPreference>
-		                                <runtimeBits>64/32</runtimeBits>
-		                                <initialHeapSize>512</initialHeapSize> 
-		                                <maxHeapSize>2048</maxHeapSize>
-		                                <opts>
-		                                    <opt>-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager</opt>
-		                                    <opt>-Dfile.encoding=utf-8</opt>
-		                                    <opt>-Djava.library.path=lib</opt>
-		                                </opts>
-		                            </jre>
-		                        </configuration>
-		                  </execution>
-		              </executions>
-		        </plugin>
-
-      <!-- create a packer distribution:
-      mvn -pl docuteam-packer clean package assembly:single 
-      -->
-      <plugin>
-        	<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-assembly-plugin</artifactId>
-        	<version>${maven-assembly-plugin.plugin.version}</version>
-        	<configuration>
-        		<!-- Configures the used assembly descriptor -->
-        		<descriptors>
-            		<descriptor>src/main/assembly/assembly.xml</descriptor>
-        		</descriptors>
-    		</configuration>
-    		<executions>
-          		<execution>
-            	<id>create-archive</id>
-            	<phase>package</phase>
-            	<goals>
-              		<goal>single</goal>
-           		</goals>
-          		</execution>
-        	</executions>
-      	</plugin>
-    </plugins>
+		</plugins>
   </build>
   <dependencies>
     <dependency>
@@ -215,6 +125,12 @@
     			<artifactId>*</artifactId>
     		</exclusion>
     	</exclusions>
+    </dependency>
+    <dependency>
+      <groupId>ch.docuteam</groupId>
+      <artifactId>docuteam-aipcreatoreth</artifactId>
+      <version>${project.version}</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>ch.docuteam</groupId>

@@ -1,7 +1,0 @@
-#!/bin/sh
-#		Shell script to run docuteam packer under OS X
-
-export	LC_CTYPE="UTF-8"
-
-cd		"$(dirname "$0")/../docuteam packer"
-java	-Xms512M -Xmx2048M -Xdock:icon=images/DocuteamPacker.ico -Xdock:name="docuteam packer" -cp config/:./:${project.artifactId}-${project.version}.jar -Dfile.encoding=utf-8 -Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager ch.docuteam.packer.gui.launcher.LauncherView &

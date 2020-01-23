@@ -32,7 +32,7 @@
 	
 	<xsd:attributeGroup name="levelSemantics">
 		<xsd:attribute name="isTrash" type="xsd:boolean" use="optional"></xsd:attribute>
-		<xsd:attribute name="isFile" type="xsd:boolean" use="optional"></xsd:attribute>
+		<!-- <xsd:attribute name="isFile" type="xsd:boolean" use="optional"></xsd:attribute> -->
 	</xsd:attributeGroup>
 
 	<xsd:complexType name="LevelMetadataElementType">
@@ -59,14 +59,14 @@
 		<xsd:attribute name="validatorClassName" type="xsd:string" use="optional"></xsd:attribute>
 		<xsd:attribute name="postActionClassName" type="xsd:string" use="optional"></xsd:attribute>
 		<xsd:attribute name="allowedValues" type="xsd:string" use="optional"></xsd:attribute>
-		<xsd:attribute name="allowedValuesType" type="xsd:string" use="optional">
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:enumeration value="stringList" />
-					<xs:enumeration value="skosFile" />
-					<xs:enumeration value="csvFile" />
-				</xs:restriction>
-			</xs:simpleType>
+		<xsd:attribute name="allowedValuesType" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="stringList" />
+					<xsd:enumeration value="skosFile" />
+					<xsd:enumeration value="csvFile" />
+				</xsd:restriction>
+			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="defaultExpression" type="xsd:string" use="optional"></xsd:attribute>
 	</xsd:complexType>

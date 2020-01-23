@@ -4,7 +4,7 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam-dist-templates</artifactId>
-    <version>5.4.0</version>
+    <version>${revision}${sha1}${changelist}</version>
 
   </parent>
 
@@ -25,7 +25,7 @@
   </modules>
 
   <build>
-  	<plugins>      
+  	<plugins>
        <plugin>
             <!-- TODO: move this to pluginManagement section of the parent pom -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -33,34 +33,52 @@
                 <version>${maven-dependency-plugin.plugin.version}</version>
                 <executions>
                     <execution>
-                        <!-- configure plugin execution for child modules --> 
+                        <!-- configure plugin execution for child modules -->
                         <inherited>true</inherited>
                         <id>copy-dependencies</id>
                         <!-- default lifecycle binding: <phase>process-sources</phase> -->
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <includeGroupIds>ch.docuteam</includeGroupIds>
-                            <includeClassifiers>dist</includeClassifiers>
-                            <excludeTransitive>true</excludeTransitive>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>ch.docuteam</groupId>
+                                    <artifactId>docuteam-packer-dist</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                            <stripClassifier>true</stripClassifier>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                             <overWriteIfNewer>true</overWriteIfNewer>
                             <outputDirectory>${project.build.directory}/</outputDirectory>
-                            <stripVersion>false</stripVersion>
-                            <stripClassifier>true</stripClassifier>
                         </configuration>
                     </execution>
-                    <execution>
-                        <!-- configure plugin execution for child modules --> 
+                   <execution>
+                        <!-- configure plugin execution for child modules -->
                         <inherited>true</inherited>
                         <id>unpack-jre</id>
+                        <!-- default lifecycle binding: <phase>process-sources</phase> -->
                         <goals>
-                            <goal>unpack-dependencies</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
-                            <includeGroupIds>com.oracle.java</includeGroupIds>
-                            <includeTypes>tgz</includeTypes>
-                            <includeArtifactIds>jre</includeArtifactIds>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.oracle.java</groupId>
+                                    <artifactId>jre</artifactId>
+                                    <version>${com.oracle.java.jre.version}</version>
+                                    <type>tgz</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                            <stripClassifier>true</stripClassifier>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteIfNewer>true</overWriteIfNewer>
                             <outputDirectory>${project.build.directory}/jre</outputDirectory>
 		                    <skip>${skip-jre}</skip>
                         </configuration>
@@ -76,10 +94,10 @@
       		<groupId>org.codehaus.mojo</groupId>
         	<artifactId>truezip-maven-plugin</artifactId>
         	<version>${truezip-maven-plugin.version}</version>
-        	
+
     		<executions>
           		<execution>
-                    <!-- configure plugin execution for child modules --> 
+                    <!-- configure plugin execution for child modules -->
                     <inherited>true</inherited>
             		<id>copy-into</id>
             		<goals>
@@ -88,12 +106,12 @@
             		<phase>package</phase>
                     <configuration>
         		        <fileset>
-                            
+
                             <directory>${project.basedir}/src/main/resources</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
-                            <outputDirectory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</outputDirectory>
+                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer</outputDirectory>
                         </fileset>
                         <verbose>true</verbose>
     		        </configuration>
@@ -109,11 +127,46 @@
                     <configuration>
         		        <fileset>
                             <directory>${project.build.directory}/jre/jre${com.oracle.java.jre.version}</directory>
-                            <outputDirectory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/jre</outputDirectory>
+                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/jre</outputDirectory>
                         </fileset>
                         <immediateUpdate>true</immediateUpdate>
                         <verbose>true</verbose>
                         <skip>${skip-jre}</skip>
+    		        </configuration>
+                </execution>
+                <execution>
+                    <!-- configure plugin execution for child modules -->
+                    <inherited>true</inherited>
+            		<id>moveO2PProxyDlls</id>
+            		<goals>
+              			<goal>move</goal>
+            		</goals>
+            		<phase>package</phase>
+                    <configuration>
+        		        <fileset>
+                            <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
+                            <include>*</include>
+                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/lib</outputDirectory>
+                        </fileset>
+                        <immediateUpdate>true</immediateUpdate>
+                        <verbose>true</verbose>
+                        <skip>${skip-pdf-dlls}</skip>
+    		        </configuration>
+                </execution>
+                <execution>
+                    <!-- configure plugin execution for child modules -->
+                    <inherited>true</inherited>
+            		<id>removeOptDllsFolder</id>
+            		<goals>
+              			<goal>remove</goal>
+            		</goals>
+            		<phase>package</phase>
+                    <configuration>
+        		        <fileset>
+                            <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
+                        </fileset>
+                        <immediateUpdate>true</immediateUpdate>
+                        <verbose>true</verbose>
     		        </configuration>
                 </execution>
         	</executions>
@@ -129,7 +182,7 @@
             <version>${maven-install-plugin.plugin.version}</version>
             <executions>
                 <execution>
-                    <!-- reactivate this execution for the current pom --> 
+                    <!-- reactivate this execution for the current pom -->
                     <id>default-install</id>
                     <inherited>false</inherited>
                     <configuration>
@@ -137,40 +190,20 @@
                     </configuration>
                 </execution>
             </executions>
-            <!-- skip plugin execution for child modules --> 
+            <!-- skip plugin execution for child modules -->
             <configuration>
                 <skip>true</skip>
             </configuration>
             <inherited>true</inherited>
         </plugin>
-        <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <!-- reactivate this execution for the current pom --> 
-            <id>default-deploy</id>
-            <inherited>false</inherited>
-            <configuration>
-            <skip>false</skip>
-            </configuration>
-          </execution>
-        </executions>
-        <!-- skip plugin execution for child modules --> 
-        <configuration>
-            <skip>true</skip>
-        </configuration>
-        <inherited>true</inherited>
-      </plugin>
     </plugins>
   </build>
 
   <dependencies>
     <dependency>
     	<groupId>ch.docuteam</groupId>
-    	<artifactId>docuteam-packer</artifactId>
+    	<artifactId>docuteam-packer-dist</artifactId>
         <version>${project.version}</version>
-        <classifier>dist</classifier>
         <type>zip</type>
 	</dependency>
 	<dependency>

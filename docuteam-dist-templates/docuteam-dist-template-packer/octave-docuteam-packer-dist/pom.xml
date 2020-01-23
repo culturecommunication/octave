@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>ch.docuteam</groupId>
 		<artifactId>docuteam-dist-template-packer</artifactId>
-		<version>5.4.0</version>
+		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
 	<artifactId>octave-docuteam-packer-dist</artifactId>
@@ -32,7 +32,7 @@
 						<phase>package</phase>
 						<configuration>
 							<fileset>
-								<directory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/templates/reports</directory>
+								<directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/templates/reports</directory>
 								<includes>
 									<include>EAD_*.xsl</include>
 								</includes>
@@ -48,7 +48,7 @@
 						<phase>package</phase>
 						<configuration>
 							<fileset>
-								<directory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</directory>
+								<directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer</directory>
 								<includes>
 									<include>docuteam packer*.sh</include>
 									<include>docuteam packer*.exe</include>
@@ -65,8 +65,8 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
-							<from>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/docuteam packer.app</from>
-							<to>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/octave.app</to>
+							<from>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app</from>
+							<to>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/octave.app</to>
 						</configuration>
 					</execution>
 					<execution>
@@ -76,8 +76,8 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
-							<from>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</from>
-							<to>${project.build.directory}/docuteam-packer-${project.version}.zip/octave-docuteam-packer</to>
+							<from>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer</from>
+							<to>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/octave-docuteam-packer</to>
 						</configuration>
 					</execution>
 					<execution>
@@ -87,8 +87,8 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
-							<from>${project.build.directory}/docuteam-packer-${project.version}.zip</from>
-							<to>${project.build.directory}/octave-docuteam-packer-${project.version}.zip</to>
+							<from>${project.build.directory}/docuteam-packer-dist-${project.version}.zip</from>
+							<to>${project.build.directory}/octave-docuteam-packer-dist-${project.version}.zip</to>
 						</configuration>
 					</execution>
 				</executions>

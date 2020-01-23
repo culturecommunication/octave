@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://pdf-tools.com/ws/o2p/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://pdf-tools.com/ws/o2p/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://pdf-tools.com/ws/o2p/">
+            <s:element name="ConvertFile">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="DocBytes" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Options" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Metadata" type="s:base64Binary" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertFileResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ConvertFileResult" type="tns:ConversionResult" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ConversionResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="DocumentBytes" type="s:base64Binary" />
+                    <s:element minOccurs="1" maxOccurs="1" name="NumPages" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="ConvertFile2">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="InputPath" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Options" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Metadata" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="OutputPath" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertFile2Response">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ConvertFile2Result" type="tns:ConversionResult" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertFileWithData">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="DocBytes" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Options" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Metadata" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ParameterName" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ParameterData" type="s:base64Binary" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertFileWithDataResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ConvertFileWithDataResult" type="tns:ConversionResult" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertUrl">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Options" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="MetadataUrl" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="ConvertUrlResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ConvertUrlResult" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="ConvertFileSoapIn">
+        <wsdl:part name="parameters" element="tns:ConvertFile" />
+    </wsdl:message>
+    <wsdl:message name="ConvertFileSoapOut">
+        <wsdl:part name="parameters" element="tns:ConvertFileResponse" />
+    </wsdl:message>
+    <wsdl:message name="ConvertFile2SoapIn">
+        <wsdl:part name="parameters" element="tns:ConvertFile2" />
+    </wsdl:message>
+    <wsdl:message name="ConvertFile2SoapOut">
+        <wsdl:part name="parameters" element="tns:ConvertFile2Response" />
+    </wsdl:message>
+    <wsdl:message name="ConvertFileWithDataSoapIn">
+        <wsdl:part name="parameters" element="tns:ConvertFileWithData" />
+    </wsdl:message>
+    <wsdl:message name="ConvertFileWithDataSoapOut">
+        <wsdl:part name="parameters" element="tns:ConvertFileWithDataResponse" />
+    </wsdl:message>
+    <wsdl:message name="ConvertUrlSoapIn">
+        <wsdl:part name="parameters" element="tns:ConvertUrl" />
+    </wsdl:message>
+    <wsdl:message name="ConvertUrlSoapOut">
+        <wsdl:part name="parameters" element="tns:ConvertUrlResponse" />
+    </wsdl:message>
+    <wsdl:portType name="ConverterSoap">
+        <wsdl:operation name="ConvertFile">
+            <wsdl:input message="tns:ConvertFileSoapIn" />
+            <wsdl:output message="tns:ConvertFileSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFile2">
+            <wsdl:input message="tns:ConvertFile2SoapIn" />
+            <wsdl:output message="tns:ConvertFile2SoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFileWithData">
+            <wsdl:input message="tns:ConvertFileWithDataSoapIn" />
+            <wsdl:output message="tns:ConvertFileWithDataSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="ConvertUrl">
+            <wsdl:input message="tns:ConvertUrlSoapIn" />
+            <wsdl:output message="tns:ConvertUrlSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ConverterSoap" type="tns:ConverterSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="ConvertFile">
+            <soap:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFile" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFile2">
+            <soap:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFile2" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFileWithData">
+            <soap:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFileWithData" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertUrl">
+            <soap:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertUrl" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ConverterSoap12" type="tns:ConverterSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="ConvertFile">
+            <soap12:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFile" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFile2">
+            <soap12:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFile2" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertFileWithData">
+            <soap12:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertFileWithData" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConvertUrl">
+            <soap12:operation soapAction="http://pdf-tools.com/ws/o2p/ConvertUrl" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Converter">
+        <wsdl:port name="ConverterSoap" binding="tns:ConverterSoap">
+            <soap:address location="http://localhost/o2p/Converter.asmx" />
+        </wsdl:port>
+        <wsdl:port name="ConverterSoap12" binding="tns:ConverterSoap12">
+            <soap12:address location="http://localhost/o2p/Converter.asmx" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

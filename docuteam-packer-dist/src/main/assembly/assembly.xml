@@ -1,0 +1,77 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>dist</id>
+  <!-- Specifies that our binary distribution is a zip package -->
+  <formats>
+    <format>zip</format>
+  </formats>
+  <baseDirectory>docuteam-packer</baseDirectory>
+
+  <!-- Adds the dependencies of our application to the lib directory -->
+  <dependencySets>
+    <dependencySet>
+      <excludes>
+        <exclude>com.pdftools:O2PProxyAPI</exclude>
+        <exclude>com.pdftools:O2PProxyNET</exclude>
+        <exclude>ch.docuteam:docuteam-packer</exclude>
+      </excludes>
+      <!--
+          Project artifact is not copied under library directory since
+          it is added to the root directory of the zip package.
+      -->
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>docuteam packer.app/Contents/docuteam packer/lib</outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+
+    <dependencySet>
+      <includes>
+        <include>ch.docuteam:docuteam-packer</include>
+      </includes>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>docuteam packer.app/Contents/docuteam packer</outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+
+    <dependencySet>
+      <includes>
+        <include>com.pdftools:O2PProxyAPI</include>
+        <include>com.pdftools:O2PProxyNET</include>
+      </includes>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>docuteam packer.app/Contents/docuteam packer/optdlls</outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+  </dependencySets>
+
+  <fileSets>
+    <!--
+        Adds startup scripts to the zip package. These scripts have
+        to be copied first to have to correct file permissions -->
+    <fileSet>
+      <directory>${project.build.outputDirectory}/distribution</directory>
+      <outputDirectory/>
+      <includes>
+        <include>docuteam packer.app/Contents/MacOS/docuteam packer</include>
+        <include>docuteam packer Linux.sh</include>
+        <include>docuteam packer OSX.sh</include>
+        <include>docuteam packer Win.bat</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.outputDirectory}/distribution</directory>
+      <outputDirectory/>
+    </fileSet>
+
+    <!-- adds the generic config to the distribution -->
+    <fileSet>
+      <directory>${project.build.outputDirectory}</directory>
+      <outputDirectory>docuteam packer.app/Contents/docuteam packer</outputDirectory>
+      <excludes>
+        <exclude>distribution/</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</assembly>
