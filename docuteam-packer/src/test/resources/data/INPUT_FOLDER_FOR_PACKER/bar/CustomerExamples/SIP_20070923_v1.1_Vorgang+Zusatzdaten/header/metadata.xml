@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://bar.admin.ch/arelda/v4" xsi:schemaLocation="http://bar.admin.ch/arelda/v4 xsd/arelda.xsd" xsi:type="paketSIP" schemaVersion="4.0">
+	<paketTyp>SIP</paketTyp>
+	<inhaltsverzeichnis>
+		<ordner>
+			<name>header</name>
+			<originalName>header</originalName>
+			<ordner>
+				<name>xsd</name>
+				<originalName>xsd</originalName>
+				<datei id="_TScYQTfMEeK0MoQqr4ob3A">
+					<name>ablieferung.xsd</name>
+					<originalName>ablieferung.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>fc855f31a14976b854dfd035bd515721</pruefsumme>
+				</datei>
+				<datei id="_TSmJQDfMEeK0MoQqr4ob3A">
+					<name>archivischeNotiz.xsd</name>
+					<originalName>archivischeNotiz.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>ee1eedcb728706f0ecbd2c749efcfdfa</pruefsumme>
+				</datei>
+				<datei id="_TSmJQTfMEeK0MoQqr4ob3A">
+					<name>archivischerVorgang.xsd</name>
+					<originalName>archivischerVorgang.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>5901fc60390194141fca0cd7d30c8e92</pruefsumme>
+				</datei>
+				<datei id="_TSvTMDfMEeK0MoQqr4ob3A">
+					<name>arelda.xsd</name>
+					<originalName>arelda.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>5d3da86991a3a279ccc750e9f58d1114</pruefsumme>
+				</datei>
+				<datei id="_TS5EMDfMEeK0MoQqr4ob3A">
+					<name>base.xsd</name>
+					<originalName>base.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>f5337efd370eff0f9add3b13b32a862d</pruefsumme>
+				</datei>
+				<datei id="_TS5EMTfMEeK0MoQqr4ob3A">
+					<name>datei.xsd</name>
+					<originalName>datei.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>d74abd4186d2574572f98c68725c7ba7</pruefsumme>
+				</datei>
+				<datei id="_TTCOIDfMEeK0MoQqr4ob3A">
+					<name>dokument.xsd</name>
+					<originalName>dokument.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>d2d79cf335f3a315a9c4516cd47758ad</pruefsumme>
+				</datei>
+				<datei id="_TTCOITfMEeK0MoQqr4ob3A">
+					<name>dossier.xsd</name>
+					<originalName>dossier.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>f2f161bed8102e4f78475dacb1be46de</pruefsumme>
+				</datei>
+				<datei id="_TTL_IDfMEeK0MoQqr4ob3A">
+					<name>ordner.xsd</name>
+					<originalName>ordner.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>ff318839445d3965ee71eed9c30e1c08</pruefsumme>
+				</datei>
+				<datei id="_TTL_ITfMEeK0MoQqr4ob3A">
+					<name>ordnungssystem.xsd</name>
+					<originalName>ordnungssystem.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>2c950d7110652ed388133f25dd83342a</pruefsumme>
+				</datei>
+				<datei id="_TTVwIDfMEeK0MoQqr4ob3A">
+					<name>ordnungssystemposition.xsd</name>
+					<originalName>ordnungssystemposition.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>7da1caad4ce9b81a28b21a838e42ffc9</pruefsumme>
+				</datei>
+				<datei id="_TTVwITfMEeK0MoQqr4ob3A">
+					<name>paket.xsd</name>
+					<originalName>paket.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>f986c5523254a39e1156520321bfd292</pruefsumme>
+				</datei>
+				<datei id="_TTe6EDfMEeK0MoQqr4ob3A">
+					<name>provenienz.xsd</name>
+					<originalName>provenienz.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>ae9df90e5fcad6c331838b2a4715c22f</pruefsumme>
+				</datei>
+				<datei id="_TTe6ETfMEeK0MoQqr4ob3A">
+					<name>zusatzDaten.xsd</name>
+					<originalName>zusatzDaten.xsd</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>bd75d61b80b65b0eb8e62b29473752de</pruefsumme>
+				</datei>
+			</ordner>
+		</ordner>
+		<ordner>
+			<name>content</name>
+			<originalName>content</originalName>
+			<ordner>
+				<name>22.06.12</name>
+				<originalName>22.06.12</originalName>
+				<datei id="_dOWZADfSEeKbAdCGaeR48Q">
+					<name>{3AD4D0BA-933C-48E5-A897-41A79638DFF8}.pdf</name>
+					<originalName>{3AD4D0BA-933C-48E5-A897-41A79638DFF8}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>b4339c863eac4a174d3a9a1cbe1352c6</pruefsumme>
+				</datei>
+				<datei id="_dOzE8DfSEeKbAdCGaeR48Q">
+					<name>{46E5084F-407D-4582-8BEE-1D69FC0FC8E5}.pdf</name>
+					<originalName>{46E5084F-407D-4582-8BEE-1D69FC0FC8E5}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>6bcb0b7c83372a70adb539f44ab6617a</pruefsumme>
+				</datei>
+				<datei id="_dPF_4DfSEeKbAdCGaeR48Q">
+					<name>{69D68D97-D16F-4F62-88C8-6E03CD945C3F}.pdf</name>
+					<originalName>{69D68D97-D16F-4F62-88C8-6E03CD945C3F}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>e5878bd468e3b4f2b4d91a9b67b3de17</pruefsumme>
+				</datei>
+				<datei id="_dPY60TfSEeKbAdCGaeR48Q">
+					<name>{BFB43607-D7F2-4E60-AA50-BB67041229B4}.pdf</name>
+					<originalName>{BFB43607-D7F2-4E60-AA50-BB67041229B4}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>e06b639ad2cc86d3f44931d318512fca</pruefsumme>
+				</datei>
+				<datei id="_dPsc2jfSEeKbAdCGaeR48Q">
+					<name>{C5B95F35-01E2-4A7E-A1EF-6D6F19301F86}.pdf</name>
+					<originalName>{C5B95F35-01E2-4A7E-A1EF-6D6F19301F86}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>55090d69d4f243d91507c2ac73b0427d</pruefsumme>
+				</datei>
+				<datei id="_dP_XyzfSEeKbAdCGaeR48Q">
+					<name>{F30B1CF5-2948-4F23-98DA-BDDBE76E357B}.pdf</name>
+					<originalName>{F30B1CF5-2948-4F23-98DA-BDDBE76E357B}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>0bda19c0c1f0a8383f42d1e383a1135c</pruefsumme>
+				</datei>
+			</ordner>
+			<ordner>
+				<name>22.06.16</name>
+				<originalName>22.06.16</originalName>
+				<datei id="_3gAUoDfiEeKLm53bgNs7IQ">
+					<name>{2965A3BB-C42D-480F-9BA7-548331FB0A2C}.pdf</name>
+					<originalName>{2965A3BB-C42D-480F-9BA7-548331FB0A2C}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>71155860a947a820de1dd895ac03c7fb</pruefsumme>
+				</datei>
+				<datei id="_3gTPmTfiEeKLm53bgNs7IQ">
+					<name>{4CE991F8-CA5D-489F-975B-6CCB4EA86091}.pdf</name>
+					<originalName>{4CE991F8-CA5D-489F-975B-6CCB4EA86091}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>1ae5a5bf2683a28050f8cb70471852ab</pruefsumme>
+				</datei>
+				<datei id="_3g5FcDfiEeKLm53bgNs7IQ">
+					<name>{A913311A-0C41-47D0-8F3F-D3AF48879232}.pdf</name>
+					<originalName>{A913311A-0C41-47D0-8F3F-D3AF48879232}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>873b8197d8885b6cdc4e56c0ea537792</pruefsumme>
+				</datei>
+				<datei id="_3hVxYDfiEeKLm53bgNs7IQ">
+					<name>{CBDCFF70-DA6C-42EC-9117-AC26249EC88D}.pdf</name>
+					<originalName>{CBDCFF70-DA6C-42EC-9117-AC26249EC88D}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>e086a1b9cc22f7bee89f2d66d53944d8</pruefsumme>
+				</datei>
+			</ordner>
+			<ordner>
+				<name>22.07.01</name>
+				<originalName>22.07.01</originalName>
+				<datei id="_Q7nsADfmEeKLm53bgNs7IQ">
+					<name>{546E9770-0E7F-4A9B-A439-55522916DBD0}.pdf</name>
+					<originalName>{546E9770-0E7F-4A9B-A439-55522916DBD0}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>cc319f5705cb2902231adbd9102205e0</pruefsumme>
+				</datei>
+				<datei id="_Q76m-TfmEeKLm53bgNs7IQ">
+					<name>{63669F88-901C-46F9-ACCA-916642777C8D}.pdf</name>
+					<originalName>{63669F88-901C-46F9-ACCA-916642777C8D}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>0fdc4e6a83fe9d22683d928e77201c26</pruefsumme>
+				</datei>
+				<datei id="_Q8XS4DfmEeKLm53bgNs7IQ">
+					<name>{7DAF74EC-788B-4475-BFB6-409D3BE8EBDB}.pdf</name>
+					<originalName>{7DAF74EC-788B-4475-BFB6-409D3BE8EBDB}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>13c1c4fc34b89b53facc48eab31fae5d</pruefsumme>
+				</datei>
+				<datei id="_Q8qN1jfmEeKLm53bgNs7IQ">
+					<name>{7DC1EF71-9DE7-421F-810C-3C4683A8122F}.pdf</name>
+					<originalName>{7DC1EF71-9DE7-421F-810C-3C4683A8122F}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>5ca2c57761c9b2c4f3a7123d2295db42</pruefsumme>
+				</datei>
+				<datei id="_Q9svqTfmEeKLm53bgNs7IQ">
+					<name>{90E72247-267C-42C2-88C3-94BF5A62CCF6}.pdf</name>
+					<originalName>{90E72247-267C-42C2-88C3-94BF5A62CCF6}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>4819d22245ab3a4f9c0640f3a22f0cef</pruefsumme>
+				</datei>
+				<datei id="_Q-TMmTfmEeKLm53bgNs7IQ">
+					<name>{F1BEE9A7-DDD2-4CB0-9D75-12AB2729CB65}.pdf</name>
+					<originalName>{F1BEE9A7-DDD2-4CB0-9D75-12AB2729CB65}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>d2e30dbbae45fd7aadb9d444d8cfc9d9</pruefsumme>
+				</datei>
+				<datei id="_Q_CzcDfmEeKLm53bgNs7IQ">
+					<name>{F45FA446-118A-4520-8864-B0CA80418DC4}.pdf</name>
+					<originalName>{F45FA446-118A-4520-8864-B0CA80418DC4}.pdf</originalName>
+					<pruefalgorithmus>MD5</pruefalgorithmus>
+					<pruefsumme>59d1e72f8314a041a666a5177ed6a330</pruefsumme>
+				</datei>
+			</ordner>
+		</ordner>
+	</inhaltsverzeichnis>
+	<ablieferung xsi:type="ablieferungGeverSIP">
+		<ablieferungstyp>GEVER</ablieferungstyp>
+		<ablieferndeStelle>Staatskanzlei des Kantons St.Gallen</ablieferndeStelle>
+		<entstehungszeitraum>
+			<von>
+				<datum>2006-12-13</datum>
+			</von>
+			<bis>
+				<datum>2007-09-23</datum>
+			</bis>
+		</entstehungszeitraum>
+		<ablieferungsnummer>2007/24</ablieferungsnummer>
+		<schutzfristenkategorie>Öffentlichkeitsprinzip</schutzfristenkategorie>
+		<schutzfrist>0</schutzfrist>
+		<provenienz>
+			<aktenbildnerName>Grossrat des Kantons St.Gallen</aktenbildnerName>
+			<systemName>RIS</systemName>
+			<registratur>Ratsinformationssystem des Kantons St.Gallen (RIS), Kantonsrat, Gesetzgebung</registratur>
+		</provenienz>
+		<ordnungssystem>
+			<generation>AP Räte</generation>
+			<name>Räte - Aktenplan Kantonsrat und Regierung</name>
+			<ordnungssystemposition id="_TTorEDfMEeK0MoQqr4ob3A">
+				<datenschutz>false</datenschutz>
+				<nummer>2</nummer>
+				<titel>Erziehung, Bildung, Kultur</titel>
+				<ordnungssystemposition id="_hcEeADfPEeKjf7YCJPGTUQ">
+					<datenschutz>false</datenschutz>
+					<nummer>21</nummer>
+					<titel>Schulen</titel>
+					<ordnungssystemposition id="_niZjEDfPEeKjf7YCJPGTUQ">
+						<datenschutz>false</datenschutz>
+						<nummer>210</nummer>
+						<titel>Allgemein</titel>
+						<dossier id="_raJ3wDfPEeKjf7YCJPGTUQ">
+							<titel>X. Nachtrag zum Volksschulgesetz</titel>
+							<erscheinungsform>digital</erscheinungsform>
+							<federfuehrendeOrganisationseinheit>Bildungsdepartement</federfuehrendeOrganisationseinheit>
+							<entstehungszeitraum>
+								<von>
+									<datum>2006-12-13</datum>
+								</von>
+								<bis>
+									<datum>2007-04-25</datum>
+								</bis>
+							</entstehungszeitraum>
+							<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+							<datenschutz>false</datenschutz>
+							<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+							<aktenzeichen>22.06.12</aktenzeichen>
+							<eroeffnungsdatum>
+								<datum>2006-12-13</datum>
+							</eroeffnungsdatum>
+							<abschlussdatum>
+								<datum>2007-07-31</datum>
+							</abschlussdatum>
+							<dokument id="_-7MuIDfSEeKbAdCGaeR48Q">
+								<titel>Botschaft und Entwurf der Regierung vom 12. Dezember 2006</titel>
+								<autor>Regierungsrat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2006-12-15</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dPF_4DfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+							<dokument id="_RUc9YDfTEeKbAdCGaeR48Q">
+								<titel>Aktuelle Mitgliederliste</titel>
+								<autor>Sekretariat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-02-21</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<datenschutz>false</datenschutz>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dP_XyzfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+							<dokument id="_Rx8xsDfTEeKbAdCGaeR48Q">
+								<titel>Anträge der vorberatenden Kommission vom 14. März 2007</titel>
+								<autor>Kommission</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-03-22</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dOWZADfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+							<dokument id="_x1b8UDfTEeKbAdCGaeR48Q">
+								<titel>Antrag Hobi-Neu St.Johann zu Art. 20 vom 23. April 2007</titel>
+								<autor>Hobi</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dOzE8DfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+							<dokument id="_SXCbwDfTEeKbAdCGaeR48Q">
+								<titel>Antrag SVP-Fraktion zu Art. 19bis vom 23. April 2007</titel>
+								<autor>SVP-Fraktion</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dPsc2jfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+							<dokument id="_7JBAgDfTEeKbAdCGaeR48Q">
+								<titel>Antrag SVP-Fraktion zu Art. 20 vom 23. April 2007</titel>
+								<autor>SVP-Fraktion</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_dPY60TfSEeKbAdCGaeR48Q</dateiRef>
+							</dokument>
+						</dossier>
+						<dossier id="_ACLxEDfjEeKLm53bgNs7IQ">
+							<titel>XII. Nachtrag zum Gesetz über die Besoldung der Volksschullehrer</titel>
+							<erscheinungsform>digital</erscheinungsform>
+							<federfuehrendeOrganisationseinheit>Bildungsdepartement</federfuehrendeOrganisationseinheit>
+							<entstehungszeitraum>
+								<von>
+									<datum>2006-12-14</datum>
+								</von>
+								<bis>
+									<datum>2007-06-05</datum>
+								</bis>
+							</entstehungszeitraum>
+							<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+							<datenschutz>false</datenschutz>
+							<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+							<aktenzeichen>22.06.16</aktenzeichen>
+							<eroeffnungsdatum>
+								<datum>2006-12-14</datum>
+							</eroeffnungsdatum>
+							<abschlussdatum>
+								<datum>2007-06-05</datum>
+							</abschlussdatum>
+							<dokument id="_MnZIoDfkEeKLm53bgNs7IQ">
+								<titel>Botschaft und Entwurf der Regierung vom 19. Dezember 2006</titel>
+								<autor>Regierungsrat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-01-10</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_3gTPmTfiEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_N_ztEDfkEeKLm53bgNs7IQ">
+								<titel>Aktuelle Mitgliederliste</titel>
+								<autor>Sekretariat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<datenschutz>false</datenschutz>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_3gAUoDfiEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_OkmcMDfkEeKLm53bgNs7IQ">
+								<titel>Antrag SVP-Fraktion vom 23. April 2007</titel>
+								<autor>SVP-Fraktion</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<datenschutz>false</datenschutz>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_3hVxYDfiEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_PO1E8DfkEeKLm53bgNs7IQ">
+								<titel>Antrag SP-Fraktion zu Art. 4bis vom 23. April 2007</titel>
+								<autor>SP-Fraktion</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<datenschutz>false</datenschutz>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_3g5FcDfiEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+						</dossier>
+					</ordnungssystemposition>
+				</ordnungssystemposition>
+			</ordnungssystemposition>
+			<ordnungssystemposition id="_OrRkkDfnEeKLm53bgNs7IQ">
+				<nummer>8</nummer>
+				<titel>Finanzen, Regalien, Unternehmungen, Feuerschutz</titel>
+				<ordnungssystemposition id="_VpBZ0DfnEeKLm53bgNs7IQ">
+					<nummer>83</nummer>
+					<titel>Finanzhaushalt des Staates</titel>
+					<ordnungssystemposition id="_cuUBgDfnEeKLm53bgNs7IQ">
+						<nummer>833</nummer>
+						<titel>Finanzausgleich</titel>
+						<dossier id="_f3jqYDfnEeKLm53bgNs7IQ">
+							<titel>Gesetz über die Umsetzung der Neugestaltung des Finanzausgleichs und der Aufgabenteilung zwischen Bund und Kantonen</titel>
+							<erscheinungsform>digital</erscheinungsform>
+							<federfuehrendeOrganisationseinheit>Finanzdepartement</federfuehrendeOrganisationseinheit>
+							<entstehungszeitraum>
+								<von>
+									<datum>2007-02-07</datum>
+								</von>
+								<bis>
+									<datum>2007-09-23</datum>
+								</bis>
+							</entstehungszeitraum>
+							<datenschutz>false</datenschutz>
+							<aktenzeichen>22.07.01</aktenzeichen>
+							<eroeffnungsdatum>
+								<datum>2007-02-07</datum>
+							</eroeffnungsdatum>
+							<abschlussdatum>
+								<datum>2007-09-23</datum>
+							</abschlussdatum>
+							<vorgang>
+								<titel>Geschäft eröffnen</titel>
+								<zusatzDaten>
+									<merkmal name="KRGE 1">KR-Geschäft anmelden erledigt</merkmal>
+									<merkmal name="KRGE 2">Sitzung der Regierung (Nulllesung) erledigt</merkmal>
+									<merkmal name="KRGE 3">Nachbereitung der Regierungssitzung erledigt</merkmal>
+									<merkmal name="KRGE 9">Botschaft und Entwurf ausfertigen erledigt</merkmal>
+									<merkmal name="KRGE 10">Session des Kantonsrates (Kommissionsbestellung) erledigt</merkmal>
+									<merkmal name="KRGE 11">Nachbereitung Kommissionsbestellung erledigt</merkmal>
+									<merkmal name="KRGE 12">Vorbereitung der Sitzung der vorberatenden Kommission erledigt</merkmal>
+									<merkmal name="KRGE 13">Sitzung der vorberatenden Kommission (erste Lesung) erledigt</merkmal>
+									<merkmal name="KRGE 14">Nachbereitung der Sitzung der vorberatenden Kommission (erste Lesung) erledigt</merkmal>
+									<merkmal name="KRGE 15">KR-Geschäft anmelden erledigt</merkmal>
+									<merkmal name="KRGE 16">Sitzung der Regierung (Antrag) erledigt</merkmal>
+									<merkmal name="KRGE 17">Anträge ausfertigen (chamois und rosa) erledigt</merkmal>
+									<merkmal name="KRGE 18">Session des Kantonsrates (erste Lesung / Gesamtabstimmung)</merkmal>
+									<merkmal name="KRGE 19">Anträge ausfertigen (grau) erledigt</merkmal>
+									<merkmal name="KRGE 20">Ergebnis erster Lesung ausfertigen erledigt</merkmal>
+									<merkmal name="KRGE 26">Session des Kantonsrates (zweite Lesung / Schlussabstimmung / Gesamtabstimmung)</merkmal>
+									<merkmal name="KRGE 27">Anträge ausfertigen (grau und grün)</merkmal>
+									<merkmal name="KRGE 28">Sitzung der Regierung (Vollzugsbeschluss)</merkmal>
+									<merkmal name="KRGE 29">Veröffentlichung der Referendumsvorlage</merkmal>
+									<merkmal name="KRGE 30">Regierungsgeschäft vorbereiten</merkmal>
+									<merkmal name="KRGE 31">Sitzung der Regierung (ReVoBe)</merkmal>
+									<merkmal name="KRGE 32">In der Gesetzessammlung veröffentlichen</merkmal>
+								</zusatzDaten>
+							</vorgang>
+							<dokument id="_FqL1wDhvEeKLm53bgNs7IQ">
+								<titel>Botschaft und Entwurf der Regierung vom 13. Februar 2007</titel>
+								<autor>Regierungsrat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-02-15</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<datenschutz>false</datenschutz>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q8qN1jfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_GnzUkDhvEeKLm53bgNs7IQ">
+								<titel>Aktuelle Mitgliederliste</titel>
+								<autor>Sekretariat</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-02-20</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q76m-TfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_H_hVcDhvEeKLm53bgNs7IQ">
+								<titel>Anträge der vorberatenden Kommission vom 12. März 2007</titel>
+								<autor>Kommission</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-03-22</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q_CzcDfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_H_hVcThvEeKLm53bgNs7IQ">
+								<titel>Ergebnis der 1. Lesung des Kantonsrates vom 24. April 2007</titel>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-05-04</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q7nsADfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_H_hVcjhvEeKLm53bgNs7IQ">
+								<titel>Antrag SP-Fraktion zu Art. 36ter vom 23. April 2007</titel>
+								<autor>SP-Fraktion</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q9svqTfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_H_hVczhvEeKLm53bgNs7IQ">
+								<titel>Antrag Denoth-St.Gallen vom 23. April 2007</titel>
+								<autor>Denoth</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q8XS4DfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+							<dokument id="_j59AADhvEeKLm53bgNs7IQ">
+								<titel>Antrag Frei-Diepoldsau zu Art. 36ter vom 23. April 2007</titel>
+								<autor>Frei</autor>
+								<erscheinungsform>digital</erscheinungsform>
+								<dokumenttyp>PDF-Dokument</dokumenttyp>
+								<registrierdatum>
+									<datum>2007-04-25</datum>
+								</registrierdatum>
+								<klassifizierungskategorie>nicht klassifiziert</klassifizierungskategorie>
+								<oeffentlichkeitsstatus>öffentlich</oeffentlichkeitsstatus>
+								<dateiRef>_Q-TMmTfmEeKLm53bgNs7IQ</dateiRef>
+							</dokument>
+						</dossier>
+					</ordnungssystemposition>
+				</ordnungssystemposition>
+			</ordnungssystemposition>
+		</ordnungssystem>
+	</ablieferung>
+</paket>
+<!--Generated with PackageHandler 2.0.6.Final-->

@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8"?><rdf:RDF
+    xmlns:iso-thes="http://purl.org/iso25964/skos-thes#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:xl="http://www.w3.org/2008/05/skos-xl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ginco="http://data.culture.fr/thesaurus/ginco/ns/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/causeEffet">
+        <rdfs:label>causeEffet</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/actionProduction">
+        <rdfs:label>actionProduction</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric">
+        <rdfs:label>broaderGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive">
+        <rdfs:label>broaderPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric">
+        <rdfs:label>narrowerGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive">
+        <rdfs:label>narrowerPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive">
+        <rdfs:label>narrowerInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive">
+        <rdfs:label>broaderInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/TermeAssocie">
+        <rdfs:label>TermeAssocie</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:DatatypeProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/CustomConceptAttribute">
+        <rdfs:label>CustomConceptAttribute</rdfs:label>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://purl.org/iso25964/skos-thes#status">
+        <rdfs:label>status</rdfs:label>
+    </owl:DatatypeProperty>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/743104f8-26d1-4e30-b316-c8c2484603f4">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2fca2436-4dd6-4afd-823f-75d1c81c3316"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">100 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/88135aff-7930-40f1-b465-ce1551dc7e54"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P100Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T12:01:22+02:00</dct:modified>
+        <dct:created>2017-06-15T12:01:22+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/52ac0042-ba29-4e8d-9bb2-d65f3f2934eb">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e449fdb6-6ba9-4b43-b7a4-853b6f6effaf"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">70 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/680e2fc2-a3b2-46cf-a4e9-3fbd3fb04fab"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P70Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:58:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:04+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bfc599d8-bd47-40ad-a7dd-905ed76ae81c">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0c93faff-393d-4d70-b4fe-b266224aaf5f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">9 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55a6cd4d-956a-4654-a56a-acdc56e1be5c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P09Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:50:34+02:00</dct:modified>
+        <dct:created>2017-06-15T11:50:34+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fec8d6cb-4431-48eb-b10a-0b9ebe56a6e6">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9fb59971-8bcb-46fb-81bf-8103979b6567"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">3 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/99f59703-0ff9-49b2-9cfd-9e3e28b9897f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P3M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:36:30+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:30+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/64bf2e1b-5bd0-44bb-ab17-9b133afdcb12">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6a8540d9-3cf3-4947-b623-5d7d9582eee8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">55 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/11527a00-0579-46bc-a16e-f642752d79d1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P55Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:56:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:23+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f1a926d3-8886-4c02-bd44-6c70b453fe89">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a911d4d4-aec5-4493-befd-bcb7549fc09b"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">6 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/df6a0cad-9f7f-4687-b103-a4f82bd97590"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P6M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:38:56+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:56+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/118adc77-3644-4abc-b56e-078427a8e1a7">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/40677092-de6f-4f2f-92b0-6d734d94b131"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">54 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1145292f-cdd3-4e7f-be7e-943b35b08d25"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P54M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:47:39+02:00</dct:modified>
+        <dct:created>2017-06-15T11:47:39+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/02362d2c-36a3-4cb1-9322-c07b677f626c">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ea30f313-ff76-4c33-ba20-8c90f1b10147"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">4 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/725c8e83-98a1-4160-8e0a-aee4ff3f1971"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P04Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:46:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:44+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ec9e264d-5f04-485e-86ba-2d57c8c9f481">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/465114f0-dc69-4b2a-9fce-30e62e9bc0a5"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">45 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/46dd9a57-7f0c-4705-b23f-119e1871d82c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P45Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:55:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:07+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/488c61e9-1234-498f-800c-f5c62719bd70">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ba5ad3e3-17ab-4751-ba81-bb77f800b15e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">5 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cfa61cc9-0d53-4abd-a96a-8c7fd83c7d6e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P05Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:48:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:03+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/5444b065-4278-4d59-814e-3a13320d2b0c">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6fa2c673-cb76-4373-87a0-5c88c95b12a3"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">50 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/af615184-7b85-4dc8-8228-b44194ad187a"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P5OY</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:55:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:41+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b35babf0-e0ba-4290-87c1-f92315d263eb">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/39c510d5-67ae-4892-b490-eac85007b1a1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">3 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/68512651-950a-4663-84ce-8a283b2db532"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P03Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:45:28+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:28+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6cc34648-bea4-48e3-ac16-c803a67dedc9">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a769c7dd-52a6-4574-809d-1a57d32bb32c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">35 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1a416baa-979b-488d-9f61-6eafb92e780a"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P35Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:53:40+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:40+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3a2a40a9-a763-4cc5-85be-774b34851c65">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2e63c637-dc6c-4269-b4ba-98a0aefd666f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">90 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8fa08ff9-ae1c-4539-84d5-e077e68f1e21"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P90Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T12:00:24+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:24+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/43637573-430a-4299-9a61-65a0db401488">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2399ed9d-8e90-4f0b-adbf-b9424c0c30f8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">9 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d90a021b-993c-4ceb-a9e6-88188098fcea"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P9M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:40:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:40:55+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/aa3f9cd4-2308-420b-bb58-4dcd063a70ba">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/43b8de01-f778-4f76-af9b-3745d699c5c1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">6 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/68afb4ce-d266-4df8-bef1-e0ff0e80ab0e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P06Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:48:26+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:26+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6578caec-de85-490b-8905-57a787272f18">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a7951d00-ac01-441a-b7a0-d67b5f938248"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">11 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f53e4ccb-2420-4a1a-b655-f2891e109664"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P11M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:41:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:53+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f93dd3b9-9d94-40a5-b63e-215ce2c690b4">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/eb03f6bc-89a9-45a6-aff6-4c2d9d09c63b"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">7 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d6ad61d6-937d-443b-9a6b-a0045dd3015d"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P07Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:48:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:53+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f651bb8d-b319-48aa-a72e-6ec1f3f44f1a">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9d7dbd97-3260-4598-affc-9af369e186d8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">95 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8b4fe823-5086-45d3-92ca-401b83795d80"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P95Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T12:00:51+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:51+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f5377fa8-a20a-40aa-86d8-b6c63107f2f3">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/df88499e-5cdc-4c83-ab1f-335fbe7764e3"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">20 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1389ebb5-3c58-47bf-92c4-edb9fbc7de4e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P20Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:51:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:59+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/682c4a33-aedd-4330-95c9-cf25617f2bbe">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/21dbd9ce-e097-4a46-ba02-4652a5302caf"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">60 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f9206e5e-fe5f-499a-b633-f76f71cfc355"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P60Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:56:49+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:49+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/54dffb26-c000-46f6-8a56-68ca9ff69c18">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8ec46bd8-9c67-4ca6-b4cb-486191402529"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">10 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/5838457e-90f0-43c7-ab42-c4960c61cc71"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P10Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:51:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:04+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c0f80efc-5bde-493e-b596-4958e46b3e0f">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f08d9127-5218-4a61-8782-5a2f722671a7"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">1 an</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7d3223d1-046c-48eb-bf11-4ee4ddb6418c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P01Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:44:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:32:55+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86710ff3-213c-4a6a-92d5-c7236f84033d">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a5a8349c-8f60-4c6c-8ebc-4a0e2f70a5ac"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">7 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4187b65f-9741-481b-9699-9f6eaba0a2b7"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P7M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:39:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:20+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2ae11c4e-9b4e-43db-b0e8-db44d705d7b1">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/647ddb1d-6957-431e-842e-8c6fa04af64e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">4 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fb025707-cdb9-4e31-8053-a7999aa36ee7"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P4M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:37:01+02:00</dct:modified>
+        <dct:created>2017-06-15T11:37:01+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/23267f7e-e696-4fac-a864-d180bfd06b84">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4a1554d7-90b5-4a5e-83bc-bcadd2f67097"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">85 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4d93bd51-f9d7-4238-bcad-ee1bf62f2b6c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P85Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:59:43+02:00</dct:modified>
+        <dct:created>2017-06-15T11:59:43+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/69b78b80-6d7f-4896-9144-64f8abc2d6af">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/47259248-080a-43dc-99b8-a626a56fdea8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">30 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b8f9d16-fbb8-4bfe-a496-c4f65fd6131f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P30Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:53:08+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:08+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c923adf1-e4df-40c2-8dd0-64e3d94d9e34">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/273acb04-2236-40db-83d8-fc60d6346fb5"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">80 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/85438fe8-573c-4996-b122-5b2b095cf948"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P80Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:58:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:59+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3da91eeb-d2f1-4544-9581-6ae89c7a43c2">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f09291a0-91c7-444a-a058-95da7739ffaf"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">2 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0761cfa8-a82f-475c-9217-81d5d478742d"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P02Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:43:29+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:29+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/380def5a-133f-4c5a-968b-76884ed8a786">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3157ae70-499f-47b8-a0e5-fec067013cc3"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">40 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b1ffd86-c1fe-4fe9-8f83-c8ede67028a8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P40Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:54:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:54:23+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d39be8a0-69e7-486a-a5b5-50659eabdc9e">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fcb7cc72-f730-4905-a824-6d8554ddd05e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">1 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4e175331-8bd0-4b34-940d-b5efa33cb145"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P1M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:35:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:35:20+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/01255d52-8907-42b8-88ee-4673040980b8">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9c13a66c-1c41-43e8-9369-3b07addb7004"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/de16464f-b7f6-48ef-8897-ddda64a9f705"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P25Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:52:37+02:00</dct:modified>
+        <dct:created>2017-06-15T11:52:37+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0b1eda3d-994c-4fc8-a78d-da0fe4568c5e">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b40dd8b-7eb7-4111-bc11-452c88dce859"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">2 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/826a455f-5e44-4ebb-9e2c-a854e4a8600b"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P2M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:36:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:03+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/70e6f5db-c949-4f3a-aa19-c74d993d4e40">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/31a9d5e4-56c9-4bdb-b692-00a78fafbc52"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/48240663-be28-4607-b5e8-ffb975af0d49"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P75Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:58:38+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:38+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f76cf9a6-d30d-4499-b019-ab27f8582bf2">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ea24b58d-1638-4daa-b5fd-acce537a8302"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">65 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3ee5ca12-2a15-4712-9f91-675a7a036dce"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P65Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:57:19+02:00</dct:modified>
+        <dct:created>2017-06-15T11:57:19+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0a406765-9573-4e14-9084-6ca16b8f2c6a">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c3ba5e80-f089-47d1-b563-7f6d6b2d14c9"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">18 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8afc0aa7-34e2-47ed-ab95-1d86b18c13e3"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P18M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:43:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:02+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d022f5ae-9194-4dca-8a79-b5d5884525c5">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f1ccb63e-cfce-4a72-b608-ac719e8c7d84"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">8 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d8259dea-1a57-4d6f-a831-bc323434f09b"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P8M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:39:42+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:42+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8c7ff12e-ac74-4245-bd7b-16c291fbd550">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4db99a04-7641-4437-b30f-4fb6ee39ef49"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">5 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fa3e6428-deff-4a9c-a7cf-84e700818541"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P5M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:38:14+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:14+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/402567cf-55ff-4405-a2df-a6383d053ce9">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/710667b8-170c-4752-af18-2b7e06c3d254"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">10 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e0ac3f83-d80e-4b60-928a-45021795272b"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P10M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:41:17+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:17+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b085f49a-e3ca-4deb-ac02-639055ab855d">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a032ba63-fab2-4c28-9ac2-99ed9df437b5"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">42 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cdec6634-886a-4011-82ed-b3babae67b68"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P42M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:46:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:02+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a3ccae92-5092-4d5f-8f7f-9376e20edd75">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0b336f95-0aeb-445f-80fc-bae55eda8a5e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">15 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ef73d958-ae4c-4fd0-bcff-3a461a3cf089"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P15Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:51:31+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:31+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/88dd0222-401d-412b-b540-e2e8dd625810">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1371009e-2c96-4b15-9395-dc09e019b9db"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">30 mois</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/59ff0127-09c4-44a9-b6c1-9b424d888fa0"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P30M</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:45:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:03+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/37bf249d-eab4-486a-8ae6-24ced3338d7f">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0bdb576b-8672-49a0-8c50-07fc5f0ceafb"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">8 ans</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/84cfa656-c66b-4f03-8e6a-394806edefa8"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">P08Y</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2017-06-15T11:49:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:49:41+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f">
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/86710ff3-213c-4a6a-92d5-c7236f84033d"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/bfc599d8-bd47-40ad-a7dd-905ed76ae81c"/>
+        <dc:publisher>Ministère chargé de la culture</dc:publisher>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c0f80efc-5bde-493e-b596-4958e46b3e0f"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/b35babf0-e0ba-4290-87c1-f92315d263eb"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/88dd0222-401d-412b-b540-e2e8dd625810"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/23267f7e-e696-4fac-a864-d180bfd06b84"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/70e6f5db-c949-4f3a-aa19-c74d993d4e40"/>
+        <dc:relation></dc:relation>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/488c61e9-1234-498f-800c-f5c62719bd70"/>
+        <dc:description></dc:description>
+        <dct:modified>2017-06-15T12:10:27+02:00</dct:modified>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/a3ccae92-5092-4d5f-8f7f-9376e20edd75"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/118adc77-3644-4abc-b56e-078427a8e1a7"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/54dffb26-c000-46f6-8a56-68ca9ff69c18"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/02362d2c-36a3-4cb1-9322-c07b677f626c"/>
+        <dc:coverage></dc:coverage>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/402567cf-55ff-4405-a2df-a6383d053ce9"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f76cf9a6-d30d-4499-b019-ab27f8582bf2"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/52ac0042-ba29-4e8d-9bb2-d65f3f2934eb"/>
+        <dc:subject></dc:subject>
+        <dc:language>en</dc:language>
+        <dc:creator>
+            <foaf:Organization>
+                <foaf:name>Service interministériel des Archives de France</foaf:name>
+            </foaf:Organization>
+        </dc:creator>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/6578caec-de85-490b-8905-57a787272f18"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/64bf2e1b-5bd0-44bb-ab17-9b133afdcb12"/>
+        <dc:title>Règles de durée d’utilité administrative</dc:title>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f651bb8d-b319-48aa-a72e-6ec1f3f44f1a"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/682c4a33-aedd-4330-95c9-cf25617f2bbe"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/aa3f9cd4-2308-420b-bb58-4dcd063a70ba"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f93dd3b9-9d94-40a5-b63e-215ce2c690b4"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f1a926d3-8886-4c02-bd44-6c70b453fe89"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/ec9e264d-5f04-485e-86ba-2d57c8c9f481"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/2ae11c4e-9b4e-43db-b0e8-db44d705d7b1"/>
+        <dc:source></dc:source>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/380def5a-133f-4c5a-968b-76884ed8a786"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/fec8d6cb-4431-48eb-b10a-0b9ebe56a6e6"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c923adf1-e4df-40c2-8dd0-64e3d94d9e34"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/43637573-430a-4299-9a61-65a0db401488"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f5377fa8-a20a-40aa-86d8-b6c63107f2f3"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/d022f5ae-9194-4dca-8a79-b5d5884525c5"/>
+        <dct:created>2017-04-14T14:32:16+02:00</dct:created>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/b085f49a-e3ca-4deb-ac02-639055ab855d"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/5444b065-4278-4d59-814e-3a13320d2b0c"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/37bf249d-eab4-486a-8ae6-24ced3338d7f"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/3da91eeb-d2f1-4544-9581-6ae89c7a43c2"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/6cc34648-bea4-48e3-ac16-c803a67dedc9"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/3a2a40a9-a763-4cc5-85be-774b34851c65"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/d39be8a0-69e7-486a-a5b5-50659eabdc9e"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0b1eda3d-994c-4fc8-a78d-da0fe4568c5e"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/8c7ff12e-ac74-4245-bd7b-16c291fbd550"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/01255d52-8907-42b8-88ee-4673040980b8"/>
+        <dc:rights>à préciser</dc:rights>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0a406765-9573-4e14-9084-6ca16b8f2c6a"/>
+        <dc:contributor></dc:contributor>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/69b78b80-6d7f-4896-9144-64f8abc2d6af"/>
+        <dct:issued>Nouveau thesaurus</dct:issued>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/743104f8-26d1-4e30-b316-c8c2484603f4"/>
+        <dc:language>fr-FR</dc:language>
+    </skos:ConceptScheme>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/31a9d5e4-56c9-4bdb-b692-00a78fafbc52">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:38+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fa3e6428-deff-4a9c-a7cf-84e700818541">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P5M</xl:literalForm>
+        <dct:modified>2017-06-15T11:38:14+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:14+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d6ad61d6-937d-443b-9a6b-a0045dd3015d">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P07Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:53+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/48240663-be28-4607-b5e8-ffb975af0d49">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P75Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:38+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/59ff0127-09c4-44a9-b6c1-9b424d888fa0">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P30M</xl:literalForm>
+        <dct:modified>2017-06-15T11:45:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1371009e-2c96-4b15-9395-dc09e019b9db">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">30 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:45:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a032ba63-fab2-4c28-9ac2-99ed9df437b5">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">42 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:46:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:02+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fcb7cc72-f730-4905-a824-6d8554ddd05e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">1 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:35:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:35:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b40dd8b-7eb7-4111-bc11-452c88dce859">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">2 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:36:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8fa08ff9-ae1c-4539-84d5-e077e68f1e21">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P90Y</xl:literalForm>
+        <dct:modified>2017-06-15T12:00:24+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:24+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d8259dea-1a57-4d6f-a831-bc323434f09b">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P8M</xl:literalForm>
+        <dct:modified>2017-06-15T11:39:42+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:42+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/273acb04-2236-40db-83d8-fc60d6346fb5">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">80 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/710667b8-170c-4752-af18-2b7e06c3d254">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">10 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:41:17+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:17+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0b336f95-0aeb-445f-80fc-bae55eda8a5e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">15 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:31+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:31+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c3ba5e80-f089-47d1-b563-7f6d6b2d14c9">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">18 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:43:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:02+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3ee5ca12-2a15-4712-9f91-675a7a036dce">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P65Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:57:19+02:00</dct:modified>
+        <dct:created>2017-06-15T11:57:19+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4a1554d7-90b5-4a5e-83bc-bcadd2f67097">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">85 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:59:43+02:00</dct:modified>
+        <dct:created>2017-06-15T11:59:43+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1145292f-cdd3-4e7f-be7e-943b35b08d25">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P54M</xl:literalForm>
+        <dct:modified>2017-06-15T11:47:39+02:00</dct:modified>
+        <dct:created>2017-06-15T11:47:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cfa61cc9-0d53-4abd-a96a-8c7fd83c7d6e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P05Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4db99a04-7641-4437-b30f-4fb6ee39ef49">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">5 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:38:14+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:14+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ea30f313-ff76-4c33-ba20-8c90f1b10147">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">4 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:46:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:44+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/99f59703-0ff9-49b2-9cfd-9e3e28b9897f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P3M</xl:literalForm>
+        <dct:modified>2017-06-15T11:36:30+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:30+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a911d4d4-aec5-4493-befd-bcb7549fc09b">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">6 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:38:56+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:56+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8afc0aa7-34e2-47ed-ab95-1d86b18c13e3">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P18M</xl:literalForm>
+        <dct:modified>2017-06-15T11:43:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:02+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4187b65f-9741-481b-9699-9f6eaba0a2b7">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P7M</xl:literalForm>
+        <dct:modified>2017-06-15T11:39:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a7951d00-ac01-441a-b7a0-d67b5f938248">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">11 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:41:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:53+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/68512651-950a-4663-84ce-8a283b2db532">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P03Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:45:28+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:28+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6a8540d9-3cf3-4947-b623-5d7d9582eee8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">55 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:56:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:23+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/40677092-de6f-4f2f-92b0-6d734d94b131">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">54 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:47:39+02:00</dct:modified>
+        <dct:created>2017-06-15T11:47:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f9206e5e-fe5f-499a-b633-f76f71cfc355">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P60Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:56:50+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:50+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/df88499e-5cdc-4c83-ab1f-335fbe7764e3">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">20 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cdec6634-886a-4011-82ed-b3babae67b68">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P42M</xl:literalForm>
+        <dct:modified>2017-06-15T11:46:02+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:02+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/21dbd9ce-e097-4a46-ba02-4652a5302caf">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">60 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:56:50+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:49+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/647ddb1d-6957-431e-842e-8c6fa04af64e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">4 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:37:01+02:00</dct:modified>
+        <dct:created>2017-06-15T11:37:01+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9fb59971-8bcb-46fb-81bf-8103979b6567">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">3 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:36:30+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:30+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f09291a0-91c7-444a-a058-95da7739ffaf">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">2 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:43:29+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:29+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4d93bd51-f9d7-4238-bcad-ee1bf62f2b6c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P85Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:59:43+02:00</dct:modified>
+        <dct:created>2017-06-15T11:59:43+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/84cfa656-c66b-4f03-8e6a-394806edefa8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P08Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:49:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:49:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3157ae70-499f-47b8-a0e5-fec067013cc3">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">40 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:54:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:54:23+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55a6cd4d-956a-4654-a56a-acdc56e1be5c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P09Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:50:34+02:00</dct:modified>
+        <dct:created>2017-06-15T11:50:34+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9d7dbd97-3260-4598-affc-9af369e186d8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">95 ans</xl:literalForm>
+        <dct:modified>2017-06-15T12:00:51+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:51+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e0ac3f83-d80e-4b60-928a-45021795272b">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P10M</xl:literalForm>
+        <dct:modified>2017-06-15T11:41:17+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:17+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7d3223d1-046c-48eb-bf11-4ee4ddb6418c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P01Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:44:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:44:07+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/46dd9a57-7f0c-4705-b23f-119e1871d82c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P45Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:55:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:07+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/85438fe8-573c-4996-b122-5b2b095cf948">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P80Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2fca2436-4dd6-4afd-823f-75d1c81c3316">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">100 ans</xl:literalForm>
+        <dct:modified>2017-06-15T12:01:22+02:00</dct:modified>
+        <dct:created>2017-06-15T12:01:22+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/465114f0-dc69-4b2a-9fce-30e62e9bc0a5">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">45 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:55:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:07+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f1ccb63e-cfce-4a72-b608-ac719e8c7d84">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">8 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:39:42+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:42+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a769c7dd-52a6-4574-809d-1a57d32bb32c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">35 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:53:40+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:40+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9c13a66c-1c41-43e8-9369-3b07addb7004">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:52:37+02:00</dct:modified>
+        <dct:created>2017-06-15T11:52:37+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fb025707-cdb9-4e31-8053-a7999aa36ee7">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P4M</xl:literalForm>
+        <dct:modified>2017-06-15T11:37:01+02:00</dct:modified>
+        <dct:created>2017-06-15T11:37:01+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ba5ad3e3-17ab-4751-ba81-bb77f800b15e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">5 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f08d9127-5218-4a61-8782-5a2f722671a7">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">1 an</xl:literalForm>
+        <dct:modified>2017-06-15T11:44:07+02:00</dct:modified>
+        <dct:created>2017-06-15T11:32:55+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/eb03f6bc-89a9-45a6-aff6-4c2d9d09c63b">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">7 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:53+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/43b8de01-f778-4f76-af9b-3745d699c5c1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">6 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:26+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:26+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1a416baa-979b-488d-9f61-6eafb92e780a">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P35Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:53:40+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:40+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f53e4ccb-2420-4a1a-b655-f2891e109664">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P11M</xl:literalForm>
+        <dct:modified>2017-06-15T11:41:53+02:00</dct:modified>
+        <dct:created>2017-06-15T11:41:53+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/af615184-7b85-4dc8-8228-b44194ad187a">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P5OY</xl:literalForm>
+        <dct:modified>2017-06-15T11:55:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8b4fe823-5086-45d3-92ca-401b83795d80">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P95Y</xl:literalForm>
+        <dct:modified>2017-06-15T12:00:51+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:51+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2399ed9d-8e90-4f0b-adbf-b9424c0c30f8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">9 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:40:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:40:55+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/47259248-080a-43dc-99b8-a626a56fdea8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">30 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:53:08+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:08+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2e63c637-dc6c-4269-b4ba-98a0aefd666f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">90 ans</xl:literalForm>
+        <dct:modified>2017-06-15T12:00:24+02:00</dct:modified>
+        <dct:created>2017-06-15T12:00:24+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/5838457e-90f0-43c7-ab42-c4960c61cc71">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P10Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:04+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8ec46bd8-9c67-4ca6-b4cb-486191402529">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">10 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:04+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d90a021b-993c-4ceb-a9e6-88188098fcea">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P9M</xl:literalForm>
+        <dct:modified>2017-06-15T11:40:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:40:55+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ea24b58d-1638-4daa-b5fd-acce537a8302">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">65 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:57:19+02:00</dct:modified>
+        <dct:created>2017-06-15T11:57:19+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/39c510d5-67ae-4892-b490-eac85007b1a1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">3 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:45:28+02:00</dct:modified>
+        <dct:created>2017-06-15T11:45:28+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/de16464f-b7f6-48ef-8897-ddda64a9f705">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P25Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:52:37+02:00</dct:modified>
+        <dct:created>2017-06-15T11:52:37+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0c93faff-393d-4d70-b4fe-b266224aaf5f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">9 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:50:34+02:00</dct:modified>
+        <dct:created>2017-06-15T11:50:34+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/68afb4ce-d266-4df8-bef1-e0ff0e80ab0e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P06Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:48:26+02:00</dct:modified>
+        <dct:created>2017-06-15T11:48:26+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4e175331-8bd0-4b34-940d-b5efa33cb145">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P1M</xl:literalForm>
+        <dct:modified>2017-06-15T11:35:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:35:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b8f9d16-fbb8-4bfe-a496-c4f65fd6131f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P30Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:53:08+02:00</dct:modified>
+        <dct:created>2017-06-15T11:53:08+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e449fdb6-6ba9-4b43-b7a4-853b6f6effaf">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">70 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:04+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0761cfa8-a82f-475c-9217-81d5d478742d">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P02Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:43:29+02:00</dct:modified>
+        <dct:created>2017-06-15T11:43:29+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ef73d958-ae4c-4fd0-bcff-3a461a3cf089">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P15Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:31+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:31+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/680e2fc2-a3b2-46cf-a4e9-3fbd3fb04fab">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P70Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:58:04+02:00</dct:modified>
+        <dct:created>2017-06-15T11:58:04+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/11527a00-0579-46bc-a16e-f642752d79d1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P55Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:56:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:56:23+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/826a455f-5e44-4ebb-9e2c-a854e4a8600b">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P2M</xl:literalForm>
+        <dct:modified>2017-06-15T11:36:03+02:00</dct:modified>
+        <dct:created>2017-06-15T11:36:03+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3b1ffd86-c1fe-4fe9-8f83-c8ede67028a8">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P40Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:54:23+02:00</dct:modified>
+        <dct:created>2017-06-15T11:54:23+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a5a8349c-8f60-4c6c-8ebc-4a0e2f70a5ac">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">7 mois</xl:literalForm>
+        <dct:modified>2017-06-15T11:39:20+02:00</dct:modified>
+        <dct:created>2017-06-15T11:39:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/88135aff-7930-40f1-b465-ce1551dc7e54">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P100Y</xl:literalForm>
+        <dct:modified>2017-06-15T12:01:22+02:00</dct:modified>
+        <dct:created>2017-06-15T12:01:22+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/df6a0cad-9f7f-4687-b103-a4f82bd97590">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P6M</xl:literalForm>
+        <dct:modified>2017-06-15T11:38:56+02:00</dct:modified>
+        <dct:created>2017-06-15T11:38:56+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/725c8e83-98a1-4160-8e0a-aee4ff3f1971">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P04Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:46:55+02:00</dct:modified>
+        <dct:created>2017-06-15T11:46:44+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1389ebb5-3c58-47bf-92c4-edb9fbc7de4e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">P20Y</xl:literalForm>
+        <dct:modified>2017-06-15T11:51:59+02:00</dct:modified>
+        <dct:created>2017-06-15T11:51:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0bdb576b-8672-49a0-8c50-07fc5f0ceafb">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">8 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:49:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:49:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6fa2c673-cb76-4373-87a0-5c88c95b12a3">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">50 ans</xl:literalForm>
+        <dct:modified>2017-06-15T11:55:41+02:00</dct:modified>
+        <dct:created>2017-06-15T11:55:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <skos:Collection rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1e13d638-674e-43c6-b2fb-622414495142">
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/118adc77-3644-4abc-b56e-078427a8e1a7"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/2ae11c4e-9b4e-43db-b0e8-db44d705d7b1"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0a406765-9573-4e14-9084-6ca16b8f2c6a"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/b35babf0-e0ba-4290-87c1-f92315d263eb"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/54dffb26-c000-46f6-8a56-68ca9ff69c18"/>
+        <skos:prefLabel xml:lang="fr-FR">DUA</skos:prefLabel>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/aa3f9cd4-2308-420b-bb58-4dcd063a70ba"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/fec8d6cb-4431-48eb-b10a-0b9ebe56a6e6"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/3da91eeb-d2f1-4544-9581-6ae89c7a43c2"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/88dd0222-401d-412b-b540-e2e8dd625810"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/37bf249d-eab4-486a-8ae6-24ced3338d7f"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/43637573-430a-4299-9a61-65a0db401488"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/23267f7e-e696-4fac-a864-d180bfd06b84"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/a3ccae92-5092-4d5f-8f7f-9376e20edd75"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/70e6f5db-c949-4f3a-aa19-c74d993d4e40"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/02362d2c-36a3-4cb1-9322-c07b677f626c"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/3a2a40a9-a763-4cc5-85be-774b34851c65"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f76cf9a6-d30d-4499-b019-ab27f8582bf2"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/6cc34648-bea4-48e3-ac16-c803a67dedc9"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/6578caec-de85-490b-8905-57a787272f18"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/d39be8a0-69e7-486a-a5b5-50659eabdc9e"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/5444b065-4278-4d59-814e-3a13320d2b0c"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/ec9e264d-5f04-485e-86ba-2d57c8c9f481"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/52ac0042-ba29-4e8d-9bb2-d65f3f2934eb"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/380def5a-133f-4c5a-968b-76884ed8a786"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/69b78b80-6d7f-4896-9144-64f8abc2d6af"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/8c7ff12e-ac74-4245-bd7b-16c291fbd550"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f651bb8d-b319-48aa-a72e-6ec1f3f44f1a"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c923adf1-e4df-40c2-8dd0-64e3d94d9e34"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/402567cf-55ff-4405-a2df-a6383d053ce9"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f93dd3b9-9d94-40a5-b63e-215ce2c690b4"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0b1eda3d-994c-4fc8-a78d-da0fe4568c5e"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/488c61e9-1234-498f-800c-f5c62719bd70"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/bfc599d8-bd47-40ad-a7dd-905ed76ae81c"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f5377fa8-a20a-40aa-86d8-b6c63107f2f3"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/f1a926d3-8886-4c02-bd44-6c70b453fe89"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/b085f49a-e3ca-4deb-ac02-639055ab855d"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/d022f5ae-9194-4dca-8a79-b5d5884525c5"/>
+        <dct:created>2017-06-15T12:05:27+02:00</dct:created>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/743104f8-26d1-4e30-b316-c8c2484603f4"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/01255d52-8907-42b8-88ee-4673040980b8"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/682c4a33-aedd-4330-95c9-cf25617f2bbe"/>
+        <skos:inScheme rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/86162206-c00d-4915-ab4a-3952d3bcc59f"/>
+        <dct:modified>2017-06-15T12:10:27+02:00</dct:modified>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c0f80efc-5bde-493e-b596-4958e46b3e0f"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/64bf2e1b-5bd0-44bb-ab17-9b133afdcb12"/>
+        <skos:member rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/86710ff3-213c-4a6a-92d5-c7236f84033d"/>
+    </skos:Collection>
+</rdf:RDF>

@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>ch.docuteam</groupId>
+		<artifactId>docuteam-dist-template-packer</artifactId>
+		<version>5.3.0</version>
+	</parent>
+
+	<artifactId>octave-docuteam-packer-dist</artifactId>
+	<packaging>pom</packaging>
+	<name>OCTAVE/docuteam packer</name>
+
+	<properties>
+		<skip-jre>true</skip-jre>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>truezip-maven-plugin</artifactId>
+				<version>${truezip-maven-plugin.version}</version>
+
+				<executions>
+					<execution>
+						<id>remove-generic-templates</id>
+						<goals>
+							<goal>remove</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<fileset>
+								<directory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/templates/reports</directory>
+								<includes>
+									<include>EAD_*.xsl</include>
+								</includes>
+							</fileset>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+					<execution>
+						<id>remove-generic-shell-scripts</id>
+						<goals>
+							<goal>remove</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<fileset>
+								<directory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</directory>
+								<includes>
+									<include>docuteam packer*.sh</include>
+									<include>docuteam packer*.exe</include>
+									<include>docuteam packer*.bat</include>
+								</includes>
+							</fileset>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-application-directory</id>
+						<goals>
+							<goal>move</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<from>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/docuteam packer.app</from>
+							<to>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/octave.app</to>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-root-directory</id>
+						<goals>
+							<goal>move</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<from>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</from>
+							<to>${project.build.directory}/docuteam-packer-${project.version}.zip/octave-docuteam-packer</to>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-package</id>
+						<goals>
+							<goal>move</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<from>${project.build.directory}/docuteam-packer-${project.version}.zip</from>
+							<to>${project.build.directory}/octave-docuteam-packer-${project.version}.zip</to>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

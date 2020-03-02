@@ -1,0 +1,75 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>dist</id>
+    <!-- Specifies that our binary distribution is a zip package -->
+    <formats>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>${artifactId}</baseDirectory>
+ 
+    <!-- Adds the dependencies of our application to the lib directory -->
+    <dependencySets>
+        <dependencySet>
+            <excludes>
+        		<exclude>com.pdftools:O2PProxyAPI</exclude>
+        		<exclude>com.pdftools:O2PProxyNET</exclude>
+        	</excludes>
+            <!--
+                Project artifact is not copied under library directory since
+                it is added to the root directory of the zip package.
+            -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>docuteam packer.app/Contents/docuteam packer/lib</outputDirectory>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+ 
+    <fileSets>
+        <!--
+            Adds startup scripts to the root directory of zip package. The startup
+            scripts are copied from the src/main/resources/distribution directory. -->   
+        <!-- Have to do this file first to set the proper file attributes -->
+        <fileSet>
+            <directory>${project.build.outputDirectory}/distribution/docuteam packer.app/Contents/MacOS</directory>
+            <outputDirectory>docuteam packer.app/Contents/MacOS</outputDirectory>
+            <includes>
+                <include>docuteam packer</include>
+            </includes>
+            <fileMode>755</fileMode>
+        </fileSet> 
+        <fileSet>
+            <directory>${project.build.outputDirectory}/distribution</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet> 
+        
+        <!--
+            Adds the jar file of our application to the outputDirectory of the created zip package.
+        -->
+        <fileSet>
+        <!-- TODO: add param ${project.build.directory} -->
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>docuteam packer.app/Contents/docuteam packer</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+    	
+        <!-- adds the generic config dir to the outputDirectory. -->
+        <fileSet>        
+      		<directory>${project.internal.config.directory}</directory>
+      		<outputDirectory>docuteam packer.app/Contents/docuteam packer</outputDirectory>
+      		<includes>
+                <include>config/*</include>
+                <include>agreements/*</include>
+                <include>templates/**</include>
+                <include>images/Level*</include>
+      		    <include>images/Logo_docuteam_64.png</include>
+      		    <include>optdlls/*.dll</include>
+      		</includes>
+    	</fileSet>
+    	        
+    </fileSets>
+</assembly>

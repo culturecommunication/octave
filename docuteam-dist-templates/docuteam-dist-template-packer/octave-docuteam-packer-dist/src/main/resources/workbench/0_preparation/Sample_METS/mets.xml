@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<METS:mets xmlns:METS="http://www.loc.gov/METS/" xmlns:EAD="urn:isbn:1-931666-22-9"
+    xmlns:PREMIS="info:lc/xmlns/premis-v2" xmlns:OAI_DC="http://www.openarchives.org/OAI/2.0/oai_dc/"
+    xmlns:DC="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="   http://www.loc.gov/METS/      http://www.loc.gov/standards/mets/mets.xsd   urn:isbn:1-931666-22-9       http://www.loc.gov/ead/ead.xsd   info:lc/xmlns/premis-v2       http://www.loc.gov/premis/v2/premis.xsd   http://www.openarchives.org/OAI/2.0/oai_dc/  http://www.openarchives.org/OAI/2.0/oai_dc.xsd   http://www.w3.org/1999/xlink     http://www.loc.gov/standards/mets/xlink.xsd"
+    PROFILE="http://www.docuteam.ch/xmlns/sip-profile.xml" TYPE="sa_all-formats-01_dss-01">
+    <METS:metsHdr CREATEDATE="2017-12-11T11:26:03" LASTMODDATE="2018-10-26T15:26:29" RECORDSTATUS="New"
+        ADMID="_20171211112603113">
+        <METS:agent ROLE="CREATOR" TYPE="INDIVIDUAL">
+            <METS:name>nef</METS:name>
+        </METS:agent>
+    </METS:metsHdr>
+    <METS:dmdSec ID="_20171211112603154">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Package">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Sample</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112603174">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="File">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">RootFolder1</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112603270">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="File">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">SubFolder1</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112603298">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="File">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">SubFolder1.1</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112606433">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">File1</EAD:unittitle>
+                                    <EAD:langmaterial>
+                                        <EAD:language>http://data.culture.fr/thesaurus/resource/ark:/67717/e9a43b7b-f10e-4c63-a87d-6b94534a7b8a</EAD:language>
+                                    </EAD:langmaterial>
+                                    <EAD:origination label="agency">IdOriginatingAgency</EAD:origination>
+                                    <EAD:unitdate label="to">2018-07-16</EAD:unitdate>
+                                    <EAD:unitdate label="from">2017-11-13</EAD:unitdate>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                    <EAD:p>Ceci est un historique de la conservation</EAD:p>
+                                </EAD:custodhist>
+                                <EAD:accessrestrict type="accessRestrictionsStatus">
+                                    <EAD:p>http://data.culture.fr/thesaurus/resource/ark:/67717/d363e457-c8b8-445c-aa6b-81bbe8f04b96</EAD:p>
+                                </EAD:accessrestrict>
+                                <EAD:accessrestrict type="accessRestrictionsPeriodBaseYear">
+                                    <EAD:p>2017-11-13</EAD:p>
+                                </EAD:accessrestrict>
+                                <EAD:accessrestrict type="retentionPolicy">
+                                    <EAD:p>http://data.culture.fr/thesaurus/resource/ark:/67717/3da91eeb-d2f1-4544-9581-6ae89c7a43c2</EAD:p>
+                                </EAD:accessrestrict>
+                                <EAD:appraisal>
+                                    <EAD:p>Keep</EAD:p>
+                                </EAD:appraisal>
+                                <EAD:accessrestrict type="baseYear">
+                                    <EAD:p>2017-11-13</EAD:p>
+                                </EAD:accessrestrict>
+                                <EAD:scopecontent>
+                                    <EAD:p>Ceci est une description</EAD:p>
+                                </EAD:scopecontent>
+                                <EAD:controlaccess>
+                                    <EAD:name role="keyword">Ceci est un terme d'indexation</EAD:name>
+                                </EAD:controlaccess>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112606448">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">File2</EAD:unittitle>
+                                    <EAD:langmaterial>
+                                        <EAD:language>http://data.culture.fr/thesaurus/resource/ark:/67717/11b8481e-2cee-4c9e-bb96-5f61f051d156</EAD:language>
+                                    </EAD:langmaterial>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112606466">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="File">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">RootFolder2</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112606499">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">File3</EAD:unittitle>
+                                    <EAD:langmaterial>
+                                        <EAD:language>http://data.culture.fr/thesaurus/resource/ark:/67717/e2801cb7-b797-4c70-b647-9fd9bbb82df7</EAD:language>
+                                    </EAD:langmaterial>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112734803">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="File">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Traçabilité des opérations réalisées pendant le
+                                        traitement</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112815281">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Récolement</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112903339">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Bordereau d'élimination</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112947725">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Bordereau de restitution</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20171211112953987">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">Rapport d'éxecution</EAD:unittitle>
+                                </EAD:did>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:dmdSec ID="_20180829124916828">
+        <METS:mdWrap MDTYPE="EAD">
+            <METS:xmlData>
+                <EAD:ead>
+                    <EAD:eadheader>
+                        <EAD:eadid/>
+                        <EAD:filedesc>
+                            <EAD:titlestmt>
+                                <EAD:titleproper/>
+                            </EAD:titlestmt>
+                        </EAD:filedesc>
+                    </EAD:eadheader>
+                    <EAD:archdesc level="otherlevel">
+                        <EAD:did>
+                            <EAD:unittitle/>
+                        </EAD:did>
+                        <EAD:dsc>
+                            <EAD:c level="otherlevel" otherlevel="Item">
+                                <EAD:did>
+                                    <EAD:unittitle label="main">_maven</EAD:unittitle>
+                                    <EAD:unitdate label="from">2012-04-11</EAD:unitdate>
+                                </EAD:did>
+                                <EAD:controlaccess>
+                                    <EAD:name role="keyword"/>
+                                </EAD:controlaccess>
+                                <EAD:custodhist>
+                                    <EAD:note>
+                                        <EAD:p>CDO</EAD:p>
+                                    </EAD:note>
+                                </EAD:custodhist>
+                            </EAD:c>
+                        </EAD:dsc>
+                    </EAD:archdesc>
+                </EAD:ead>
+            </METS:xmlData>
+        </METS:mdWrap>
+    </METS:dmdSec>
+    <METS:amdSec>
+        <METS:digiprovMD ID="_20171211112603113">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112603114</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:environment>
+                                <PREMIS:software>
+                                    <PREMIS:swName>OCTAVE/docuteam-packer</PREMIS:swName>
+                                    <PREMIS:swType>5.1.1-f_4_16-SNAPSHOT</PREMIS:swType>
+                                </PREMIS:software>
+                            </PREMIS:environment>
+                        </PREMIS:object>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112603142">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112603143</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>Sample</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112603144</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:03</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112603143</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112603170">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112603172</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>RootFolder1</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112603173</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:03</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112603172</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112603254">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112603256</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>SubFolder1</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112603257</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:03</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112603256</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112603285">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112603286</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>SubFolder1.1</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112603287</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:03</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112603286</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112606394">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112606396</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>9c614ba0d58c976d0b39f8f5536eb8af89fae745cbe3783ac2ca3e3055bb0b1e3687417a1d1104288d2883a4368d3dacb9931460c6e523117ff3eaa28810481a</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>6</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>File1.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112606432</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:06</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112606396</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112606444">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112606445</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>be61d3f27b1acc24462314d609c0e40b65b2208c2300489b68f9c739d8997319e7693273b669a38cfaa186a3c273c669518730d4aa98b59d8f20198c335e46cd</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>5</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>File2.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112606447</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:06</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112606445</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112606453">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112606454</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>RootFolder2</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112606465</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:06</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112606454</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112606477">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112606478</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>79c994f97612eb4ee6a3cb1fbbb45278da184ea73bfb483274bb783f0bce6a7bf8dd8cb0d4fc0eb2b065ebd28b2959b59d9a489929edf9ea7db4dcda8a09a76f</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>6</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>File3.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112606487</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:26:06</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112606478</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112734788">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:representation">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112734790</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:originalName>Traçabilité des opérations réalisées pendant le
+                                traitement</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112734791</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:27:34</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112734790</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112815268">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112815269</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>0</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>recolement.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112815271</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:28:15</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112815269</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112903326">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112903327</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>0</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>bordereau_elimination.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112903328</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:29:03</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112903327</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112947700">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112947712</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>0</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>bordereau_restitution.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112947713</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:29:47</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112947712</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20171211112953975">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20171211112953976</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>0</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName>Plain Text File</PREMIS:formatName>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey>x-fmt/111</PREMIS:formatRegistryKey>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>rapport_execution.txt</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20171211112953977</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2017-12-11T11:29:53</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20171211112953976</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+        <METS:digiprovMD ID="_20180829124916806">
+            <METS:mdWrap MDTYPE="PREMIS">
+                <METS:xmlData>
+                    <PREMIS:premis version="2.2">
+                        <PREMIS:object xsi:type="PREMIS:file">
+                            <PREMIS:objectIdentifier>
+                                <PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+                                <PREMIS:objectIdentifierValue>_20180829124916817</PREMIS:objectIdentifierValue>
+                            </PREMIS:objectIdentifier>
+                            <PREMIS:objectCharacteristics>
+                                <PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+                                <PREMIS:fixity>
+                                    <PREMIS:messageDigestAlgorithm>SHA-512</PREMIS:messageDigestAlgorithm>
+                                    <PREMIS:messageDigest>842126735211589f6537d66c79e3c176361e90710f158cf15d9ae7e3eca159d544b99fec9e205e631d2d72839f6151169c7fe8678b9a8e838970fe709a897a90</PREMIS:messageDigest>
+                                </PREMIS:fixity>
+                                <PREMIS:size>152</PREMIS:size>
+                                <PREMIS:format>
+                                    <PREMIS:formatDesignation>
+                                        <PREMIS:formatName/>
+                                    </PREMIS:formatDesignation>
+                                    <PREMIS:formatRegistry>
+                                        <PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+                                        <PREMIS:formatRegistryKey/>
+                                    </PREMIS:formatRegistry>
+                                </PREMIS:format>
+                            </PREMIS:objectCharacteristics>
+                            <PREMIS:originalName>_maven.repositories</PREMIS:originalName>
+                        </PREMIS:object>
+                        <PREMIS:event>
+                            <PREMIS:eventIdentifier>
+                                <PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+                                <PREMIS:eventIdentifierValue>_20180829124916818</PREMIS:eventIdentifierValue>
+                            </PREMIS:eventIdentifier>
+                            <PREMIS:eventType>Creation</PREMIS:eventType>
+                            <PREMIS:eventDateTime>2018-08-29T12:49:16</PREMIS:eventDateTime>
+                            <PREMIS:eventDetail>Performed by: 'nef'</PREMIS:eventDetail>
+                            <PREMIS:eventOutcomeInformation>
+                                <PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+                            </PREMIS:eventOutcomeInformation>
+                            <PREMIS:linkingObjectIdentifier>
+                                <PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+                                <PREMIS:linkingObjectIdentifierValue>_20180829124916817</PREMIS:linkingObjectIdentifierValue>
+                            </PREMIS:linkingObjectIdentifier>
+                        </PREMIS:event>
+                    </PREMIS:premis>
+                </METS:xmlData>
+            </METS:mdWrap>
+        </METS:digiprovMD>
+    </METS:amdSec>
+    <METS:fileSec>
+        <METS:fileGrp>
+            <METS:file ID="_20171211112603311" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL" xlink:href="file:///Sample/RootFolder1/SubFolder1/SubFolder1.1/File1.txt"/>
+            </METS:file>
+            <METS:file ID="_20171211112606440" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL" xlink:href="file:///Sample/RootFolder1/SubFolder1/SubFolder1.1/File2.txt"/>
+            </METS:file>
+            <METS:file ID="_20171211112606474" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL" xlink:href="file:///Sample/RootFolder2/File3.txt"/>
+            </METS:file>
+            <METS:file ID="_20171211112815266" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL"
+                    xlink:href="file:///Sample/Tracabilite des operations realisees pendant le traitement/recolement.txt"
+                />
+            </METS:file>
+            <METS:file ID="_20171211112903325" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL"
+                    xlink:href="file:///Sample/Tracabilite des operations realisees pendant le traitement/bordereau_elimination.txt"
+                />
+            </METS:file>
+            <METS:file ID="_20171211112947699" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL"
+                    xlink:href="file:///Sample/Tracabilite des operations realisees pendant le traitement/bordereau_restitution.txt"
+                />
+            </METS:file>
+            <METS:file ID="_20171211112953971" MIMETYPE="text/plain">
+                <METS:FLocat LOCTYPE="URL"
+                    xlink:href="file:///Sample/Tracabilite des operations realisees pendant le traitement/rapport_execution.txt"
+                />
+            </METS:file>
+            <METS:file ID="_20180829124916804" MIMETYPE="">
+                <METS:FLocat LOCTYPE="URL" xlink:href="file:///Sample/RootFolder2/_maven.repositories"/>
+            </METS:file>
+        </METS:fileGrp>
+    </METS:fileSec>
+    <METS:structMap>
+
+        <METS:div LABEL="Sample" TYPE="rootfolder" ADMID="_20171211112603142" ORDER="1">
+            <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112603154"/>
+            <METS:div LABEL="RootFolder1" TYPE="folder" ADMID="_20171211112603170" ORDER="1">
+                <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112603174"/>
+                <METS:div LABEL="SubFolder1" TYPE="folder" ADMID="_20171211112603254" ORDER="1">
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112603270"/>
+                    <METS:div LABEL="SubFolder1.1" TYPE="folder" ADMID="_20171211112603285" ORDER="1">
+                        <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112603298"/>
+                        <METS:div LABEL="File1.txt" TYPE="file" ADMID="_20171211112606394" ORDER="1">
+                            <METS:div LABEL="Content" TYPE="content">
+                                <METS:fptr FILEID="_20171211112603311"/>
+                            </METS:div>
+                            <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112606433"/>
+                        </METS:div>
+                        <METS:div LABEL="File2.txt" TYPE="file" ADMID="_20171211112606444" ORDER="2">
+                            <METS:div LABEL="Content" TYPE="content">
+                                <METS:fptr FILEID="_20171211112606440"/>
+                            </METS:div>
+                            <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112606448"/>
+                        </METS:div>
+                    </METS:div>
+                </METS:div>
+            </METS:div>
+            <METS:div LABEL="RootFolder2" TYPE="folder" ADMID="_20171211112606453" ORDER="2">
+                <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112606466"/>
+                <METS:div LABEL="File3.txt" TYPE="file" ADMID="_20171211112606477" ORDER="1">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20171211112606474"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112606499"/>
+                </METS:div>
+                <METS:div LABEL="_maven.repositories" TYPE="file" ADMID="_20180829124916806" ORDER="2">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20180829124916804"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20180829124916828"/>
+                </METS:div>
+            </METS:div>
+            <METS:div LABEL="Tracabilite des operations realisees pendant le traitement" TYPE="folder"
+                ADMID="_20171211112734788" ORDER="3">
+                <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112734803"/>
+                <METS:div LABEL="recolement.txt" TYPE="file" ADMID="_20171211112815268" ORDER="1">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20171211112815266"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112815281"/>
+                </METS:div>
+                <METS:div LABEL="bordereau_elimination.txt" TYPE="file" ADMID="_20171211112903326" ORDER="2">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20171211112903325"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112903339"/>
+                </METS:div>
+                <METS:div LABEL="bordereau_restitution.txt" TYPE="file" ADMID="_20171211112947700" ORDER="3">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20171211112947699"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112947725"/>
+                </METS:div>
+                <METS:div LABEL="rapport_execution.txt" TYPE="file" ADMID="_20171211112953975" ORDER="4">
+                    <METS:div LABEL="Content" TYPE="content">
+                        <METS:fptr FILEID="_20171211112953971"/>
+                    </METS:div>
+                    <METS:div LABEL="EAD" TYPE="metadata" DMDID="_20171211112953987"/>
+                </METS:div>
+            </METS:div>
+        </METS:div>
+    </METS:structMap>
+</METS:mets>

@@ -1,0 +1,23 @@
+# removed directories
+/scripts/shell
+
+# build directories
+/**/.classpath
+/**/.project
+/**/.settings
+/**/build/
+/**/dist/
+/**/target/
+/**/.clover/
+
+# Intellij
+.idea/
+*.iml
+
+# local configurations
+/cache/
+/config/
+/ssl/
+
+# Ignore tempfiles
+/**/.DS_Store

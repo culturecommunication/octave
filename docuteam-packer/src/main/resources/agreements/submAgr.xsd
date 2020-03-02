@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2008-2011 Docuteam GmbH -->
+<xs:schema xmlns="http://www.docuteam.ch/xmlns/submAgr" targetNamespace="http://www.docuteam.ch/xmlns/submAgr" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:dcterms="http://purl.org/dc/terms/" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:import namespace="http://purl.org/dc/dcmitype/" schemaLocation="http://dublincore.org/schemas/xmls/qdc/dcmitype.xsd" />
+	<xs:element name="submAgr">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A submission agreement consists of four elements: one or more records producers, the archive contact information, survey information on the records, and one or more data submission sessions.</xs:documentation>
+			<xs:documentation xml:lang="de">Eine Ablieferungsvereinbarung besteht aus vier Elementen: einem oder mehreren Aktenproduzenten, einem Archiv, Überblicksinformationen zu den betroffenen Unterlagen und einer Beschreibung von einer oder mehr Ablieferungen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="producer" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">A submission agreement has to name at least one, possibly even more records producer(s).</xs:documentation>
+						<xs:documentation xml:lang="de">Eine Ablieferungsvereinbarung muss mindestens einen, kann aber auch mehrere Aktenproduzenten aufweisen.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="contact" type="contactType" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="archive">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">A submission agreement has exactly one archive as records receiver.</xs:documentation>
+						<xs:documentation xml:lang="de">Eine Ablieferungsvereinbarung hat genau ein Archiv als Unterlagenempfänger.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="contact" type="contactType" />
+						</xs:sequence>
+						<xs:attribute name="isil" type="repositoryCodeType">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">An archive usually has an ISIL code. In Switzerland, the directory is available at https://www.helveticarchives.ch/archivplansuche.aspx?ID=166870. In addition to these official codes, the values 'docuteam' (for internal digital objects) and 'test' (for test objects) are also valid.</xs:documentation>
+								<xs:documentation xml:lang="de">Ein Archiv verfügt normalerweise über einen ISIL-Code. In der Schweiz ist die Nationalbibliothek zuständig für deren Vergabe, das Verzeichnis befindet sich unter https://www.helveticarchives.ch/archivplansuche.aspx?ID=166870. Zusätzlich zu den offiziellen Codes sind auch die Werte 'docuteam' (für interne Objekte) und 'test' (für Testobjekte) erlaubt.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="surveyReport" type="surveyReportType">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The survey report section should give a general overview of the records addressed by this submission agreement, how they are created and appraised.</xs:documentation>
+						<xs:documentation xml:lang="de">Der Überblicksbericht gibt eine grobe Beschreibung der betroffenen Unterlagen, wie diese erstellt worden sind und den Bewertungsentscheid.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataSubmissionSession" minOccurs="1" maxOccurs="unbounded" type="dssType">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Every submission agreements consists of one or more separate data submission sessions (DSS). The DSS differ for example in content or frequency of submission: One submission session could cover the yearly overview of certain business cases, while the another session could for example cover single business cases or the published report on the matter.</xs:documentation>
+						<xs:documentation xml:lang="de">Jede Ablieferungsvereinbarung besteht aus einer oder mehreren Ablieferungen (DSS). Die Ablieferungen betreffen zwar denselben Bereich von Unterlagen, können sich aber bspw. inhaltlich oder auch in ihrer Frequenz unterscheiden. Die eine Ablieferungkönte einen Jahresauszug der Geschäfte darstellen, während eine andere Ablieferung die einzelnen Geschäfte betrifft oder ein über die Geschäfte publizierter Bericht.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="saID" type="saIDType" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">An identifier for each submission agreement is mandatory and has to be in the structure "sa_[organisational unit]-[running number]".</xs:documentation>
+					<xs:documentation xml:lang="de">Ein Identifikator ist für jede Ablieferungsvereinbarung Pflicht und weist die folgende Struktur auf: "sa_[Geschäftseinheit]-[Laufnummer]".</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="title" type="non-empty-string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Short title describing the records affected by this submission agreement.</xs:documentation>
+					<xs:documentation xml:lang="de">Möglichst kurze und prägnante Bezeichnung der Vereinbarung mit Bezug auf die abzuliefernden Unterlagen.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="status" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Hint regarding the status of the submission agreement. Possible values are: pending, draft, release candidate, valid, suspended.</xs:documentation>
+					<xs:documentation xml:lang="de">Angabe zum Stand der Ablieferungsvereinbarung. Gültige Werte in logischer Reihenfolge: pending, draft, release candidate, valid.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="pending" />
+						<xs:enumeration value="draft" />
+						<xs:enumeration value="release candidate" />
+						<xs:enumeration value="final" />
+						<xs:enumeration value="suspended" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="saIDType">
+		<xs:restriction base="xs:ID">
+			<xs:pattern value="sa_[^_]{1,15}-\d+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="contactType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">For each participant of a submission - i.e. producers as well as receiving organisation (archive) - is some contact information mandatory.</xs:documentation>
+			<xs:documentation xml:lang="de">Pro Partner einer Vereinbarung - also Aktenproduzent(en) wie auch Archiv - sind Kontaktinformationen erforderlich.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="organisation" type="non-empty-string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Name of the organisation, body or institution (i.e. community/company/foundation)</xs:documentation>
+					<xs:documentation xml:lang="de">Name der Organisation, Körperschaft oder Institution. Bezeichnet vorzugsweise die juristische Person auf hoher Stufe (bspw. Gemeinde/Stadt/Firma/Stiftung XY).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="departement" type="non-empty-string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Denominates the organisational unit within the institution the records producer belongs to.</xs:documentation>
+					<xs:documentation xml:lang="de">Bezeichnet die Organisationseinheit, zu welcher der Aktenproduzent gehört.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shortname" type="non-empty-string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Shortform of the department (this is referred to by the SIP-Creator and has to match the user's respective organisational unit to be able to submit information).</xs:documentation>
+					<xs:documentation xml:lang="de">Kurzzeichen der Abteilung (hierüber wird bspw. im SIP-Creator abgeklärt, ob die jeweils angemeldete Person dieser Abteilung angehört und also diese Ablieferung machen darf).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="person" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Personal name of the records producer; use with care as this might change rather quickly.</xs:documentation>
+					<xs:documentation xml:lang="de">Personenname des Aktenproduzenten; Mit Vorsicht zu verwenden, da dieser schnell ändern kann.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phone" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Phone number of the records producer. For reasons of personnel shifts, you might rather give the number of his/her section.</xs:documentation>
+					<xs:documentation xml:lang="de">Telefonnummer des Aktenproduzenten. Aus Gründen der Personalfluktuation vorteilhafter der entsprechenden Unternehmenseinheit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mail" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Mail address of the records producer. For reasons of personnel shifts, you might rather give the address of his/her section.</xs:documentation>
+					<xs:documentation xml:lang="de">Mail-Adresse des Aktenproduzenten. Aus Gründen der Personalfluktuation vorteilhafter die Adresse der direkt übergeordneten Unternehmenseinheit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="contactID" type="xs:ID" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">An identifier for this contact which has to be unique within this submission agreement. Has to start with a letter.</xs:documentation>
+				<xs:documentation xml:lang="de">Eine ID für diesen Kontakt, die innerhalb der Ablieferungsvereinbarung eindeutig sein und mit einem Buchstaben beginnen muss.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="repositoryCodeType">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="(((AF|AX|AL|DZ|AS|AD|AO|AI|AQ|AG|AR|AM|AW|AU|AT|AZ|BS|BH|BD|BB|BY|BE|BZ|BJ|BM|BT|BO|BA|BW|BV|BR|IO|BN|BG|BF|BI|KH|CM|CA|CV|KY|CF|TD|CL|CN|CX|CC|CO|KM|CG|CD|CK|CR|CI|HR|CU|CY|CZ|DK|DJ|DM|DO|EC|EG|SV|GQ|ER|EE|ET|FK|FO|FJ|FI|FR|GF|PF|TF|GA|GM|GE|DE|GH|GI|GR|GL|GD|GP|GU|GT|GN|GW|GY|HT|HM|VA|HN|HK|HU|IS|IN|ID|IR|IQ|IE|IL|IT|JM|JP|JO|KZ|KE|KI|KP|KR|KW|KG|LA|LV|LB|LS|LR|LY|LI|LT|LU|MO|MK|MG|MW|MY|MV|ML|MT|MH|MQ|MR|MU|YT|MX|FM|MD|MC|MN|MS|MA|MZ|MM|NA|NR|NP|NL|AN|NC|NZ|NI|NE|NG|NU|NF|MP|NO|OM|PK|PW|PS|PA|PG|PY|PE|PH|PN|PL|PT|PR|QA|RE|RO|RU|RW|SH|KN|LC|PM|VC|WS|SM|ST|SA|SN|CS|SC|SL|SG|SK|SI|SB|SO|ZA|GS|ES|LK|SD|SR|SJ|SZ|SE|CH|SY|TW|TJ|TZ|TH|TL|TG|TK|TO|TT|TN|TR|TM|TC|TV|UG|UA|AE|GB|US|UM|UY|UZ|VU|VE|VN|VG|VI|WF|EH|YE|ZM|ZW)|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})|docuteam|test)" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="surveyReportType">
+		<xs:sequence>
+			<xs:element name="background" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">This element should contain information on how this submission agreement came about, what the general context of these records are.</xs:documentation>
+					<xs:documentation xml:lang="de">In diesem Element wird angegeben, wie es zu dieser Vereinbarung kam und was der generelle Hintergrund der betroffenen Unterlagen ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="records">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">This section is used to describe the records involved on a general level.</xs:documentation>
+					<xs:documentation xml:lang="de">In diesem Abschnitt werden die betroffenen Unterlagen auf einer generellen Ebene beschrieben.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="generalDescription" type="non-empty-string">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">A general description of the records to be submitted is necessary. It should be concise and easily understandable so that also the records producers understand which records are affected.</xs:documentation>
+								<xs:documentation xml:lang="de">Eine generelle Beschreibung der abzuliefernden Unterlagen ist Voraussetzung. Sie soll einerseits kurz und klar verständlich sein, damit insbesondere die Aktenproduzenten verstehen um welche Unterlagen es geht, andererseits alle betroffenen Akten umfassen.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="creation" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">The creation context of the records must be described. It has to become clear who created or modified the records as well as the system used to do so.</xs:documentation>
+								<xs:documentation xml:lang="de">Der Entstehungskontext der Unterlagen ist zwingend festzuhalten. Es muss ersichtlich sein, wer die Unterlagen mit Hilfe welcher Systeme erstellt und allenfalls auch modifiziert hat.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="functions" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Describe what functions these records fulfill, i.e. why they were created in the first place.</xs:documentation>
+								<xs:documentation xml:lang="de">Beschreibung der Funktionen dieser Unterlagen, d.h. wofür diese überhautp erstellt wurden.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="copyright" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Note special copyright issues that apply on these records.</xs:documentation>
+								<xs:documentation xml:lang="de">Notiere spezielle Copyright-Bestimmungen, die auf diese Unterlagen zutreffen.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="recordsSurveyed" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Description of the range of records that were actually looked at and form the basis for this submission agreement.</xs:documentation>
+								<xs:documentation xml:lang="de">Beschreibung der Unterlagen, die effektiv für die vorliegende Ablieferungsvereinbarung betrachtet wurden.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="evaluationRMS" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of the RMS that was in place to manage the records under their active phase.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung des RMS, welches während der aktiven Verwendung der Unterlagen eingesetzt worden ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="evaluationAuthenticity" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Evaluation of the authenticity of the records.</xs:documentation>
+					<xs:documentation xml:lang="de">Bewertung der Authentizität der Unterlagen.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="appraisalDecision" type="non-empty-string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">An appraisal report has to be included. It has to show unmistakingly for the arvchives as well as the submitting user which records have to be kept permanently or can be destroyed.</xs:documentation>
+					<xs:documentation xml:lang="de">Eine Bewertungseinschätzung ist zwingend. Aus ihr muss für abliefernde und auch erschliessende Personen hervorgehen, welche Unterlagen dauerhaft aufzubewahren oder zu kassieren sind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dssType">
+		<xs:sequence>
+			<xs:element name="title" type="non-empty-string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">You have to give a title for the specific submission session.</xs:documentation>
+					<xs:documentation xml:lang="de">Eine Bezeichnung der konkreten Ablieferung ist zwingend erforderlich.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schedule" type="scheduleType">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Information on the scheduling of submission has to be included. Two general options exist to formulate this:
+						- as a textual note (element "variable")
+						- as a specific date (element "offset") with an optional repetition frequency (element "frequency")</xs:documentation>
+					<xs:documentation xml:lang="de">Eine Angabe bezüglich Ablieferungszeitpunkt ist zwingend. Zwei Grundvarianten bestehen:
+						- als Notiz in Form von Fliesstext (Element "variable")
+						- als präzise Datumsangabe (Element "offset") mit optionaler Wiederholungsfrequenz (Element "frequency")</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transfer" minOccurs="0" type="transferType">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of the method how the records will be submitted to the archive.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung der Ablieferungsmethode.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="category" type="recordsCategoryType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The element "category" has three possible values: Snapshot, Addition, Usage
+						- Snapshot: records which are under constant modification (creation, change of content, deletion). The submitted collection represents a collection of these records at a specific point of time.<br />Examples: website, phone directory.
+						- Addition: records that continuously grow, without the older information being modified. The archive is only interested in the records created since the last submission.<br />Examples: meeting minutes, applications for construction, personnel files.
+						- Usage: records which should only be submitted after the respective file or process has been closed; this can cover a time period of very different length.<br />Example: project subdomain of a website.</xs:documentation>
+					<xs:documentation xml:lang="de">Das Element "category" kann einen von drei Werten enthalten: Momentaufnahme, Zuwachs, Abschluss
+						- Momentaufnahme: Unterlagen, die konstant über einen längeren Zeitraum bearbeitet (ergänzt, inhaltlich verändert, oder auch gelöscht) werden, von denen das Archiv aber dennoch Zwischenstände archivieren möchte.<br />Beispiele: Website, Telefonbuch.
+						- Zuwachs: Unterlagen, die laufend ergänzt werden, ohne dass ältere Information vernichtet wird. Das Archiv möchte nur die seit der letzten Ablieferung erstellten neuen Unterlagen erhalten.<br />Beispiele: Sitzungsprotokolle, Baugesuche, Personaldossiers.
+						- Abschluss: Unterlagen, die erst nach Abschluss ihrer aktiven Phase ins Archiv gelangen; der betroffene Zeitraum kann dabei stark variieren.<br />Beispiel: Projekt-Subdomain einer Website.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contentInformation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">A detailed description of the content of the records.</xs:documentation>
+					<xs:documentation xml:lang="de">Eine detaillierte Beschreibung des Ablieferunginhalts.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="recordTypes" type="dcmitype:DCMIType">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The element "recordTypes" has to give a value from the Dublin Core Metadata Initiative Type Vocabulary.
+						Source: http://dublincore.org/documents/dcmi-type-vocabulary/
+						Possible values are: Collection, Dataset, Event, Image, InteractiveResource, MovingImage, PhysicalObject, Service, Software, Sound, StillImage, Text</xs:documentation>
+					<xs:documentation xml:lang="de">Das Element "recordTypes" muss einen Wert aus dem Dublin Core Metadata Initiative Type Vocabulary enthalten
+						Quelle: http://dublincore.org/documents/dcmi-type-vocabulary/
+						Mögliche Werte: Collection, Dataset, Event, Image, InteractiveResource, MovingImage, PhysicalObject, Service, Software, Sound, StillImage, Text</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileFormats" type="fileFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> You have to give at least one indication of the file formats to be expected. </xs:documentation>
+					<xs:documentation xml:lang="de">Eine Angabe betreffend erwarteter Dateiformate ist zwingend.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileSize" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Indication of the expected size of the submission.</xs:documentation>
+					<xs:documentation xml:lang="de">Angabe zur erwarteten Grösse der Ablieferung</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="amount" type="xs:positiveInteger" />
+					</xs:sequence>
+					<xs:attribute name="sizeunits" type="filesizeUnitType" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fileCount" minOccurs="0" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Information on the expected number of files for the submission.</xs:documentation>
+					<xs:documentation xml:lang="de">Angabe zur erwarteten Anzahl Dateien der Ablieferung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="namingConventions" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Describe any convention regarding the naming of files.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung von spezifischen Konventionen zur Benennung von Dateien.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="existingIdentifiers" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of identifiers that exist within the submitted records.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung von Identifikatoren, die sich in den abgelieferten Unterlagen befinden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="additionalMetadata" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of any additional metadata that is contained by he records.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung von allfälligen zusätzlichen Metadaten, die in den abgelieferten Unterlagen enthalten sind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="responsibilities" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of specific responsibilities that are connected with the records.</xs:documentation>
+					<xs:documentation xml:lang="de">Beschreibung von Zuständigkeiten, die mit den Unterlagen verknüpft sind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="packaging" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Indication on how the records are grouped and should be grouped within the digital archive.</xs:documentation>
+					<xs:documentation xml:lang="de">Hinweise auf die interne Gruppierung von Unterlagen und wie diese im Archiv gruppiert werden sollten.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="processing" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Information on how to process the records after the submission.</xs:documentation>
+					<xs:documentation xml:lang="de">Anweisungen zur Verarbeitung der Unterlagen nach ihrer Ablieferung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="access" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">List any access restriction that apply on the records.</xs:documentation>
+					<xs:documentation xml:lang="de">Angabe jeglicher Zugriffsbeschränkung auf die Unterlagen.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="note" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Information that did not fit anywhere else in the submission agreement.</xs:documentation>
+					<xs:documentation xml:lang="de">Informationen, die nirgendwo anders in der Ablieferungsvereinbarung Platz fanden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="dssID" type="dssIDType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Unique identifier for the data submission session. Has to start with a letter and is not allowed to contain the underline character.</xs:documentation>
+				<xs:documentation xml:lang="de">Eindeutiger Identifikator der Datenlieferung in der Form. Muss mit einem Buchstaben beginnen und darf keinen Unterstrich enthalten.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="dssIDType">
+		<xs:restriction base="xs:ID">
+			<xs:pattern value="[a-zA-Z][^_]*" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="scheduleType">
+		<xs:sequence>
+			<xs:choice minOccurs="1" maxOccurs="1">
+				<xs:element name="variable" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Use this element if there is no specific schedule to submit the records.</xs:documentation>
+						<xs:documentation xml:lang="de">Benutze dieses Element wenn kein spezifischer Ablieferungsrhythmus vorgesehen ist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence>
+					<xs:element name="offset" type="xs:date">
+						<xs:annotation>
+							<xs:documentation xml:lang="de">Eine Datumsangabe im Format jjjj-mm-tt, wann diese Ablieferung zum ersten Mal stattfinden soll.</xs:documentation>
+							<xs:documentation xml:lang="en">A date in the format yyyy-mm-dd to indicate when this submission should take place for the first time.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="frequency" type="fequencyType">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Description of the frequency the submission is supposed to take place.</xs:documentation>
+							<xs:documentation xml:lang="de">Angabe zur Frequenz der Ablieferung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="note" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Additional description of the schedule.</xs:documentation>
+							<xs:documentation xml:lang="de">Zusätzliche Beschreibung des Zeitplans.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fequencyType">
+		<xs:choice>
+			<xs:element name="unique" type="xs:boolean" fixed="true">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Dieses Element kann eingefügt werden, falls dies eine einmalige Ablieferung sein soll.</xs:documentation>
+					<xs:documentation xml:lang="en">Insert this element if this submission will only occur once and is not repeated in the future.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence>
+				<xs:element name="count" type="xs:integer" />
+				<xs:element name="unit">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="Day(s)" />
+							<xs:enumeration value="Week(s)" />
+							<xs:enumeration value="Month(s)" />
+							<xs:enumeration value="Year(s)" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="transferType">
+		<xs:sequence>
+			<xs:element name="mode">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="Dropbox" />
+						<xs:enumeration value="FTP" />
+						<xs:enumeration value="HTTP" />
+						<xs:enumeration value="External Device" />
+						<xs:enumeration value="SIPCreator" />
+						<xs:enumeration value="OnlineAccess" />
+						<xs:enumeration value="Mail" />
+						<xs:enumeration value="OAI" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="instruction" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Detailed instructions on how to apply the above indicated submission mode.</xs:documentation>
+					<xs:documentation xml:lang="de">Anleitung, wie der oben angegebene Ablieferungsweg anzuwenden ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="secure" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Set this value to "true" if the submission contains sensitive information and has to be submitted in an encrypted way.</xs:documentation>
+				<xs:documentation xml:lang="de">Dieser Wert muss "wahr" sein wenn die Ablieferung vertrauliche Unterlagen enthält und verschlüsselt übertragen werden muss.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="initiator" use="required" type="xs:IDREF">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Reference to one of the above listed partners who will be responsible for the initiation of the submission process.</xs:documentation>
+				<xs:documentation xml:lang="de">Referenz auf einen der oben aufgelisteten Partnern, der für die Initiierung der Ablieferung verantwortlich ist.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="recordsCategoryType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Snapshot" />
+			<xs:enumeration value="Addition" />
+			<xs:enumeration value="Manipulation" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="fileFormatType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The information on file formats can be given as either a PRONOM identifier (PUID), a common file extension, a mimetype or the name of the file format.
+				Examples:
+				- PUID: fmt/18, x-fmt/239
+				- format extension: doc, pdf, tif
+				- format name: Microsoft Word Document, Portable Document Format</xs:documentation>
+			<xs:documentation xml:lang="de">Die Angabe eines Dateiformats kann entweder in Form eines Pronom-Identifiers, mittels eines Mimetypes, aber auch mit Angabe einer Dateiendung oder der Dateiformatsbezeichnung erfolgen. Das Element ist für jedes erlaubte Format zu wiederholen.
+				Beispiele:
+				- PUID: fmt/18, x-fmt/239
+				- Dateiendung: doc, pdf, tif
+				- Formatbezeichnung: Microsoft Word Document, Portable Document Format</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded" minOccurs="1">
+			<xs:element name="puid" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">PRONOM unique identifiers (PUID) are unique codes given by the British National Archives. In addition to declare the usual file format names, they distinguish also the different version of a single file extension.<br />Example: While ".doc" could be any type of word processing document, the PUID fmt/40 identifies the file to be a Microsoft Word document of version "97-2003". The PRONOM database is available at http://www.nationalarchives.gov.uk/PRONOM/Default.aspx.</xs:documentation>
+					<xs:documentation xml:lang="de">Das Britische Nationalarchiv führt eine Verzeichnis der bekannten Dateiformate und weist diesen eindeutige Identifikatoren zu (PRONOM unique identifiers, PUID). Diese spezifizieren nicht nur eine Formatbezeichnung, sondern unterscheiden auch die unterschiedlichen Versionen davon, die über die Jahre im Einsatz waren.<br />Beispiel: Während ".doc" eine fast beliebige Textvearbeitungsdatei darstellen kann, identifiziert der PUID fmt/40 bspw. eine Datei als spezifisches Microsoft Word-Dokument der Version "97-2003". Die Datenbank ist unter http://www.nationalarchives.gov.uk/PRONOM/Default.aspx zugänglich.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(x\-)?fmt/\d+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="mimetype" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">MIME-Types (Multipurpose Internet Mail Extension) are a way to identify components of mails or webpages. It focuses on giving information on the required application to use for the file format rather than identifing the format. The official list of possible values can be found at http://www.iana.org/assignments/media-types/</xs:documentation>
+					<xs:documentation xml:lang="de">MIME-Types (Multipurpose Internet Mail Extension) werden insbesondere im Internet und für E-Mails verwendet, um die Applikation anzugeben, die mit einer bestimmten Datei verwendet werden soll. Eine Liste mit möglichen Werten findet sich bspw. unter http://de.selfhtml.org/diverses/mimetypen.htm.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\w+/\w+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">This element allows you to give a textual description of the file format. However, there is no controlled vocabulary behind it, so the automatic file format validation during ingest will hardly be effective.</xs:documentation>
+					<xs:documentation xml:lang="de">Dieses Element erlaubt eine freie Beschreibung des Dateiformats. Allerdings kann diese Angabe im anschliessenden Ingest-Prozess nicht automatisch geprüft werden, da sie nicht einem kontrollierten Vokabular entspricht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">This element specifies a file format using its extension which consists of two to four letters. Although probably the most common method, it has only limited capability of identifying a file format as several products might use the same extension.</xs:documentation>
+					<xs:documentation xml:lang="de">Dieses Element spezifiziert ein Dateiformat anhand der Dateiendung, die aus zwei bis vier Kleinbuchstaben besteht. Obwohl die bekannteste Art für die Bestimmung des Dateiformats, öffnet sie grosse Unklarheiten, da eine Dateiendung von unterschiedlichen Softwareprodukten benutzt werden kann.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-z0-9]{2,5}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="strict" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Indicates whether the given list of file formats is final or if other file formats should be accepted as well.</xs:documentation>
+				<xs:documentation xml:lang="de">Gibt an, ob die angegebene Liste von Dateiformate abschliessend ist, oder ob nicht aufgeführte Formate auch akzeptiert werden sollen.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="filesizeUnitType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Byte(s)" />
+			<xs:enumeration value="Kilobytes(s)" />
+			<xs:enumeration value="Megabyte(s)" />
+			<xs:enumeration value="Gigabyte(s)" />
+			<xs:enumeration value="Terabyte(s)" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="non-empty-string">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LEVELS:Config
+	xmlns:LEVELS="http://www.docuteam.ch/xmlns/levels"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.docuteam.ch/xmlns/levels		levels.xsd">
+
+	<LEVELS:MetadataElements>
+		<LEVELS:AllowedValuesSeparator>;</LEVELS:AllowedValuesSeparator>
+<!-- 1 -->
+		<LEVELS:MetadataElement					accessorNameID="refCode"/>
+		<LEVELS:MetadataElement					accessorNameID="fromYear"/>
+		<LEVELS:MetadataElement					accessorNameID="toYear"/>
+		<LEVELS:MetadataElement					accessorNameID="extent"									validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorShort"/>
+		<LEVELS:MetadataElement					accessorNameID="material"								allowedValues="*;cm;lfm;Bd(e).;Heft(e);Einheit(en);kB;MB;GB"/>
+<!-- 2 -->
+		<LEVELS:MetadataElement					accessorNameID="archivalHistory"/>
+		<LEVELS:MetadataElement					accessorNameID="accessNr"/>
+<!-- 3 -->
+		<LEVELS:MetadataElement					accessorNameID="scopeContent"/>
+		<LEVELS:MetadataElement					accessorNameID="appraisalAndDestruction"/>
+		<LEVELS:MetadataElement					accessorNameID="arrangement"/>
+<!-- 4 -->
+		<LEVELS:MetadataElement					accessorNameID="accessRestriction"/>
+		<LEVELS:MetadataElement					accessorNameID="conditionsOfReproductions"/>
+		<LEVELS:MetadataElement					accessorNameID="language"								allowedValues="*;deutsch;englisch;französisch;italienisch"/>
+		<LEVELS:MetadataElement					accessorNameID="characteristics"						allowedValues=";keine Angabe;digital;nicht digital;gemischt"
+																										defaultExpression='"keine Angabe"'/>
+		<LEVELS:MetadataElement					accessorNameID="findingAids"/>
+<!-- 5 -->
+		<LEVELS:MetadataElement					accessorNameID="locationOfOriginals"/>
+		<LEVELS:MetadataElement					accessorNameID="reproductions"/>
+		<LEVELS:MetadataElement					accessorNameID="relatedMaterial"/>
+		<LEVELS:MetadataElement					accessorNameID="bibliography"/>
+<!-- 6 -->
+		<LEVELS:MetadataElement					accessorNameID="comment"/>
+<!-- 7 -->
+		<LEVELS:MetadataElement					accessorNameID="descriptionRules"/>
+<!-- Not ISAD(G) -->
+		<LEVELS:MetadataElement					accessorNameID="involved"/>
+		<LEVELS:MetadataElement					accessorNameID="PID"/>
+		<LEVELS:MetadataElement					accessorNameID="refCodeAdmin"/>
+		<LEVELS:MetadataElement					accessorNameID="origination"/>
+		<LEVELS:MetadataElement					accessorNameID="abstract"/>
+		<LEVELS:MetadataElement					accessorNameID="creationPeriod"/>
+		<LEVELS:MetadataElement					accessorNameID="creationPeriodNotes"/>
+		<LEVELS:MetadataElement					accessorNameID="objectType"								allowedValues="FILES;GEVER"
+																										defaultExpression='"FILES"'/>
+		<LEVELS:MetadataElement					accessorNameID="usage"/>
+
+		<LEVELS:MetadataElement					accessorNameID="accessPolicy"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionExplanation"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionPeriod"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionClassification"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionPrivacy"				allowedValues=";true;false"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionStatus"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionStatusExplanation"/>
+	</LEVELS:MetadataElements>
+
+	<LEVELS:Levels>
+		<!-- NOTE: The 1st element in this list always has to be the "undefined" level! -->
+		<LEVELS:Level nameID="Undefiniert"		iconFileName="images/LevelUndefined.png"		allowedSublevelNameRefs="Paket Ablieferung Ordnungssystem Ordnungssystemposition Dossier Dokument Datei Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="fromYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="toYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="5"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="involved"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usage"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessPolicy"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionExplanation"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionClassification"		isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPrivacy"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatus"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatusExplanation"	isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Paket"			iconFileName="images/LevelSerie.png"			allowedSublevelNameRefs="Ablieferung Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="usage"									isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"	displayRows="3"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Ablieferung"		iconFileName="images/LevelSerie.png"			allowedSublevelNameRefs="Ordnungssystem Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="fromYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="toYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="5"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessPolicy"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Ordnungssystem"	iconFileName="images/LevelSerie.png"			allowedSublevelNameRefs="Ordnungssystemposition Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="fromYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="toYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="5"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="involved"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Ordnungssystemposition"
+												iconFileName="images/LevelSerie.png"			allowedSublevelNameRefs="Ordnungssystemposition Dossier Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessPolicy"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionExplanation"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionClassification"		isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPrivacy"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatus"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatusExplanation"	isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Dossier"			iconFileName="images/LevelDossier.png"		allowedSublevelNameRefs="Dossier Dokument Datei Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="fromYear"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="toYear"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="5"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessPolicy"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionExplanation"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionClassification"		isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPrivacy"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatus"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatusExplanation"	isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Dokument"			iconFileName="images/LevelItem.png"			allowedSublevelNameRefs="Datei Undefiniert">
+			<LEVELS:LevelMetadataElement		accessorNameRef="fromYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="toYear"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="5"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionClassification"		isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPrivacy"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatus"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionStatusExplanation"	isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	displayRows="3"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Datei"			iconFileName="images/LevelItem.png"			allowedSublevelNameRefs="Undefiniert">
+		</LEVELS:Level>
+	</LEVELS:Levels>
+
+</LEVELS:Config>

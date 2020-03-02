@@ -1,0 +1,182 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ch.docuteam</groupId>
+    <artifactId>docuteam-dist-templates</artifactId>
+    <version>5.3.0</version>
+  </parent>
+
+  <artifactId>docuteam-dist-template-packer</artifactId>
+  <packaging>pom</packaging>
+  <name>dist template for packer</name>
+
+  <properties>
+    <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
+    <skip-jre>true</skip-jre>
+    <!-- if you want to bundle the dlls needed by PDFToolsConverter into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
+    <skip-pdf-dlls>true</skip-pdf-dlls>
+    <com.oracle.java.jre.version>1.8.0_181</com.oracle.java.jre.version>
+  </properties>
+
+  <modules>
+    <module>octave-docuteam-packer-dist</module>
+  </modules>
+
+  <build>
+  	<plugins>      
+       <plugin>
+            <!-- TODO: move this to pluginManagement section of the parent pom -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <!-- configure plugin execution for child modules --> 
+                        <inherited>true</inherited>
+                        <id>copy-dependencies</id>
+                        <!-- default lifecycle binding: <phase>process-sources</phase> -->
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>ch.docuteam</includeGroupIds>
+                            <includeClassifiers>dist</includeClassifiers>
+                            <excludeTransitive>true</excludeTransitive>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <outputDirectory>${project.build.directory}/</outputDirectory>
+                            <stripVersion>false</stripVersion>
+                            <stripClassifier>true</stripClassifier>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- configure plugin execution for child modules --> 
+                        <inherited>true</inherited>
+                        <id>unpack-jre</id>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.oracle.java</includeGroupIds>
+                            <includeTypes>tgz</includeTypes>
+                            <includeArtifactIds>jre</includeArtifactIds>
+                            <outputDirectory>${project.build.directory}/jre</outputDirectory>
+		                    <skip>${skip-jre}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <inherited>false</inherited>
+      </plugin>
+      <plugin>
+            <!-- TODO: move this to pluginManagement section of the parent pom -->
+      		<groupId>org.codehaus.mojo</groupId>
+        	<artifactId>truezip-maven-plugin</artifactId>
+        	<version>${truezip-maven-plugin.version}</version>
+        	
+    		<executions>
+          		<execution>
+                    <!-- configure plugin execution for child modules --> 
+                    <inherited>true</inherited>
+            		<id>copy-into</id>
+            		<goals>
+              			<goal>copy</goal>
+            		</goals>
+            		<phase>package</phase>
+                    <configuration>
+        		        <fileset>
+                            
+                            <directory>${project.basedir}/src/main/resources</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <outputDirectory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer</outputDirectory>
+                        </fileset>
+                        <verbose>true</verbose>
+    		        </configuration>
+                </execution>
+                <execution>
+                    <!-- configure plugin execution for child modules -->
+                    <inherited>true</inherited>
+            		<id>copy-jre-into</id>
+            		<goals>
+              			<goal>copy</goal>
+            		</goals>
+            		<phase>package</phase>
+                    <configuration>
+        		        <fileset>
+                            <directory>${project.build.directory}/jre/jre${com.oracle.java.jre.version}</directory>
+                            <outputDirectory>${project.build.directory}/docuteam-packer-${project.version}.zip/docuteam-packer/jre</outputDirectory>
+                        </fileset>
+                        <immediateUpdate>true</immediateUpdate>
+                        <verbose>true</verbose>
+                        <skip>${skip-jre}</skip>
+    		        </configuration>
+                </execution>
+        	</executions>
+            <configuration>
+                <!-- skip plugin execution for this module, but not for child modules -->
+                <skip>true</skip>
+            </configuration>
+            <inherited>false</inherited>
+      	</plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>${maven-install-plugin.plugin.version}</version>
+            <executions>
+                <execution>
+                    <!-- reactivate this execution for the current pom --> 
+                    <id>default-install</id>
+                    <inherited>false</inherited>
+                    <configuration>
+                    <skip>false</skip>
+                    </configuration>
+                </execution>
+            </executions>
+            <!-- skip plugin execution for child modules --> 
+            <configuration>
+                <skip>true</skip>
+            </configuration>
+            <inherited>true</inherited>
+        </plugin>
+        <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <!-- reactivate this execution for the current pom --> 
+            <id>default-deploy</id>
+            <inherited>false</inherited>
+            <configuration>
+            <skip>false</skip>
+            </configuration>
+          </execution>
+        </executions>
+        <!-- skip plugin execution for child modules --> 
+        <configuration>
+            <skip>true</skip>
+        </configuration>
+        <inherited>true</inherited>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+    	<groupId>ch.docuteam</groupId>
+    	<artifactId>docuteam-packer</artifactId>
+        <version>${project.version}</version>
+        <classifier>dist</classifier>
+        <type>zip</type>
+	</dependency>
+	<dependency>
+		<groupId>com.oracle.java</groupId>
+		<artifactId>jre</artifactId>
+		<version>${com.oracle.java.jre.version}</version>
+		<type>tgz</type>
+	</dependency>
+  </dependencies>
+</project>

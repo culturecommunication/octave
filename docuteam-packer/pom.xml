@@ -1,0 +1,285 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ch.docuteam</groupId>
+    <artifactId>docuteam</artifactId>
+    <version>5.3.0</version>
+  </parent>
+  <artifactId>docuteam-packer</artifactId>
+  <name>packer</name>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.scriptSourceDirectory>src/main/resources/distribution</project.build.scriptSourceDirectory>
+    <project.internal.config.directory>${project.build.outputDirectory}</project.internal.config.directory>
+  </properties>
+
+  <build>
+  	<resources>
+	  	<!-- resource filtering for build.properties -->
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<filtering>true</filtering>
+    		<includes>	
+    			<!-- filter only build.properties -->			
+				<include>build.properties</include>
+			</includes>
+    	</resource>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<!-- don't filter anything else -->
+    		<filtering>false</filtering>
+			<includes>
+				<include>agreements/</include>
+				<include>config/</include>
+				<include>images/</include>
+				<include>templates/</include>
+				<include>translations/</include>
+			</includes>
+    	</resource>
+    	<!-- resource filtering for startup scripts -->
+    	<resource>
+    		<directory>src/main/resources/distribution</directory>
+    		<targetPath>${project.build.outputDirectory}/distribution</targetPath>
+    		<filtering>true</filtering>
+    		<includes>	
+				<include>docuteam packer Win.bat</include>
+				<include>docuteam packer Linux.sh</include>
+				<include>docuteam packer OSX.sh</include>
+			</includes>
+    	</resource>
+    	<resource>
+    		<directory>src/main/resources/distribution</directory>
+    		<targetPath>${project.build.outputDirectory}/distribution</targetPath>
+    		<!-- don't filter anything else -->
+    		<filtering>false</filtering>
+    		<includes>
+    			<include>docuteam packer.app/</include>
+    		</includes>    		
+    	</resource>
+    	<resource>
+    		<directory>src/main/resources/distribution/docuteam packer.app/Contents/MacOS</directory>
+    		<targetPath>${project.build.outputDirectory}/distribution/docuteam packer.app/Contents/MacOS/</targetPath>
+    		<filtering>true</filtering>
+    		<includes>	
+				<include>docuteam packer</include>
+			</includes>
+    	</resource>
+    </resources>
+	<testResources>
+		<testResource>
+			<directory>src/test/resources</directory>
+			<filtering>true</filtering>
+			<includes>
+				<include>**/log4j2.xml</include>
+			</includes>
+		</testResource>
+		<testResource>
+			<directory>src/test/resources</directory>
+			<filtering>false</filtering>
+		</testResource>
+	</testResources>
+    <plugins>      
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-failsafe-plugin</artifactId>
+      	<executions>
+			<execution>
+				<id>integrationTest</id>
+					<phase>integration-test</phase>
+					<goals>
+						<goal>integration-test</goal>
+						<goal>verify</goal>
+					</goals>
+			</execution>
+		</executions>
+      	<configuration>
+    		<systemPropertyVariables>
+				<java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
+				<log4j.configurationFile>${project.build.testOutputDirectory}/config/log4j2.xml</log4j.configurationFile>
+			</systemPropertyVariables>
+			<skipTests>${skipGUITests}</skipTests>
+			<forkCount>1</forkCount> <reuseForks>true</reuseForks>
+      	</configuration>
+      </plugin>
+      
+      <plugin>
+  		<groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-resources-plugin</artifactId>
+  		<version>${maven-resources-plugin.plugin.version}</version>
+  		<configuration>
+  			<!--include any empty dir from test resources -->
+    		<includeEmptyDirs>true</includeEmptyDirs>
+  		</configuration>
+		</plugin>
+		<plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-jar-plugin</artifactId>
+       	 	<version>${maven-jar-plugin.plugin.version}</version>
+        	<configuration>
+        		<excludes>	
+        			<!-- compact: exclude all from jar except images and translations  -->					  
+					<exclude>**/agreements</exclude>
+					<exclude>**/agreements/*</exclude>	
+					<exclude>**/config</exclude>	
+					<exclude>**/config/*</exclude>	
+					<exclude>**/distribution</exclude>	
+					<exclude>**/distribution/*</exclude>	
+					<exclude>**/distribution/**/*</exclude>
+					<exclude>**/templates</exclude>
+					<exclude>**/templates/**/*</exclude>
+					<exclude>**/templates/*</exclude>									
+                </excludes>
+          		<archive>
+          			<manifest>
+          			 	<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+          				<!-- Adds the classpath to the created manifest -->
+                		<addClasspath>true</addClasspath>
+                		<!--
+                    	Specifies that all dependencies of our application are found
+                    	from the lib directory.
+                		-->
+                		<classpathPrefix>lib/</classpathPrefix>
+                		<!-- Configures the main class of the application -->
+                		<mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
+          			</manifest>
+          		</archive>
+        	</configuration>        
+      	</plugin>
+				<!-- create a packer.exe with LAUNCH4J (s. http://launch4j.sourceforge.net/docs.html#Configuration_file) (executed before assembly)
+		      	mvn -pl docuteam-packer clean package -Pwin assembly:single
+		      	-->
+		     	<plugin>
+		        	<groupId>com.akathist.maven.plugins.launch4j</groupId>
+		            <artifactId>launch4j-maven-plugin</artifactId>
+		            <version>${launch4j-maven-plugin.plugin.version}</version>
+		            <executions>
+		                 <execution>
+		                        <id>l4j-clui</id>
+		                        <phase>package</phase>
+		                        <goals>
+		                            <goal>launch4j</goal>
+		                        </goals>
+		                        <configuration>
+		                            <headerType>gui</headerType>
+		                            <dontWrapJar>true</dontWrapJar>
+		                            <!-- this is a workaround because the content of the <jar> is put as the first element of the classpath, 
+		                            	even before the <preCp>. However, we want some directories as first elements of the classpath, 
+		                            	and therefore the jar is added as part of the classpath instead -->
+		                            <jar>does-not-exist.jar</jar>
+		                            <outfile>${project.build.outputDirectory}/distribution/docuteam packer.exe</outfile>
+		                            <!-- WARNING: Only '.' is allowed in change directory (chdir), according to documentation -->
+		                            <chdir>./docuteam packer.app/Contents/docuteam packer</chdir>
+		                            <classPath>
+		                                <mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
+		                                <addDependencies>false</addDependencies>
+			                            <preCp>config\;.\;${project.artifactId}-${project.version}.jar</preCp>
+		                            </classPath>
+		                            <cmdLine>-configDir="./config"</cmdLine>
+		                            <icon>${project.build.outputDirectory}/images/DocuteamPacker.ico</icon>
+		                                        
+		                            <jre>
+		                                <path>jre</path>
+		                                <bundledJre64Bit>true</bundledJre64Bit>
+		                                <bundledJreAsFallback>false</bundledJreAsFallback>
+		                                <minVersion>1.8.0</minVersion>
+		                                <jdkPreference>preferJre</jdkPreference>
+		                                <runtimeBits>64/32</runtimeBits>
+		                                <initialHeapSize>512</initialHeapSize> 
+		                                <maxHeapSize>2048</maxHeapSize>
+		                                <opts>
+		                                    <opt>-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager</opt>
+		                                    <opt>-Dfile.encoding=utf-8</opt>
+		                                    <opt>-Djava.library.path=lib</opt>
+		                                </opts>
+		                            </jre>
+		                        </configuration>
+		                  </execution>
+		              </executions>
+		        </plugin>
+
+      <!-- create a packer distribution:
+      mvn -pl docuteam-packer clean package assembly:single 
+      -->
+      <plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-assembly-plugin</artifactId>
+        	<version>${maven-assembly-plugin.plugin.version}</version>
+        	<configuration>
+        		<!-- Configures the used assembly descriptor -->
+        		<descriptors>
+            		<descriptor>src/main/assembly/assembly.xml</descriptor>
+        		</descriptors>
+    		</configuration>
+    		<executions>
+          		<execution>
+            	<id>create-archive</id>
+            	<phase>package</phase>
+            	<goals>
+              		<goal>single</goal>
+           		</goals>
+          		</execution>
+        	</executions>
+      	</plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>      
+    </dependency>
+    <dependency>
+    	<groupId>ch.docuteam</groupId>
+    	<artifactId>docuteam-darc</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.docuteam</groupId>
+    	<artifactId>docuteam-mapping</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.docuteam</groupId>
+    	<artifactId>docuteam-converter</artifactId>
+    	<version>${project.version}</version>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>com.pdftools</groupId>
+    			<artifactId>*</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
+    <dependency>
+    	<groupId>commons-cli</groupId>
+    	<artifactId>commons-cli</artifactId>
+    	<version>${commons-cli.commons-cli.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.sun.media</groupId>
+        <artifactId>jai-codec</artifactId>
+        <version>${com.sun.media.jai-codec.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.sun</groupId>
+    	<artifactId>jimi</artifactId>
+    	<version>${com.sun.jimi.version}</version>
+    </dependency>
+	<dependency>
+    	<groupId>org.assertj</groupId>
+    	<artifactId>assertj-swing-junit</artifactId>
+    	<version>${org.assertj.assertj-swing-junit.version}</version>
+    	<scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.icepdf.os</groupId>
+	    <artifactId>icepdf-viewer</artifactId>
+	    <version>${org.icepdf.os.icepdf-viewer.version}</version>
+	    <exclusions>				
+			<exclusion>
+				<groupId>batik</groupId>
+  				<artifactId>*</artifactId>  
+			</exclusion>
+		</exclusions>
+	</dependency>
+  </dependencies>  
+</project>

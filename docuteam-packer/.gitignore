@@ -1,0 +1,20 @@
+# removed directories
+/scripts/shell
+
+# build directories
+/.classpath
+/.project
+/build/
+/dist/
+
+# local configurations
+/cache/
+/config/
+/ssl/
+
+# Ignore tempfiles
+.DS_Store
+
+/target/
+
+/.settings

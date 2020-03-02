@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- List of applications installed on the current machine with path to the executable.
+			If @executable starts with "Class:", the FileConverter will try to run the main method of the given class. -->
+	<!-- Parameters given on this level will be used if no other parameters are given with the specific migration for a PUID/mimetype/extension.
+			The string "{[arg1]}" will be replaced with the source filename, "{[arg2]}" will be replaced with the target filename. -->
+	<application id="1"	name="OpenOffice"		executable="Class:ch.docuteam.converter.OOConverter"
+																parameter="{[arg1]}#{[arg2]}" />
+	<application id="2"	name="ImageMagick"		executable="/path/to/convert"
+																parameter="-compress#none#{[arg1]}#{[arg2]}" />
+	<!-- SIARD does only work on windows platforms -->
+	<application id="3"	name="SIARD Suite"						executable="script\convmdb.cmd"
+																parameter="{[arg1]}#{[arg2]}" />
+	<application id="4"	name="3-Heights Document Converter"		executable="Class:ch.docuteam.converter.PDFToolsConverter"
+																parameter="{[arg1]}#{[arg2]}" />
+
+	<!-- File migration instructions can be based on a PUID, mimetype or extension.
+			If a specific format should not be converted, use a puid-type instruction and set the targetPronom to the same value. -->
+
+
+	<puid name="fmt/123"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95" />
+	<mimeType name="image/tiff"			applicationID="2"	targetExtension="tif"	targetPronom="fmt/353" />
+	<extension name="pdf"				applicationID="4"	targetExtension="pdf"	targetPronom="fmt/354" />
+</config>

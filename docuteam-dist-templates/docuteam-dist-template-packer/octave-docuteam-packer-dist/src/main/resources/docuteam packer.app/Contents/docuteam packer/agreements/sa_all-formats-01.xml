@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<submAgr xmlns="http://www.docuteam.ch/xmlns/submAgr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	saID="sa_all-formats-01" status="final" title="Données générales"
+	xsi:schemaLocation="http://www.docuteam.ch/xmlns/submAgr http://www.docuteam.ch/xmlns/submAgr.xsd">
+	<producer>
+		<contact contactID="prod01"> <!-- Indiquer entre les guillemets le nom ou l'identifiant du service versant -->
+			<organisation>Organisation</organisation>
+			<departement>Producteur</departement>
+			<shortname>P</shortname>
+		</contact>
+	</producer>
+	<archive isil="FR-000000-1"> 
+		<contact contactID="arch01"> <!-- Indiquer entre les guillemets le nom ou l'identifiant du service d'archives -->
+			<organisation>Organisation</organisation>
+			<departement>Archives</departement>
+			<shortname>A</shortname>
+		</contact>
+	</archive>
+	<surveyReport>
+		<records>
+			<generalDescription>Description générale du versement.</generalDescription>
+		</records>
+		<appraisalDecision>Notes sur les décisions concernant l'évaluation des documents à verser.</appraisalDecision>
+	</surveyReport>
+	<dataSubmissionSession dssID="dss-01">
+		<title>Sans limite de formats</title>
+		<schedule>
+			<variable>Dépositions sans calendrier spécifique</variable>
+		</schedule>
+		<category>Addition</category>
+		<recordTypes>Collection</recordTypes>
+	</dataSubmissionSession>
+</submAgr>

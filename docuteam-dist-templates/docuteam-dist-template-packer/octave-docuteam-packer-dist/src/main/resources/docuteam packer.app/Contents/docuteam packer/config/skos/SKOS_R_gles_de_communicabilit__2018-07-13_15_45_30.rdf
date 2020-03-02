@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?><rdf:RDF
+    xmlns:iso-thes="http://purl.org/iso25964/skos-thes#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:xl="http://www.w3.org/2008/05/skos-xl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ginco="http://data.culture.fr/thesaurus/ginco/ns/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/causeEffet">
+        <rdfs:label>causeEffet</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric">
+        <rdfs:label>broaderGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive">
+        <rdfs:label>broaderPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/actionProduction">
+        <rdfs:label>actionProduction</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric">
+        <rdfs:label>narrowerGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive">
+        <rdfs:label>narrowerPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive">
+        <rdfs:label>narrowerInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive">
+        <rdfs:label>broaderInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/TermeAssocie">
+        <rdfs:label>TermeAssocie</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:DatatypeProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/CustomConceptAttribute">
+        <rdfs:label>CustomConceptAttribute</rdfs:label>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://purl.org/iso25964/skos-thes#status">
+        <rdfs:label>status</rdfs:label>
+    </owl:DatatypeProperty>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/aa87ec1e-c40b-4dd1-83ac-e9dbed9dd304">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f46c6482-c72a-44cd-8a8a-92c25f8cb0dc"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans - Affaires portées devant les juridictions</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4a8bd425-5050-4435-8230-0ffb73995967"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR057</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:44:06+02:00</dct:modified>
+        <dct:created>2018-07-12T17:59:47+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c4c57197-15f8-4886-8907-585ed2c56bb3">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bdd8c956-a463-4ca2-b3b0-c5ede050ec66"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">120 ans à compter de la date de naissance de l'intéressé - Secret médical</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1079f4d0-7723-44cc-821f-46b679a3d2ab"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR061</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:09+02:00</dct:modified>
+        <dct:created>2018-07-12T18:03:24+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4f74db00-38e4-47a1-85ac-4933a9ced176">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8842ab65-fe19-4909-9e5a-3538d50dea1d"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">100 ans - Intimité des personnes</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/57407d71-2b4b-4b02-bf4a-67e4f1517cf2"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR060</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:41:48+02:00</dct:modified>
+        <dct:created>2018-07-12T18:02:38+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/49dedc90-864d-4332-8cbe-7c9798eff631">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6ef8d9f1-0db8-4b92-81c9-b3b481d9a50f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">50 ans - Vie privée</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4ccfea39-1d0b-45bd-aaa9-c69426f1958e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR048</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:43:58+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:09+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8a4b164e-bc98-459d-bf09-10144a9ac7cf">
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+        <skos:scopeNote xml:lang="fr-FR">&lt;table cellspacing="0" border="0"&gt;
+	&lt;colgroup width="378"&gt;&lt;/colgroup&gt;
+	&lt;tbody&gt;&lt;tr&gt;
+		&lt;td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="105" align="left" valign="middle"&gt;Durée de communicabilité applicable aux informations portant atteinte au secret des délibérations du gouvernement et des autorités responsables relevant du pouvoir exécutif&lt;br&gt;L’échéance est calculée à partir de la date du document ou du document le plus récent inclus dans le dossier&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;</skos:scopeNote>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ef93f205-7e72-4d10-aa7c-b3d1c6f62d70"/>
+        </xl:prefLabel>
+        <dct:created>2017-07-17T10:47:52+02:00</dct:created>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4cbff881-52ee-47f0-ad8c-531b08b129fe"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans - Secret des délibérations</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">AR039</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:43:07+02:00</dct:modified>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bfb0f5d1-8749-4950-980b-fb4d356d6ea2">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/723d0772-f6cc-4cd2-b271-8df6eaf81fdd"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans - Etat-civil (naissances et mariages)</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/72f57d7d-a62e-4ab7-a758-187fc8abcfb7"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR054</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:44:22+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:30+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0a4faca4-8a78-41d6-8af0-4e0d0d267d19">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e0cf62de-73bd-4bff-9110-d3be400ff511"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">50 ans - Défense nationale</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4294427f-fdb7-4370-aa59-58054a6e2a34"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR049</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:43:50+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:39+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c1e8fa0b-3b96-4a94-9597-8d968d4b197f">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a2610d96-5c78-4a8b-a685-ec569cfcabd1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">100 ans - Défense nationale</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f0ed5ed8-0b3f-4c90-a334-dfe64d377ebe"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR059</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:41:34+02:00</dct:modified>
+        <dct:created>2018-07-12T18:01:41+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/d363e457-c8b8-445c-aa6b-81bbe8f04b96">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f02fd028-42f3-429b-a916-f34b93e2c550"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR038</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1c615745-54ea-4e94-975b-aba130e863e3"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">0 an - Documents librement communicables</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:41:22+02:00</dct:modified>
+        <dct:created>2017-07-17T10:50:32+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/5f6fd284-8283-4a0f-ae0d-306ab235af5c">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/862e8b0a-a966-40e2-bbd8-acec85d39297"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Secret médical</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bbe8c864-b08a-4300-8bc8-010c61a9a49f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR043</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:47+02:00</dct:modified>
+        <dct:created>2018-07-12T17:47:33+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/0d11934c-c657-46a2-af98-93bcfad1aa1e">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/673772b7-f16b-469e-941b-c6edf7af00fb"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans - Secret des questionnaires statistiques</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bbf5f3fe-ce7a-40b6-8ec5-b463db5ec8b9"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR052</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:44:40+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:35+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/19661807-22e1-44a5-b3bf-d8d3c3fc6345">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f5b8ab8a-a636-4097-9ee9-ba20094a46b1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR050</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55b9afcc-f589-4d00-87a7-cf53ad228ef1"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">50 ans - Bâtiments utilisés pour la détention de personnes</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:43:25+02:00</dct:modified>
+        <dct:created>2018-07-12T17:54:32+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ec443ab-a4fc-4fc0-a4d6-0027c8bd172d">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/da078350-fb4a-4b91-8114-ccb78fd00d0a"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Enquêtes de police judiciaire</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6aaabc2f-5307-4e88-aede-c899e4dd5f2d"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR046</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:29+02:00</dct:modified>
+        <dct:created>2018-07-12T17:50:59+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/365d4d20-f00b-4d12-b9f9-ecbef96df43f">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3869537d-c03d-42be-8596-79ac3997720e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR041</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/11441d03-3d7b-4845-8114-3d8417a65b9e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans - Secret statistique</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:43:15+02:00</dct:modified>
+        <dct:created>2018-07-12T17:46:14+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/792425ca-f347-4238-ac2a-ba1139aa2430">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55fa1029-c28e-466c-9d00-2a7eb82e415c"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">Illimitée - Armes de destruction massive</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a39faa32-3acd-4eb6-bc95-b14d5de1ba18"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR062</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:45:04+02:00</dct:modified>
+        <dct:created>2018-07-12T18:04:17+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2a69d467-2fd9-4249-aaae-5f87b9a2080d">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b18c4edc-fa9d-4c1e-80d6-91e421bcffae"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR047</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/473aa72d-cce7-4df9-96cd-22fe221b7659"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Affaires portées devant les juridictions</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:17+02:00</dct:modified>
+        <dct:created>2018-07-12T17:52:26+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3a2eb91e-d23a-4523-a26c-a8898b904252">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/52391cf0-5d25-47ad-81b8-6566d8235c92"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans - Enquêtes de police judiciaire</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fe7c9666-431d-431b-9ff9-7306ddf0c557"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR056</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:44:14+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:59+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/57e71df3-82fe-4b97-b712-424588df8fa3">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8f1c868a-353f-4195-b901-c38f37e58292"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans - Assemblées parlementaires, contentieux administratif, audit des établissements de santé</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cab30e0b-1df9-4a13-beda-0ae322aa6499"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR040</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:59+02:00</dct:modified>
+        <dct:created>2018-07-12T17:44:20+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7612d224-bfe4-45ee-96ce-1b1c1e1d4759">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4d27e171-3807-4e12-819b-d4dd5db9b773"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">100 ans - Personnes mineures</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cef8d148-c5b5-4d2d-a971-ecc1699bb81e"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR058</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:41:57+02:00</dct:modified>
+        <dct:created>2018-07-12T18:00:51+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a2be8b7a-5265-49ec-8209-947c58b7f212">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/44c93043-6ffa-40c8-80c8-98a9f91ac5bf"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR045</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cac1f889-769a-4c96-9ebf-8193957c33c4"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Minutes et répertoires des officiers publics et ministériels</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:42:38+02:00</dct:modified>
+        <dct:created>2018-07-12T17:49:41+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/668f7934-f39d-4cd0-bfb8-bc1e8a1a1ccf">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b995b385-9ba5-4427-b962-ca985f1b7487"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">75 ans - Minutes et répertoires des officiers publics et ministériels</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3759be7f-bfa7-458c-b6fd-6414597f0f06"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">AR055</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-07-13T15:44:33+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:19+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/98b3feb3-744b-4ba3-8381-18ca4a555a4c">
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/a2be8b7a-5265-49ec-8209-947c58b7f212"/>
+        <dct:issued>Nouveau thesaurus</dct:issued>
+        <dc:contributor></dc:contributor>
+        <dc:title>Règles de communicabilité</dc:title>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/5f6fd284-8283-4a0f-ae0d-306ab235af5c"/>
+        <dc:rights>à préciser</dc:rights>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/8a4b164e-bc98-459d-bf09-10144a9ac7cf"/>
+        <dc:creator>
+            <foaf:Organization>
+                <foaf:name>Service interministériel des Archives de France</foaf:name>
+            </foaf:Organization>
+        </dc:creator>
+        <dc:coverage></dc:coverage>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/19661807-22e1-44a5-b3bf-d8d3c3fc6345"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/365d4d20-f00b-4d12-b9f9-ecbef96df43f"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/d363e457-c8b8-445c-aa6b-81bbe8f04b96"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/792425ca-f347-4238-ac2a-ba1139aa2430"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/2a69d467-2fd9-4249-aaae-5f87b9a2080d"/>
+        <dc:publisher>Ministère chargé de la culture</dc:publisher>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/49dedc90-864d-4332-8cbe-7c9798eff631"/>
+        <dc:source></dc:source>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0d11934c-c657-46a2-af98-93bcfad1aa1e"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/7ec443ab-a4fc-4fc0-a4d6-0027c8bd172d"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/4f74db00-38e4-47a1-85ac-4933a9ced176"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/0a4faca4-8a78-41d6-8af0-4e0d0d267d19"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/bfb0f5d1-8749-4950-980b-fb4d356d6ea2"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c4c57197-15f8-4886-8907-585ed2c56bb3"/>
+        <dc:description></dc:description>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/668f7934-f39d-4cd0-bfb8-bc1e8a1a1ccf"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/7612d224-bfe4-45ee-96ce-1b1c1e1d4759"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/aa87ec1e-c40b-4dd1-83ac-e9dbed9dd304"/>
+        <dc:language>en</dc:language>
+        <dct:modified>2018-07-13T15:45:22+02:00</dct:modified>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/57e71df3-82fe-4b97-b712-424588df8fa3"/>
+        <dc:language>fr-FR</dc:language>
+        <dc:subject></dc:subject>
+        <dc:relation></dc:relation>
+        <dct:created>2017-04-14T14:33:51+02:00</dct:created>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c1e8fa0b-3b96-4a94-9597-8d968d4b197f"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/3a2eb91e-d23a-4523-a26c-a8898b904252"/>
+    </skos:ConceptScheme>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/52391cf0-5d25-47ad-81b8-6566d8235c92">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans - Enquêtes de police judiciaire</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:14+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/57407d71-2b4b-4b02-bf4a-67e4f1517cf2">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR060</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:48+02:00</dct:modified>
+        <dct:created>2018-07-12T18:02:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f0ed5ed8-0b3f-4c90-a334-dfe64d377ebe">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR059</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:34+02:00</dct:modified>
+        <dct:created>2018-07-12T18:01:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/673772b7-f16b-469e-941b-c6edf7af00fb">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans - Secret des questionnaires statistiques</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:40+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:35+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bdd8c956-a463-4ca2-b3b0-c5ede050ec66">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">120 ans à compter de la date de naissance de l'intéressé - Secret médical</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:09+02:00</dct:modified>
+        <dct:created>2018-07-12T18:03:24+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4a8bd425-5050-4435-8230-0ffb73995967">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR057</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:06+02:00</dct:modified>
+        <dct:created>2018-07-12T17:59:47+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bbf5f3fe-ce7a-40b6-8ec5-b463db5ec8b9">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR052</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:40+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:35+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/473aa72d-cce7-4df9-96cd-22fe221b7659">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Affaires portées devant les juridictions</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:17+02:00</dct:modified>
+        <dct:created>2018-07-12T17:52:26+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/da078350-fb4a-4b91-8114-ccb78fd00d0a">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Enquêtes de police judiciaire</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:29+02:00</dct:modified>
+        <dct:created>2018-07-12T17:50:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a2610d96-5c78-4a8b-a685-ec569cfcabd1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">100 ans - Défense nationale</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:34+02:00</dct:modified>
+        <dct:created>2018-07-12T18:01:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ef93f205-7e72-4d10-aa7c-b3d1c6f62d70">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans - Secret des délibérations</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:07+02:00</dct:modified>
+        <dct:created>2017-07-17T10:47:52+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f46c6482-c72a-44cd-8a8a-92c25f8cb0dc">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans - Affaires portées devant les juridictions</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:06+02:00</dct:modified>
+        <dct:created>2018-07-12T17:59:47+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b995b385-9ba5-4427-b962-ca985f1b7487">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans - Minutes et répertoires des officiers publics et ministériels</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:33+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:19+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4d27e171-3807-4e12-819b-d4dd5db9b773">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">100 ans - Personnes mineures</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:57+02:00</dct:modified>
+        <dct:created>2018-07-12T18:00:51+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f02fd028-42f3-429b-a916-f34b93e2c550">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR038</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:22+02:00</dct:modified>
+        <dct:created>2018-07-13T10:14:27+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/bbe8c864-b08a-4300-8bc8-010c61a9a49f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR043</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:47+02:00</dct:modified>
+        <dct:created>2018-07-12T17:47:33+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cab30e0b-1df9-4a13-beda-0ae322aa6499">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR040</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:59+02:00</dct:modified>
+        <dct:created>2018-07-12T17:44:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4294427f-fdb7-4370-aa59-58054a6e2a34">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR049</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:50+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6ef8d9f1-0db8-4b92-81c9-b3b481d9a50f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">50 ans - Vie privée</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:58+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:09+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55b9afcc-f589-4d00-87a7-cf53ad228ef1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">50 ans - Bâtiments utilisés pour la détention de personnes</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:25+02:00</dct:modified>
+        <dct:created>2018-07-12T17:54:32+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cac1f889-769a-4c96-9ebf-8193957c33c4">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Minutes et répertoires des officiers publics et ministériels</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:38+02:00</dct:modified>
+        <dct:created>2018-07-12T17:49:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/862e8b0a-a966-40e2-bbd8-acec85d39297">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans à compter de la date de décès de l'intéressé - Secret médical</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:47+02:00</dct:modified>
+        <dct:created>2018-07-12T17:47:33+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/a39faa32-3acd-4eb6-bc95-b14d5de1ba18">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR062</xl:literalForm>
+        <dct:modified>2018-07-13T15:45:04+02:00</dct:modified>
+        <dct:created>2018-07-12T18:04:17+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4cbff881-52ee-47f0-ad8c-531b08b129fe">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR039</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:07+02:00</dct:modified>
+        <dct:created>2017-07-17T10:49:04+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6aaabc2f-5307-4e88-aede-c899e4dd5f2d">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR046</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:29+02:00</dct:modified>
+        <dct:created>2018-07-12T17:50:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3759be7f-bfa7-458c-b6fd-6414597f0f06">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR055</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:33+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:19+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/72f57d7d-a62e-4ab7-a758-187fc8abcfb7">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR054</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:22+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:30+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/f5b8ab8a-a636-4097-9ee9-ba20094a46b1">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR050</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:25+02:00</dct:modified>
+        <dct:created>2018-07-12T17:54:32+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/44c93043-6ffa-40c8-80c8-98a9f91ac5bf">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR045</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:38+02:00</dct:modified>
+        <dct:created>2018-07-12T17:49:41+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/4ccfea39-1d0b-45bd-aaa9-c69426f1958e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR048</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:58+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:09+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/55fa1029-c28e-466c-9d00-2a7eb82e415c">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">Illimitée - Armes de destruction massive</xl:literalForm>
+        <dct:modified>2018-07-13T15:45:04+02:00</dct:modified>
+        <dct:created>2018-07-12T18:04:17+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/11441d03-3d7b-4845-8114-3d8417a65b9e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans - Secret statistique</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:15+02:00</dct:modified>
+        <dct:created>2018-07-12T17:46:14+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/723d0772-f6cc-4cd2-b271-8df6eaf81fdd">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">75 ans - Etat-civil (naissances et mariages)</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:22+02:00</dct:modified>
+        <dct:created>2018-07-12T17:56:30+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/cef8d148-c5b5-4d2d-a971-ecc1699bb81e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR058</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:57+02:00</dct:modified>
+        <dct:created>2018-07-12T18:00:51+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b18c4edc-fa9d-4c1e-80d6-91e421bcffae">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR047</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:17+02:00</dct:modified>
+        <dct:created>2018-07-12T17:52:26+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/3869537d-c03d-42be-8596-79ac3997720e">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR041</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:15+02:00</dct:modified>
+        <dct:created>2018-07-12T17:46:14+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1c615745-54ea-4e94-975b-aba130e863e3">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">0 an - Documents librement communicables</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:22+02:00</dct:modified>
+        <dct:created>2017-07-17T10:50:32+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8842ab65-fe19-4909-9e5a-3538d50dea1d">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">100 ans - Intimité des personnes</xl:literalForm>
+        <dct:modified>2018-07-13T15:41:48+02:00</dct:modified>
+        <dct:created>2018-07-12T18:02:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/1079f4d0-7723-44cc-821f-46b679a3d2ab">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR061</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:09+02:00</dct:modified>
+        <dct:created>2018-07-12T18:03:24+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/8f1c868a-353f-4195-b901-c38f37e58292">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">25 ans - Assemblées parlementaires, contentieux administratif, audit des établissements de santé</xl:literalForm>
+        <dct:modified>2018-07-13T15:42:59+02:00</dct:modified>
+        <dct:created>2018-07-12T17:44:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fe7c9666-431d-431b-9ff9-7306ddf0c557">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">AR056</xl:literalForm>
+        <dct:modified>2018-07-13T15:44:14+02:00</dct:modified>
+        <dct:created>2018-07-12T17:58:59+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e0cf62de-73bd-4bff-9110-d3be400ff511">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">50 ans - Défense nationale</xl:literalForm>
+        <dct:modified>2018-07-13T15:43:50+02:00</dct:modified>
+        <dct:created>2018-07-12T17:53:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+</rdf:RDF>

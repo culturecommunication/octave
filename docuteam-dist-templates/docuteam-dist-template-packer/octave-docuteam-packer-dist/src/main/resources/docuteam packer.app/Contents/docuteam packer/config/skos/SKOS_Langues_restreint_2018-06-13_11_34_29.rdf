@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><rdf:RDF
+    xmlns:iso-thes="http://purl.org/iso25964/skos-thes#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:xl="http://www.w3.org/2008/05/skos-xl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ginco="http://data.culture.fr/thesaurus/ginco/ns/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/causeEffet">
+        <rdfs:label>causeEffet</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric">
+        <rdfs:label>broaderGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive">
+        <rdfs:label>broaderPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/actionProduction">
+        <rdfs:label>actionProduction</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerGeneric">
+        <rdfs:label>narrowerGeneric</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderGeneric"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerPartitive">
+        <rdfs:label>narrowerPartitive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/broaderPartitive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive">
+        <rdfs:label>narrowerInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:inverseOf>
+            <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive"/>
+        </owl:inverseOf>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/broaderInstantive">
+        <rdfs:label>broaderInstantive</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+        <owl:inverseOf rdf:resource="http://data.culture.fr/thesaurus/ginco/ns/narrowerInstantive"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/TermeAssocie">
+        <rdfs:label>TermeAssocie</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#related"/>
+    </owl:ObjectProperty>
+    <owl:DatatypeProperty rdf:about="http://data.culture.fr/thesaurus/ginco/ns/CustomConceptAttribute">
+        <rdfs:label>CustomConceptAttribute</rdfs:label>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://purl.org/iso25964/skos-thes#status">
+        <rdfs:label>status</rdfs:label>
+    </owl:DatatypeProperty>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e9a43b7b-f10e-4c63-a87d-6b94534a7b8a">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/30ed9b2a-c65f-4ada-a2ba-2084159c6fb5"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">français</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2a5c3d8d-96d5-4c7d-88a0-068006815382"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">fra</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:29:58+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:58+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/86588839-4e88-4957-8bd8-c585c7083a47">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b5c53fed-06cb-4cf5-b70f-d65525585b74"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">russe</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c427c043-9c21-4c73-95b9-abe45c063328"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">rus</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:28:47+02:00</dct:modified>
+        <dct:created>2018-06-13T11:28:47+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/e2801cb7-b797-4c70-b647-9fd9bbb82df7">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/57fc03b0-f06e-4f28-9624-38b76adc5846"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">espagnol</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7d778e30-4464-48eb-8361-34fdff87e944"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">spa</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:31:40+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:40+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/11b8481e-2cee-4c9e-bb96-5f61f051d156">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fe337037-2cb8-49c9-8f57-ebc82e2de6a5"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">anglais</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6977439b-470a-441b-8e2f-5489d5e90987"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">eng</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:31:06+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:06+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/990c30b0-cd9c-4e8b-965b-b1bfb96710b9">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b6282d03-697b-4db3-83bd-2b5a5cf9a8a6"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">allemand</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c9981ba4-345e-4379-88f6-2fc34bc433c4"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">deu</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:29:20+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:20+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/9e02501f-e7d8-4ac7-a252-eed2531925cc">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/025ca8c6-2bf5-493b-a388-92bf4f21e3a4"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">néerlandais</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/15db6a14-211f-4dab-b9b3-3e70e64e94d7"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">nld</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:30:39+02:00</dct:modified>
+        <dct:created>2018-06-13T11:30:39+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:Concept rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c4a78663-815c-4ea0-a339-079e63e20a52">
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/71171511-0f2a-4300-9df1-cc40a1024b8f"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="fr-FR">italien</skos:prefLabel>
+        <xl:prefLabel>
+            <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ac0ad712-188a-4024-97e2-ac9bfe5628df"/>
+        </xl:prefLabel>
+        <skos:prefLabel xml:lang="en">ita</skos:prefLabel>
+        <iso-thes:status>1</iso-thes:status>
+        <dct:modified>2018-06-13T11:27:38+02:00</dct:modified>
+        <dct:created>2018-06-13T11:27:38+02:00</dct:created>
+        <skos:inScheme>
+            <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8"/>
+        </skos:inScheme>
+    </skos:Concept>
+    <skos:ConceptScheme rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7ef79cca-6afb-4ee3-ad80-f10f1d95faa8">
+        <dct:created>2018-06-13T11:24:27+02:00</dct:created>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/86588839-4e88-4957-8bd8-c585c7083a47"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/11b8481e-2cee-4c9e-bb96-5f61f051d156"/>
+        <dc:language>en</dc:language>
+        <dc:coverage></dc:coverage>
+        <dc:relation></dc:relation>
+        <dct:issued>Nouveau thesaurus</dct:issued>
+        <dc:source></dc:source>
+        <dct:modified>2018-06-13T11:31:40+02:00</dct:modified>
+        <dc:contributor></dc:contributor>
+        <dc:description></dc:description>
+        <dc:publisher>Ministère chargé de la culture</dc:publisher>
+        <dc:language>fr-FR</dc:language>
+        <dc:creator>
+            <foaf:Organization>
+                <foaf:name>Service interministériel des Archives de France</foaf:name>
+            </foaf:Organization>
+        </dc:creator>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/c4a78663-815c-4ea0-a339-079e63e20a52"/>
+        <dc:rights>A préciser</dc:rights>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/990c30b0-cd9c-4e8b-965b-b1bfb96710b9"/>
+        <dc:title>Langues restreint</dc:title>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/9e02501f-e7d8-4ac7-a252-eed2531925cc"/>
+        <dc:subject></dc:subject>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/e9a43b7b-f10e-4c63-a87d-6b94534a7b8a"/>
+        <skos:hasTopConcept rdf:resource="http://data.culture.fr/thesaurus/resource/ark:/67717/e2801cb7-b797-4c70-b647-9fd9bbb82df7"/>
+    </skos:ConceptScheme>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/30ed9b2a-c65f-4ada-a2ba-2084159c6fb5">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">français</xl:literalForm>
+        <dct:modified>2018-06-13T11:29:58+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:58+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b5c53fed-06cb-4cf5-b70f-d65525585b74">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">russe</xl:literalForm>
+        <dct:modified>2018-06-13T11:28:47+02:00</dct:modified>
+        <dct:created>2018-06-13T11:28:47+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/6977439b-470a-441b-8e2f-5489d5e90987">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">eng</xl:literalForm>
+        <dct:modified>2018-06-13T11:31:06+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:06+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c9981ba4-345e-4379-88f6-2fc34bc433c4">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">deu</xl:literalForm>
+        <dct:modified>2018-06-13T11:29:20+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/fe337037-2cb8-49c9-8f57-ebc82e2de6a5">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">anglais</xl:literalForm>
+        <dct:modified>2018-06-13T11:31:06+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:06+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/15db6a14-211f-4dab-b9b3-3e70e64e94d7">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">nld</xl:literalForm>
+        <dct:modified>2018-06-13T11:30:39+02:00</dct:modified>
+        <dct:created>2018-06-13T11:30:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/7d778e30-4464-48eb-8361-34fdff87e944">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">spa</xl:literalForm>
+        <dct:modified>2018-06-13T11:31:40+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:40+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/71171511-0f2a-4300-9df1-cc40a1024b8f">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">italien</xl:literalForm>
+        <dct:modified>2018-06-13T11:27:38+02:00</dct:modified>
+        <dct:created>2018-06-13T11:27:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/b6282d03-697b-4db3-83bd-2b5a5cf9a8a6">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">allemand</xl:literalForm>
+        <dct:modified>2018-06-13T11:29:20+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:20+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/c427c043-9c21-4c73-95b9-abe45c063328">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">rus</xl:literalForm>
+        <dct:modified>2018-06-13T11:28:47+02:00</dct:modified>
+        <dct:created>2018-06-13T11:28:47+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/025ca8c6-2bf5-493b-a388-92bf4f21e3a4">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">néerlandais</xl:literalForm>
+        <dct:modified>2018-06-13T11:30:39+02:00</dct:modified>
+        <dct:created>2018-06-13T11:30:39+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/2a5c3d8d-96d5-4c7d-88a0-068006815382">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">fra</xl:literalForm>
+        <dct:modified>2018-06-13T11:29:58+02:00</dct:modified>
+        <dct:created>2018-06-13T11:29:58+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/ac0ad712-188a-4024-97e2-ac9bfe5628df">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="en">ita</xl:literalForm>
+        <dct:modified>2018-06-13T11:27:38+02:00</dct:modified>
+        <dct:created>2018-06-13T11:27:38+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+    <iso-thes:PreferredTerm rdf:about="http://data.culture.fr/thesaurus/resource/ark:/67717/57fc03b0-f06e-4f28-9624-38b76adc5846">
+        <iso-thes:status>1</iso-thes:status>
+        <xl:literalForm xml:lang="fr-FR">espagnol</xl:literalForm>
+        <dct:modified>2018-06-13T11:31:40+02:00</dct:modified>
+        <dct:created>2018-06-13T11:31:40+02:00</dct:created>
+    </iso-thes:PreferredTerm>
+</rdf:RDF>

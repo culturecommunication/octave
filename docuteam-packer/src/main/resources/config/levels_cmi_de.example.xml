@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LEVELS:Config
+	xmlns:LEVELS="http://www.docuteam.ch/xmlns/levels"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.docuteam.ch/xmlns/levels		levels.xsd">
+
+	<LEVELS:MetadataElements>
+		<LEVELS:AllowedValuesSeparator>;</LEVELS:AllowedValuesSeparator>
+<!--
+		the following fields are included by devault and cannot be dynamically added/removed:
+		- unitTitle ("EAD:unittitle[@label = 'main']")
+		- level ("@otherlevel")
+-->
+<!-- 1 -->
+		<LEVELS:MetadataElement					accessorNameID="refCode"/>
+		<LEVELS:MetadataElement					accessorNameID="refCodeAdmin"/>
+		<LEVELS:MetadataElement					accessorNameID="accessionNumber"/>
+		<LEVELS:MetadataElement					accessorNameID="creationPeriod"							validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorDateHierarchyRangeCH"/>
+		<LEVELS:MetadataElement					accessorNameID="creationPeriodNotes"/>
+		<LEVELS:MetadataElement					accessorNameID="relationPeriod"							validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorDateHierarchyRangeCH"/>
+		<LEVELS:MetadataElement					accessorNameID="extent"									validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorShort"/>
+		<LEVELS:MetadataElement					accessorNameID="material"								allowedValues="*;cm;lfm;Bd(e).;Heft(e);Einheit(en);kB;MB;GB"/>
+		<LEVELS:MetadataElement					accessorNameID="PID"/>
+
+<!-- 2 -->
+		<LEVELS:MetadataElement					accessorNameID="origination"/>
+		<LEVELS:MetadataElement					accessorNameID="author"/>
+		<LEVELS:MetadataElement					accessorNameID="deathOfAuthor"							validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorDateCH"/>
+		<LEVELS:MetadataElement					accessorNameID="accessNr"/>
+		<LEVELS:MetadataElement					accessorNameID="archivalHistory"/>
+		<LEVELS:MetadataElement					accessorNameID="biographicalHistory"/>
+		<LEVELS:MetadataElement					accessorNameID="modeOfAcquisition"						allowedValues="*;CD-Rom;Born Digital;Foto Analog;Video VHS;Harddisk"/>
+
+<!-- 3 -->
+		<LEVELS:MetadataElement					accessorNameID="abstract"/>
+		<LEVELS:MetadataElement					accessorNameID="scopeContent"/>
+		<LEVELS:MetadataElement					accessorNameID="subject"								allowedValues="*;Einzelstueck"
+																										defaultExpression='"Einzelstueck"'/>
+		<LEVELS:MetadataElement					accessorNameID="appraisalAndDestruction"/>
+		<LEVELS:MetadataElement					accessorNameID="arrangement"/>
+
+<!-- 4 -->
+		<LEVELS:MetadataElement					accessorNameID="accessRestriction"/>
+		<LEVELS:MetadataElement					accessorNameID="accessRestrictionPeriod"/>
+		<LEVELS:MetadataElement					accessorNameID="usagePermission"						allowedValues="*;Gemeinfrei;Urheberrecht intern;Urheberrecht extern"/>
+		<LEVELS:MetadataElement					accessorNameID="usagePermissionExpiringDate"			validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorDateCH"/>
+		<LEVELS:MetadataElement					accessorNameID="language"								allowedValues="*;deutsch;englisch;französisch;italienisch"/>
+		<LEVELS:MetadataElement					accessorNameID="languageNotes"/>
+		<LEVELS:MetadataElement					accessorNameID="objectType"/>
+		<LEVELS:MetadataElement					accessorNameID="conditionsOfReproductions"/>
+		<LEVELS:MetadataElement					accessorNameID="characteristics"/>
+		<LEVELS:MetadataElement					accessorNameID="characteristicsNote"					allowedValues="*;Kopie;Microfiche"/>
+		<LEVELS:MetadataElement					accessorNameID="sourceType"								allowedValues="*;Original;Original und Reproduktion;Reproduktion"/>
+		<LEVELS:MetadataElement					accessorNameID="digitization"							allowedValues="*;teilweise digitalisiert;vollständig digitalisiert"/>
+		<LEVELS:MetadataElement					accessorNameID="findingAids"/>
+
+<!-- 5 -->
+		<LEVELS:MetadataElement					accessorNameID="locationOfOriginals"/>
+		<LEVELS:MetadataElement					accessorNameID="reproductions"/>
+		<LEVELS:MetadataElement					accessorNameID="relatedMaterial"/>
+		<LEVELS:MetadataElement					accessorNameID="bibliography"/>
+
+<!-- 6 -->
+		<LEVELS:MetadataElement					accessorNameID="comment"/>
+
+<!-- 7 -->
+		<LEVELS:MetadataElement					accessorNameID="descriptionLevel"/>
+		<LEVELS:MetadataElement					accessorNameID="descriptionLevelNotes"/>
+		<LEVELS:MetadataElement					accessorNameID="descriptionRules"/>
+		<LEVELS:MetadataElement					accessorNameID="revisions"/>
+		<LEVELS:MetadataElement					accessorNameID="status"									allowedValues="Erfasst;In Bearbeitung;Zur Prüfung;Abgeschlossen"/>
+
+<!-- non-ISAD(G) -->
+		<LEVELS:MetadataElement					accessorNameID="location"/>
+
+	</LEVELS:MetadataElements>
+
+	<LEVELS:Levels>
+		<!-- NOTE: 
+			The first element in this list is the default level for the root node!
+			The first element in the list of allowedSublevelNameRefs is the default level for the child nodes! -->
+		<LEVELS:Level nameID="Undefiniert"		iconFileName="images/LevelUndefined.png"		allowedSublevelNameRefs="Undefiniert Bestand Serie Dossier Einzelstück Dokument">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessionNumber"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="author"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="deathOfAuthor"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="biographicalHistory"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermission"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermissionExpiringDate"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="digitization"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevel"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevelNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="revisions"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="status"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="location"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Bestand"			iconFileName="images/LevelBestandCMI.png"		allowedSublevelNameRefs="Undefiniert Bestand Serie Dossier Einzelstück Dokument">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessionNumber"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="author"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="deathOfAuthor"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="biographicalHistory"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermission"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermissionExpiringDate"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="digitization"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevel"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevelNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="revisions"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="status"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="location"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Serie"			iconFileName="images/LevelSerieCMI.png"		allowedSublevelNameRefs="Undefiniert Serie Dossier Einzelstück Dokument">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessionNumber"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="author"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="deathOfAuthor"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="biographicalHistory"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermission"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermissionExpiringDate"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="digitization"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevel"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevelNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="revisions"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="status"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="location"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Dossier"			iconFileName="images/LevelDossierCMI.png"		allowedSublevelNameRefs="Undefiniert Dossier Einzelstück Dokument">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessionNumber"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="author"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="deathOfAuthor"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="biographicalHistory"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermission"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermissionExpiringDate"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="digitization"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevel"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevelNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="revisions"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="status"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="location"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Einzelstück"		iconFileName="images/LevelEinzelstueckCMI.png"	allowedSublevelNameRefs="Undefiniert Dokument">
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCode"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeAdmin"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessionNumber"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriod"						isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="creationPeriodNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relationPeriod"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="extent"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="material"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="origination"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="author"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="deathOfAuthor"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessNr"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="archivalHistory"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="biographicalHistory"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="scopeContent"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="subject"								isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="appraisalAndDestruction"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="arrangement"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestriction"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="accessRestrictionPeriod"				isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermission"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="usagePermissionExpiringDate"			isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="conditionsOfReproductions"				isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="digitization"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="reproductions"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="relatedMaterial"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="bibliography"							isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="comment"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevel"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionLevelNotes"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="descriptionRules"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="revisions"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="status"								isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="location"								isMandatory="false"	isRepeatable="true"		isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+		<LEVELS:Level nameID="Dokument"			iconFileName="images/LevelDateiCMI.png"		allowedSublevelNameRefs="">
+			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"	isReadOnly="true"/>
+
+			<LEVELS:LevelMetadataElement		accessorNameRef="objectType"							isMandatory="true"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="characteristicsNote"					isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
+		</LEVELS:Level>
+	</LEVELS:Levels>
+
+</LEVELS:Config>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BAR:paket
+	xmlns:BAR="http://bar.admin.ch/arelda/v4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://bar.admin.ch/arelda/v4		xsd/arelda.xsd"
+	xsi:type="paketSIP"
+	schemaVersion="4.0">
+	<BAR:paketTyp>SIP</BAR:paketTyp>
+	<BAR:inhaltsverzeichnis>
+		<BAR:ordner>
+			<BAR:name>header</BAR:name>
+			<BAR:originalName>header</BAR:originalName>
+			<BAR:ordner>
+				<BAR:name>xsd</BAR:name>
+				<BAR:originalName>xsd</BAR:originalName>
+				<BAR:datei id="_KFNj0JYrEeK-ROSOMEe4PQ">
+					<BAR:name>ablieferung.xsd</BAR:name>
+					<BAR:originalName>ablieferung.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>aa1f7ad13064e1643ac85478296165af</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KFhF0JYrEeK-ROSOMEe4PQ">
+					<BAR:name>archivischeNotiz.xsd</BAR:name>
+					<BAR:originalName>archivischeNotiz.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>847911efbac472d0ecc6fe1e99873799</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KF9xwJYrEeK-ROSOMEe4PQ">
+					<BAR:name>archivischerVorgang.xsd</BAR:name>
+					<BAR:originalName>archivischerVorgang.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>4a237563fd2d40be9a9ecbf4c0bf946e</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KHATkJYrEeK-ROSOMEe4PQ">
+					<BAR:name>arelda.xsd</BAR:name>
+					<BAR:originalName>arelda.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>f8454632e1ebf97e0aa8d9527ce2641f</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KH5rcJYrEeK-ROSOMEe4PQ">
+					<BAR:name>base.xsd</BAR:name>
+					<BAR:originalName>base.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>cb30854883c6d5640b0965dae5f34afd</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KIfhUJYrEeK-ROSOMEe4PQ">
+					<BAR:name>datei.xsd</BAR:name>
+					<BAR:originalName>datei.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>a4276f0c798ce6c497f0a03660ead0d9</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KI8NQJYrEeK-ROSOMEe4PQ">
+					<BAR:name>dokument.xsd</BAR:name>
+					<BAR:originalName>dokument.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>721965e5224766040bf0bcd03978809e</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KJPIMJYrEeK-ROSOMEe4PQ">
+					<BAR:name>dossier.xsd</BAR:name>
+					<BAR:originalName>dossier.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>f3f1141d95e92a291e84cfb30bb30e9a</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KJr0IJYrEeK-ROSOMEe4PQ">
+					<BAR:name>ordner.xsd</BAR:name>
+					<BAR:originalName>ordner.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>83e0f91d1a232c7bdd7416970844af1c</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KJ_WIJYrEeK-ROSOMEe4PQ">
+					<BAR:name>ordnungssystem.xsd</BAR:name>
+					<BAR:originalName>ordnungssystem.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>4b64247b25362382d6c648ba8ff76ad6</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KKcCEJYrEeK-ROSOMEe4PQ">
+					<BAR:name>ordnungssystemposition.xsd</BAR:name>
+					<BAR:originalName>ordnungssystemposition.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>1e7f0a9b914c8baf1235740b133ec90e</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KKu9AJYrEeK-ROSOMEe4PQ">
+					<BAR:name>paket.xsd</BAR:name>
+					<BAR:originalName>paket.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>9920c66b7066f645390e922ba803aadb</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KLB38JYrEeK-ROSOMEe4PQ">
+					<BAR:name>provenienz.xsd</BAR:name>
+					<BAR:originalName>provenienz.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>2d6dbc4665cb5169d62549dbbc3f19a7</BAR:pruefsumme>
+				</BAR:datei>
+				<BAR:datei id="_KLUy4JYrEeK-ROSOMEe4PQ">
+					<BAR:name>zusatzDaten.xsd</BAR:name>
+					<BAR:originalName>zusatzDaten.xsd</BAR:originalName>
+					<BAR:pruefalgorithmus>MD5</BAR:pruefalgorithmus>
+					<BAR:pruefsumme>a685887b7ad673ea2deac6f96cf3fb4f</BAR:pruefsumme>
+				</BAR:datei>
+			</BAR:ordner>
+		</BAR:ordner>
+		<BAR:ordner>
+			<BAR:name>content</BAR:name>
+			<BAR:originalName>content</BAR:originalName>
+		</BAR:ordner>
+	</BAR:inhaltsverzeichnis>
+</BAR:paket>

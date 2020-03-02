@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<METS:mets
+	xmlns:METS="http://www.loc.gov/METS/"
+	xmlns:EAD="urn:isbn:1-931666-22-9"
+	xmlns:PREMIS="info:lc/xmlns/premis-v2"
+	xmlns:OAI_DC="http://www.openarchives.org/OAI/2.0/oai_dc/"
+	xmlns:DC="http://purl.org/dc/elements/1.1/"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.loc.gov/METS/						http://www.loc.gov/standards/mets/mets.xsd
+		urn:isbn:1-931666-22-9							http://www.loc.gov/ead/ead.xsd
+		info:lc/xmlns/premis-v2							http://www.loc.gov/premis/v2/premis.xsd
+		http://www.openarchives.org/OAI/2.0/oai_dc/		http://www.openarchives.org/OAI/2.0/oai_dc.xsd
+		http://www.w3.org/1999/xlink					http://www.loc.gov/standards/mets/xlink.xsd"
+	PROFILE="http://www.docuteam.ch/xmlns/sip-profile.xml">
+	<METS:amdSec/>
+	<METS:fileSec>
+		<METS:fileGrp/>
+	</METS:fileSec>
+	<METS:structMap>
+		<METS:div LABEL="RootFolder_Temp" TYPE="rootfolder"/>
+	</METS:structMap>
+</METS:mets>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://bar.admin.ch/arelda/v4" xsi:type="paketSIP" schemaVersion="4.0">
+  <paketTyp>SIP</paketTyp>
+  <zusatzDaten>
+    <merkmal name="Paket Zusatz1">Paket Wert1</merkmal>
+    <merkmal name="Paket Zusatz2">Paket Wert2</merkmal>
+  </zusatzDaten>
+  <inhaltsverzeichnis>
+    <ordner>
+      <name>header</name>
+      <originalName>header</originalName>
+      <ordner>
+        <name>xsd</name>
+        <originalName>xsd</originalName>
+        <datei id="_KFNj0JYrEeK-ROSOMEe4PQ">
+          <name>ablieferung.xsd</name>
+          <originalName>ablieferung.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>aa1f7ad13064e1643ac85478296165af</pruefsumme>
+        </datei>
+        <datei id="_KFhF0JYrEeK-ROSOMEe4PQ">
+          <name>archivischeNotiz.xsd</name>
+          <originalName>archivischeNotiz.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>847911efbac472d0ecc6fe1e99873799</pruefsumme>
+        </datei>
+        <datei id="_KF9xwJYrEeK-ROSOMEe4PQ">
+          <name>archivischerVorgang.xsd</name>
+          <originalName>archivischerVorgang.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>4a237563fd2d40be9a9ecbf4c0bf946e</pruefsumme>
+        </datei>
+        <datei id="_KHATkJYrEeK-ROSOMEe4PQ">
+          <name>arelda.xsd</name>
+          <originalName>arelda.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>f8454632e1ebf97e0aa8d9527ce2641f</pruefsumme>
+        </datei>
+        <datei id="_KH5rcJYrEeK-ROSOMEe4PQ">
+          <name>base.xsd</name>
+          <originalName>base.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>cb30854883c6d5640b0965dae5f34afd</pruefsumme>
+        </datei>
+        <datei id="_KIfhUJYrEeK-ROSOMEe4PQ">
+          <name>datei.xsd</name>
+          <originalName>datei.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>a4276f0c798ce6c497f0a03660ead0d9</pruefsumme>
+        </datei>
+        <datei id="_KI8NQJYrEeK-ROSOMEe4PQ">
+          <name>dokument.xsd</name>
+          <originalName>dokument.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>721965e5224766040bf0bcd03978809e</pruefsumme>
+        </datei>
+        <datei id="_KJPIMJYrEeK-ROSOMEe4PQ">
+          <name>dossier.xsd</name>
+          <originalName>dossier.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>f3f1141d95e92a291e84cfb30bb30e9a</pruefsumme>
+        </datei>
+        <datei id="_KJr0IJYrEeK-ROSOMEe4PQ">
+          <name>ordner.xsd</name>
+          <originalName>ordner.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>83e0f91d1a232c7bdd7416970844af1c</pruefsumme>
+        </datei>
+        <datei id="_KJ_WIJYrEeK-ROSOMEe4PQ">
+          <name>ordnungssystem.xsd</name>
+          <originalName>ordnungssystem.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>4b64247b25362382d6c648ba8ff76ad6</pruefsumme>
+        </datei>
+        <datei id="_KKcCEJYrEeK-ROSOMEe4PQ">
+          <name>ordnungssystemposition.xsd</name>
+          <originalName>ordnungssystemposition.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>1e7f0a9b914c8baf1235740b133ec90e</pruefsumme>
+        </datei>
+        <datei id="_KKu9AJYrEeK-ROSOMEe4PQ">
+          <name>paket.xsd</name>
+          <originalName>paket.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>9920c66b7066f645390e922ba803aadb</pruefsumme>
+        </datei>
+        <datei id="_KLB38JYrEeK-ROSOMEe4PQ">
+          <name>provenienz.xsd</name>
+          <originalName>provenienz.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>2d6dbc4665cb5169d62549dbbc3f19a7</pruefsumme>
+        </datei>
+        <datei id="_KLUy4JYrEeK-ROSOMEe4PQ">
+          <name>zusatzDaten.xsd</name>
+          <originalName>zusatzDaten.xsd</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>a685887b7ad673ea2deac6f96cf3fb4f</pruefsumme>
+        </datei>
+      </ordner>
+    </ordner>
+    <ordner>
+      <name>content</name>
+      <originalName>content</originalName>
+      <ordner>
+        <name>Files</name>
+        <originalName>Files</originalName>
+        <datei id="_Z02QAJYsEeK-ROSOMEe4PQ">
+          <name>Test.txt</name>
+          <originalName>Test.txt</originalName>
+          <pruefalgorithmus>MD5</pruefalgorithmus>
+          <pruefsumme>0cbc6611f5540bd0809a388dc95a615b</pruefsumme>
+          <eigenschaft name="Datei Eigenschaft1">Datei Wert1</eigenschaft>
+          <eigenschaft name="Datei Eigenschaft2">Datei Wert2</eigenschaft>
+        </datei>
+      </ordner>
+    </ordner>
+  </inhaltsverzeichnis>
+  <ablieferung xsi:type="ablieferungFilesSIP">
+    <ablieferungstyp>FILES</ablieferungstyp>
+    <ablieferndeStelle>Docuteam</ablieferndeStelle>
+    <entstehungszeitraum>
+      <von>
+        <datum>2013</datum>
+      </von>
+      <bis>
+        <datum>2013</datum>
+      </bis>
+    </entstehungszeitraum>
+    <ablieferungsteile>cm</ablieferungsteile>
+    <bemerkung>Ablieferung Bemerkung</bemerkung>
+    <zusatzDaten>
+      <merkmal name="Ablieferung Zusatz1">Ablieferung Wert1</merkmal>
+      <merkmal name="Ablieferung Zusatz2">Ablieferung Wert2</merkmal>
+    </zusatzDaten>
+    <ablieferungsnummer>0001</ablieferungsnummer>
+    <angebotsnummer>Ablieferung Angebotsnummer</angebotsnummer>
+    <referenzBewertungsentscheid>Ablieferung Referenz Bewertungsetscheid</referenzBewertungsentscheid>
+    <referenzSchutzfristenFormular>Ablieferung Referenz Schutzfrist Formular</referenzSchutzfristenFormular>
+    <schutzfristenkategorie>Ablieferung Schutzfristenkategorie</schutzfristenkategorie>
+    <schutzfrist>10</schutzfrist>
+    <provenienz>
+      <aktenbildnerName>Lem</aktenbildnerName>
+    </provenienz>
+    <ordnungssystem>
+      <generation>TopLevel Generation</generation>
+      <anwendungszeitraum>
+        <von>
+          <datum>2000</datum>
+        </von>
+        <bis>
+          <datum>2000</datum>
+        </bis>
+      </anwendungszeitraum>
+      <mitbenutzung>Ordnungssystem Mitbenutzung</mitbenutzung>
+      <bemerkung>Ordnungssystem Bemerkung</bemerkung>
+      <zusatzDaten>
+        <merkmal name="Ordnungssystem Zusatz1">Ordnungssystem Wert1</merkmal>
+        <merkmal name="Ordnungssystem Zusatz2">Ordnungssystem Wert2</merkmal>
+      </zusatzDaten>
+      <name>TopLevel</name>
+      <ordnungssystemposition id="_KLUy4ZYrEeK-ROSOMEe4PQ">
+        <federfuehrendeOrganisationseinheit>Ordnungssystemposition Federführend</federfuehrendeOrganisationseinheit>
+        <klassifizierungskategorie>Ordnungssystemposition Klassifizierungskategorie</klassifizierungskategorie>
+        <datenschutz>true</datenschutz>
+        <oeffentlichkeitsstatus>Ordnungssystemposition Öffentlichkeitsstatus</oeffentlichkeitsstatus>
+        <oeffentlichkeitsstatusBegruendung>Ordnungssystemposition Öffentlichkeitsstatus Begründung</oeffentlichkeitsstatusBegruendung>
+        <sonstigeBestimmungen>Ordnungssystemposition Sonstige Bestimmungen</sonstigeBestimmungen>
+        <zusatzDaten>
+          <merkmal name="Ordnungssystemposition Zusatz1">Ordnungssystemposition Wert1</merkmal>
+          <merkmal name="Ordnungssystemposition Zusatz2">Ordnungssystemposition Wert2</merkmal>
+        </zusatzDaten>
+        <nummer>1</nummer>
+        <titel>SubLevel</titel>
+        <schutzfristenkategorie>Ordnungssystemposition Schutzfristenkategorie</schutzfristenkategorie>
+        <schutzfrist>10</schutzfrist>
+        <schutzfristenBegruendung>Ordnungssystemposition Schutzfrist Begründung</schutzfristenBegruendung>
+        <dossier id="_tyZZAJYrEeK-ROSOMEe4PQ">
+          <zusatzmerkmal>TopDossier Zusatzmerkmal</zusatzmerkmal>
+          <titel>TopDossier</titel>
+          <inhalt>TopDossier Inhalt</inhalt>
+          <formInhalt>TopDossier Form Inhalt</formInhalt>
+          <erscheinungsform>digital</erscheinungsform>
+          <federfuehrendeOrganisationseinheit>TopDossier Federführend</federfuehrendeOrganisationseinheit>
+          <entstehungszeitraum>
+            <von>
+              <datum>2013</datum>
+            </von>
+            <bis>
+              <datum>2013</datum>
+            </bis>
+          </entstehungszeitraum>
+          <entstehungszeitraumAnmerkung>TopDossier Entstehungszeitraum Anmerkung</entstehungszeitraumAnmerkung>
+          <klassifizierungskategorie>TopDossier Klassifizierungskategorie</klassifizierungskategorie>
+          <datenschutz>false</datenschutz>
+          <oeffentlichkeitsstatus>TopDossier Öffentlichkeitsstatus</oeffentlichkeitsstatus>
+          <oeffentlichkeitsstatusBegruendung>TopDossier Öffentlichkeitsstatus Begründung</oeffentlichkeitsstatusBegruendung>
+          <sonstigeBestimmungen>TopDossier Sonstige Bemerkungen</sonstigeBestimmungen>
+          <bemerkung>TopDossier Bemerkung</bemerkung>
+          <zusatzDaten>
+            <merkmal name="TopDossier Zusatz1">TopDossier Wert1</merkmal>
+            <merkmal name="TopDossier Zusatz2">TopDossier Wert2</merkmal>
+          </zusatzDaten>
+          <aktenzeichen>TopDossier Aktenzeichen</aktenzeichen>
+          <schutzfristenkategorie>TopDossier Schutzfristenkategorie</schutzfristenkategorie>
+          <schutzfrist>10</schutzfrist>
+          <schutzfristenBegruendung>TopDossier Schutzfrist Begründung</schutzfristenBegruendung>
+          <dossier id="_u1cxcJYrEeK-ROSOMEe4PQ">
+            <zusatzmerkmal>SubDossier Zusatzmerkmal</zusatzmerkmal>
+            <titel>SubDossier</titel>
+            <inhalt>SubDossier Inhalt</inhalt>
+            <formInhalt>SubDossier Form Inhalt</formInhalt>
+            <erscheinungsform>digital</erscheinungsform>
+            <federfuehrendeOrganisationseinheit>SubDossier Federführend</federfuehrendeOrganisationseinheit>
+            <entstehungszeitraum>
+              <von>
+                <datum>2013</datum>
+              </von>
+              <bis>
+                <datum>2013</datum>
+              </bis>
+            </entstehungszeitraum>
+            <entstehungszeitraumAnmerkung>SubDossier Entstehungszeitraum Anmerkung</entstehungszeitraumAnmerkung>
+            <klassifizierungskategorie>SubDossier Klassifizierungskategorie</klassifizierungskategorie>
+            <datenschutz>true</datenschutz>
+            <oeffentlichkeitsstatus>SubDossier Öffentlichkeitsstatus</oeffentlichkeitsstatus>
+            <oeffentlichkeitsstatusBegruendung>SubDossier Öffentlichkeitsstatus Begründung</oeffentlichkeitsstatusBegruendung>
+            <sonstigeBestimmungen>SubDossier Sonsige Bestimmungen</sonstigeBestimmungen>
+            <bemerkung>SubDossier Bemerkung</bemerkung>
+            <aktenzeichen>SubDossier Aktenzeichen</aktenzeichen>
+            <schutzfristenkategorie>SubDossier Schutzfristkategorie</schutzfristenkategorie>
+            <schutzfrist>10</schutzfrist>
+            <schutzfristenBegruendung>SubDossier Schutzfrist Begründung</schutzfristenBegruendung>
+            <dokument id="_xyGIwJYrEeK-ROSOMEe4PQ">
+              <titel>Document</titel>
+              <autor>Dokument Autor1</autor>
+              <autor>Dokument Autor2</autor>
+              <erscheinungsform>digital</erscheinungsform>
+              <dokumenttyp>Dokument Dokumenttyp</dokumenttyp>
+              <registrierdatum>
+                <datum>0327</datum>
+              </registrierdatum>
+              <entstehungszeitraum>
+                <von>
+                  <datum>2013</datum>
+                </von>
+                <bis>
+                  <datum>2013</datum>
+                </bis>
+              </entstehungszeitraum>
+              <klassifizierungskategorie>Dokument Klassifizierungskategorie</klassifizierungskategorie>
+              <datenschutz>false</datenschutz>
+              <oeffentlichkeitsstatus>Dokument Öffentlichkeitsstatus</oeffentlichkeitsstatus>
+              <oeffentlichkeitsstatusBegruendung>Dokument Öffentlichkeitsstatus Begründung</oeffentlichkeitsstatusBegruendung>
+              <sonstigeBestimmungen>Dokument Sonstige Bestimmungen</sonstigeBestimmungen>
+              <bemerkung>Dokument Bemerkung</bemerkung>
+              <zusatzDaten>
+                <merkmal name="Dokument Zusatz1">Dokument Wert1</merkmal>
+                <merkmal name="Dokument Zusatz2">Dokument Wert2</merkmal>
+              </zusatzDaten>
+              <dateiRef>_Z02QAJYsEeK-ROSOMEe4PQ</dateiRef>
+            </dokument>
+            <umfang>cm</umfang>
+          </dossier>
+          <umfang>cm</umfang>
+        </dossier>
+      </ordnungssystemposition>
+    </ordnungssystem>
+  </ablieferung>
+</paket>
+<!--Generated with PackageHandler 2.0.6.Final-->

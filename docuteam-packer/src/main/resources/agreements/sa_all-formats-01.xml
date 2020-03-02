@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<submAgr xmlns="http://www.docuteam.ch/xmlns/submAgr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    saID="sa_all-formats-01" status="final" title="Allgemein "
+    xsi:schemaLocation="http://www.docuteam.ch/xmlns/submAgr submAgr.xsd">
+    <producer>
+        <contact contactID="prod01">
+            <organisation>Organisation</organisation>
+            <departement>Aktenproduzent</departement>
+            <shortname>AP</shortname>
+        </contact>
+    </producer>
+    <archive isil="test">
+        <contact contactID="arch01">
+            <organisation>Organisation</organisation>
+            <departement>Archiv und Dokumentation</departement>
+            <shortname>AD</shortname>
+        </contact>
+    </archive>
+    <surveyReport>
+        <records>
+            <generalDescription>Die Unterlagen können irgendwelcher Art sein.</generalDescription>
+        </records>
+        <appraisalDecision>Ob behalten oder nicht, entscheidet der Archivar/die Archivarin vorbereitend zum
+            Ingest.</appraisalDecision>
+    </surveyReport>
+    <dataSubmissionSession dssID="dss-01">
+        <title>Ohne Formateinschränkungen</title>
+        <schedule>
+            <variable>Ablieferungen erfolgen zu beliebigen Zeitpunkten</variable>
+        </schedule>
+        <category>Addition</category>
+        <recordTypes>Collection</recordTypes>
+    </dataSubmissionSession>
+</submAgr>
