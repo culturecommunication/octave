@@ -14,42 +14,38 @@
   <name>docuteam packer distribution</name>
   <packaging>pom</packaging>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <build>
-    <resources>
-      <!-- enable filtering: replaces variables in resources directory -->
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-        <includes>
-          <!-- filter only startup scripts -->
-          <include>distribution/docuteam packer Win.bat</include>
-          <include>distribution/docuteam packer Linux.sh</include>
-          <include>distribution/docuteam packer OSX.sh</include>
-          <include>distribution/docuteam packer.app/Contents/MacOS/docuteam packer</include>
-        </includes>
-      </resource>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>false</filtering>
-      </resource>
-    </resources>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>${maven-resources-plugin.plugin.version}</version>
         <executions>
           <execution>
-            <id>dist-resources</id>
+            <id>default-resources</id>
             <phase>process-resources</phase>
             <goals>
               <goal>resources</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>resources-filtered-bat-scripts</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <configuration>
+              <encoding>US-ASCII</encoding>
+              <resources>
+                <resource>
+                  <directory>src/main/resources-filtered</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <includes>*.bat</includes>
+                  </includes>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>

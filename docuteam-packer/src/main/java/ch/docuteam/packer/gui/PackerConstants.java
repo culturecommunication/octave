@@ -34,7 +34,7 @@ public class PackerConstants {
 
     public static final String ZIP = "ZIP";
 
-    public static final String DEFAULT_PROPERTY_FILE_NAME = "./config/docuteamPacker.properties";
+    public static final String PROPERTY_FILE_NAME = "docuteamPacker.properties";
 
     public static final String DEFAULT_LEVELS_CONFIG_FILE_NAME = "./config/levels.xml";
 
@@ -63,8 +63,6 @@ public class PackerConstants {
     public static final String NEW_SIP_DEFAULTS_TO_ZIPPED = "true";
 
     public static final String MIGRATE_FILE_KEEP_ORIGINAL = "false";
-
-    public static final String IS_IN_DEVELOP_MODE = "false";
 
     // Resources
     public static final String DELETE_PNG = "Delete.png";

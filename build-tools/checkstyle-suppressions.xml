@@ -16,10 +16,6 @@
   <!-- ##### Suppressions for resources files ##### -->
   <suppress checks=".*" files="[/\\]resources[/\\]" />
 
-  <!-- ##### Docuteam: Suppressions for import order ##### -->
-  <suppress checks="CustomImportOrder" files=".*\.java$"/>
-  <suppress checks="Indentation" files=".*\.java$"/>
-
   <!-- ##### Docuteam ##### -->
   <!-- TODO: these should be addressed -->
   <suppress checks="EmptyCatchBlock" files=".*\.java$"/>

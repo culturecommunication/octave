@@ -39,15 +39,6 @@
 
     <!-- Check individual Java source files for specific rules -->
     <module name="TreeWalker">
-        <!-- Maximum line length is 300 characters -->
-        <module name="LineLength">
-            <property name="max" value="300"/>
-            <!-- Make exceptions for package names, imports, URLs, JavaDoc {@link} tags,
-                 and very long method names -->
-            <property name="ignorePattern"
-                      value="^package.*|^import.*|http://|https://|@link|[ ]*\.?\S*"/>
-        </module>
-
         <!-- Highlight any TODO or FIXME comments in info messages -->
         <module name="TodoComment">
             <property name="severity" value="info"/>
@@ -73,17 +64,17 @@
         <!-- Unused import statements are NOT ALLOWED -->
         <module name="UnusedImports"/>
         <!-- Ensure imports appear alphabetically and grouped -->
-        <module name="CustomImportOrder">
+        <!-- module name="CustomImportOrder">
             <property name="sortImportsInGroupAlphabetically" value="true"/>
             <property name="separateLineBetweenGroups" value="true"/>
-            <property name="customImportOrderRules" value="STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE"/>
-        <!-- <module name="ImportOrder">
-            <property name="groups" value="/^java\./,javax,ch.docuteam,org,edu,de,uk,com"/>
+            <property name="customImportOrderRules" value="STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE"/> -->
+        <module name="ImportOrder">
+            <property name="groups" value="/^java\./,javax,ch.docuteam,*"/>
             <property name="ordered" value="true"/>
             <property name="separated" value="true"/>
             <property name="option" value="top"/>
             <property name="caseSensitive" value="true"/>
-            <property name="sortStaticImportsAlphabetically" value="true"/> -->
+            <property name="sortStaticImportsAlphabetically" value="true"/>
         </module>
 
         <!-- ##### Javadocs requirements ##### -->
@@ -102,11 +93,8 @@
         <module name="JavadocMethod">
             <!-- All public methods MUST HAVE Javadocs -->
             <property name="scope" value="public"/>
-            <!-- Allow RuntimeExceptions to be undeclared -->
-            <property name="allowUndeclaredRTE" value="true"/>
             <!-- Allow params, throws and return tags to be optional -->
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
         </module>
 
@@ -162,5 +150,14 @@
 		    <property name="offCommentFormat" value="CHECKSTYLE OFF"/>
 		    <property name="onCommentFormat" value="CHECKSTYLE ON"/>
 		</module> -->
+    </module>
+
+	<!-- Maximum line length is 300 characters -->
+    <module name="LineLength">
+        <property name="max" value="300"/>
+        <!-- Make exceptions for package names, imports, URLs, JavaDoc {@link} tags,
+             and very long method names -->
+        <property name="ignorePattern"
+                  value="^package.*|^import.*|http://|https://|@link|[ ]*\.?\S*"/>
     </module>
 </module>

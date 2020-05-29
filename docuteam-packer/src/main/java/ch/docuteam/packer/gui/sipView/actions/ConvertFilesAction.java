@@ -37,6 +37,7 @@ import ch.docuteam.converter.exceptions.BadPronomIdException;
 import ch.docuteam.converter.exceptions.FileConversionException;
 import ch.docuteam.darc.exceptions.FileAlreadyExistsException;
 import ch.docuteam.darc.exceptions.FileOperationNotAllowedException;
+import ch.docuteam.darc.exceptions.FolderNameIsEmptyException;
 import ch.docuteam.darc.mets.Document.Mode;
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
 import ch.docuteam.darc.mets.structmap.NodeFile;
@@ -67,7 +68,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
 
     private int convertedFilesCount = 0;
 
-    private List<NodeFile> nodeList = new ArrayList<NodeFile>();
+    private List<NodeFile> nodeList = new ArrayList<>();
 
     public ConvertFilesAction(final SIPView sipView) {
         super(I18N.translate("ButtonConvertFiles"), getImageIcon(CONVERT_PNG), sipView);
@@ -77,15 +78,15 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
 
     /**
      * Retrieves the list of nodes out of the selected ones for which convert action could be performed
-     * 
+     *
      * @return
      */
     private List<NodeFile> getNodesForAction() {
-        final List<NodeFile> nodesForAction = new ArrayList<NodeFile>();
+        final List<NodeFile> nodesForAction = new ArrayList<>();
         final int selectedRows[] = sipView.getTreeTable().getSelectedRows();
         for (final int selectedRow : selectedRows) {
             final NodeAbstract node = (NodeAbstract) sipView.getTreeTable().getPathForRow(selectedRow)
-                    .getLastPathComponent();
+                .getLastPathComponent();
             if (isNodeReadWrite(node)) {
                 nodesForAction.add((NodeFile) node);
             }
@@ -95,8 +96,8 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
 
     private boolean isNodeReadWrite(final NodeAbstract node) {
         return sipView.getDocument().getMode().equals(Mode.ReadWrite) && node.isFile() && node.canRead() && node
-                .canWrite() && node.getSubmitStatus().isEditingAllowed() && ((NodeFile) node)
-                        .getMigrationDerivedNode() == null;
+            .canWrite() && node.getSubmitStatus().isEditingAllowed() && ((NodeFile) node)
+                .getMigrationDerivedNode() == null;
     }
 
     @Override
@@ -115,7 +116,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
         }
 
         final ConvertTracker convertTracker = new ConvertTracker(convertMonitoringDialog, d.keepOriginalCheckBox
-                .isSelected());
+            .isSelected());
         convertMonitoringDialog.setOperation(convertTracker);
         convertTracker.execute();
     }
@@ -151,7 +152,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
          * The method is mostly duplicated from ch.docuteam.feeder.ingest.SIPFileMigrator.migrateFile(NodeFile file,
          * Boolean retainOriginalFile) Logs/error codes related to exceptions have been dropped in order to avoid [
          * feeder <- packer ] dependency
-         * 
+         *
          * @param file
          * @param retainOriginalFile
          * @return
@@ -169,7 +170,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
                 if (convertedFile != null) {
                     try {
                         Logger.info("Migrated file: '" + file.getPathString() + "' into '" + convertedFile.getName() +
-                                "'");
+                            "'");
                         // Migration was OK, now update the METS-file:
                         final String migrationToolName = FileConverter.getRecentlyUsedFileConverterName();
 
@@ -181,7 +182,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
                             file.migrateToFile(convertedFile.getPath(), migrationToolName);
                         }
                         result = MessageSuccess;
-                    } catch (final FileOperationNotAllowedException e) {
+                    } catch (final FileOperationNotAllowedException | FolderNameIsEmptyException e) {
                     } finally {
                         FileUtil.delete(convertedFile);
                     }
@@ -192,17 +193,16 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
                 } else {
                     result = MessageNoAction;
                 }
-            } catch (
-                    IllegalArgumentException | SecurityException | IndexOutOfBoundsException | DocumentException |
-                    FileAlreadyExistsException | IOException | IllegalAccessException | InvocationTargetException |
-                    NoSuchMethodException | ClassNotFoundException | InterruptedException |
-                    FileIsNotADirectoryException |
-                    BadPronomIdException | ExceptionCollectorException | FileUtilExceptionListException |
-                    DROIDCouldNotInitializeException |
-                    DROIDNoIdentificationFoundException | DROIDMultipleIdentificationsFoundException |
-                    FileConversionException e) {
+            } catch (IllegalArgumentException | SecurityException | IndexOutOfBoundsException | DocumentException |
+                FileAlreadyExistsException | IOException | IllegalAccessException | InvocationTargetException |
+                NoSuchMethodException | ClassNotFoundException | InterruptedException |
+                FileIsNotADirectoryException |
+                BadPronomIdException | ExceptionCollectorException | FileUtilExceptionListException |
+                DROIDCouldNotInitializeException |
+                DROIDNoIdentificationFoundException | DROIDMultipleIdentificationsFoundException |
+                FileConversionException e) {
                 Logger.error(String.format("Exception during migration for '%s', keepOriginal = %b",
-                        file.getAbsolutePathString(), retainOriginalFile), e);
+                    file.getAbsolutePathString(), retainOriginalFile), e);
                 result = MessageFailure;
             }
             return result;

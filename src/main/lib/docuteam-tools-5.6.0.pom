@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>5.5.0</version>
+    <version>5.6.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>5.5.0</version>
+  <version>5.6.0</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
@@ -20,11 +20,8 @@
   </licenses>
   <properties>
     <test.env.property.file.root>.</test.env.property.file.root>
-    <test.log4j.level>INFO</test.log4j.level>
     <test.env.test>test</test.env.test>
     <test.env.resources>${project.build.testOutputDirectory}</test.env.resources>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
   </properties>
   <dependencies>
     <dependency>
@@ -234,32 +231,6 @@
     </dependency>
   </dependencies>
   <build>
-    <resources>
-      <resource>
-        <filtering>true</filtering>
-        <directory>src/main/resources</directory>
-        <includes>
-          <include>build.properties</include>
-        </includes>
-      </resource>
-      <resource>
-        <filtering>false</filtering>
-        <directory>src/main/resources</directory>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-        <filtering>true</filtering>
-        <directory>src/test/resources</directory>
-        <includes>
-          <include>**/log4j2.xml</include>
-        </includes>
-      </testResource>
-      <testResource>
-        <filtering>false</filtering>
-        <directory>src/test/resources</directory>
-      </testResource>
-    </testResources>
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -295,10 +266,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>${maven-resources-plugin.plugin.version}</version>
-        <configuration>
-          <includeEmptyDirs>true</includeEmptyDirs>
-        </configuration>
       </plugin>
     </plugins>
   </build>

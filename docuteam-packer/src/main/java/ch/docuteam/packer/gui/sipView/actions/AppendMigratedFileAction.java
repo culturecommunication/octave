@@ -26,6 +26,7 @@ import java.io.IOException;
 
 import ch.docuteam.darc.exceptions.FileAlreadyExistsException;
 import ch.docuteam.darc.exceptions.FileOperationNotAllowedException;
+import ch.docuteam.darc.exceptions.FolderNameIsEmptyException;
 import ch.docuteam.darc.mets.Document.Mode;
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
 import ch.docuteam.darc.mets.structmap.NodeFile;
@@ -69,14 +70,14 @@ public class AppendMigratedFileAction extends AbstractSIPViewAction {
             try {
                 ((NodeFile) selectedNode).migrateToFileKeepOriginal(newFile.getAbsolutePath(), "docuteam packer");
             } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
-                    FileAlreadyExistsException e1) {
+                    FileAlreadyExistsException | FolderNameIsEmptyException e1) {
                 Logger.error(e1.getMessage(), e1);
             }
         } else {
             try {
                 ((NodeFile) selectedNode).migrateToFile(newFile.getAbsolutePath(), "docuteam packer");
             } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
-                    FileAlreadyExistsException e1) {
+                    FileAlreadyExistsException | FolderNameIsEmptyException e1) {
                 Logger.error(e1.getMessage(), e1);
             }
         }

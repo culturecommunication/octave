@@ -27,7 +27,7 @@ You can get your Cloudsmith API Key from [Cloudsmith Settings](https://cloudsmit
     <password>74ce4b089e3c2cxxxxxxxxx</password>
   </server>
   <server>
-    <id>third-party</id>
+    <id>docuteam-third-party</id>
     <username>cloudsmith-user</username>
     <password>74ce4b089e3c2cxxxxxxxxx</password>
   </server>

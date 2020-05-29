@@ -91,6 +91,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -179,7 +180,6 @@ import ch.docuteam.packer.gui.util.Util;
 import ch.docuteam.tools.exception.ExceptionCollector;
 import ch.docuteam.tools.exception.ExceptionCollectorException;
 import ch.docuteam.tools.file.FileUtil;
-import ch.docuteam.tools.file.PropertyFile;
 import ch.docuteam.tools.file.exception.FileUtilExceptionListException;
 import ch.docuteam.tools.gui.GridBagPanel;
 import ch.docuteam.tools.gui.JTableWithDynamicToolTipTexts;
@@ -251,6 +251,8 @@ public class SIPView extends JFrame {
     protected static Integer screenSizeX = 1000;
 
     protected static Integer screenSizeY = 700;
+
+    private static Properties properties;
 
     protected LauncherView launcherView;
 
@@ -1719,33 +1721,35 @@ public class SIPView extends JFrame {
      * 
      * @param propertyFileName
      */
-    public static void initialize() {
-        saveWithBackups = Boolean.parseBoolean(PropertyFile.get("docuteamPacker.versioning", "true"));
+    public static void initialize(Properties propertiesIn) {
+        properties = propertiesIn;
+
+        saveWithBackups = Boolean.parseBoolean(properties.getProperty("docuteamPacker.versioning", "true"));
         Logger.info("    saveWithBackups: " + saveWithBackups);
         try {
             Document.setKeepBackupsCount(
-                    new Integer(PropertyFile.get("docuteamPacker.versioning.keepBackupsCount", null)));
+                    new Integer(properties.getProperty("docuteamPacker.versioning.keepBackupsCount")));
         } catch (final NumberFormatException e) {
             Document.setKeepBackupsCount(null);
         }
         Logger.info("    keepBackupsCount: " + Document.getKeepBackupsCount());
 
         openFullScreen = Boolean
-                .parseBoolean(PropertyFile.get("docuteamPacker.openFullScreen", openFullScreen.toString()));
+                .parseBoolean(properties.getProperty("docuteamPacker.openFullScreen", openFullScreen.toString()));
         try {
-            screenSizeX = new Integer(PropertyFile.get("docuteamPacker.screenSize.x", screenSizeX.toString()));
+            screenSizeX = new Integer(properties.getProperty("docuteamPacker.screenSize.x", screenSizeX.toString()));
         } catch (final NumberFormatException e) {
         } // Ignore it and leave the default values
         try {
-            screenSizeY = new Integer(PropertyFile.get("docuteamPacker.screenSize.y", screenSizeY.toString()));
+            screenSizeY = new Integer(properties.getProperty("docuteamPacker.screenSize.y", screenSizeY.toString()));
         } catch (final NumberFormatException e) {
         }
         try {
-            screenPosX = new Integer(PropertyFile.get("docuteamPacker.screenPos.x", null));
+            screenPosX = new Integer(properties.getProperty("docuteamPacker.screenPos.x"));
         } catch (final NumberFormatException e) {
         }
         try {
-            screenPosY = new Integer(PropertyFile.get("docuteamPacker.screenPos.y", null));
+            screenPosY = new Integer(properties.getProperty("docuteamPacker.screenPos.y"));
         } catch (final NumberFormatException e) {
         }
         Logger.info("    openFullScreen: " + openFullScreen);
@@ -1909,8 +1913,7 @@ public class SIPView extends JFrame {
 
                     // ETH-161
                     try {
-                        if (Boolean.valueOf(PropertyFile.get("docuteamPacker.SIPView.TreeExpandAll", "false",
-                                "false"))
+                        if (Boolean.valueOf(properties.getProperty("docuteamPacker.SIPView.TreeExpandAll", "false"))
                                 .booleanValue()) {
                             expandAll();
                         }
@@ -1923,7 +1926,8 @@ public class SIPView extends JFrame {
                     // ETH-161
                     int selectedTab = 0;
                     try {
-                        selectedTab = Integer.valueOf(PropertyFile.get("docuteamPacker.SIPView.DefaultTab", "1", "1"))
+                        selectedTab = Integer.valueOf(properties.getProperty("docuteamPacker.SIPView.DefaultTab",
+                                "1"))
                                 .intValue() - 1;
                         selectedTab = selectedTab >= 0 && selectedTab <= 2 ? selectedTab : 0;
                     } catch (final NumberFormatException nfe) {
@@ -3477,9 +3481,9 @@ public class SIPView extends JFrame {
                 } else if (stylesheetName.startsWith(REPORT_STYLESHEET_PREFIX_SOURCE_TYPE_METS)) {
                     xmlFilePath = document.getFilePath();
                 } else {
-                    Logger.warn("cannot find report stylesheet, should start with "
-                            + REPORT_STYLESHEET_PREFIX_SOURCE_TYPE_EAD + " or "
-                            + REPORT_STYLESHEET_PREFIX_SOURCE_TYPE_METS);
+                    Logger.warn("cannot find report stylesheet, should start with " +
+                            REPORT_STYLESHEET_PREFIX_SOURCE_TYPE_EAD + " or " +
+                            REPORT_STYLESHEET_PREFIX_SOURCE_TYPE_METS);
                 }
 
                 if (xmlFilePath != null && OUTPUT_FORMAT_PDF.equals(outputFormat)) {
@@ -3660,7 +3664,7 @@ public class SIPView extends JFrame {
         convertAction.enableOrDisable();
         closeAction.setEnabled(true);
 
-        if (isPropertyConfigured("docuteamPacker.SA.BASE.URL")) {
+        if (properties.getProperty("docuteamPacker.SA.BASE.URL") != null) {
             openSAExternallyAction.setEnabled(true);
         }
         exportAsEADFileAction.setEnabled(true);
@@ -3918,15 +3922,6 @@ public class SIPView extends JFrame {
     }
 
     /**
-     * checks if the property exists and is not empty
-     * 
-     * @return
-     */
-    private boolean isPropertyConfigured(final String propertyKey) {
-        return PropertyFile.isPropertyConfigured(propertyKey);
-    }
-
-    /**
      * Enable setting only allowed levels
      */
     protected void enableOnlyAllowedSetLevelActions() {
@@ -3985,7 +3980,7 @@ public class SIPView extends JFrame {
     }
 
     static protected Comparator<LevelMetadataElement> getLevelMetadataElementComparator() {
-        final String metadataOrder = PropertyFile.get("docuteamPacker.SIPView.metadataOrder", "none", "none");
+        final String metadataOrder = properties.getProperty("docuteamPacker.SIPView.metadataOrder", "none");
         if (metadataOrder.equals("alphabetical")) {
             return (lme1, lme2) -> I18N.translate(lme1.getId())
                     .compareTo(I18N.translate(lme2.getId()));

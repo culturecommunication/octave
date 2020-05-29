@@ -133,6 +133,9 @@
 		<LEVELS:MetadataElement					accessorNameID="geogName"/>
 		<LEVELS:MetadataElement					accessorNameID="institutionCreator"/>
 		<LEVELS:MetadataElement					accessorNameID="institutionInvolved"/>
+		<LEVELS:MetadataElement					accessorNameID="familyName"/>
+		<LEVELS:MetadataElement					accessorNameID="function"/>
+		<LEVELS:MetadataElement					accessorNameID="occupation"/>
 		<LEVELS:MetadataElement					accessorNameID="ISBN"/>
 		<LEVELS:MetadataElement					accessorNameID="ISSN"/>
 		<LEVELS:MetadataElement					accessorNameID="placeOfPublication"/>
@@ -277,6 +280,9 @@
 			<LEVELS:LevelMetadataElement		accessorNameRef="geogName"								isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="institutionCreator"					isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="institutionInvolved"					isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="familyName"							isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="function"								isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="occupation"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="ISBN"									isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="ISSN"									isMandatory="false"	isRepeatable="false"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="placeOfPublication"					isMandatory="false"	isRepeatable="true"/>

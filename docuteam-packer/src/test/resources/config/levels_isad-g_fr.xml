@@ -8,7 +8,7 @@
 		<LEVELS:AllowedValuesSeparator>;</LEVELS:AllowedValuesSeparator>
 <!-- 1 -->
 		<LEVELS:MetadataElement					accessorNameID="refCodeSeparator"/>
-		<LEVELS:MetadataElement					accessorNameID="refCodeIsVisible"                       allowedValues="true;false" default="true"/>
+		<LEVELS:MetadataElement					accessorNameID="refCodeIsVisible"                       allowedValues="true;false" defaultExpression="true"/>
 		<LEVELS:MetadataElement					accessorNameID="refCode"/>
 		<LEVELS:MetadataElement					accessorNameID="refCodeOld"/>
 		<LEVELS:MetadataElement					accessorNameID="from"									validatorClassName="ch.docuteam.darc.mdconfig.MetadataElementValidatorDateYYYYMMDD"/>

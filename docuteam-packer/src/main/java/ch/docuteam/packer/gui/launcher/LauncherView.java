@@ -26,13 +26,11 @@ import static ch.docuteam.packer.gui.ComponentNames.WORKSPACE_MENU;
 import static ch.docuteam.packer.gui.ComponentNames.WORKSPACE_SELECT_FOLDER_FILE_CHOOSER;
 import static ch.docuteam.packer.gui.ComponentNames.WORKSPACE_SELECT_FOLDER_MENU_ITEM;
 import static ch.docuteam.packer.gui.PackerConstants.DEFAULT_LEVELS_CONFIG_FILE_NAME;
-import static ch.docuteam.packer.gui.PackerConstants.DEFAULT_PROPERTY_FILE_NAME;
 import static ch.docuteam.packer.gui.PackerConstants.DEFAULT_SCREEN_SIZE_WITHOUT_WORKSPACE_MANAGER;
 import static ch.docuteam.packer.gui.PackerConstants.DEFAULT_SCREEN_SIZE_WITH_WORKSPACE_MANAGER;
 import static ch.docuteam.packer.gui.PackerConstants.DELETE_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.DOWNLOAD_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.DO_INITIALLY_OPEN_WORKSPACEMANAGER;
-import static ch.docuteam.packer.gui.PackerConstants.IS_IN_DEVELOP_MODE;
 import static ch.docuteam.packer.gui.PackerConstants.MIGRATE_FILE_KEEP_ORIGINAL;
 import static ch.docuteam.packer.gui.PackerConstants.NEW_FROM_TEMPLATE_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.NEW_SIP_DEFAULTS_TO_ZIPPED;
@@ -41,6 +39,7 @@ import static ch.docuteam.packer.gui.PackerConstants.OPEN_FOLDER_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.OPEN_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.OPERATOR;
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.PROPERTY_FILE_NAME;
 import static ch.docuteam.packer.gui.PackerConstants.PROPERTY_FILE_PATH_OS_SUFFIX;
 import static ch.docuteam.packer.gui.PackerConstants.REDISPLAY_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.SCREEN_POSITION;
@@ -80,6 +79,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -130,10 +130,11 @@ import ch.docuteam.packer.gui.launcher.actions.OpenSIPInWorkspaceAction;
 import ch.docuteam.packer.gui.sipView.SIPView;
 import ch.docuteam.packer.gui.util.Util;
 import ch.docuteam.tools.exception.ExceptionCollector;
+import ch.docuteam.tools.file.ConfigurationFileLoader;
 import ch.docuteam.tools.file.FileChecksumCalculator.Algorithm;
 import ch.docuteam.tools.file.FileUtil;
 import ch.docuteam.tools.file.MetadataProviderDROID;
-import ch.docuteam.tools.file.PropertyFile;
+import ch.docuteam.tools.file.PropertiesWithResolvedEnvVars;
 import ch.docuteam.tools.file.exception.DROIDCouldNotInitializeException;
 import ch.docuteam.tools.file.exception.FileUtilExceptionListException;
 import ch.docuteam.tools.gui.ScrollableMessageDialog;
@@ -170,6 +171,8 @@ public class LauncherView extends JFrame {
     public String levelsConfigFileName = DEFAULT_LEVELS_CONFIG_FILE_NAME;
 
     private String configDirectory = "./config";
+
+    private PropertiesWithResolvedEnvVars properties;
 
     private String sipDirectory;
 
@@ -423,8 +426,15 @@ public class LauncherView extends JFrame {
         // Open a SIP on startup (if specified in the commandLine):
         l.openSIP(commandLine);
 
-        debugClasspath();
+        final boolean inDevelopMode = Boolean.parseBoolean(l.getProperties().getProperty("docuteamPacker.isDevMode",
+                "false"));
+        if (inDevelopMode) {
+            debugClasspath();
+        }
+    }
 
+    private Properties getProperties() {
+        return this.properties;
     }
 
     /**
@@ -868,7 +878,7 @@ public class LauncherView extends JFrame {
         menuBar.add(workspaceMenu);
         menuBar.add(sipMenu);
         // only show this menu if the necessary property is defined
-        if (PropertyFile.isPropertyConfigured("docuteamPacker.SA.BASE.URL")) {
+        if (properties.containsKey("docuteamPacker.SA.BASE.URL")) {
             menuBar.add(saMenu);
         }
         menuBar.add(windowMenu);
@@ -992,7 +1002,8 @@ public class LauncherView extends JFrame {
      * @return
      */
     private List<String> getHiddenActionKeys() {
-        final String actionsNotVisible = PropertyFile.get("docuteamPacker.actionsNotVisible", "");
+        final String actionsNotVisible = properties.getPropertyOrDefaultIfEmpty("docuteamPacker.actionsNotVisible",
+                "");
         return Arrays.asList(actionsNotVisible.split("\\s?,\\s?"));
     }
 
@@ -1084,24 +1095,17 @@ public class LauncherView extends JFrame {
 
             Logger.info("Initializing docuteam packer:");
 
-            String propertyFileName = DEFAULT_PROPERTY_FILE_NAME;
+            ConfigurationFileLoader configurationFileLoader = new ConfigurationFileLoader(commandLine.getOptionValue(
+                    "configDir"));
 
             // If a config directory is specified, take these configurations
             // from there (if those files ARE there - if not, use the default
             // folder = "./config"):
-            // - log4j2.xml
             // - docuteamPacker.properties
             // - levels.xml
             if (commandLine.hasOption("configDir")) {
                 configDirectory = commandLine.getOptionValue("configDir");
                 Logger.info("    configDir: " + configDirectory);
-
-                // Specify the location of the property file:
-                final String configFile = configDirectory + "/docuteamPacker.properties";
-                if (new File(configFile).exists()) {
-                    Logger.info("    Init docuteam packer from: " + configFile);
-                    propertyFileName = configFile;
-                }
 
                 // Specify the location of the levels file:
                 final String levelsConfigFile = configDirectory + "/levels.xml";
@@ -1113,13 +1117,14 @@ public class LauncherView extends JFrame {
                 Logger.warn("Command line doesn't have a configDir, commandLine:" + commandLine.getArgList());
             }
 
-            initializeProperties(propertyFileName);
+            initializeProperties(new PropertiesWithResolvedEnvVars(configurationFileLoader.loadProperties(
+                    PROPERTY_FILE_NAME)));
 
             hiddenActionKeyList = getHiddenActionKeys();
 
             // TODO this here seems to be some encapsulation violation, why
             // initializing sipview before any thought of opening it
-            SIPView.initialize();
+            SIPView.initialize(properties);
         } finally {
             splashWindow.setVisible(false);
             splashWindow.dispose();
@@ -1127,10 +1132,11 @@ public class LauncherView extends JFrame {
     }
 
     // This is called on startup only:
-    protected void initializeProperties(final String propertyFileName) throws DROIDCouldNotInitializeException {
-        PropertyFile.initialize(propertyFileName);
+    protected void initializeProperties(final PropertiesWithResolvedEnvVars properties)
+            throws DROIDCouldNotInitializeException {
+        this.properties = properties;
 
-        final String language = PropertyFile.get("docuteamPacker.displayLanguage", null);
+        final String language = properties.getProperty("docuteamPacker.displayLanguage");
         if (language != null) {
             Locale.setDefault(new Locale(language));
             JComponent.setDefaultLocale(Locale.getDefault());
@@ -1142,13 +1148,8 @@ public class LauncherView extends JFrame {
         String doiGenNextNumberFilePath = null;
         String doiGenPrefix = null;
 
-        if (PropertyFile.isPropertyConfigured(doiGenNextNumberFilePath_prop)) {
-            doiGenNextNumberFilePath = PropertyFile.get(doiGenNextNumberFilePath_prop);
-        }
-
-        if (PropertyFile.isPropertyConfigured(doiGenPrefix_prop)) {
-            doiGenPrefix = PropertyFile.get(doiGenPrefix_prop);
-        }
+        doiGenNextNumberFilePath = properties.getProperty(doiGenNextNumberFilePath_prop);
+        doiGenPrefix = properties.getProperty(doiGenPrefix_prop);
 
         if (doiGenNextNumberFilePath != null) {
             DOIGenerator.initialize(doiGenPrefix, doiGenNextNumberFilePath);
@@ -1158,7 +1159,7 @@ public class LauncherView extends JFrame {
             }
         }
 
-        inDevelopMode = Boolean.parseBoolean(PropertyFile.get("docuteamPacker.isDevMode", IS_IN_DEVELOP_MODE));
+        inDevelopMode = Boolean.parseBoolean(properties.getProperty("docuteamPacker.isDevMode", "false"));
         Logger.info("    isDevMode: " + inDevelopMode);
 
         // When in dev mode, let the system output go to the console, otherwise
@@ -1167,7 +1168,7 @@ public class LauncherView extends JFrame {
             SystemOutView.install();
 
             final boolean doOpenSystemOutViewOnOutput = "true"
-                    .equalsIgnoreCase(PropertyFile.get("docuteamPacker.openSystemOutViewOnOutput", "true"));
+                    .equalsIgnoreCase(properties.getProperty("docuteamPacker.openSystemOutViewOnOutput", "true"));
             Logger.info("    openSystemOutViewOnOutput: " + doOpenSystemOutViewOnOutput);
 
             // Switch on or off the automatic popping-up of the SystemOutView on
@@ -1196,20 +1197,21 @@ public class LauncherView extends JFrame {
                 .append(")\n----------\n")
                 .append(OperatingSystem.userName())
                 .append("\n----------\n");
-        for (final String key : PropertyFile.getKeys()) {
-            additionalInfoText.append(key).append(" = ").append(PropertyFile.get(key)).append("\n");
+
+        for (final Object key : properties.keySet()) {
+            additionalInfoText.append(key).append(" = ").append(properties.get(key)).append("\n");
         }
         additionalInfoText
                 .append("----------\n");
         SystemOutView.setAdditionalInfoText(additionalInfoText.toString());
 
-        final String displayLanguageFromPropertyFile = PropertyFile.get("docuteamPacker.displayLanguage", "");
+        final String displayLanguageFromPropertyFile = properties.getProperty("docuteamPacker.displayLanguage", "");
         final String usedDisplayLanguage = displayLanguageFromPropertyFile.isEmpty() ? OperatingSystem.userLanguage()
                 : displayLanguageFromPropertyFile;
         I18N.initialize(usedDisplayLanguage, "translations.Translations");
         Logger.info("    displayLanguage: " + usedDisplayLanguage);
 
-        final String defaultChecksumAlgorithm = PropertyFile.get("docuteamPacker.defaultChecksumAlgorithm", "");
+        final String defaultChecksumAlgorithm = properties.getProperty("docuteamPacker.defaultChecksumAlgorithm", "");
         if (!defaultChecksumAlgorithm.equals("")) {
             try {
                 ch.docuteam.darc.premis.Object.setDefaultMessageDigestAlgorithm(Algorithm.lookup(
@@ -1221,23 +1223,24 @@ public class LauncherView extends JFrame {
             }
         }
 
-        newSIPDeleteSourcesByDefault = Boolean.parseBoolean(PropertyFile.get(
+        newSIPDeleteSourcesByDefault = Boolean.parseBoolean(properties.getProperty(
                 "docuteamPacker.newSIPDeleteSourcesByDefault", NEW_SIP_DEFAULT_DELETE_SOURCES));
         Logger.info("    newSIPDeleteSourcesByDefault: " + newSIPDeleteSourcesByDefault);
 
-        newSIPZippedByDefault = Boolean.parseBoolean(PropertyFile.get("docuteamPacker.newSIPDefaultsToZipped",
+        newSIPZippedByDefault = Boolean.parseBoolean(properties.getProperty("docuteamPacker.newSIPDefaultsToZipped",
                 NEW_SIP_DEFAULTS_TO_ZIPPED));
         Logger.info("    newSIPDefaultsToZipped: " + newSIPZippedByDefault);
 
-        migrateFileKeepOriginal = Boolean.parseBoolean(PropertyFile.get("docuteamPacker.migrateFileKeepOriginal",
+        migrateFileKeepOriginal = Boolean.parseBoolean(properties.getProperty(
+                "docuteamPacker.migrateFileKeepOriginal",
                 MIGRATE_FILE_KEEP_ORIGINAL));
         Logger.info("    migrateFileKeepOriginal: " + migrateFileKeepOriginal);
 
         // Initialize various directories:
 
         // SIPDir, create if not existing
-        sipDirectory = FileUtil.asCanonicalFileName(PropertyFile.get("docuteamPacker.SIPDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, USER_HOME, USER_HOME));
+        sipDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.SIPDir" +
+                PROPERTY_FILE_PATH_OS_SUFFIX, USER_HOME));
         final Path sipDirPath = FileSystems.getDefault().getPath(sipDirectory);
         try {
             Files.createDirectories(sipDirPath);
@@ -1248,8 +1251,8 @@ public class LauncherView extends JFrame {
         Logger.info("    SIPDirectory: " + sipDirectory);
 
         // dataDir, create if not existing
-        dataDirectory = FileUtil.asCanonicalFileName(PropertyFile.get("docuteamPacker.dataDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory, sipDirectory));
+        dataDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.dataDir" +
+                PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
         try {
             final Path dataDirectoryPath = FileSystems.getDefault().getPath(dataDirectory);
             Files.createDirectories(dataDirectoryPath);
@@ -1258,41 +1261,41 @@ public class LauncherView extends JFrame {
         }
         Logger.info("    dataDirectory: " + dataDirectory);
 
-        templateDirectory = FileUtil.asCanonicalFileName(PropertyFile.get("docuteamPacker.templateDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory, sipDirectory));
+        templateDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
+                "docuteamPacker.templateDir" + PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
         Logger.info("    templateDirectory: " + templateDirectory);
 
-        exportsDirectory = FileUtil.asCanonicalFileName(PropertyFile.get("docuteamPacker.exportsDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/exports/", "./templates/exports/"));
+        exportsDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
+                "docuteamPacker.exportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/exports/"));
         Logger.info("    exportsDirectory: " + exportsDirectory);
 
-        reportsDirectory = FileUtil.asCanonicalFileName(PropertyFile.get("docuteamPacker.reportsDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/reports/", "./templates/reports/"));
+        reportsDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
+                "docuteamPacker.reportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/reports/"));
         Logger.info("    reportsDirectory: " + reportsDirectory);
 
-        reportsDestinationDirectory = FileUtil.asCanonicalFileName(PropertyFile.get(
-                "docuteamPacker.reportsDestinationDir" + PROPERTY_FILE_PATH_OS_SUFFIX, OperatingSystem.userHome() +
-                        "Desktop", OperatingSystem.userHome() + "Desktop"));
+        reportsDestinationDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
+                "docuteamPacker.reportsDestinationDir" + PROPERTY_FILE_PATH_OS_SUFFIX,
+                OperatingSystem
+                        .userHome() + "Desktop"));
         Logger.info("    reportsDestinationDirectory: " + reportsDestinationDirectory);
 
-        Document.setBackupFolder(PropertyFile.get("docuteamPacker.backupDir" + PROPERTY_FILE_PATH_OS_SUFFIX, null,
-                null));
+        Document.setBackupFolder(properties.getProperty("docuteamPacker.backupDir" + PROPERTY_FILE_PATH_OS_SUFFIX));
         Logger.info("    backupDirectory: " + Document.getBackupFolder());
 
-        FileUtil.setTempFolder(PropertyFile.get("docuteamPacker.tempDir" + PROPERTY_FILE_PATH_OS_SUFFIX,
-                OperatingSystem.javaTempDir() + "DocuteamPacker", OperatingSystem.javaTempDir() + "DocuteamPacker"));
+        FileUtil.setTempFolder(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.tempDir" +
+                PROPERTY_FILE_PATH_OS_SUFFIX, OperatingSystem.javaTempDir() + "DocuteamPacker"));
         Logger.info("    tempDirectory: " + FileUtil.getTempFolder());
 
         try {
-            AIPCreatorProxy.initializeImpl(PropertyFile.get("docuteamPacker.AIPCreator.className", null));
+            AIPCreatorProxy.initializeImpl(properties.getProperty("docuteamPacker.AIPCreator.className"));
 
             if (AIPCreatorProxy.isUsable()) {
                 // forward the properties to the aipcreator implementation
-                AIPCreatorProxy.initialize(PropertyFile.getProperties());
+                AIPCreatorProxy.initialize(properties);
             }
         } catch (final Exception e) {
-            Logger.warn(I18N.translate("MessageAIPCreatorInitializationException", PropertyFile.get(
-                    "docuteamPacker.AIPCreator.className", null)), e);
+            Logger.warn(I18N.translate("MessageAIPCreatorInitializationException", properties.getProperty(
+                    "docuteamPacker.AIPCreator.className")), e);
             // Leave the AIPCreatorProxy uninitialized
             AIPCreatorProxy.initializeImpl((AIPCreator) null);
         }
@@ -1302,13 +1305,13 @@ public class LauncherView extends JFrame {
         LevelOfDescription.setInitializationFilePath(levelsConfigFileName);
 
         // Use specific DROID signature file if defined
-        String droidSigFilePath = PropertyFile.get("docuteamPacker.droid.signatureFile", "");
+        String droidSigFilePath = properties.getProperty("docuteamPacker.droid.signatureFile", "");
         MetadataProviderDROID.setSignatureFileWithFallback(droidSigFilePath);
         // Use specific DROID container file if defined
-        String droidContFilePath = PropertyFile.get("docuteamPacker.droid.containerFile", "");
+        String droidContFilePath = properties.getProperty("docuteamPacker.droid.containerFile", "");
         MetadataProviderDROID.setContainerSignatureFileWithFallback(droidContFilePath);
         // Use specific DROID extension setting if defined
-        final String droidExtensionUsage = PropertyFile.get("docuteamPacker.droid.extensionUsage", "");
+        final String droidExtensionUsage = properties.getProperty("docuteamPacker.droid.extensionUsage", "");
         if (droidExtensionUsage != null && !droidExtensionUsage.isEmpty()) {
             Logger.info("    Init droid with extension usage: " + droidExtensionUsage);
             if (StringUtil.isNumeric(droidExtensionUsage)) {
@@ -1319,12 +1322,12 @@ public class LauncherView extends JFrame {
         }
 
         // Initialize SA:
-        SubmissionAgreement.initializeBaseURL(PropertyFile.get("docuteamPacker.SA.BASE.URL", ""));
+        SubmissionAgreement.initializeBaseURL(properties.getProperty("docuteamPacker.SA.BASE.URL", ""));
         Logger.info("    SABaseURL: " + SubmissionAgreement.getBaseURL());
 
         // Update SAs from server on startup only if the property "docuteamPacker.SA.getSAsFromServerOnStartup" is
         // "true":
-        if ("true".equalsIgnoreCase(PropertyFile.get("docuteamPacker.SA.getSAsFromServerOnStartup", "false"))) {
+        if ("true".equalsIgnoreCase(properties.getProperty("docuteamPacker.SA.getSAsFromServerOnStartup", "false"))) {
             Logger.info("    getSAsFromServerOnStartup: true");
 
             try {
@@ -1372,19 +1375,19 @@ public class LauncherView extends JFrame {
         }
 
         // Initialize OOConverter:
-        final String ooConverterInitRetries = PropertyFile.get("docuteamPacker.OOConverter.initializationRetries",
-                "");
+        final String ooConverterInitRetries = properties.getProperty(
+                "docuteamPacker.OOConverter.initializationRetries", "");
         if (!ooConverterInitRetries.isEmpty()) {
             OOConverter.setNumberOfInitializationRetries(new Integer(ooConverterInitRetries));
         }
         Logger.info("    ooConverterInitRetries: " + OOConverter.getNumberOfInitializationRetries());
 
-        OOConverter.initializeDontWait(PropertyFile.get("docuteamPacker.OOConverter.path" +
+        OOConverter.initializeDontWait(properties.getProperty("docuteamPacker.OOConverter.path" +
                 PROPERTY_FILE_PATH_OS_SUFFIX, ""));
         Logger.info("    ooConverterPath: " + OOConverter.getConverterPath());
 
         // Initialize 3-Heights Document Converter:
-        final String pdftoolsURL = PropertyFile.get("docuteamPacker.pdftools.url", "");
+        final String pdftoolsURL = properties.getProperty("docuteamPacker.pdftools.url", "");
         if (!pdftoolsURL.isEmpty()) {
             Logger.getLogger().info("    3-Heights Document Converter URL: " + pdftoolsURL);
             try {
@@ -1395,7 +1398,8 @@ public class LauncherView extends JFrame {
         }
 
         // Initialize FilePreviewer:
-        final String filePreviewCacheSizeLimit = PropertyFile.get("docuteamPacker.filePreviewer.cacheSizeLimit", "");
+        final String filePreviewCacheSizeLimit = properties.getProperty("docuteamPacker.filePreviewer.cacheSizeLimit",
+                "");
         if (!filePreviewCacheSizeLimit.isEmpty()) {
             FilePreviewer.setCacheSizeLimit(new Integer(filePreviewCacheSizeLimit));
         }
@@ -1403,7 +1407,7 @@ public class LauncherView extends JFrame {
 
         // Initialize UIManager:
         try {
-            if (Boolean.parseBoolean(PropertyFile.get("docuteamPacker.useSystemLookAndFeel",
+            if (Boolean.parseBoolean(properties.getProperty("docuteamPacker.useSystemLookAndFeel",
                     USE_SYSTEM_LOOK_AND_FEEL))) {
                 // com.sun.java.swing.plaf.windows.WindowsLookAndFeel on Windows, com.apple.laf.AquaLookAndFeel on OS
                 // X.
@@ -2252,12 +2256,6 @@ public class LauncherView extends JFrame {
     }
 
     private static void debugClasspath() {
-        final boolean inDevelopMode = Boolean.parseBoolean(PropertyFile.get("docuteamPacker.isDevMode",
-                IS_IN_DEVELOP_MODE));
-        if (!inDevelopMode) {
-            return;
-        }
-
         final ClassLoader cl = ClassLoader.getSystemClassLoader();
 
         final URL[] urls = ((URLClassLoader) cl).getURLs();
@@ -2266,5 +2264,4 @@ public class LauncherView extends JFrame {
             Logger.info(url.getFile());
         }
     }
-
 }

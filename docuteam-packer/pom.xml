@@ -8,46 +8,23 @@
   </parent>
   <artifactId>docuteam-packer</artifactId>
   <name>docuteam packer</name>
-  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
 
-  <build>
-  	<resources>
-		<!-- enable filtering: replaces variables in resources directory -->
-    	<resource>
-    		<directory>src/main/resources</directory>
-    		<filtering>true</filtering>
-    		<includes>	
-    			<!-- filter only build.properties and startup scripts -->
-				<include>build.properties</include>
-				<include>distribution/docuteam packer Win.bat</include>
-				<include>distribution/docuteam packer Linux.sh</include>
-				<include>distribution/docuteam packer OSX.sh</include>
-				<include>distribution/docuteam packer.app/Contents/MacOS/docuteam packer</include>
-			</includes>
-    	</resource>
-    	<resource>
-    		<directory>src/main/resources</directory>
-    		<filtering>false</filtering>
-    	</resource>
-    </resources>
-	<testResources>
-		<testResource>
-			<!-- filter test resources if used to run tests in eclipse -->
-			<directory>src/test/resources</directory>
-			<filtering>true</filtering>
-			<includes>
-				<include>**/log4j2.xml</include>
-			</includes>
-		</testResource>
-		<testResource>
-			<directory>src/test/resources</directory>
-			<filtering>false</filtering>
-		</testResource>
-	</testResources>
-    <plugins>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${build-helper-maven-plugin.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -69,13 +46,8 @@
 			</plugin>
       
       <plugin>
-  		<groupId>org.apache.maven.plugins</groupId>
-  		<artifactId>maven-resources-plugin</artifactId>
-  		<version>${maven-resources-plugin.plugin.version}</version>
-  		<configuration>
-  			<!--include any empty dir from test resources -->
-    		<includeEmptyDirs>true</includeEmptyDirs>
-  		</configuration>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-resources-plugin</artifactId>
 		</plugin>
 		<plugin>
         	<groupId>org.apache.maven.plugins</groupId>
@@ -125,6 +97,12 @@
     			<artifactId>*</artifactId>
     		</exclusion>
     	</exclusions>
+    </dependency>
+    <dependency>
+      <groupId>ch.docuteam</groupId>
+      <artifactId>docuteam-aipcreatoreth</artifactId>
+      <version>${project.version}</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>ch.docuteam</groupId>
