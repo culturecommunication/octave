@@ -162,10 +162,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
             File convertedFile = null;
 
             try {
-                convertedFile = FileConverter.convertFile(file.getAbsolutePathString(), FileUtil.getTempFolder() /*
-                                                                                                                  * +
-                                                                                                                  * TempConvertFolder
-                                                                                                                  */);
+                convertedFile = FileConverter.convertFile(file.getAbsolutePathString());
 
                 if (convertedFile != null) {
                     try {
