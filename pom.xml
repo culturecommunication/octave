@@ -3,21 +3,22 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.docuteam</groupId>
 	<artifactId>docuteam</artifactId>
-	<version>5.3.0</version>
+	<version>5.4.0</version>
+
 	<packaging>pom</packaging>
-	<name>cosmos</name>
+	<name>docuteam cosmos</name>
 
 	<properties>
 		<!-- plugin versions -->
 		<maven-deploy-plugin.plugin.version>2.8.2</maven-deploy-plugin.plugin.version>
-		<maven-compiler-plugin.plugin.version>3.3</maven-compiler-plugin.plugin.version>        		
+		<maven-compiler-plugin.plugin.version>3.3</maven-compiler-plugin.plugin.version>
 		<maven-resources-plugin.plugin.version>2.6</maven-resources-plugin.plugin.version>
-		<sql-maven-plugin.plugin.version>1.5</sql-maven-plugin.plugin.version>        		
+		<sql-maven-plugin.plugin.version>1.5</sql-maven-plugin.plugin.version>
 		<maven-failsafe-plugin.plugin.version>2.22.1</maven-failsafe-plugin.plugin.version>
 		<maven-surefire-plugin.plugin.version>2.22.1</maven-surefire-plugin.plugin.version>
 		<maven-jar-plugin.plugin.version>3.0.2</maven-jar-plugin.plugin.version>
 		<maven-install-plugin.plugin.version>2.5.2</maven-install-plugin.plugin.version>
-		<maven-assembly-plugin.plugin.version>3.0.0</maven-assembly-plugin.plugin.version>				
+		<maven-assembly-plugin.plugin.version>3.1.1</maven-assembly-plugin.plugin.version>
 		<build-helper-maven-plugin.plugin.version>3.0.0</build-helper-maven-plugin.plugin.version>
 		<launch4j-maven-plugin.plugin.version>1.7.21</launch4j-maven-plugin.plugin.version>
 		<cxf-codegen.plugin.version>3.2.5</cxf-codegen.plugin.version>
@@ -25,15 +26,20 @@
 		<com.kerb4j.kerb4j.plugin.version>0.0.8</com.kerb4j.kerb4j.plugin.version>
 		<jaxb2-maven-plugin.plugin.version>2.2</jaxb2-maven-plugin.plugin.version>
 		<jgitflow-maven-plugin.plugin.version>1.0-m5.1</jgitflow-maven-plugin.plugin.version>
-        <license-maven-plugin.plugin.version>3.0</license-maven-plugin.plugin.version>				 		
+        <license-maven-plugin.plugin.version>3.0</license-maven-plugin.plugin.version>
 		<maven-antrun-plugin.plugin.version>1.8</maven-antrun-plugin.plugin.version>
         <maven-dependency-plugin.plugin.version>3.1.1</maven-dependency-plugin.plugin.version>
-		<maven-javadoc-plugin.plugin.version>2.10.1</maven-javadoc-plugin.plugin.version>		
+		<maven-javadoc-plugin.plugin.version>2.10.1</maven-javadoc-plugin.plugin.version>
 		<maven-source-plugin.plugin.version>3.0.1</maven-source-plugin.plugin.version>
 		<nexus-staging-maven-plugin.plugin.version>1.6.8</nexus-staging-maven-plugin.plugin.version>
 		<maven-enforcer-plugin.plugin.version>1.4.1</maven-enforcer-plugin.plugin.version>
         <truezip-maven-plugin.version>1.2</truezip-maven-plugin.version>
-        		
+
+        <!-- enable all tests by default -->
+		<skipUnitTests>false</skipUnitTests>
+		<skipITs>false</skipITs>
+		<skipGUITests>false</skipGUITests>
+
 		<!-- release -->
 		<release.keepBranch>false</release.keepBranch>
 		<release.noDeploy>false</release.noDeploy>
@@ -50,7 +56,7 @@
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
 		<com.artofsolving.jodconverter.version>2.2.2</com.artofsolving.jodconverter.version>
 		<com.exlibris.dps-sdk.version>5.1.0</com.exlibris.dps-sdk.version>
-		<com.google.code.gson.gson.version>2.2.4</com.google.code.gson.gson.version>       
+		<com.google.code.gson.gson.version>2.2.4</com.google.code.gson.gson.version>
 		<com.kerb4j.kerb4j-client.version>0.0.8</com.kerb4j.kerb4j-client.version>
 		<com.opentext.cws.version>10.5.1</com.opentext.cws.version>
 		<com.oracle.ojdbc6.version>12.1.0</com.oracle.ojdbc6.version>
@@ -60,7 +66,7 @@
 		<com.sun.jersey.jersey.version>1.5</com.sun.jersey.jersey.version>
 		<com.sun.jimi.version>1.0</com.sun.jimi.version>
 		<com.sun.media.jai-codec.version>1.1.3</com.sun.media.jai-codec.version>
-		<com.thoughtworks.xstream.xstream.version>1.3.1</com.thoughtworks.xstream.xstream.version>		
+		<com.thoughtworks.xstream.xstream.version>1.3.1</com.thoughtworks.xstream.xstream.version>
 		<com.yourmediashelf.fedora.client.fedora-client-core.version>0.7</com.yourmediashelf.fedora.client.fedora-client-core.version>
 		<commons-cli.commons-cli.version>1.2</commons-cli.commons-cli.version>
 		<commons.logging.version>1.2</commons.logging.version>
@@ -69,7 +75,7 @@
 		<dom4j.dom4j.version>1.6.1</dom4j.dom4j.version>
 		<javax.servlet.servlet-api.version>2.4</javax.servlet.servlet-api.version>
 		<!-- same version as the one included in com.sun.jersey:jersey-core -->
-		<javax.ws.rs.jsr311-api.version>1.1.1</javax.ws.rs.jsr311-api.version>        
+		<javax.ws.rs.jsr311-api.version>1.1.1</javax.ws.rs.jsr311-api.version>
 		<javax.xml.jaxrpc-api.version>1.1</javax.xml.jaxrpc-api.version>
 		<jaxen.jaxen.version>1.1.6</jaxen.jaxen.version>
 		<net.iharder.base64.version>2.3.7</net.iharder.base64.version>
@@ -78,21 +84,20 @@
 		<org.apache.commons.commons-lang3.version>3.1</org.apache.commons.commons-lang3.version>
         <org.apache.kerby.version>1.1.1</org.apache.kerby.version>
 		<org.apache.logging.log4j.version>2.10.0</org.apache.logging.log4j.version>
-		<org.apache.xmlbeans.xmlbeans.version>2.3.0</org.apache.xmlbeans.xmlbeans.version>		
+		<org.apache.xmlbeans.xmlbeans.version>2.3.0</org.apache.xmlbeans.xmlbeans.version>
 		<org.apache.xmlgraphics.fop.version>1.1</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
-		<org.assertj.assertj-swing-junit.version>3.8.0</org.assertj.assertj-swing-junit.version>             
+		<org.assertj.assertj-swing-junit.version>3.8.0</org.assertj.assertj-swing-junit.version>
 		<org.fcrepo.fcrepo.version>3.5</org.fcrepo.fcrepo.version>
 		<org.icepdf.os.icepdf-viewer.version>6.2.2</org.icepdf.os.icepdf-viewer.version>
 		<org.jsoup.jsoup.version>1.9.2</org.jsoup.jsoup.version>
 		<org.openoffice.version>3.0.1</org.openoffice.version>
-		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>		
-		<slf4j.version>1.6.6</slf4j.version>
+		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
 		<de.schlichtherle.truezip.version>7.7.10</de.schlichtherle.truezip.version>
-		<com.drewnoakes.metadata-extractor.version>2.6.2</com.drewnoakes.metadata-extractor.version>		
+		<com.drewnoakes.metadata-extractor.version>2.6.2</com.drewnoakes.metadata-extractor.version>
 		<uk.gov.nationalarchives.droid.version>6.4</uk.gov.nationalarchives.droid.version>
-		<edu.harvard.hul.ois.jhove.version>1.2</edu.harvard.hul.ois.jhove.version>		
-		<net.harawata.appdirs.version>1.0.1</net.harawata.appdirs.version>		
+		<edu.harvard.hul.ois.jhove.version>1.2</edu.harvard.hul.ois.jhove.version>
+		<net.harawata.appdirs.version>1.0.1</net.harawata.appdirs.version>
 		<mysql-connector-java.version>5.1.36</mysql-connector-java.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
 		<com.jcraft.jsch.version>0.1.53</com.jcraft.jsch.version>
@@ -106,14 +111,14 @@
         <org.pdftools.version>4.8.4.0</org.pdftools.version>
         <org.apache.httpcomponents.version>4.5</org.apache.httpcomponents.version>
         <org.apache.cxf.version>2.2.12</org.apache.cxf.version>
-        <wsdl4j.wsdl4j.version>1.6.2</wsdl4j.wsdl4j.version>        
+        <wsdl4j.wsdl4j.version>1.6.2</wsdl4j.wsdl4j.version>
         <commons.codec.version>1.10</commons.codec.version>
         <xerces.xercesImpl.version>2.9.1</xerces.xercesImpl.version>
         <gov.loc.bagit.version>5.1.1</gov.loc.bagit.version>
         <net.byteseek.byteseek.version>2.0.3</net.byteseek.byteseek.version>
         <rhino.js.version>1.5R4.1</rhino.js.version>
         <xml-apis.xml-apis.version>1.3.04</xml-apis.xml-apis.version>
- 
+
 		<!-- sax parser factory -->
 		<droid.sax.parser.factory>org.apache.xerces.jaxp.SAXParserFactoryImpl</droid.sax.parser.factory>
         <log4j.configurationFile>config/log4j2.xml</log4j.configurationFile>
@@ -121,12 +126,13 @@
 
 		<maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
 	    <build.timestamp>${maven.build.timestamp}</build.timestamp>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- Default dependency information for projects that inherit from this 
-		one. The dependencies in this section are not immediately resolved. Instead, 
-		when a POM derived from this one declares a dependency described by a matching 
-		groupId and artifactId, the version and other values from this section are 
+	<!-- Default dependency information for projects that inherit from this
+		one. The dependencies in this section are not immediately resolved. Instead,
+		when a POM derived from this one declares a dependency described by a matching
+		groupId and artifactId, the version and other values from this section are
 		used for that dependency if they were not already specified. -->
 	<dependencyManagement>
 		<dependencies>
@@ -196,13 +202,27 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven-failsafe-plugin.plugin.version}</version>
+                    <configuration>
+                        <skipTests>${skipITs}</skipTests>
+                        <systemPropertyVariables>
+                            <java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
+                            <log4j.configurationFile>${project.build.testOutputDirectory}/config/log4j2.xml</log4j.configurationFile>
+                        </systemPropertyVariables>
+                    </configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven-surefire-plugin.plugin.version}</version>
+                    <configuration>
+                        <skipTests>${skipUnitTests}</skipTests>
+                        <systemPropertyVariables>
+                            <java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
+                            <log4j.configurationFile>${project.build.testOutputDirectory}/config/log4j2.xml</log4j.configurationFile>
+                        </systemPropertyVariables>
+                    </configuration>
 				</plugin>
-				
+
         <plugin>
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
@@ -244,6 +264,7 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
+                    <skipTests>${skipUnitTests}</skipTests>
 					<systemPropertyVariables>
 						<java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
 					</systemPropertyVariables>
@@ -398,7 +419,7 @@
 	      		<groupId>org.apache.maven.plugins</groupId>
 	      		<artifactId>maven-javadoc-plugin</artifactId>
 	      		<version>${maven-javadoc-plugin.plugin.version}</version>
-    		</plugin>    	
+    		</plugin>
     		<!-- activate using the flag "maven.source.skip=false" -->
 		    <plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
@@ -423,14 +444,71 @@
 		            <rules><dependencyConvergence /></rules>
 		        </configuration>
 		    </plugin>
+		    <plugin>
+		    <!-- mvn checkstyle:checkstyle-aggregate -->
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-checkstyle-plugin</artifactId>
+		        <version>3.1.0</version>
+                <configuration>
+                  <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                  <includeResources>false</includeResources>
+                  <includeTestResources>false</includeTestResources>
+                  <consoleOutput>true</consoleOutput>
+                  <logViolationsToConsole>true</logViolationsToConsole>
+                  <failsOnError>true</failsOnError>
+                  <failOnViolation>true</failOnViolation>
+                  <violationSeverity>warning</violationSeverity>
+                  <configLocation>build-tools/checkstyle.xml</configLocation>
+                  <suppressionsLocation>build-tools/checkstyle-suppressions.xml</suppressionsLocation>
+                  <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>checkstyle</id>
+                    <phase>verify</phase>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </execution>
+                </executions>
+		    </plugin>
+		    <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-project-info-reports-plugin</artifactId>
+				  <version>3.0.0</version>
+			</plugin>
 		</plugins>
 	</build>
+	<reporting>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-checkstyle-plugin</artifactId>
+	        <version>3.1.0</version>
+	        <configuration>
+			    <configLocation>checkstyle.xml</configLocation>
+			    <headerLocation>LICENSE.txt</headerLocation>
+			    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+	        </configuration>
+	      </plugin>
+	      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>3.0.0</version>
+        </plugin>
+	    </plugins>
+  </reporting>
 	<repositories>
 	     <repository>
         	<id>jspresso</id>
         	<name>jspresso</name>
         	<url>http://repository.jspresso.org/maven2</url>
-     	</repository>     	
+     	</repository>
 		<repository>
 			<id>geotoolkit</id>
 			<name>geotoolkit</name>

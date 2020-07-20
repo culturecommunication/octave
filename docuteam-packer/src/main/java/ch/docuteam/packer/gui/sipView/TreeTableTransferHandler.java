@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
 import java.awt.datatransfer.DataFlavor;
@@ -30,325 +31,321 @@ import javax.swing.JTable;
 import javax.swing.TransferHandler;
 import javax.swing.tree.TreePath;
 
-import org.jdesktop.swingx.JXTreeTable;
-import org.jdesktop.swingx.treetable.TreeTableNode;
-
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
 import ch.docuteam.darc.mets.structmap.NodeAbstract.SubmitStatus;
-import ch.docuteam.darc.mets.structmap.NodeFile;
-import ch.docuteam.packer.gui.sipView.tableModel.TreeTableModel;
 import ch.docuteam.darc.mets.structmap.NodeFolder;
+import ch.docuteam.packer.gui.sipView.tableModel.TreeTableModel;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.translations.I18N;
 
+import org.jdesktop.swingx.JXTreeTable;
+import org.jdesktop.swingx.treetable.TreeTableNode;
+
 public class TreeTableTransferHandler extends TransferHandler {
 
-	private SIPView sipView;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public TreeTableTransferHandler(SIPView sipView) {
-		super();
-		this.sipView = sipView;
-	}
+    private final SIPView sipView;
 
-	/**
-	 * Allow move only
-	 */
-	@Override
-	public int getSourceActions(JComponent c) {
-		// MOVE/COPY/COPY_OR_MOVE/LINK/NONE
-		return COPY_OR_MOVE; 
-	}
+    public TreeTableTransferHandler(final SIPView sipView) {
+        super();
+        this.sipView = sipView;
+    }
 
-	/**
-	 * Create an instance of our own Transferable out of the drag source
-	 * component.
-	 */
-	@Override
-	protected Transferable createTransferable(JComponent c) {
-		return new TreeNodeListTransferable((JXTreeTable) c);
-	}
+    /**
+     * Allow move only
+     */
+    @Override
+    public int getSourceActions(final JComponent c) {
+        // MOVE/COPY/COPY_OR_MOVE/LINK/NONE
+        return COPY_OR_MOVE;
+    }
 
-	/**
-	 * Only on drop and insert, not on paste. 
-	 * Allow only our own data flavor and file lists. 
-	 * Allow dragging multiple items. Check source nodes and target node.
-	 * Allows insert between folders/files.
-	 * Allows drop on folder.
-	 * 
-	 */
-	@Override
-	public boolean canImport(TransferSupport transferSupport) {
-		// If this document doesn't allow file operations, disable D&D:
-		if (!sipView.getDocument().areFileOperationsAllowed()) {
-			return false;
-		}
+    /**
+     * Create an instance of our own Transferable out of the drag source component.
+     */
+    @Override
+    protected Transferable createTransferable(final JComponent c) {
+        return new TreeNodeListTransferable((JXTreeTable) c);
+    }
 
-		// Accept only drop:
-		if (!transferSupport.isDrop()) {
-			return false;
-		}
+    /**
+     * Only on drop and insert, not on paste. Allow only our own data flavor and file lists. Allow dragging multiple
+     * items. Check source nodes and target node. Allows insert between folders/files. Allows drop on folder.
+     */
+    @Override
+    public boolean canImport(final TransferSupport transferSupport) {
+        // If this document doesn't allow file operations, disable D&D:
+        if (!sipView.getDocument().areFileOperationsAllowed()) {
+            return false;
+        }
 
-		// Accept only file lists or our own data flavor:
-		if (!(transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor)
-				|| transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor))) {
-			return false;
-		}
+        // Accept only drop:
+        if (!transferSupport.isDrop()) {
+            return false;
+        }
 
-		// Check target to allow DnD:
-		int targetIndex = ((JTable.DropLocation) transferSupport.getDropLocation()).getRow();
+        // Accept only file lists or our own data flavor:
+        if (!(transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor) ||
+                transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor))) {
+            return false;
+        }
 
-		// This happens when the drag target is outside of the table:
-		if (targetIndex == -1) {
-			return false;
-		}
+        // Check target to allow DnD:
+        final int targetIndex = ((JTable.DropLocation) transferSupport.getDropLocation()).getRow();
 
-		// Target node:
-		JXTreeTable treeTableNode = ((JXTreeTable) transferSupport.getComponent());
-		TreePath pathForRow = treeTableNode.getPathForRow(targetIndex);
-		if(pathForRow==null) {
-		    return false;
-		}
-        NodeAbstract targetNode = (NodeAbstract)pathForRow.getLastPathComponent();
-       
+        // This happens when the drag target is outside of the table:
+        if (targetIndex == -1) {
+            return false;
+        }
 
-		// Don't allow drop if target or any of its predecessors is not readable
-		// or not writable:
-		if (!targetNode.fileExists() || !targetNode.canRead() || !targetNode.canWrite()
-				|| targetNode.hasPredecessorNotReadableOrWritableByCurrentUser()) {
-			return false;
-		}
+        // Target node:
+        final JXTreeTable treeTableNode = (JXTreeTable) transferSupport.getComponent();
+        final TreePath pathForRow = treeTableNode.getPathForRow(targetIndex);
+        if (pathForRow == null) {
+            return false;
+        }
+        final NodeAbstract targetNode = (NodeAbstract) pathForRow.getLastPathComponent();
 
-		// Now distinguish the different data flavors:
-		if (transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor)) {
-			// Moving nodes within packer:
+        // Don't allow drop if target or any of its predecessors is not readable
+        // or not writable:
+        if (!targetNode.fileExists() || !targetNode.canRead() || !targetNode.canWrite() || targetNode
+                .hasPredecessorNotReadableOrWritableByCurrentUser()) {
+            return false;
+        }
 
-			String targetSIP = sipView.getDocument().getSIPFolder();
-			TreeNodeListTransferable transferData = null;
-			String sourceSIP = "";
-			try {
-				transferData = (TreeNodeListTransferable) transferSupport.getTransferable()
-						.getTransferData(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor);
-				sourceSIP = transferData.getSipPath();
-			} catch (UnsupportedFlavorException ex) {
-				// Ignore silently:
-				if (sipView.getLauncherView().isInDevelopMode()) {
-					Logger.error(ex.getMessage(), ex);
-				}
-				return false;
-			} catch (IOException ex) {
-				// Ignore silently:
-				if (sipView.getLauncherView().isInDevelopMode()) {
-					Logger.error(ex.getMessage(), ex);
-				}
-				return false;
-			}
+        // Now distinguish the different data flavors:
+        if (transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor)) {
+            // Moving nodes within packer:
 
-			// Don't allow dragging between different SIPs:
-			if (!targetSIP.equals(sourceSIP)) {
-				return false;
-			}
+            final String targetSIP = sipView.getDocument().getSIPFolder();
+            TreeNodeListTransferable transferData = null;
+            String sourceSIP = "";
+            try {
+                transferData = (TreeNodeListTransferable) transferSupport.getTransferable()
+                        .getTransferData(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor);
+                sourceSIP = transferData.getSipPath();
+            } catch (final UnsupportedFlavorException ex) {
+                // Ignore silently:
+                if (sipView.getLauncherView().isInDevelopMode()) {
+                    Logger.error(ex.getMessage(), ex);
+                }
+                return false;
+            } catch (final IOException ex) {
+                // Ignore silently:
+                if (sipView.getLauncherView().isInDevelopMode()) {
+                    Logger.error(ex.getMessage(), ex);
+                }
+                return false;
+            }
 
-			// Source parent node:
-			TreeTableNode sourceParent = transferData.getDraggedNodes().get(0).getParent();
+            // Don't allow dragging between different SIPs:
+            if (!targetSIP.equals(sourceSIP)) {
+                return false;
+            }
 
-			// Don't allow dragging onto own parent:
-			if (sourceParent == targetNode) {
-				return false;
-			}
+            // Source parent node:
+            final TreeTableNode sourceParent = transferData.getDraggedNodes().get(0).getParent();
 
-			// Loop through all source nodes and test each of them:
-			for (NodeAbstract node : transferData.getDraggedNodes()) {
-				// Don't allow root as drag source (root can not be moved):
-				if (node.isRoot()) {
-					return false;
-				}
+            // Don't allow dragging onto own parent:
+            if (sourceParent == targetNode) {
+                return false;
+            }
 
-				// Make sure that all selected source nodes have the same
-				// parent. if not, reject the drag:
-				if (node.getParent() != sourceParent) {
-					return false;
-				}
+            // Loop through all source nodes and test each of them:
+            for (final NodeAbstract node : transferData.getDraggedNodes()) {
+                // Don't allow root as drag source (root can not be moved):
+                if (node.isRoot()) {
+                    return false;
+                }
 
-				// Don't allow dragging onto one of the source nodes:
-				if (node == targetNode) {
-					return false;
-				}
+                // Make sure that all selected source nodes have the same
+                // parent. if not, reject the drag:
+                if (node.getParent() != sourceParent) {
+                    return false;
+                }
 
-				// Don't allow dragging onto a descendant of one of the source
-				// nodes:
-				if (node.isFolder() && ((NodeFolder) node).isPredecessorOf(targetNode)) {
-					return false;
-				}
+                // Don't allow dragging onto one of the source nodes:
+                if (node == targetNode) {
+                    return false;
+                }
 
-				// Don't allow dragging if the node is being/has been submitted:
-				if (node.getSubmitStatus().equals(SubmitStatus.SubmitRequestPending)
-						|| node.getSubmitStatus().equals(SubmitStatus.Submitted)) {
-					return false;
-				}
+                // Don't allow dragging onto a descendant of one of the source
+                // nodes:
+                if (node.isFolder() && ((NodeFolder) node).isPredecessorOf(targetNode)) {
+                    return false;
+                }
 
-				// Don't allow dragging if the node itself or any of its
-				// predecessors is not readable or not writable:
-				if (!node.fileExists() || !node.canRead() || !node.canWrite()
-						|| node.hasPredecessorNotReadableOrWritableByCurrentUser()) {
-					return false;
-				}
+                // Don't allow dragging if the node is being/has been submitted:
+                if (node.getSubmitStatus().equals(SubmitStatus.SubmitRequestPending) || node.getSubmitStatus().equals(
+                        SubmitStatus.Submitted)) {
+                    return false;
+                }
 
-				// Don't allow dragging if the node itself or any of its
-				// descendants is not readable or not writable:
-				if (node.isFolder() && (((NodeFolder) node).hasDescendantNotReadableOrWritableByCurrentUser())) {
-					return false;
-				}
-			}
+                // Don't allow dragging if the node itself or any of its
+                // predecessors is not readable or not writable:
+                if (!node.fileExists() || !node.canRead() || !node.canWrite() || node
+                        .hasPredecessorNotReadableOrWritableByCurrentUser()) {
+                    return false;
+                }
 
-			return true;
-		} else if (transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-	        // Don't allow drop on files:
-	        if (targetNode.isFile()) {
-	        	return false;
-	        }
-			
-			// When dragging from the file system, show Drag-Copy cursor (not
-			// the default Drag-Move cursor):
-			transferSupport.setDropAction(COPY);
+                // Don't allow dragging if the node itself or any of its
+                // descendants is not readable or not writable:
+                if (node.isFolder() && ((NodeFolder) node).hasDescendantNotReadableOrWritableByCurrentUser()) {
+                    return false;
+                }
+            }
 
-			sipView.selectNode(targetNode.getAdmId());
+            return true;
+        } else if (transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+            // Don't allow drop on files:
+            if (targetNode.isFile()) {
+                return false;
+            }
 
-			// Inserting files and folders from the file system or any other
-			// fileList provider:
-			// Always allow file lists:
-			return true;
-		}
+            // When dragging from the file system, show Drag-Copy cursor (not
+            // the default Drag-Move cursor):
+            transferSupport.setDropAction(COPY);
 
-		// Reject any other data flavor:
-		return false;
-	}
+            sipView.selectNode(targetNode.getAdmId());
 
-	/**
-	 * Actually import or move the data. Distinguish file lists (importing) and
-	 * our own data flavor (moving nodes within the tree).
-	 * 
-	 */
-	@Override
-	public boolean importData(TransferSupport transferSupport) {
-		if (!this.canImport(transferSupport)) {
-			return false;
-		}
+            // Inserting files and folders from the file system or any other
+            // fileList provider:
+            // Always allow file lists:
+            return true;
+        }
 
-		// Import files or move nodes within the tree?
-		boolean isOK = false;
-		if (transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor)) {
-			// It is our own data flavor:
-			isOK = this.moveNodesWithinSIP(transferSupport);
-		} else if (transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-			// It is a file list:
-			isOK = this.importFileList(transferSupport);
-		} else
-			return false; // Should actually never happen: flavor is neither
-							// javaFileListFlavor nor
-							// DocuteamPackerTreeNodeListDataFlavor.
+        // Reject any other data flavor:
+        return false;
+    }
 
-		return isOK;
-	}
+    /**
+     * Actually import or move the data. Distinguish file lists (importing) and our own data flavor (moving nodes
+     * within the tree).
+     */
+    @Override
+    public boolean importData(final TransferSupport transferSupport) {
+        if (!this.canImport(transferSupport)) {
+            return false;
+        }
 
-	/**
-	 * For cleanup after successful move. Not needed here for now.
-	 */
-	@Override
-	public void exportDone(JComponent component, Transferable t, int action) {
-	}
+        // Import files or move nodes within the tree?
+        boolean isOK = false;
+        if (transferSupport.isDataFlavorSupported(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor)) {
+            // It is our own data flavor:
+            isOK = moveNodesWithinSIP(transferSupport);
+        } else if (transferSupport.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+            // It is a file list:
+            isOK = importFileList(transferSupport);
+        } else {
+            return false; // Should actually never happen: flavor is neither
+                          // javaFileListFlavor nor
+                          // DocuteamPackerTreeNodeListDataFlavor.
+        }
 
-	/**
-	 * Move nodes within the tree. This method is only called when the
-	 * DataFlavor is our own
-	 * (TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor).
-	 * 
-	 * @param transferSupport
-	 * @return
-	 */
-	private boolean moveNodesWithinSIP(TransferSupport transferSupport) {
-		// Target component:
-		JXTreeTable treeTable = (JXTreeTable) transferSupport.getComponent();
+        return isOK;
+    }
 
-		// Target tree path:
-		int targetRow = ((JTable.DropLocation) transferSupport.getDropLocation()).getRow();
-        TreePath targetPath = treeTable.getPathForRow(targetRow);
-		Logger.debug("D&D TargetPath       = " + targetPath);
+    /**
+     * For cleanup after successful move. Not needed here for now.
+     */
+    @Override
+    public void exportDone(final JComponent component, final Transferable t, final int action) {
+    }
 
-		TreePath nextParentPath = targetPath.getParentPath();
+    /**
+     * Move nodes within the tree. This method is only called when the DataFlavor is our own
+     * (TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor).
+     * 
+     * @param transferSupport
+     * @return
+     */
+    private boolean moveNodesWithinSIP(final TransferSupport transferSupport) {
+        // Target component:
+        final JXTreeTable treeTable = (JXTreeTable) transferSupport.getComponent();
 
-		// Target node:
-		NodeAbstract targetNode = (NodeAbstract) targetPath.getLastPathComponent();
-		Logger.debug("D&D TargetNode       = " + targetNode);
+        // Target tree path:
+        final int targetRow = ((JTable.DropLocation) transferSupport.getDropLocation()).getRow();
+        final TreePath targetPath = treeTable.getPathForRow(targetRow);
+        Logger.debug("D&D TargetPath       = " + targetPath);
 
-		boolean insertRow = ((JTable.DropLocation) transferSupport.getDropLocation()).isInsertRow();
-		List<NodeAbstract> movedNodes = new ArrayList<>();
+        final TreePath nextParentPath = targetPath.getParentPath();
 
-		// Source node's parent path:
-		TreePath sourceParentPath;
+        // Target node:
+        final NodeAbstract targetNode = (NodeAbstract) targetPath.getLastPathComponent();
+        Logger.debug("D&D TargetNode       = " + targetNode);
 
-		// Do the move:
-		try {
-			TreeNodeListTransferable transferData = (TreeNodeListTransferable) transferSupport.getTransferable()
-					.getTransferData(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor);
+        final boolean insertRow = ((JTable.DropLocation) transferSupport.getDropLocation()).isInsertRow();
+        final List<NodeAbstract> movedNodes = new ArrayList<>();
 
-			// Source parent path (I know that all source nodes have the same parent):
-			sourceParentPath = transferData.getParentPath();
-			Logger.debug("D&D SourceParentPath = " + sourceParentPath);
+        // Source node's parent path:
+        TreePath sourceParentPath;
 
-			for (NodeAbstract n : transferData.getDraggedNodes()) {
-			    if(insertRow) {
-			        n.moveBeforeNode(targetNode);
-			    } else if(targetNode instanceof NodeFolder) {
-			      n.moveTo((NodeFolder)targetNode);
-			      movedNodes.add(n);
-			    }
-			}
-		} catch (java.lang.Exception e) {
-			JOptionPane.showMessageDialog(sipView, e.toString(), I18N.translate("TitleCantMoveItem"),
-					JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
+        // Do the move:
+        try {
+            final TreeNodeListTransferable transferData = (TreeNodeListTransferable) transferSupport.getTransferable()
+                    .getTransferData(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor);
 
-		// Refresh the view:
-		TreeTableModel model = (TreeTableModel) treeTable.getTreeTableModel();
+            // Source parent path (I know that all source nodes have the same parent):
+            sourceParentPath = transferData.getParentPath();
+            Logger.debug("D&D SourceParentPath = " + sourceParentPath);
 
-		model.refreshTreeStructure(sourceParentPath);
-		model.refreshTreeStructure(nextParentPath);
-		
-		treeTable.expandPath(sourceParentPath);
-		treeTable.expandPath(nextParentPath);
-				
-		for(NodeAbstract movedNode:movedNodes) {
-		    //expand new path
-		    TreePath newTreePath = targetPath.pathByAddingChild(movedNode);
-		    treeTable.expandPath(newTreePath);		    
-		}
+            for (final NodeAbstract n : transferData.getDraggedNodes()) {
+                if (insertRow) {
+                    n.moveBeforeNode(targetNode);
+                } else if (targetNode instanceof NodeFolder) {
+                    n.moveTo((NodeFolder) targetNode);
+                    movedNodes.add(n);
+                }
+            }
+        } catch (final java.lang.Exception e) {
+            JOptionPane.showMessageDialog(sipView, e.toString(), I18N.translate("TitleCantMoveItem"),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
 
-		return true;
-	}
+        // Refresh the view:
+        final TreeTableModel model = (TreeTableModel) treeTable.getTreeTableModel();
 
-	/**
-	 * Import files. This method is only called when the DataFlavor is
-	 * DataFlavor.javaFileListFlavor.
-	 * 
-	 * @param transferSupport
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private boolean importFileList(TransferSupport transferSupport) {
-		try {
-			List<File> droppedFiles = (List<File>) transferSupport.getTransferable()
-					.getTransferData(DataFlavor.javaFileListFlavor);
-			Logger.debug("D&D files = " + droppedFiles);
+        model.refreshTreeStructure(sourceParentPath);
+        model.refreshTreeStructure(nextParentPath);
 
-			// Do the import:
-			sipView.importFilesAndFolders(droppedFiles);
-		} catch (Exception ex) {
-			Logger.error(ex.getMessage(), ex);
-			return false;
-		}
+        treeTable.expandPath(sourceParentPath);
+        treeTable.expandPath(nextParentPath);
 
-		return true;
-	}
+        for (final NodeAbstract movedNode : movedNodes) {
+            // expand new path
+            final TreePath newTreePath = targetPath.pathByAddingChild(movedNode);
+            treeTable.expandPath(newTreePath);
+        }
+
+        return true;
+    }
+
+    /**
+     * Import files. This method is only called when the DataFlavor is DataFlavor.javaFileListFlavor.
+     * 
+     * @param transferSupport
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    private boolean importFileList(final TransferSupport transferSupport) {
+        try {
+            final List<File> droppedFiles = (List<File>) transferSupport.getTransferable()
+                    .getTransferData(DataFlavor.javaFileListFlavor);
+            Logger.debug("D&D files = " + droppedFiles);
+
+            // Do the import:
+            sipView.importFilesAndFolders(droppedFiles);
+        } catch (final Exception ex) {
+            Logger.error(ex.getMessage(), ex);
+            return false;
+        }
+
+        return true;
+    }
 
 }

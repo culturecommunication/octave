@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher.actions;
 
 import javax.swing.AbstractAction;
@@ -23,11 +24,16 @@ import ch.docuteam.packer.gui.launcher.LauncherView;
 
 public abstract class AbstractDocuAction extends AbstractAction {
 
-	protected LauncherView owner;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public AbstractDocuAction(String name, Icon icon, LauncherView owner) {
-		super(name, icon);
-		this.owner = owner;
-	}
+    protected LauncherView owner;
+
+    public AbstractDocuAction(final String name, final Icon icon, final LauncherView owner) {
+        super(name, icon);
+        this.owner = owner;
+    }
 
 }

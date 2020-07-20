@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.cellRenderer;
 
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,18 +23,24 @@ import ch.docuteam.tools.translations.I18N;
 
 public class HasMandatoryMetadataFieldsNotSetCellRenderer extends DefaultTableCellRenderer {
 
-	@Override
-	public void setValue(Object object) {
-		if (object == null)
-			return;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		if ((Boolean) object) {
-			super.setValue("!");
-			setToolTipText(I18N.translate("MessageMandatoryFieldsNotSet"));
-		} else {
-			super.setValue("");
-			setToolTipText(I18N.translate("MessageMandatoryFieldsAllSet"));
-		}
-	}
+    @Override
+    public void setValue(final Object object) {
+        if (object == null) {
+            return;
+        }
+
+        if ((Boolean) object) {
+            super.setValue("!");
+            setToolTipText(I18N.translate("MessageMandatoryFieldsNotSet"));
+        } else {
+            super.setValue("");
+            setToolTipText(I18N.translate("MessageMandatoryFieldsAllSet"));
+        }
+    }
 
 }

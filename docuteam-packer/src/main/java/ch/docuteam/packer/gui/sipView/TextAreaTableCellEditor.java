@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.CLICK_COUNT_TO_START;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -35,103 +37,119 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 public class TextAreaTableCellEditor extends AbstractCellEditor
-		implements TableCellEditor, TableCellRenderer, KeyListener {
+        implements TableCellEditor, TableCellRenderer, KeyListener {
 
-	private static final Font Font = (Font) UIManager.get("Table.font");
-	private static final Color ForegroundColor = (Color) UIManager.get("Table.foreground");
-	private static final Color BackgroundColor = (Color) UIManager.get("Table.background");
-	private static final Color SelectionForegroundColor = (Color) UIManager.get("Table.selectionForeground");
-	private static final Color SelectionBackgroundColor = (Color) UIManager.get("Table.selectionBackground");
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private JTextArea textArea;
-	private JScrollPane scrollPane;
-	private JTable table;
+    private static final Font Font = (Font) UIManager.get("Table.font");
 
-	public TextAreaTableCellEditor() {
-		this.textArea = new JTextArea();
-		this.textArea.setLineWrap(true);
-		this.textArea.setWrapStyleWord(true);
-		this.textArea.setFont(Font);
-		this.textArea.addKeyListener(this);
+    private static final Color ForegroundColor = (Color) UIManager.get("Table.foreground");
 
-		this.scrollPane = new JScrollPane(this.textArea);
-		this.scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		this.scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-	}
+    private static final Color BackgroundColor = (Color) UIManager.get("Table.background");
 
-	@Override
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-			int row, int column) {
-		this.textArea.setText(value == null ? "" : value.toString());
+    private static final Color SelectionForegroundColor = (Color) UIManager.get("Table.selectionForeground");
 
-		if (isSelected) {
-			this.textArea.setForeground(SelectionForegroundColor);
-			this.textArea.setBackground(SelectionBackgroundColor);
-		} else {
-			this.textArea.setForeground(ForegroundColor);
-			this.textArea.setBackground(BackgroundColor);
-		}
+    private static final Color SelectionBackgroundColor = (Color) UIManager.get("Table.selectionBackground");
 
-		// Hide the scrollbars in rendering mode, so return this.textArea
-		// instead of this.scrollPane:
-		return this.textArea;
-	}
+    private final JTextArea textArea;
 
-	@Override
-	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		// Remember the table I am in. I need this for setting the selection
-		// when loosing focus.
-		if (this.table == null)
-			this.table = table;
+    private final JScrollPane scrollPane;
 
-		this.textArea.setText(value == null ? "" : value.toString());
+    private JTable table;
 
-		// Show the scrollbars in editing mode, so return this.scrolPane instead
-		// of this.textArea:
-		return this.scrollPane;
-	}
+    public TextAreaTableCellEditor() {
+        textArea = new JTextArea();
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setFont(Font);
+        textArea.addKeyListener(this);
 
-	@Override
-	public Object getCellEditorValue() {
-		return this.textArea.getText();
-	}
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+    }
 
-	@Override
-	public boolean isCellEditable(EventObject anEvent) {
-		if (anEvent instanceof MouseEvent)
-			return ((MouseEvent) anEvent).getClickCount() >= CLICK_COUNT_TO_START;
+    @Override
+    public Component getTableCellRendererComponent(final JTable table, final Object value, final boolean isSelected,
+            final boolean hasFocus,
+            final int row, final int column) {
+        textArea.setText(value == null ? "" : value.toString());
 
-		return true;
-	}
+        if (isSelected) {
+            textArea.setForeground(SelectionForegroundColor);
+            textArea.setBackground(SelectionBackgroundColor);
+        } else {
+            textArea.setForeground(ForegroundColor);
+            textArea.setBackground(BackgroundColor);
+        }
 
-	// ----- Key Listener methods to trap the TAB key:
+        // Hide the scrollbars in rendering mode, so return this.textArea
+        // instead of this.scrollPane:
+        return textArea;
+    }
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// Trap the TAB and Alt-Enter keys:
-		if ((e.getKeyCode() == KeyEvent.VK_TAB) || (e.getKeyCode() == KeyEvent.VK_ENTER && e.isAltDown())) {
-			int editingRow = this.table.getEditingRow();
+    @Override
+    public Component getTableCellEditorComponent(final JTable table, final Object value, final boolean isSelected,
+            final int row, final int column) {
+        // Remember the table I am in. I need this for setting the selection
+        // when loosing focus.
+        if (this.table == null) {
+            this.table = table;
+        }
 
-			e.consume();
-			this.fireEditingStopped();
+        textArea.setText(value == null ? "" : value.toString());
 
-			// On TAB key, move focus to next row or, if I am editing the last
-			// row, to the 1st row:
-			if (e.getKeyCode() == KeyEvent.VK_TAB) {
-				int nextEditingRow = editingRow + 1;
-				if (nextEditingRow >= this.table.getRowCount())
-					nextEditingRow = 0;
-				this.table.getSelectionModel().setSelectionInterval(nextEditingRow, nextEditingRow);
-			}
-		}
-	}
+        // Show the scrollbars in editing mode, so return this.scrolPane instead
+        // of this.textArea:
+        return scrollPane;
+    }
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+    @Override
+    public Object getCellEditorValue() {
+        return textArea.getText();
+    }
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
+    @Override
+    public boolean isCellEditable(final EventObject anEvent) {
+        if (anEvent instanceof MouseEvent) {
+            return ((MouseEvent) anEvent).getClickCount() >= CLICK_COUNT_TO_START;
+        }
+
+        return true;
+    }
+
+    // ----- Key Listener methods to trap the TAB key:
+
+    @Override
+    public void keyPressed(final KeyEvent e) {
+        // Trap the TAB and Alt-Enter keys:
+        if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER && e.isAltDown()) {
+            final int editingRow = table.getEditingRow();
+
+            e.consume();
+            fireEditingStopped();
+
+            // On TAB key, move focus to next row or, if I am editing the last
+            // row, to the 1st row:
+            if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                int nextEditingRow = editingRow + 1;
+                if (nextEditingRow >= table.getRowCount()) {
+                    nextEditingRow = 0;
+                }
+                table.getSelectionModel().setSelectionInterval(nextEditingRow, nextEditingRow);
+            }
+        }
+    }
+
+    @Override
+    public void keyTyped(final KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(final KeyEvent e) {
+    }
 
 }

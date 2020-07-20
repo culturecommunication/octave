@@ -14,13 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CLEAR_SEARCH_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SEARCH_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SEARCH_NEXT_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SEARCH_PREVIOUS_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SEARCH_TEXT_FIELD;
 import static ch.docuteam.packer.gui.PackerConstants.CLEAR_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.SEARCH_NEXT_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.SEARCH_PNG;
-import static ch.docuteam.packer.gui.PackerConstants.*;
-import static ch.docuteam.packer.gui.ComponentNames.*;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -47,216 +52,272 @@ import ch.docuteam.tools.translations.I18N;
 
 public class SearchPanel extends JPanel {
 
-	private SIPView sipView;
-	protected JTextField searchTextField;
-	protected JTextField hitCountTextField;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected Action searchAction;
-	protected Action clearSearchTextFieldAction;
-	protected Action selectNextHitAction;
-	protected Action selectPreviousHitAction;
+    private final SIPView sipView;
 
-	protected List<NodeAbstract> hits = new Vector<NodeAbstract>();
-	protected int currentHitSelectionIndex = -1;
+    protected JTextField searchTextField;
 
-	protected SearchPanel(SIPView sipView) {
-		super(new BorderLayout());
-		this.sipView = sipView;
-		this.searchTextField = new JTextField();
-		searchTextField.setName(SIP_SEARCH_TEXT_FIELD);
-		this.searchTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.searchButtonClicked();
-			}
-		});
-		this.searchTextField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				SearchPanel.this.enableOrDisableActions();
-			}
-		});
-		this.searchTextField.setToolTipText(I18N.translate("ToolTipSearchTextField"));
+    protected JTextField hitCountTextField;
 
-		this.searchTextField.getInputMap(JComponent.WHEN_FOCUSED).put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
-				"SearchNext");
-		this.searchTextField.getActionMap().put("SearchNext", new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.selectNextButtonClicked();
-			}
-		});
+    protected Action searchAction;
 
-		this.searchTextField.getInputMap(JComponent.WHEN_FOCUSED).put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_UP, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
-				"SearchPrevious");
-		this.searchTextField.getActionMap().put("SearchPrevious", new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.selectPreviousButtonClicked();
-			}
-		});
+    protected Action clearSearchTextFieldAction;
 
-		this.searchAction = new AbstractAction(I18N.translate("ActionSearch"), getImageIcon(SEARCH_PNG)) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.searchButtonClicked();
-			}
-		};
-		this.searchAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearch"));
-		this.searchAction.putValue(Action.ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    protected Action selectNextHitAction;
 
-		this.clearSearchTextFieldAction = new AbstractAction(I18N.translate("ActionSearchClearTextField"),
-				getImageIcon(CLEAR_PNG)) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.clearSearchTextFieldButtonClicked();
-			}
-		};
-		this.clearSearchTextFieldAction.putValue(Action.SHORT_DESCRIPTION,
-				I18N.translate("ToolTipSearchClearTextField"));
-		this.clearSearchTextFieldAction.putValue(Action.ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_DOWN_MASK));
+    protected Action selectPreviousHitAction;
 
-		this.selectNextHitAction = new AbstractAction(I18N.translate("ActionSearchSelectNext"),
-				getImageIcon(SEARCH_NEXT_PNG)) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.selectNextButtonClicked();
-			}
-		};
-		this.selectNextHitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearchSelectNext"));
-		this.selectNextHitAction.putValue(Action.ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, InputEvent.ALT_DOWN_MASK));
+    protected List<NodeAbstract> hits = new Vector<NodeAbstract>();
 
-		this.selectPreviousHitAction = new AbstractAction(I18N.translate("ActionSearchSelectPrevious"),
-				getImageIcon("SearchPrevious.png")) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SearchPanel.this.selectPreviousButtonClicked();
-			}
-		};
-		this.selectPreviousHitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearchSelectPrevious"));
-		this.selectPreviousHitAction.putValue(Action.ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke(KeyEvent.VK_UP, InputEvent.ALT_DOWN_MASK));
+    protected int currentHitSelectionIndex = -1;
 
-		this.hitCountTextField = new JTextField();
-		this.hitCountTextField.setEnabled(false);
-		this.hitCountTextField.setColumns(4);
+    protected SearchPanel(final SIPView sipView) {
+        super(new BorderLayout());
+        this.sipView = sipView;
+        searchTextField = new JTextField();
+        searchTextField.setName(SIP_SEARCH_TEXT_FIELD);
+        searchTextField.addActionListener(new ActionListener() {
 
-		JButton searchButton = new JButton(this.searchAction);
-		searchButton.setName(SIP_SEARCH_BUTTON);
-		searchButton.setHideActionText(true);
-		JButton clearSearchTextFieldButton = new JButton(this.clearSearchTextFieldAction);
-		clearSearchTextFieldButton.setName(SIP_CLEAR_SEARCH_BUTTON);
-		clearSearchTextFieldButton.setHideActionText(true);
-		JButton selectNextHitButton = new JButton(this.selectNextHitAction);
-		selectNextHitButton.setName(SIP_SEARCH_NEXT_BUTTON);
-		selectNextHitButton.setHideActionText(true);
-		JButton selectPreviousHitButton = new JButton(this.selectPreviousHitAction);
-		selectPreviousHitButton.setHideActionText(true);
-		selectPreviousHitButton.setName(SIP_SEARCH_PREVIOUS_BUTTON);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.searchButtonClicked();
+            }
+        });
+        searchTextField.addKeyListener(new KeyAdapter() {
 
-		Box buttonBox = new Box(BoxLayout.X_AXIS);
-		buttonBox.add(searchButton);
-		buttonBox.add(clearSearchTextFieldButton);
-		buttonBox.add(selectNextHitButton);
-		buttonBox.add(selectPreviousHitButton);
-		buttonBox.add(this.hitCountTextField);
+            @Override
+            public void keyTyped(final KeyEvent e) {
+                SearchPanel.this.enableOrDisableActions();
+            }
+        });
+        searchTextField.setToolTipText(I18N.translate("ToolTipSearchTextField"));
 
-		this.add(this.searchTextField, BorderLayout.CENTER);
-		this.add(buttonBox, BorderLayout.EAST);
+        searchTextField.getInputMap(JComponent.WHEN_FOCUSED).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
+                "SearchNext");
+        searchTextField.getActionMap().put("SearchNext", new AbstractAction() {
 
-		this.enableOrDisableActions();
-	}
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-	private void searchButtonClicked() {
-		if (this.searchTextField.getText().trim().isEmpty()) {
-			this.hits.clear();
-			this.currentHitSelectionIndex = -1;
-		} else {
-			this.hits = sipView.getDocument().searchForAllQuoted(this.searchTextField.getText());
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.selectNextButtonClicked();
+            }
+        });
 
-			if (this.hits.isEmpty()) {
-				this.currentHitSelectionIndex = -1;
+        searchTextField.getInputMap(JComponent.WHEN_FOCUSED).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_UP, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
+                "SearchPrevious");
+        searchTextField.getActionMap().put("SearchPrevious", new AbstractAction() {
 
-				sipView.setFooterText(I18N.translate("MessageSearchNothingFound"), true);
-			} else {
-				this.currentHitSelectionIndex = 0;
-				this.selectNode(this.hits.get(this.currentHitSelectionIndex));
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-				sipView.setFooterText(I18N.translate("MessageSearchFound", this.hits.size()));
-			}
-		}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.selectPreviousButtonClicked();
+            }
+        });
 
-		this.enableOrDisableActions();
-	}
+        searchAction = new AbstractAction(I18N.translate("ActionSearch"), getImageIcon(SEARCH_PNG)) {
 
-	private void clearSearchTextFieldButtonClicked() {
-		this.searchTextField.setText("");
-		this.searchButtonClicked();
-	}
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-	private void selectNextButtonClicked() {
-		if (this.hits.isEmpty())
-			return;
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.searchButtonClicked();
+            }
+        };
+        searchAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearch"));
+        searchAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 
-		if (this.currentHitSelectionIndex < this.hits.size() - 1)
-			++this.currentHitSelectionIndex;
-		this.selectNode(this.hits.get(this.currentHitSelectionIndex));
+        clearSearchTextFieldAction = new AbstractAction(I18N.translate("ActionSearchClearTextField"),
+                getImageIcon(CLEAR_PNG)) {
 
-		this.enableOrDisableActions();
-	}
+            /**
+                     *
+                     */
+            private static final long serialVersionUID = 1L;
 
-	private void selectPreviousButtonClicked() {
-		if (this.hits.isEmpty())
-			return;
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.clearSearchTextFieldButtonClicked();
+            }
+        };
+        clearSearchTextFieldAction.putValue(Action.SHORT_DESCRIPTION,
+                I18N.translate("ToolTipSearchClearTextField"));
+        clearSearchTextFieldAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_DOWN_MASK));
 
-		if (this.currentHitSelectionIndex > 0)
-			--this.currentHitSelectionIndex;
-		this.selectNode(this.hits.get(this.currentHitSelectionIndex));
+        selectNextHitAction = new AbstractAction(I18N.translate("ActionSearchSelectNext"),
+                getImageIcon(SEARCH_NEXT_PNG)) {
 
-		this.enableOrDisableActions();
-	}
+            /**
+                     *
+                     */
+            private static final long serialVersionUID = 1L;
 
-	private void selectNode(NodeAbstract node) {
-		if (node == null)
-			return;
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.selectNextButtonClicked();
+            }
+        };
+        selectNextHitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearchSelectNext"));
+        selectNextHitAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, InputEvent.ALT_DOWN_MASK));
 
-		sipView.selectNode(node);
-	}
+        selectPreviousHitAction = new AbstractAction(I18N.translate("ActionSearchSelectPrevious"),
+                getImageIcon("SearchPrevious.png")) {
 
-	private void enableOrDisableActions() {
-		if (this.searchTextField.getText().isEmpty()) {
-			this.clearSearchTextFieldAction.setEnabled(false);
-			this.searchAction.setEnabled(false);
-		} else {
-			this.clearSearchTextFieldAction.setEnabled(true);
-			this.searchAction.setEnabled(true);
-		}
+            /**
+                     *
+                     */
+            private static final long serialVersionUID = 1L;
 
-		if (this.hits.isEmpty()) {
-			this.selectNextHitAction.setEnabled(false);
-			this.selectPreviousHitAction.setEnabled(false);
-		} else {
-			if (this.currentHitSelectionIndex > 0)
-				this.selectPreviousHitAction.setEnabled(true);
-			else
-				this.selectPreviousHitAction.setEnabled(false);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                SearchPanel.this.selectPreviousButtonClicked();
+            }
+        };
+        selectPreviousHitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearchSelectPrevious"));
+        selectPreviousHitAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_UP, InputEvent.ALT_DOWN_MASK));
 
-			if (this.currentHitSelectionIndex < this.hits.size() - 1)
-				this.selectNextHitAction.setEnabled(true);
-			else
-				this.selectNextHitAction.setEnabled(false);
-		}
+        hitCountTextField = new JTextField();
+        hitCountTextField.setEnabled(false);
+        hitCountTextField.setColumns(4);
 
-		this.updateHitCountTextField();
-	}
+        final JButton searchButton = new JButton(searchAction);
+        searchButton.setName(SIP_SEARCH_BUTTON);
+        searchButton.setHideActionText(true);
+        final JButton clearSearchTextFieldButton = new JButton(clearSearchTextFieldAction);
+        clearSearchTextFieldButton.setName(SIP_CLEAR_SEARCH_BUTTON);
+        clearSearchTextFieldButton.setHideActionText(true);
+        final JButton selectNextHitButton = new JButton(selectNextHitAction);
+        selectNextHitButton.setName(SIP_SEARCH_NEXT_BUTTON);
+        selectNextHitButton.setHideActionText(true);
+        final JButton selectPreviousHitButton = new JButton(selectPreviousHitAction);
+        selectPreviousHitButton.setHideActionText(true);
+        selectPreviousHitButton.setName(SIP_SEARCH_PREVIOUS_BUTTON);
 
-	private void updateHitCountTextField() {
-		this.hitCountTextField.setText((this.currentHitSelectionIndex + 1) + "/" + this.hits.size());
-	}
+        final Box buttonBox = new Box(BoxLayout.X_AXIS);
+        buttonBox.add(searchButton);
+        buttonBox.add(clearSearchTextFieldButton);
+        buttonBox.add(selectNextHitButton);
+        buttonBox.add(selectPreviousHitButton);
+        buttonBox.add(hitCountTextField);
+
+        this.add(searchTextField, BorderLayout.CENTER);
+        this.add(buttonBox, BorderLayout.EAST);
+
+        enableOrDisableActions();
+    }
+
+    private void searchButtonClicked() {
+        if (searchTextField.getText().trim().isEmpty()) {
+            hits.clear();
+            currentHitSelectionIndex = -1;
+        } else {
+            hits = sipView.getDocument().searchForAllQuoted(searchTextField.getText());
+
+            if (hits.isEmpty()) {
+                currentHitSelectionIndex = -1;
+
+                sipView.setFooterText(I18N.translate("MessageSearchNothingFound"), true);
+            } else {
+                currentHitSelectionIndex = 0;
+                selectNode(hits.get(currentHitSelectionIndex));
+
+                sipView.setFooterText(I18N.translate("MessageSearchFound", hits.size()));
+            }
+        }
+
+        enableOrDisableActions();
+    }
+
+    private void clearSearchTextFieldButtonClicked() {
+        searchTextField.setText("");
+        searchButtonClicked();
+    }
+
+    private void selectNextButtonClicked() {
+        if (hits.isEmpty()) {
+            return;
+        }
+
+        if (currentHitSelectionIndex < hits.size() - 1) {
+            ++currentHitSelectionIndex;
+        }
+        selectNode(hits.get(currentHitSelectionIndex));
+
+        enableOrDisableActions();
+    }
+
+    private void selectPreviousButtonClicked() {
+        if (hits.isEmpty()) {
+            return;
+        }
+
+        if (currentHitSelectionIndex > 0) {
+            --currentHitSelectionIndex;
+        }
+        selectNode(hits.get(currentHitSelectionIndex));
+
+        enableOrDisableActions();
+    }
+
+    private void selectNode(final NodeAbstract node) {
+        if (node == null) {
+            return;
+        }
+
+        sipView.selectNode(node);
+    }
+
+    private void enableOrDisableActions() {
+        if (searchTextField.getText().isEmpty()) {
+            clearSearchTextFieldAction.setEnabled(false);
+            searchAction.setEnabled(false);
+        } else {
+            clearSearchTextFieldAction.setEnabled(true);
+            searchAction.setEnabled(true);
+        }
+
+        if (hits.isEmpty()) {
+            selectNextHitAction.setEnabled(false);
+            selectPreviousHitAction.setEnabled(false);
+        } else {
+            if (currentHitSelectionIndex > 0) {
+                selectPreviousHitAction.setEnabled(true);
+            } else {
+                selectPreviousHitAction.setEnabled(false);
+            }
+
+            if (currentHitSelectionIndex < hits.size() - 1) {
+                selectNextHitAction.setEnabled(true);
+            } else {
+                selectNextHitAction.setEnabled(false);
+            }
+        }
+
+        updateHitCountTextField();
+    }
+
+    private void updateHitCountTextField() {
+        hitCountTextField.setText(currentHitSelectionIndex + 1 + "/" + hits.size());
+    }
 
 }

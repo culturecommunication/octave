@@ -17,7 +17,7 @@
 
 package ch.docuteam.packer.gui.filePreview;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
 import ch.docuteam.tools.file.FileUtil;
@@ -42,184 +43,196 @@ import ch.docuteam.tools.translations.I18N;
 
 /**
  * @author denis
- *
  */
 public class FilePreviewer extends JPanel {
 
-	private JFrame filePreviewFrame;
-	private JPanel filePreviewPanelContainer;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private JButton openFileExternallyButton;
-	private JButton openFileSeparatelyButton;
+    private JFrame filePreviewFrame;
 
-	private NodeAbstract node;
+    private final JPanel filePreviewPanelContainer;
 
-	public FilePreviewer() {
-		super(new BorderLayout());
+    private final JButton openFileExternallyButton;
 
-		this.openFileExternallyButton = new JButton(I18N.translate("ButtonOpenFileExternally"),
-				getImageIcon("View.png"));
-		this.openFileExternallyButton.setEnabled(false);
-		this.openFileExternallyButton.setToolTipText(I18N.translate("ToolTipOpenFileExternally"));
-		this.openFileExternallyButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FilePreviewer.this.openFileExternallyButtonClicked(FilePreviewer.this.node);
-			}
-		});
+    private final JButton openFileSeparatelyButton;
 
-		this.openFileSeparatelyButton = new JButton(I18N.translate("ButtonOpenFileSeparately"),
-				getImageIcon("PreviewInWindow.png"));
-		this.openFileSeparatelyButton.setEnabled(false);
-		this.openFileSeparatelyButton.setToolTipText(I18N.translate("ToolTipOpenFileSeparately"));
-		this.openFileSeparatelyButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FilePreviewer.this.openFileSeparatelyButtonClicked(FilePreviewer.this.node);
-			}
-		});
+    private NodeAbstract node;
 
-		this.filePreviewPanelContainer = new JPanel(new BorderLayout());
-		this.filePreviewPanelContainer.add(new JPanel());
+    public FilePreviewer() {
+        super(new BorderLayout());
 
-		Box buttonBox = new Box(BoxLayout.X_AXIS);
-		buttonBox.add(Box.createHorizontalGlue());
-		buttonBox.add(this.openFileExternallyButton);
-		buttonBox.add(this.openFileSeparatelyButton);
-		buttonBox.add(Box.createHorizontalGlue());
+        openFileExternallyButton = new JButton(I18N.translate("ButtonOpenFileExternally"),
+                getImageIcon("View.png"));
+        openFileExternallyButton.setEnabled(false);
+        openFileExternallyButton.setToolTipText(I18N.translate("ToolTipOpenFileExternally"));
+        openFileExternallyButton.addActionListener(new ActionListener() {
 
-		this.add(buttonBox, BorderLayout.NORTH);
-		this.add(this.filePreviewPanelContainer, BorderLayout.CENTER);
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                FilePreviewer.this.openFileExternallyButtonClicked(node);
+            }
+        });
 
-	public static void setCacheSizeLimit(int cacheSizeLimit) {
-		FilePreviewPanel.setCacheSizeLimit(cacheSizeLimit);
-	}
+        openFileSeparatelyButton = new JButton(I18N.translate("ButtonOpenFileSeparately"),
+                getImageIcon("PreviewInWindow.png"));
+        openFileSeparatelyButton.setEnabled(false);
+        openFileSeparatelyButton.setToolTipText(I18N.translate("ToolTipOpenFileSeparately"));
+        openFileSeparatelyButton.addActionListener(new ActionListener() {
 
-	public static int getCacheSizeLimit() {
-		return FilePreviewPanel.getCacheSizeLimit();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                FilePreviewer.this.openFileSeparatelyButtonClicked(node);
+            }
+        });
 
-	public void setNode(NodeAbstract node) {
-		this.node = node;
+        filePreviewPanelContainer = new JPanel(new BorderLayout());
+        filePreviewPanelContainer.add(new JPanel());
 
-		this.filePreviewPanelContainer.removeAll();
-		if (this.node != null)
-			this.filePreviewPanelContainer.add(FilePreviewPanel.create(node, this), BorderLayout.CENTER);
+        final Box buttonBox = new Box(BoxLayout.X_AXIS);
+        buttonBox.add(Box.createHorizontalGlue());
+        buttonBox.add(openFileExternallyButton);
+        buttonBox.add(openFileSeparatelyButton);
+        buttonBox.add(Box.createHorizontalGlue());
 
-		this.enableOrDisableButtons();
-	}
+        this.add(buttonBox, BorderLayout.NORTH);
+        this.add(filePreviewPanelContainer, BorderLayout.CENTER);
+    }
 
-	public boolean isPreviewInSeparateWindow() {
-		return this.filePreviewFrame != null && this.filePreviewFrame.isVisible();
-	}
+    public static void setCacheSizeLimit(final int cacheSizeLimit) {
+        FilePreviewPanel.setCacheSizeLimit(cacheSizeLimit);
+    }
 
-	/**
-	 * This method is public so that it can be called from outside (e.g. by a
-	 * double-click on a node).
-	 */
-	public void openFileExternallyButtonClicked(NodeAbstract node) {
-		if (node == null)
-			return;
-		if (node.isFolder())
-			return;
+    public static int getCacheSizeLimit() {
+        return FilePreviewPanel.getCacheSizeLimit();
+    }
 
-		String tempFileName = FileUtil.getTempFolder() + "/" + node.getFile().getName();
-		try {
-			if (!new File(tempFileName).exists()) {
-				FileUtil.copyToOverwriting(node.getAbsolutePathString(), tempFileName);
-				new File(tempFileName).setWritable(false);
-			}
+    public void setNode(final NodeAbstract node) {
+        this.node = node;
 
-			SystemProcess.openExternally(tempFileName);
-		} catch (SystemProcessCantLaunchApplicationException e) {
-			JOptionPane.showMessageDialog(this, I18N.translate("MessageCantOpenFileExternally"),
-					I18N.translate("TitleCantOpenFileExternally"), JOptionPane.ERROR_MESSAGE);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, e.toString(), I18N.translate("TitleCantOpenFileExternally"),
-					JOptionPane.ERROR_MESSAGE);
-		} finally {
-			new File(tempFileName).deleteOnExit();
-		}
-	}
+        filePreviewPanelContainer.removeAll();
+        if (this.node != null) {
+            filePreviewPanelContainer.add(FilePreviewPanel.create(node, this), BorderLayout.CENTER);
+        }
 
-	@Override
-	public void repaint() {
-		if (this.isPreviewInSeparateWindow()) {
-			// If the preview is in the separate window, repaint it:
-			this.filePreviewFrame.validate();
-			this.filePreviewFrame.repaint();
-		} else {
-			// Otherwise repaint me:
-			super.repaint();
-		}
-	}
+        enableOrDisableButtons();
+    }
 
-	private void openFileSeparatelyButtonClicked(NodeAbstract node) {
-		// Open a new JFrame containing the filePreviewPanelContainer:
+    public boolean isPreviewInSeparateWindow() {
+        return filePreviewFrame != null && filePreviewFrame.isVisible();
+    }
 
-		if (this.filePreviewFrame == null) {
-			this.filePreviewFrame = new JFrame();
-			this.filePreviewFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-			this.filePreviewFrame.addWindowListener(new WindowAdapter() {
-				@Override
-				public void windowClosing(WindowEvent e) {
-					FilePreviewer.this.closeWindowButtonClicked();
-				}
-			});
+    /**
+     * This method is public so that it can be called from outside (e.g. by a double-click on a node).
+     */
+    public void openFileExternallyButtonClicked(final NodeAbstract node) {
+        if (node == null) {
+            return;
+        }
+        if (node.isFolder()) {
+            return;
+        }
 
-			this.filePreviewFrame.setSize(new Dimension(800, 800));
-			this.filePreviewFrame.setLocationRelativeTo(null);
-		}
+        final String tempFileName = FileUtil.getTempFolder() + "/" + node.getFile().getName();
+        try {
+            if (!new File(tempFileName).exists()) {
+                FileUtil.copyToOverwriting(node.getAbsolutePathString(), tempFileName);
+                new File(tempFileName).setWritable(false);
+            }
 
-		// If it is already open, bring it to the front:
-		if (this.filePreviewFrame.isVisible()) {
-			this.filePreviewFrame.toFront();
-			this.filePreviewFrame.requestFocus();
-			return;
-		}
+            SystemProcess.openExternally(tempFileName);
+        } catch (final SystemProcessCantLaunchApplicationException e) {
+            JOptionPane.showMessageDialog(this, I18N.translate("MessageCantOpenFileExternally"),
+                    I18N.translate("TitleCantOpenFileExternally"), JOptionPane.ERROR_MESSAGE);
+        } catch (final Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString(), I18N.translate("TitleCantOpenFileExternally"),
+                    JOptionPane.ERROR_MESSAGE);
+        } finally {
+            new File(tempFileName).deleteOnExit();
+        }
+    }
 
-		this.remove(this.filePreviewPanelContainer);
-		this.validate();
-		this.repaint();
+    @Override
+    public void repaint() {
+        if (isPreviewInSeparateWindow()) {
+            // If the preview is in the separate window, repaint it:
+            filePreviewFrame.validate();
+            filePreviewFrame.repaint();
+        } else {
+            // Otherwise repaint me:
+            super.repaint();
+        }
+    }
 
-		this.filePreviewFrame.add(this.filePreviewPanelContainer);
-		this.filePreviewFrame.setVisible(true);
-		this.filePreviewFrame.toFront();
-		this.filePreviewFrame.requestFocus();
-	}
+    private void openFileSeparatelyButtonClicked(final NodeAbstract node) {
+        // Open a new JFrame containing the filePreviewPanelContainer:
 
-	private void closeWindowButtonClicked() {
-		// Close the separate JFrame and place the filePreviewPanelContainer
-		// back into myself:
+        if (filePreviewFrame == null) {
+            filePreviewFrame = new JFrame();
+            filePreviewFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            filePreviewFrame.addWindowListener(new WindowAdapter() {
 
-		this.filePreviewFrame.setVisible(false);
-		this.filePreviewFrame.remove(this.filePreviewPanelContainer);
+                @Override
+                public void windowClosing(final WindowEvent e) {
+                    FilePreviewer.this.closeWindowButtonClicked();
+                }
+            });
 
-		this.add(this.filePreviewPanelContainer, BorderLayout.CENTER);
-		this.validate();
-		this.repaint();
+            filePreviewFrame.setSize(new Dimension(800, 800));
+            filePreviewFrame.setLocationRelativeTo(null);
+        }
 
-		this.enableOrDisableButtons();
-	}
+        // If it is already open, bring it to the front:
+        if (filePreviewFrame.isVisible()) {
+            filePreviewFrame.toFront();
+            filePreviewFrame.requestFocus();
+            return;
+        }
 
-	private void enableOrDisableButtons() {
-		// If the current node is null, disable all buttons:
-		if (this.node == null) {
-			this.openFileExternallyButton.setEnabled(false);
-			this.openFileSeparatelyButton.setEnabled(false);
-			return;
-		}
+        this.remove(filePreviewPanelContainer);
+        validate();
+        this.repaint();
 
-		// If the current node is a folder, disable the
-		// "openFileExternallyButton":
-		if (this.node.isFolder())
-			this.openFileExternallyButton.setEnabled(false);
-		else
-			this.openFileExternallyButton.setEnabled(true);
+        filePreviewFrame.add(filePreviewPanelContainer);
+        filePreviewFrame.setVisible(true);
+        filePreviewFrame.toFront();
+        filePreviewFrame.requestFocus();
+    }
 
-		this.openFileSeparatelyButton.setEnabled(true);
-	}
+    private void closeWindowButtonClicked() {
+        // Close the separate JFrame and place the filePreviewPanelContainer
+        // back into myself:
 
-	// Package visibility, must be seen by MainView:
+        filePreviewFrame.setVisible(false);
+        filePreviewFrame.remove(filePreviewPanelContainer);
+
+        this.add(filePreviewPanelContainer, BorderLayout.CENTER);
+        validate();
+        this.repaint();
+
+        enableOrDisableButtons();
+    }
+
+    private void enableOrDisableButtons() {
+        // If the current node is null, disable all buttons:
+        if (node == null) {
+            openFileExternallyButton.setEnabled(false);
+            openFileSeparatelyButton.setEnabled(false);
+            return;
+        }
+
+        // If the current node is a folder, disable the
+        // "openFileExternallyButton":
+        if (node.isFolder()) {
+            openFileExternallyButton.setEnabled(false);
+        } else {
+            openFileExternallyButton.setEnabled(true);
+        }
+
+        openFileSeparatelyButton.setEnabled(true);
+    }
+
+    // Package visibility, must be seen by MainView:
 }

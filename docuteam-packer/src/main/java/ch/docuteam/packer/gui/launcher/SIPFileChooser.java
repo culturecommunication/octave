@@ -14,9 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.ZIP_EXT;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
+
 import java.io.File;
 
 import javax.swing.Icon;
@@ -29,79 +32,89 @@ import ch.docuteam.tools.translations.I18N;
 
 public class SIPFileChooser extends JFileChooser {
 
-	private static final ImageIcon SIPFolderIcon = getImageIcon("Packet.png");
-//	private static SIPFileChooser Singleton = null;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-//	public static SIPFileChooser getInstance(LauncherView launcherView) {
-//		if(Singleton == null){
-//			Singleton = new SIPFileChooser(launcherView);
-//		}
-//		return Singleton;
-//	}
+    private static final ImageIcon SIPFolderIcon = getImageIcon("Packet.png");
+    // private static SIPFileChooser Singleton = null;
 
-	public SIPFileChooser(String lastUsedOpenOrSaveDir) {
-		super(lastUsedOpenOrSaveDir);
+    // public static SIPFileChooser getInstance(LauncherView launcherView) {
+    // if(Singleton == null){
+    // Singleton = new SIPFileChooser(launcherView);
+    // }
+    // return Singleton;
+    // }
 
-		setDialogType(JFileChooser.OPEN_DIALOG);
-		setMultiSelectionEnabled(false);
-		setDialogTitle(I18N.translate("TitleOpenSIP"));
-		setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		setFileFilter(new javax.swing.filechooser.FileFilter() {
-			@Override
-			public boolean accept(File file) {
-				// No hidden files or folders:
-				if (file.isHidden() || file.getName().startsWith(".")) {
-					return false;
-				}
-				if (file.isFile()) {
-					// Only zip files:
-					if (file.getName().toLowerCase().endsWith(ZIP_EXT)) {
-						return true;
-					}
-				} else {
-					// Only folders that contain a mets.xml // ToDo: (this
-					// doesn't work: then all folders are invisible!):
-					// if (Document.isValidSIPFolder(file)) return true;
-					return true;
-				}
+    public SIPFileChooser(final String lastUsedOpenOrSaveDir) {
+        super(lastUsedOpenOrSaveDir);
 
-				return false;
-			}
+        setDialogType(JFileChooser.OPEN_DIALOG);
+        setMultiSelectionEnabled(false);
+        setDialogTitle(I18N.translate("TitleOpenSIP"));
+        setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        setFileFilter(new javax.swing.filechooser.FileFilter() {
 
-			@Override
-			public String getDescription() {
-				return "SIP Folder or ZIP-File";
-			}
-		});
+            @Override
+            public boolean accept(final File file) {
+                // No hidden files or folders:
+                if (file.isHidden() || file.getName().startsWith(".")) {
+                    return false;
+                }
+                if (file.isFile()) {
+                    // Only zip files:
+                    if (file.getName().toLowerCase().endsWith(ZIP_EXT)) {
+                        return true;
+                    }
+                } else {
+                    // Only folders that contain a mets.xml // ToDo: (this
+                    // doesn't work: then all folders are invisible!):
+                    // if (Document.isValidSIPFolder(file)) return true;
+                    return true;
+                }
 
-		setFileView(new FileView() {
-			@Override
-			public Boolean isTraversable(File folder) {
-				if (folder == null || !folder.exists() || !folder.canRead())
-					return false;
-				if (folder.isFile())
-					return false;
+                return false;
+            }
 
-				return (!Document.isValidSIPFolder(folder));
-			}
+            @Override
+            public String getDescription() {
+                return "SIP Folder or ZIP-File";
+            }
+        });
 
-			/**
-			 * The icon that represents this file in the
-			 * <code>JFileChooser</code>.
-			 */
-			@Override
-			public Icon getIcon(File file) {
-				if (file.isFile()) {
-					if (file.getName().toLowerCase().endsWith(ZIP_EXT))
-						return SIPFolderIcon;
-				} else {
-					if (Document.isValidSIPFolder(file))
-						return SIPFolderIcon;
-				}
+        setFileView(new FileView() {
 
-				return null;
-			}
-		});
-	}
+            @Override
+            public Boolean isTraversable(final File folder) {
+                if (folder == null || !folder.exists() || !folder.canRead()) {
+                    return false;
+                }
+                if (folder.isFile()) {
+                    return false;
+                }
+
+                return !Document.isValidSIPFolder(folder);
+            }
+
+            /**
+             * The icon that represents this file in the <code>JFileChooser</code>.
+             */
+            @Override
+            public Icon getIcon(final File file) {
+                if (file.isFile()) {
+                    if (file.getName().toLowerCase().endsWith(ZIP_EXT)) {
+                        return SIPFolderIcon;
+                    }
+                } else {
+                    if (Document.isValidSIPFolder(file)) {
+                        return SIPFolderIcon;
+                    }
+                }
+
+                return null;
+            }
+        });
+    }
 
 }

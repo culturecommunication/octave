@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.CHECKSUM_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 
@@ -29,25 +31,30 @@ import ch.docuteam.tools.translations.I18N;
 
 public class CheckFixityAction extends AbstractSIPViewAction {
 
-	public CheckFixityAction(SIPView sipView) {
-		super(I18N.translate("ButtonCheckFixity"), getImageIcon(CHECKSUM_PNG), sipView);
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (sipView.getDocument().checkFixity()) {
-			JOptionPane.showMessageDialog(sipView, I18N.translate("MessageFixityCheckSuccessful"),
-					I18N.translate("HeaderFixityCheck"), JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			new ScrollableMessageDialog(sipView, I18N.translate("HeaderFixityCheck"),
-					I18N.translate("MessageFixityCheckFailed") + "\n" + ExceptionCollector.getAll());
-		}
-	}
+    public CheckFixityAction(final SIPView sipView) {
+        super(I18N.translate("ButtonCheckFixity"), getImageIcon(CHECKSUM_PNG), sipView);
+    }
 
-	@Override
-	public void enableOrDisable() {
-		//	always enabled
-		setEnabled(true);
-	}
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        if (sipView.getDocument().checkFixity()) {
+            JOptionPane.showMessageDialog(sipView, I18N.translate("MessageFixityCheckSuccessful"),
+                    I18N.translate("HeaderFixityCheck"), JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            new ScrollableMessageDialog(sipView, I18N.translate("HeaderFixityCheck"),
+                    I18N.translate("MessageFixityCheckFailed") + "\n" + ExceptionCollector.getAll());
+        }
+    }
+
+    @Override
+    public void enableOrDisable() {
+        // always enabled
+        setEnabled(true);
+    }
 
 }

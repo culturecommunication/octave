@@ -1,29 +1,29 @@
 /**
  *  Copyright (C) since 2017 at Docuteam GmbH
  *  <p>
- *	This program is free software: you can redistribute it and/or modify <br>
- *	it under the terms of the GNU General Public License version 3 <br>
- *	as published by the Free Software Foundation. 
+ *  This program is free software: you can redistribute it and/or modify <br>
+ *  it under the terms of the GNU General Public License version 3 <br>
+ *  as published by the Free Software Foundation.
  *  <p>
- *	This program is distributed in the hope that it will be useful, <br>
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of <br>
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the <br>
- *	GNU General Public License for more details.
+ *  This program is distributed in the hope that it will be useful, <br>
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of <br>
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the <br>
+ *  GNU General Public License for more details.
  *  <p>
- *	You should have received a copy of the GNU General Public License <br>
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *  You should have received a copy of the GNU General Public License <br>
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * <p>
  */
-package ch.docuteam.packer.gui.filePreview;
 
-import java.util.Iterator;
+package ch.docuteam.packer.gui.filePreview;
 
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
 import ch.docuteam.tools.file.FileUtil;
 import ch.docuteam.tools.out.Logger;
 
 enum FileType {
-    Folder, Text, HTML, PDF, OOConvertable, GraphicsNative, GraphicsImageIO, GraphicsJAIConvertable, GraphicsJAIConvertableImageRead, GraphicsJIMIConvertable, GraphicsImageMagickConvertable, Unknown;
+    Folder, Text, HTML, PDF, OOConvertable, GraphicsNative, GraphicsImageIO, GraphicsJAIConvertable,
+    GraphicsJAIConvertableImageRead, GraphicsJIMIConvertable, GraphicsImageMagickConvertable, Unknown;
 
     static FilePreviewConfigurator filePreviewConfigurator;
 
@@ -33,7 +33,7 @@ enum FileType {
         }
     }
 
-    static FileType check(NodeAbstract node) {
+    static FileType check(final NodeAbstract node) {
         if (node.isFolder()) {
             return Folder;
         }
@@ -41,7 +41,7 @@ enum FileType {
         FileType fileType = Unknown;
 
         // First PUID:
-        String formatKey = node.getFormatKey();
+        final String formatKey = node.getFormatKey();
         if (formatKey != null) {
             fileType = getFileType(formatKey);
             if (fileType != null && !Unknown.equals(fileType)) {
@@ -50,7 +50,7 @@ enum FileType {
         }
 
         // Then check MIME Type:
-        String mimeType = node.getMimeType();
+        final String mimeType = node.getMimeType();
         if (mimeType != null) {
             fileType = getFileType(mimeType);
             if (fileType != null && !Unknown.equals(fileType)) {
@@ -71,13 +71,13 @@ enum FileType {
         return Unknown;
     }
 
-    static FileType getFileType(String formatKeyOrMimeTypeOrExtension) {
+    static FileType getFileType(final String formatKeyOrMimeTypeOrExtension) {
         FileType fileType = Unknown;
-        String propertyValue = filePreviewConfigurator.getPropertyValue(formatKeyOrMimeTypeOrExtension);
+        final String propertyValue = filePreviewConfigurator.getPropertyValue(formatKeyOrMimeTypeOrExtension);
         if (propertyValue != null) {
             try {
                 fileType = FileType.valueOf(propertyValue);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 Logger.warn("getFileType - cannot find FileType for " + formatKeyOrMimeTypeOrExtension);
             }
         }

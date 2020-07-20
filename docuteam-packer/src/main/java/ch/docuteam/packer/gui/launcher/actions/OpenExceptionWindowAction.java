@@ -14,29 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.EXCEPTION_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
+
 import ch.docuteam.packer.gui.launcher.LauncherView;
 import ch.docuteam.tools.gui.SystemOutView;
 import ch.docuteam.tools.translations.I18N;
 
 public class OpenExceptionWindowAction extends AbstractDocuAction {
-	
-	
-	public OpenExceptionWindowAction(LauncherView owner) {
-		super(I18N.translate("ActionOpenExceptionWindow"),
-				getImageIcon(EXCEPTION_PNG), owner);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenExceptionWindow"));
-	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		SystemOutView.open();
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    public OpenExceptionWindowAction(final LauncherView owner) {
+        super(I18N.translate("ActionOpenExceptionWindow"),
+                getImageIcon(EXCEPTION_PNG), owner);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenExceptionWindow"));
+    }
+
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        SystemOutView.open();
+    }
 
 }

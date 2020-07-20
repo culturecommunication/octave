@@ -14,9 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImage;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -34,6 +37,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.docuteam.darc.mdconfig.LevelOfDescription;
@@ -44,112 +48,130 @@ import ch.docuteam.tools.translations.I18N;
 
 public class AssignLevelsByLayerDialog extends JDialog {
 
-	protected boolean goButtonWasClicked = false;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected final List<JComboBox> comboBoxes;
-	protected final JButton goButton;
+    protected boolean goButtonWasClicked = false;
 
-	protected AssignLevelsByLayerDialog(JFrame owner, final NodeAbstract node) {
-		super(owner, I18N.translate("TitleAssignLevelsByLayer"), true);
+    protected final List<JComboBox> comboBoxes;
 
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AssignLevelsByLayerDialog.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    protected final JButton goButton;
 
-		this.goButton = new JButton(getImageIcon("Go.png"));
-		this.goButton.setToolTipText(I18N.translate("ToolTipAssignLevelsByLayer"));
-		this.goButton.setEnabled(false);
-		this.goButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AssignLevelsByLayerDialog.this.goButtonClicked(node);
-			}
-		});
+    protected AssignLevelsByLayerDialog(final JFrame owner, final NodeAbstract node) {
+        super(owner, I18N.translate("TitleAssignLevelsByLayer"), true);
 
-		// The treeDepth is defined as 0 for a leaf and max(children.treeDepth)
-		// + 1 otherwise.
-		// Here I create one row for each level, so the number of rows is the
-		// treeDepth + 1.
-		int treeDepth = node.getTreeDepth() + 1;
-		this.comboBoxes = new Vector<JComboBox>(treeDepth);
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
-		GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(2, 5, 0, 5));
-		gridBagPanel.add(new JLabel(I18N.translate("LabelTreeLevel")), 0, 0, GridBagConstraints.CENTER);
-		gridBagPanel.add(new JLabel(I18N.translate("LabelAssignedLevel")), 0, 1, GridBagConstraints.CENTER);
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		int i;
-		for (i = 1; i <= treeDepth; i++) {
-			Vector<LevelOfDescription> levels = new Vector<LevelOfDescription>(10);
-			levels.add(null);
-			levels.addAll(node.getDocument().getLevels().getAll());
-			JComboBox comboBox = new JComboBox(levels);
-			comboBox.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					AssignLevelsByLayerDialog.this.enableOrDisableGoButton();
-				}
-			});
-			this.comboBoxes.add(comboBox);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                AssignLevelsByLayerDialog.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-			gridBagPanel.add(new JLabel("" + i), i + 1, 0, GridBagConstraints.CENTER);
-			gridBagPanel.add(comboBox, i + 1, 1, GridBagConstraints.WEST);
-		}
+        goButton = new JButton(getImageIcon("Go.png"));
+        goButton.setToolTipText(I18N.translate("ToolTipAssignLevelsByLayer"));
+        goButton.setEnabled(false);
+        goButton.addActionListener(new ActionListener() {
 
-		gridBagPanel.add(this.goButton, i + 1, 1, GridBagConstraints.EAST);
-		this.add(gridBagPanel);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                AssignLevelsByLayerDialog.this.goButtonClicked(node);
+            }
+        });
 
-		this.setResizable(false);
-		this.pack();
-		this.setLocationRelativeTo(owner);
-		this.setVisible(true);
-	}
+        // The treeDepth is defined as 0 for a leaf and max(children.treeDepth)
+        // + 1 otherwise.
+        // Here I create one row for each level, so the number of rows is the
+        // treeDepth + 1.
+        final int treeDepth = node.getTreeDepth() + 1;
+        comboBoxes = new Vector<JComboBox>(treeDepth);
 
-	protected void goButtonClicked(NodeAbstract topNode) {
-		ExceptionCollector.clear();
+        final GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(2, 5, 0, 5));
+        gridBagPanel.add(new JLabel(I18N.translate("LabelTreeLevel")), 0, 0, GridBagConstraints.CENTER);
+        gridBagPanel.add(new JLabel(I18N.translate("LabelAssignedLevel")), 0, 1, GridBagConstraints.CENTER);
 
-		int topNodeDepth = topNode.getDepth();
+        int i;
+        for (i = 1; i <= treeDepth; i++) {
+            final Vector<LevelOfDescription> levels = new Vector<LevelOfDescription>(10);
+            levels.add(null);
+            levels.addAll(node.getDocument().getLevels().getAll());
+            final JComboBox comboBox = new JComboBox(levels);
+            comboBox.addActionListener(new ActionListener() {
 
-		for (NodeAbstract node : topNode.getWithDescendants()) {
-			int relativeNodeDepth = node.getDepth() - topNodeDepth;
-			LevelOfDescription selectedLevel = (LevelOfDescription) this.comboBoxes.get(relativeNodeDepth)
-					.getSelectedItem();
-			if (selectedLevel == null)
-				continue;
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    AssignLevelsByLayerDialog.this.enableOrDisableGoButton();
+                }
+            });
+            comboBoxes.add(comboBox);
 
-			try {
-				node.setLevel(selectedLevel);
-			} catch (Exception ex) {
-				ch.docuteam.tools.exception.Exception.remember(ex);
-			}
-		}
+            gridBagPanel.add(new JLabel("" + i), i + 1, 0, GridBagConstraints.CENTER);
+            gridBagPanel.add(comboBox, i + 1, 1, GridBagConstraints.WEST);
+        }
 
-		this.goButtonWasClicked = true;
-		this.close();
+        gridBagPanel.add(goButton, i + 1, 1, GridBagConstraints.EAST);
+        this.add(gridBagPanel);
 
-		if (!ExceptionCollector.isEmpty())
-			ExceptionCollector.systemOut();
-	}
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(owner);
+        setVisible(true);
+    }
 
-	protected void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+    protected void goButtonClicked(final NodeAbstract topNode) {
+        ExceptionCollector.clear();
 
-	protected void enableOrDisableGoButton() {
-		this.goButton.setEnabled(!this.areAllComboBoxesEmpty());
-	}
+        final int topNodeDepth = topNode.getDepth();
 
-	protected boolean areAllComboBoxesEmpty() {
-		for (JComboBox comboBox : this.comboBoxes)
-			if (comboBox.getSelectedItem() != null)
-				return false;
+        for (final NodeAbstract node : topNode.getWithDescendants()) {
+            final int relativeNodeDepth = node.getDepth() - topNodeDepth;
+            final LevelOfDescription selectedLevel = (LevelOfDescription) comboBoxes.get(relativeNodeDepth)
+                    .getSelectedItem();
+            if (selectedLevel == null) {
+                continue;
+            }
 
-		return true;
-	}
+            try {
+                node.setLevel(selectedLevel);
+            } catch (final Exception ex) {
+                ch.docuteam.tools.exception.Exception.remember(ex);
+            }
+        }
+
+        goButtonWasClicked = true;
+        close();
+
+        if (!ExceptionCollector.isEmpty()) {
+            ExceptionCollector.systemOut();
+        }
+    }
+
+    protected void close() {
+        setVisible(false);
+        dispose();
+    }
+
+    protected void enableOrDisableGoButton() {
+        goButton.setEnabled(!areAllComboBoxesEmpty());
+    }
+
+    protected boolean areAllComboBoxesEmpty() {
+        for (final JComboBox comboBox : comboBoxes) {
+            if (comboBox.getSelectedItem() != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 }

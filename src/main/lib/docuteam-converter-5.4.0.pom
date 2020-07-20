@@ -4,10 +4,11 @@
 	<parent>
 		<groupId>ch.docuteam</groupId>
 		<artifactId>docuteam</artifactId>
-		<version>5.3.0</version>
+		<version>5.4.0</version>
+
 	</parent>
 	<artifactId>docuteam-converter</artifactId>
-	<name>converter</name>
+	<name>docuteam converter</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,6 +16,11 @@
 		<test.ghostscript.executable>C:/docuteam/apps/gs/gs9.20/bin/gswin64c.exe</test.ghostscript.executable>
 		<test.imagemagick.executable>C:/docuteam/apps/ImageMagick/convert.exe</test.imagemagick.executable>
 		<test.readpst.executable>C:/docuteam/apps/cygwin64/bin/readpst.exe</test.readpst.executable>
+		<test.converter.ws.pdftoolsconverter.url>http://localhost/o2p/Converter.asmx?WSDL</test.converter.ws.pdftoolsconverter.url>
+		<test.converter.ws.pdftoolsconverter.username>sampleusername</test.converter.ws.pdftoolsconverter.username>
+		<test.converter.ws.pdftoolsconverter.password>samplepasswort</test.converter.ws.pdftoolsconverter.password>
+        <test.converter.ws.pdftoolsconverter.timeout>60000</test.converter.ws.pdftoolsconverter.timeout>
+        <test.converter.ws.pdftoolsconverter.mtom>false</test.converter.ws.pdftoolsconverter.mtom>
 	</properties>
 	<build>
         <!-- resource filtering for build.properties -->
@@ -24,7 +30,7 @@
                 <filtering>true</filtering>
                 <includes>  
                     <!-- filter only build.properties -->           
-                    <include>build.properties</include>
+                    <include>build.properties</include>                    
                 </includes>
             </resource>
             <resource>
@@ -41,6 +47,7 @@
 				<includes>
 					<include>**/migration-config.xml</include>
 					<include>**/log4j2.xml</include>
+					<include>**/pdfToolsConverterWS*.properties</include>
 				</includes>
 			</testResource>
 			<testResource>
@@ -74,6 +81,11 @@
 	                                    <extraarg>ch.snb.pdfgenerator</extraarg>
                                     </extraargs>
 								</wsdlOption>
+								<wsdlOption>
+                                    <wsdl>${project.basedir}/src/main/resources/META-INF/wsdl/PDFToolsConverter.wsdl</wsdl>
+                                    <wsdlLocation>classpath:META-INF/wsdl/PDFToolsConverter.wsdl</wsdlLocation>
+                                    <outputDir>${project.build.directory}/generated-sources/cxf-pdf_tools</outputDir>
+								</wsdlOption>
                             </wsdlOptions>
                         </configuration>
                         <goals>
@@ -97,6 +109,7 @@
                             <sources>
                                 <source>${basedir}/target/generated-sources/cxf-abb</source>
                                 <source>${basedir}/target/generated-sources/cxf-snb</source>
+                                <source>${basedir}/target/generated-sources/cxf-pdf_tools</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -153,10 +166,6 @@
 				</executions>				
 				<configuration>
 					<argLine>-Djava.library.path=${project.build.testOutputDirectory}/dlls</argLine>
-					<systemPropertyVariables>
-						<java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
-					</systemPropertyVariables>
-					<skipTests>${skipITs}</skipTests>
 				</configuration>
 			</plugin>
 			<!-- configure JAR build -->
@@ -269,34 +278,10 @@
         	<version>${org.apache.cxf.version}</version>
         </dependency>
         <dependency>
-        	<groupId>org.apache.cxf</groupId>
-        	<artifactId>cxf-testutils</artifactId>
-        	<version>${org.apache.cxf.version}</version>
-        	<scope>test</scope>
-        </dependency>
-        <dependency>
-        	<groupId>org.apache.kerby</groupId>
-        	<artifactId>kerb-simplekdc</artifactId>
-        	<scope>test</scope>
-        	<version>${org.apache.kerby.version}</version>
-        	<exclusions>
-        		<exclusion>
-	        		<groupId>net.minidev</groupId>
-	        		<artifactId>json-smart</artifactId>
-        		</exclusion>
-        	</exclusions>
-        </dependency>       
-        <dependency>
-        	<groupId>org.apache.kerby</groupId>
-        	<artifactId>kerby-kdc</artifactId>
-        	<scope>test</scope>
-        	<version>${org.apache.kerby.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.apache.cxf</groupId>
-        	<artifactId>cxf-rt-ws-security</artifactId>
-        	<version>${org.apache.cxf.version}</version>
-        	<scope>test</scope>
+            <groupId>ch.docuteam</groupId>
+            <artifactId>docuteam-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
 	</dependencies>
 </project>

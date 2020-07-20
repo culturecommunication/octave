@@ -14,9 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImage;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -35,128 +38,144 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import ch.docuteam.converter.OOConverter;
+import ch.docuteam.packer.admin.BuildInfo;
 import ch.docuteam.tools.gui.GridBagPanel;
 import ch.docuteam.tools.os.OperatingSystem;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.string.DateFormatter;
 import ch.docuteam.tools.translations.I18N;
-import ch.docuteam.packer.admin.BuildInfo;
 
 public class AboutView extends JDialog {
 
-	protected JEditorPane docuteamLink;
-	protected JEditorPane licenseLink;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public AboutView(JFrame owner, String title) {
-		super(owner, title, true);
+    protected JEditorPane docuteamLink;
 
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AboutView.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    protected JEditorPane licenseLink;
 
-		this.docuteamLink = new JEditorPane("text/html",
-				"<span style='font-family:Arial'><a href='http://www.docuteam.ch'>Docuteam GmbH</a></span>");
-		this.docuteamLink.setEditable(false);
-		this.docuteamLink.setOpaque(false);
-		this.docuteamLink.addHyperlinkListener(new HyperlinkListener() {
-			@Override
-			public void hyperlinkUpdate(HyperlinkEvent hle) {
-				if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-					AboutView.this.openURL(hle.getURL());
-				}
-			}
-		});
+    public AboutView(final JFrame owner, final String title) {
+        super(owner, title, true);
 
-		this.licenseLink = new JEditorPane("text/html",
-				"<span style='font-family:Arial'><a href='http://www.gnu.org/licenses'>GNU General Public License</a></span>");
-		this.licenseLink.setEditable(false);
-		this.licenseLink.setOpaque(false);
-		this.licenseLink.addHyperlinkListener(new HyperlinkListener() {
-			@Override
-			public void hyperlinkUpdate(HyperlinkEvent hle) {
-				if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-					AboutView.this.openURL(hle.getURL());
-				}
-			}
-		});
-	}
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
-	public AboutView(JFrame owner) {
-		this(owner, I18N.translate("TitleAbout") + BuildInfo.getProduct());
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		GridBagPanel gridBagPanel1 = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(5, 5, 5, 5));
-		gridBagPanel1.add(new JLabel(getImageIcon("Logo_docuteam_packer.png")), 0, 0, 0, 2,
-				GridBagConstraints.EAST);
-		gridBagPanel1.add(new JLabel(BuildInfo.getProduct()), 1, 0, GridBagConstraints.WEST);
-		gridBagPanel1.add(new JLabel(BuildInfo.getVersion()), 1, 1, GridBagConstraints.WEST);
-		gridBagPanel1.add(new JLabel(BuildInfo.getLastChange()), 1, 2, GridBagConstraints.EAST);
-		
-		gridBagPanel1.add(new JLabel("Copyright (C) " + DateFormatter.getCurrentDateTimeString("yyyy") + " by: "), 5, 5,
-				0, 1, GridBagConstraints.WEST);
-		gridBagPanel1.add(this.docuteamLink, 5, 2, GridBagConstraints.EAST);
-		gridBagPanel1.add(new JLabel("License: "), 6, 0, GridBagConstraints.WEST);
-		gridBagPanel1.add(this.licenseLink, 6, 6, 1, 2, GridBagConstraints.EAST);
-		gridBagPanel1.add(new JLabel("OS: "), 7, 0, GridBagConstraints.WEST);
-		gridBagPanel1.add(new JLabel(OperatingSystem.osName() + " " + OperatingSystem.osVersion()), 7, 7, 1, 2,
-				GridBagConstraints.EAST);
-		gridBagPanel1.add(new JLabel("JVM: "), 8, 0, GridBagConstraints.WEST);
-		gridBagPanel1.add(new JLabel(System.getProperty("java.vendor") + " " + System.getProperty("java.version")), 8,
-				8, 1, 2, GridBagConstraints.EAST);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                AboutView.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-		GridBagPanel gridBagPanel2 = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(5, 5, 5, 5));
-		gridBagPanel2.add(new JLabel("<html><b><u>OpenOffice Installations:</u></b></html>"), 0, 0, 0, 3,
-				GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel("Local:"), 2, 2, GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel("Remote:"), 2, 3, GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel("Windows:"), 3, 1, GridBagConstraints.EAST);
-		gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForWindows() ? "X" : ""), 3, 2,
-				GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForWindows()), 3, 3,
-				GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBagPanel2.add(new JLabel("OS X:"), 4, 1, GridBagConstraints.EAST);
-		gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForOSX() ? "X" : ""), 4, 2,
-				GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForOSX()), 4, 3, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBagPanel2.add(new JLabel("Linux:"), 5, 1, GridBagConstraints.EAST);
-		gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForLinux() ? "X" : ""), 5, 2,
-				GridBagConstraints.CENTER);
-		gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForLinux()), 5, 3, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, 1, 0);
+        docuteamLink = new JEditorPane("text/html",
+                "<span style='font-family:Arial'><a href='http://www.docuteam.ch'>Docuteam GmbH</a></span>");
+        docuteamLink.setEditable(false);
+        docuteamLink.setOpaque(false);
+        docuteamLink.addHyperlinkListener(new HyperlinkListener() {
 
-		Box box = new Box(BoxLayout.Y_AXIS);
-		box.add(gridBagPanel1);
-		box.add(gridBagPanel2);
-		this.add(box);
+            @Override
+            public void hyperlinkUpdate(final HyperlinkEvent hle) {
+                if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+                    AboutView.this.openURL(hle.getURL());
+                }
+            }
+        });
 
-		this.setPreferredSize(new Dimension(450, 500));
-		this.setResizable(true);
-		this.pack();
-		this.setLocationRelativeTo(owner);
-		this.setVisible(true);
-	}
+        licenseLink = new JEditorPane("text/html",
+                "<span style='font-family:Arial'><a href='http://www.gnu.org/licenses'>GNU General Public License</a></span>");
+        licenseLink.setEditable(false);
+        licenseLink.setOpaque(false);
+        licenseLink.addHyperlinkListener(new HyperlinkListener() {
 
-	protected void openURL(URL url) {
-		try {
-			Desktop.getDesktop().browse(url.toURI());
-		} catch (java.lang.Exception ex) {
-			Logger.error(ex.getMessage(), ex);
-		}
-	}
+            @Override
+            public void hyperlinkUpdate(final HyperlinkEvent hle) {
+                if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+                    AboutView.this.openURL(hle.getURL());
+                }
+            }
+        });
+    }
 
-	protected void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+    public AboutView(final JFrame owner) {
+        this(owner, I18N.translate("TitleAbout") + BuildInfo.getProduct());
+
+        final GridBagPanel gridBagPanel1 = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(5, 5, 5, 5));
+        gridBagPanel1.add(new JLabel(getImageIcon("Logo_docuteam_packer.png")), 0, 0, 0, 2,
+                GridBagConstraints.EAST);
+        gridBagPanel1.add(new JLabel(BuildInfo.getProduct()), 1, 0, GridBagConstraints.WEST);
+        gridBagPanel1.add(new JLabel(BuildInfo.getVersion()), 1, 1, GridBagConstraints.WEST);
+        gridBagPanel1.add(new JLabel(BuildInfo.getLastChange()), 1, 2, GridBagConstraints.EAST);
+
+        gridBagPanel1.add(new JLabel("Copyright (C) " + DateFormatter.getCurrentDateTimeString("yyyy") + " by: "), 5,
+                5,
+                0, 1, GridBagConstraints.WEST);
+        gridBagPanel1.add(docuteamLink, 5, 2, GridBagConstraints.EAST);
+        gridBagPanel1.add(new JLabel("License: "), 6, 0, GridBagConstraints.WEST);
+        gridBagPanel1.add(licenseLink, 6, 6, 1, 2, GridBagConstraints.EAST);
+        gridBagPanel1.add(new JLabel("OS: "), 7, 0, GridBagConstraints.WEST);
+        gridBagPanel1.add(new JLabel(OperatingSystem.osName() + " " + OperatingSystem.osVersion()), 7, 7, 1, 2,
+                GridBagConstraints.EAST);
+        gridBagPanel1.add(new JLabel("JVM: "), 8, 0, GridBagConstraints.WEST);
+        gridBagPanel1.add(new JLabel(System.getProperty("java.vendor") + " " + System.getProperty("java.version")), 8,
+                8, 1, 2, GridBagConstraints.EAST);
+
+        final GridBagPanel gridBagPanel2 = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(5, 5, 5, 5));
+        gridBagPanel2.add(new JLabel("<html><b><u>OpenOffice Installations:</u></b></html>"), 0, 0, 0, 3,
+                GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel("Local:"), 2, 2, GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel("Remote:"), 2, 3, GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel("Windows:"), 3, 1, GridBagConstraints.EAST);
+        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForWindows() ? "X" : ""), 3, 2,
+                GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForWindows()), 3, 3,
+                GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBagPanel2.add(new JLabel("OS X:"), 4, 1, GridBagConstraints.EAST);
+        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForOSX() ? "X" : ""), 4, 2,
+                GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForOSX()), 4, 3, GridBagConstraints.WEST,
+                GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBagPanel2.add(new JLabel("Linux:"), 5, 1, GridBagConstraints.EAST);
+        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForLinux() ? "X" : ""), 5, 2,
+                GridBagConstraints.CENTER);
+        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForLinux()), 5, 3, GridBagConstraints.WEST,
+                GridBagConstraints.HORIZONTAL, 1, 0);
+
+        final Box box = new Box(BoxLayout.Y_AXIS);
+        box.add(gridBagPanel1);
+        box.add(gridBagPanel2);
+        this.add(box);
+
+        setPreferredSize(new Dimension(450, 500));
+        setResizable(true);
+        pack();
+        setLocationRelativeTo(owner);
+        setVisible(true);
+    }
+
+    protected void openURL(final URL url) {
+        try {
+            Desktop.getDesktop().browse(url.toURI());
+        } catch (final java.lang.Exception ex) {
+            Logger.error(ex.getMessage(), ex);
+        }
+    }
+
+    protected void close() {
+        setVisible(false);
+        dispose();
+    }
 
 }

@@ -14,10 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.OPEN_FOLDER_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImage;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -27,6 +30,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -37,6 +41,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
@@ -46,122 +51,137 @@ import ch.docuteam.tools.translations.I18N;
 
 public class AppendMigratedFileDialog extends JDialog {
 
-	protected boolean goButtonWasClicked = false;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected String defaultFileChooserFolder;
+    protected boolean goButtonWasClicked = false;
 
-	protected JButton chooseDerivedFileButton;
-	protected JButton goButton;
+    protected String defaultFileChooserFolder;
 
-	protected JTextField derivedFileTextField;
+    protected JButton chooseDerivedFileButton;
 
-	protected JCheckBox keepOriginalCheckBox;
+    protected JButton goButton;
 
-	protected JLabel messageLabel;
+    protected JTextField derivedFileTextField;
 
-	protected AppendMigratedFileDialog(JFrame owner, final NodeAbstract node) {
-		super(owner, I18N.translate("TitleAppendMigratedFile"), true);
+    protected JCheckBox keepOriginalCheckBox;
 
-		defaultFileChooserFolder = ((SIPView)owner).getLauncherView().getDataDirectory();
+    protected JLabel messageLabel;
 
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AppendMigratedFileDialog.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    protected AppendMigratedFileDialog(final JFrame owner, final NodeAbstract node) {
+        super(owner, I18N.translate("TitleAppendMigratedFile"), true);
 
+        defaultFileChooserFolder = ((SIPView) owner).getLauncherView().getDataDirectory();
 
-		this.chooseDerivedFileButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
-		this.chooseDerivedFileButton.setToolTipText(I18N.translate("ToolTipSelectOutcome"));
-		this.chooseDerivedFileButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				selectSourceFolderButtonClicked();
-			}
-		});
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		this.derivedFileTextField = new JTextField();
-		this.derivedFileTextField.setToolTipText(I18N.translate("ToolTipOutcome"));
-		this.derivedFileTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				derivedFileTextFieldChanged();
-			}
-		});
-		this.derivedFileTextField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				derivedFileTextFieldChanged();
-			}
-		});
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                AppendMigratedFileDialog.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-		this.keepOriginalCheckBox = new JCheckBox(I18N.translate("LabelKeepOriginal"), ((SIPView)owner).getLauncherView().isMigrateFileKeepOriginal());
-		this.keepOriginalCheckBox.setToolTipText(I18N.translate("ToolTipKeepOriginal"));
+        chooseDerivedFileButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
+        chooseDerivedFileButton.setToolTipText(I18N.translate("ToolTipSelectOutcome"));
+        chooseDerivedFileButton.addActionListener(new ActionListener() {
 
-		this.messageLabel = new JLabel();
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                selectSourceFolderButtonClicked();
+            }
+        });
 
-		this.goButton = new JButton(getImageIcon("Go.png"));
-		this.goButton.setToolTipText(I18N.translate("ToolTipAppendMigratedFile"));
-		this.goButton.setEnabled(false);
-		this.goButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				goButtonClicked(node);
-			}
-		});
+        derivedFileTextField = new JTextField();
+        derivedFileTextField.setToolTipText(I18N.translate("ToolTipOutcome"));
+        derivedFileTextField.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                derivedFileTextFieldChanged();
+            }
+        });
+        derivedFileTextField.addFocusListener(new FocusAdapter() {
 
-		GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(2, 5, 0, 5));
-		gridBagPanel.add(new JLabel(I18N.translate("LabelDerivedFile")), 0, 0, GridBagConstraints.EAST);
-		gridBagPanel.add(this.derivedFileTextField, 0, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBagPanel.add(this.chooseDerivedFileButton, 0, 2, GridBagConstraints.WEST);
-		gridBagPanel.add(this.keepOriginalCheckBox, 1, 1, GridBagConstraints.WEST);
-		gridBagPanel.add(this.messageLabel, 2, 2, 0, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBagPanel.add(this.goButton, 2, 2, GridBagConstraints.EAST);
+            @Override
+            public void focusLost(final FocusEvent e) {
+                derivedFileTextFieldChanged();
+            }
+        });
 
-		this.add(gridBagPanel);
+        keepOriginalCheckBox = new JCheckBox(I18N.translate("LabelKeepOriginal"), ((SIPView) owner).getLauncherView()
+                .isMigrateFileKeepOriginal());
+        keepOriginalCheckBox.setToolTipText(I18N.translate("ToolTipKeepOriginal"));
 
-		this.setPreferredSize(new Dimension(500, 140));
-		this.setResizable(false);
-		this.pack();
-		this.setLocationRelativeTo(owner);
-		this.setVisible(true);
-	}
+        messageLabel = new JLabel();
 
-	protected void selectSourceFolderButtonClicked() {
-		JFileChooser fileChooser = new JFileChooser(defaultFileChooserFolder);
-		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		fileChooser.setDialogTitle(I18N.translate("TitleSelectMigratedFile"));
-		fileChooser.setMultiSelectionEnabled(false);
-		int result = fileChooser.showOpenDialog(this);
-		if (result == JFileChooser.CANCEL_OPTION)
-			return;
+        goButton = new JButton(getImageIcon("Go.png"));
+        goButton.setToolTipText(I18N.translate("ToolTipAppendMigratedFile"));
+        goButton.setEnabled(false);
+        goButton.addActionListener(new ActionListener() {
 
-		this.derivedFileTextField.setText(fileChooser.getSelectedFile().getPath());
-		defaultFileChooserFolder = fileChooser.getSelectedFile().getParent();
-		this.derivedFileTextFieldChanged();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                goButtonClicked(node);
+            }
+        });
 
-	protected void derivedFileTextFieldChanged() {
-		this.derivedFileTextField.setText(this.derivedFileTextField.getText().trim());
-		this.enableOrDisableGoButton();
-	}
+        final GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(2, 5, 0, 5));
+        gridBagPanel.add(new JLabel(I18N.translate("LabelDerivedFile")), 0, 0, GridBagConstraints.EAST);
+        gridBagPanel.add(derivedFileTextField, 0, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBagPanel.add(chooseDerivedFileButton, 0, 2, GridBagConstraints.WEST);
+        gridBagPanel.add(keepOriginalCheckBox, 1, 1, GridBagConstraints.WEST);
+        gridBagPanel.add(messageLabel, 2, 2, 0, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBagPanel.add(goButton, 2, 2, GridBagConstraints.EAST);
 
-	protected void enableOrDisableGoButton() {
-		this.goButton.setEnabled(!this.derivedFileTextField.getText().isEmpty());
-	}
+        this.add(gridBagPanel);
 
-	protected void goButtonClicked(NodeAbstract node) {
-		this.goButtonWasClicked = true;
-		this.close();
-	}
+        setPreferredSize(new Dimension(500, 140));
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(owner);
+        setVisible(true);
+    }
 
-	protected void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+    protected void selectSourceFolderButtonClicked() {
+        final JFileChooser fileChooser = new JFileChooser(defaultFileChooserFolder);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setDialogTitle(I18N.translate("TitleSelectMigratedFile"));
+        fileChooser.setMultiSelectionEnabled(false);
+        final int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.CANCEL_OPTION) {
+            return;
+        }
+
+        derivedFileTextField.setText(fileChooser.getSelectedFile().getPath());
+        defaultFileChooserFolder = fileChooser.getSelectedFile().getParent();
+        derivedFileTextFieldChanged();
+    }
+
+    protected void derivedFileTextFieldChanged() {
+        derivedFileTextField.setText(derivedFileTextField.getText().trim());
+        enableOrDisableGoButton();
+    }
+
+    protected void enableOrDisableGoButton() {
+        goButton.setEnabled(!derivedFileTextField.getText().isEmpty());
+    }
+
+    protected void goButtonClicked(final NodeAbstract node) {
+        goButtonWasClicked = true;
+        close();
+    }
+
+    protected void close() {
+        setVisible(false);
+        dispose();
+    }
 }

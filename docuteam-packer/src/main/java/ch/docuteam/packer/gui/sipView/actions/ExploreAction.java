@@ -14,14 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.EXPLORE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.Action;
+
 import ch.docuteam.darc.mets.Document;
 import ch.docuteam.packer.gui.sipView.SIPView;
 import ch.docuteam.tools.os.SystemProcess;
@@ -30,45 +33,51 @@ import ch.docuteam.tools.translations.I18N;
 
 public class ExploreAction extends AbstractSIPViewAction {
 
-	public ExploreAction(SIPView sipView) {
-		super(I18N.translate("ButtonExplore"), getImageIcon(EXPLORE_PNG), sipView);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExplore"));
-		setEnabled(false);
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Document document = sipView.getDocument();
-		if (document == null)		return;
+    public ExploreAction(final SIPView sipView) {
+        super(I18N.translate("ButtonExplore"), getImageIcon(EXPLORE_PNG), sipView);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExplore"));
+        setEnabled(false);
+    }
 
-		try
-		{
-			//	Save document if necessary:
-			if (document.isModified())		document.saveWithoutBackup();
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        final Document document = sipView.getDocument();
+        if (document == null) {
+            return;
+        }
 
-			String originalSIPFolder = document.getOriginalSIPFolder();
+        try {
+            // Save document if necessary:
+            if (document.isModified()) {
+                document.saveWithoutBackup();
+            }
 
-			//	Open the file browser on the SIP directory:
-			if (originalSIPFolder != null)
-			{
-				if (originalSIPFolder.endsWith(".zip") || originalSIPFolder.endsWith(".ZIP"))
-					SystemProcess.openExternally(new File(originalSIPFolder).getParent());
-				else
-					SystemProcess.openExternally(originalSIPFolder);
-			}
-			else
-					SystemProcess.openExternally(new File(document.getFilePath()).getParent());
-		}
-		catch (java.lang.Exception ex)
-		{
-			Logger.error(I18N.translate("MessageExploreActionException"), ex);
-		}
-	}
+            final String originalSIPFolder = document.getOriginalSIPFolder();
 
-	@Override
-	public void enableOrDisable() {
-		//	always enabled
-		setEnabled(true);
-	}
+            // Open the file browser on the SIP directory:
+            if (originalSIPFolder != null) {
+                if (originalSIPFolder.endsWith(".zip") || originalSIPFolder.endsWith(".ZIP")) {
+                    SystemProcess.openExternally(new File(originalSIPFolder).getParent());
+                } else {
+                    SystemProcess.openExternally(originalSIPFolder);
+                }
+            } else {
+                SystemProcess.openExternally(new File(document.getFilePath()).getParent());
+            }
+        } catch (final java.lang.Exception ex) {
+            Logger.error(I18N.translate("MessageExploreActionException"), ex);
+        }
+    }
+
+    @Override
+    public void enableOrDisable() {
+        // always enabled
+        setEnabled(true);
+    }
 
 }

@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.tableModel;
 
 import java.util.ArrayList;
@@ -26,75 +27,80 @@ import ch.docuteam.tools.translations.I18N;
 
 public class BadFilesTableModel extends AbstractTableModel {
 
-	List<NodeFile> badFiles = new ArrayList<NodeFile>();
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public void clearList() {
-		badFiles.clear();
-		fireTableDataChanged();
-	}
+    List<NodeFile> badFiles = new ArrayList<NodeFile>();
 
-	public void setList(List<NodeFile> badFiles) {
-		this.badFiles = badFiles;
-		fireTableDataChanged();
-	}
+    public void clearList() {
+        badFiles.clear();
+        fireTableDataChanged();
+    }
 
-	public List<NodeFile> getList() {
-		return badFiles;
-	}
+    public void setList(final List<NodeFile> badFiles) {
+        this.badFiles = badFiles;
+        fireTableDataChanged();
+    }
 
-	public NodeFile get(int i) {
-		return badFiles.get(i);
-	}
+    public List<NodeFile> getList() {
+        return badFiles;
+    }
 
-	@Override
-	public int getRowCount() {
-		return badFiles.size();
-	}
+    public NodeFile get(final int i) {
+        return badFiles.get(i);
+    }
 
-	@Override
-	public int getColumnCount() {
-		return 2;
-	}
+    @Override
+    public int getRowCount() {
+        return badFiles.size();
+    }
 
-	@Override
-	public String getColumnName(int columnIndex) {
-		switch (columnIndex) {
-		case 0:
-			return I18N.translate("HeaderNodePath");
-		case 1:
-			return I18N.translate("HeaderNodeIsAllowedBySA");
-		}
+    @Override
+    public int getColumnCount() {
+        return 2;
+    }
 
-		return null;
-	}
+    @Override
+    public String getColumnName(final int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return I18N.translate("HeaderNodePath");
+            case 1:
+                return I18N.translate("HeaderNodeIsAllowedBySA");
+        }
 
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		switch (columnIndex) {
-		case 0:
-			return String.class;
-		case 1:
-			return Boolean.class;
-		}
+        return null;
+    }
 
-		return null;
-	}
+    @Override
+    public Class<?> getColumnClass(final int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return String.class;
+            case 1:
+                return Boolean.class;
+        }
 
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		NodeFile nodeFile = badFiles.get(rowIndex);
-		if (nodeFile == null) {
-			return null;
-		}
+        return null;
+    }
 
-		switch (columnIndex) {
-		case 0:
-			return nodeFile.getPathString();
-		case 1:
-			return !nodeFile.isAllowedBySA();
-		}
+    @Override
+    public Object getValueAt(final int rowIndex, final int columnIndex) {
+        final NodeFile nodeFile = badFiles.get(rowIndex);
+        if (nodeFile == null) {
+            return null;
+        }
 
-		return null;
-	}
+        switch (columnIndex) {
+            case 0:
+                return nodeFile.getPathString();
+            case 1:
+                return !nodeFile.isAllowedBySA();
+        }
+
+        return null;
+    }
 
 }

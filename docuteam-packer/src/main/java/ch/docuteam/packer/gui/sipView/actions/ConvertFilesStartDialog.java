@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
@@ -35,6 +36,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.docuteam.packer.gui.sipView.SIPView;
@@ -44,63 +46,76 @@ import ch.docuteam.tools.translations.I18N;
 
 public class ConvertFilesStartDialog extends JDialog {
 
-	protected boolean goButtonWasClicked = false;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected JLabel messageLabel;
-	protected JCheckBox keepOriginalCheckBox;
-	protected JButton goButton;
+    protected boolean goButtonWasClicked = false;
 
-	protected ConvertFilesStartDialog(JFrame owner, int filesCount, long totalSize) {
-		super(owner, I18N.translate("TitleQuestionConvertFiles"), true);
-		
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ConvertFilesStartDialog.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    protected JLabel messageLabel;
 
+    protected JCheckBox keepOriginalCheckBox;
 
-		this.keepOriginalCheckBox = new JCheckBox(I18N.translate("LabelKeepOriginal"), ((SIPView)owner).getLauncherView().isMigrateFileKeepOriginal());
-		this.keepOriginalCheckBox.setToolTipText(I18N.translate("ToolTipKeepOriginal"));
+    protected JButton goButton;
 
-		this.messageLabel = new JLabel(I18N.translate("QuestionConvertFiles", filesCount, FileUtil.getHumanReadableFileSize(totalSize)));
-		
-		this.goButton = new JButton(getImageIcon("Go.png"));
-		this.goButton.setToolTipText(I18N.translate("ToolTipAppendMigratedFile"));
-		this.goButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				goButtonClicked();
-			}
-		});
+    protected ConvertFilesStartDialog(final JFrame owner, final int filesCount, final long totalSize) {
+        super(owner, I18N.translate("TitleQuestionConvertFiles"), true);
 
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
-		GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 5));
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		gridBagPanel.add(this.messageLabel, 0, 0, 0, 2, GridBagConstraints.WEST);
-		gridBagPanel.add(this.keepOriginalCheckBox, 2, 0, GridBagConstraints.WEST);
-		gridBagPanel.add(this.goButton, 2, 3, GridBagConstraints.EAST);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                ConvertFilesStartDialog.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
+        keepOriginalCheckBox = new JCheckBox(I18N.translate("LabelKeepOriginal"), ((SIPView) owner).getLauncherView()
+                .isMigrateFileKeepOriginal());
+        keepOriginalCheckBox.setToolTipText(I18N.translate("ToolTipKeepOriginal"));
 
-		this.add(gridBagPanel);
+        messageLabel = new JLabel(I18N.translate("QuestionConvertFiles", filesCount, FileUtil
+                .getHumanReadableFileSize(totalSize)));
 
-		this.setPreferredSize(new Dimension(300, 100));
-		this.setResizable(false);
-		this.pack();
-		this.setLocationRelativeTo(owner);
-		this.setVisible(true);
-	}
+        goButton = new JButton(getImageIcon("Go.png"));
+        goButton.setToolTipText(I18N.translate("ToolTipAppendMigratedFile"));
+        goButton.addActionListener(new ActionListener() {
 
-	protected void goButtonClicked() {
-		this.goButtonWasClicked = true;
-		this.close();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                goButtonClicked();
+            }
+        });
 
-	protected void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+        final GridBagPanel gridBagPanel = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 5));
+
+        gridBagPanel.add(messageLabel, 0, 0, 0, 2, GridBagConstraints.WEST);
+        gridBagPanel.add(keepOriginalCheckBox, 2, 0, GridBagConstraints.WEST);
+        gridBagPanel.add(goButton, 2, 3, GridBagConstraints.EAST);
+
+        this.add(gridBagPanel);
+
+        setPreferredSize(new Dimension(300, 100));
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(owner);
+        setVisible(true);
+    }
+
+    protected void goButtonClicked() {
+        goButtonWasClicked = true;
+        close();
+    }
+
+    protected void close() {
+        setVisible(false);
+        dispose();
+    }
 }

@@ -4,10 +4,11 @@
 	<parent>
 		<groupId>ch.docuteam</groupId>
 		<artifactId>docuteam</artifactId>
-		<version>5.3.0</version>
+		<version>5.4.0</version>
+
 	</parent>
 	<artifactId>docuteam-mapping</artifactId>
-	<name>docuteam-mapping</name>
+	<name>docuteam mapping</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -107,6 +108,30 @@
 							</sources>
 						</configuration>
 					</execution>
+					<execution>
+						<id>xjc-ech-0160-1.1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/xsd/eCH-0160-1.1</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>xjc-eCH-0160-to-METS</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/xsd/eCH-0160-to-METS</source>
+							</sources>
+						</configuration>
+					</execution>
 				</executions>
 				<configuration>
 					<addGeneratedAnnotation>true</addGeneratedAnnotation>
@@ -167,6 +192,17 @@
     		<groupId>gov.loc</groupId>
     		<artifactId>bagit</artifactId>
     		<version>${gov.loc.bagit.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${org.apache.commons.commons-lang3.version}</version>
 		</dependency>
 	</dependencies>
 </project>

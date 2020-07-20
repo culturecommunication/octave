@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.DELETE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -30,54 +32,63 @@ import ch.docuteam.tools.translations.I18N;
 
 public class DeleteItemAction extends AbstractSIPViewAction {
 
-	public DeleteItemAction(SIPView sipView) {
-		super(I18N.translate("ButtonDeleteItem"), getImageIcon(DELETE_PNG), sipView);
-		putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipDeleteItem"));
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+    public DeleteItemAction(final SIPView sipView) {
+        super(I18N.translate("ButtonDeleteItem"), getImageIcon(DELETE_PNG), sipView);
+        putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipDeleteItem"));
+    }
 
-		// If the shift-key is held while clicking the delete-button: DON'T ask.
+    @Override
+    public void actionPerformed(final ActionEvent e) {
 
-		if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 0) {
-			// The shift-key was pressed:
+        // If the shift-key is held while clicking the delete-button: DON'T ask.
 
-			int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
-			if (selectedRowCount == 0)
-				return;
-			else if (selectedRowCount == 1) {
-				// Single selection:
+        if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 0) {
+            // The shift-key was pressed:
 
-				if (sipView.getSelectedNode().isFolder() && (sipView.getSelectedNode().getChildCount() != 0)) {
-					if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteWithAllSubElements"),
-							I18N.translate("TitleDeleteFolder"), JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
-						return;
-				} else {
-					if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteItem"),
-							I18N.translate("TitleDeleteItem"), JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
-						return;
-				}
-			} else {
-				// Multiple selection:
+            final int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
+            if (selectedRowCount == 0) {
+                return;
+            } else if (selectedRowCount == 1) {
+                // Single selection:
 
-				if (JOptionPane.showConfirmDialog(sipView,
-						I18N.translate("QuestionDeleteMultipleItems", selectedRowCount),
-						I18N.translate("TitleDeleteMultipleItems"),
-						JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
-					return;
-			}
-		}
+                if (sipView.getSelectedNode().isFolder() && sipView.getSelectedNode().getChildCount() != 0) {
+                    if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteWithAllSubElements"),
+                            I18N.translate("TitleDeleteFolder"),
+                            JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+                        return;
+                    }
+                } else {
+                    if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteItem"),
+                            I18N.translate("TitleDeleteItem"), JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+                        return;
+                    }
+                }
+            } else {
+                // Multiple selection:
 
-		sipView.deleteItemDontAskButtonClicked();
+                if (JOptionPane.showConfirmDialog(sipView,
+                        I18N.translate("QuestionDeleteMultipleItems", selectedRowCount),
+                        I18N.translate("TitleDeleteMultipleItems"),
+                        JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
+        }
 
-	}
+        sipView.deleteItemDontAskButtonClicked();
 
-	@Override
-	public void enableOrDisable() {
-		boolean canDelete = sipView.getDocument().isReadWrite();
-		
-	}
+    }
+
+    @Override
+    public void enableOrDisable() {
+        sipView.getDocument().isReadWrite();
+
+    }
 
 }

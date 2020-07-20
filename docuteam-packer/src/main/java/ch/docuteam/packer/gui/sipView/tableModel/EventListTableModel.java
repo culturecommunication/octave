@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.tableModel;
 
 import javax.swing.table.AbstractTableModel;
@@ -24,61 +25,68 @@ import ch.docuteam.tools.translations.I18N;
 
 public class EventListTableModel extends AbstractTableModel {
 
-	private NodeAbstract fileStructureNode;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public void setFileStructureNode(NodeAbstract fileStructureNode) {
-		this.fileStructureNode = fileStructureNode;
-		fireTableDataChanged();
-	}
+    private NodeAbstract fileStructureNode;
 
-	public NodeAbstract getFileStructureNode() {
-		return fileStructureNode;
-	}
+    public void setFileStructureNode(final NodeAbstract fileStructureNode) {
+        this.fileStructureNode = fileStructureNode;
+        fireTableDataChanged();
+    }
 
-	@Override
-	public int getRowCount() {
-		if (fileStructureNode == null)
-			return 0;
+    public NodeAbstract getFileStructureNode() {
+        return fileStructureNode;
+    }
 
-		return fileStructureNode.getMyEvents().size();
-	}
+    @Override
+    public int getRowCount() {
+        if (fileStructureNode == null) {
+            return 0;
+        }
 
-	@Override
-	public int getColumnCount() {
-		return 3;
-	}
+        return fileStructureNode.getMyEvents().size();
+    }
 
-	@Override
-	public String getColumnName(int column) {
-		switch (column) {
-		case 0:
-			return I18N.translate("HeaderTimestamp");
-		case 1:
-			return I18N.translate("HeaderType");
-		case 2:
-			return I18N.translate("HeaderEventOutcome");
-		}
+    @Override
+    public int getColumnCount() {
+        return 3;
+    }
 
-		return null;
-	}
+    @Override
+    public String getColumnName(final int column) {
+        switch (column) {
+            case 0:
+                return I18N.translate("HeaderTimestamp");
+            case 1:
+                return I18N.translate("HeaderType");
+            case 2:
+                return I18N.translate("HeaderEventOutcome");
+        }
 
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		if (fileStructureNode == null)
-			return 0;
+        return null;
+    }
 
-		Event event = fileStructureNode.getMyEvent(rowIndex);
+    @Override
+    public Object getValueAt(final int rowIndex, final int columnIndex) {
+        if (fileStructureNode == null) {
+            return 0;
+        }
 
-		switch (columnIndex) {
-		case 0:
-			return event.getDateTime();
-		case 1:
-			return event.getType();
-		case 2:
-			return event.getOutcome();
-		}
+        final Event event = fileStructureNode.getMyEvent(rowIndex);
 
-		return null;
-	}
+        switch (columnIndex) {
+            case 0:
+                return event.getDateTime();
+            case 1:
+                return event.getType();
+            case 2:
+                return event.getOutcome();
+        }
+
+        return null;
+    }
 
 }

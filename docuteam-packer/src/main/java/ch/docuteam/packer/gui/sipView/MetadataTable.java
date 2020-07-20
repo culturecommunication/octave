@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.URL_PATTERN;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,63 +39,75 @@ import ch.docuteam.tools.translations.I18N;
 
 // TODO what is this class for
 public class MetadataTable extends JTableWithSpecificCellEditorPerRow {
-	private final int FontSizeMagicNumber = 5;
-	private final Font Font = (Font) UIManager.get("Table.font");
-	private final int FontSize = Font.getSize() + FontSizeMagicNumber;
 
-	public MetadataTable(MetadataTableModel tableModel, int... toolTipTextColumnIndexes) {
-		super(tableModel, toolTipTextColumnIndexes);
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		// listen for ctrl-click on the table and – in case the cell contains an
-		// url – open it
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if (e.isControlDown()) {
-					MetadataTable target = (MetadataTable) e.getSource();
-					String cellValue = target.getModel().getValueAt(target.rowAtPoint(e.getPoint()), target.columnAtPoint(e.getPoint())).toString();
-					if (cellValue.matches(URL_PATTERN)) {
-						try {
-							SystemProcess.openExternally(cellValue);
-						} catch (IOException | InterruptedException | SystemProcessException
-								| FileIsNotADirectoryException | URISyntaxException
-								| SystemProcessCantLaunchApplicationException ex) {
-							Logger.error("Could not open URL", ex);
-						}
-					}
-				}
-			}
-		});
+    private final int FontSizeMagicNumber = 5;
 
-		// Disallow rearranging of columns:
-		getTableHeader().setReorderingAllowed(false);
-	}
+    private final Font Font = (Font) UIManager.get("Table.font");
 
-	@Override
-	public String getToolTipText(MouseEvent e) {
-		switch (columnAtPoint(e.getPoint())) {
-		case 0:
-			return I18N.translate("ToolTipDynamicMetadataTypes");
-		case 1:
-			return ((MetadataTableModel) dataModel).getToolTipText(rowAtPoint(e.getPoint()));
-		}
+    private final int FontSize = Font.getSize() + FontSizeMagicNumber;
 
-		// Otherwise: show the content of the table cell as tooltip text:
-		return super.getToolTipText(e);
-	}
+    public MetadataTable(final MetadataTableModel tableModel, final int... toolTipTextColumnIndexes) {
+        super(tableModel, toolTipTextColumnIndexes);
 
-	@Override
-	public void tableChanged(TableModelEvent e) {
-		super.tableChanged(e);
-		MetadataTableModel model = ((MetadataTableModel) e.getSource());
-		for (int i = 0; i < model.getRowCount(); i++) {
-			int rows = model.get(i).getLevelMetadataElement().getDisplayRows();
-			if (rows == 0)
-				rows = 1;
-			int requiredRowHeight = FontSize * rows;
-			if (requiredRowHeight > 0 && requiredRowHeight != getRowHeight(i))
-				setRowHeight(i, requiredRowHeight);
-		}
-	}
+        // listen for ctrl-click on the table and – in case the cell contains an
+        // url – open it
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(final MouseEvent e) {
+                if (e.isControlDown()) {
+                    final MetadataTable target = (MetadataTable) e.getSource();
+                    final String cellValue = target.getModel().getValueAt(target.rowAtPoint(e.getPoint()), target
+                            .columnAtPoint(e.getPoint())).toString();
+                    if (cellValue.matches(URL_PATTERN)) {
+                        try {
+                            SystemProcess.openExternally(cellValue);
+                        } catch (IOException | InterruptedException | SystemProcessException |
+                                FileIsNotADirectoryException | URISyntaxException |
+                                SystemProcessCantLaunchApplicationException ex) {
+                            Logger.error("Could not open URL", ex);
+                        }
+                    }
+                }
+            }
+        });
+
+        // Disallow rearranging of columns:
+        getTableHeader().setReorderingAllowed(false);
+    }
+
+    @Override
+    public String getToolTipText(final MouseEvent e) {
+        switch (columnAtPoint(e.getPoint())) {
+            case 0:
+                return I18N.translate("ToolTipDynamicMetadataTypes");
+            case 1:
+                return ((MetadataTableModel) dataModel).getToolTipText(rowAtPoint(e.getPoint()));
+        }
+
+        // Otherwise: show the content of the table cell as tooltip text:
+        return super.getToolTipText(e);
+    }
+
+    @Override
+    public void tableChanged(final TableModelEvent e) {
+        super.tableChanged(e);
+        final MetadataTableModel model = (MetadataTableModel) e.getSource();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            int rows = model.get(i).getLevelMetadataElement().getDisplayRows();
+            if (rows == 0) {
+                rows = 1;
+            }
+            final int requiredRowHeight = FontSize * rows;
+            if (requiredRowHeight > 0 && requiredRowHeight != getRowHeight(i)) {
+                setRowHeight(i, requiredRowHeight);
+            }
+        }
+    }
 
 }

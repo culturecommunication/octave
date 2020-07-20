@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.assertj.swing;
 
 import javax.swing.JTable;
@@ -22,28 +23,27 @@ import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.data.TableCellFinder;
 
-import ch.docuteam.tools.out.Logger;
-
 public class CustomTableCellFinder implements TableCellFinder {
-	
-	private String searchedValue;
-	private int colIndex;
 
-	public CustomTableCellFinder(String searchedValue_, int colIndex_) {
-		searchedValue = searchedValue_;
-		colIndex = colIndex_;
-	}
-	
-	@Override
-	public TableCell findCell(JTable table, JTableCellReader cellReader) {			
-		int rows = table.getModel().getRowCount();
-		for(int rowIndex=0; rowIndex<rows; rowIndex++) {
-			String value = table.getModel().getValueAt(rowIndex, colIndex).toString();
-			if(searchedValue.equals(value)) {
-			    //Logger.debug("findCell succesful");
-				return TableCell.row(rowIndex).column(colIndex);
-			}
-		}
-		return null;
-	}
+    private final String searchedValue;
+
+    private final int colIndex;
+
+    public CustomTableCellFinder(final String searchedValue_, final int colIndex_) {
+        searchedValue = searchedValue_;
+        colIndex = colIndex_;
+    }
+
+    @Override
+    public TableCell findCell(final JTable table, final JTableCellReader cellReader) {
+        final int rows = table.getModel().getRowCount();
+        for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
+            final String value = table.getModel().getValueAt(rowIndex, colIndex).toString();
+            if (searchedValue.equals(value)) {
+                // Logger.debug("findCell succesful");
+                return TableCell.row(rowIndex).column(colIndex);
+            }
+        }
+        return null;
+    }
 }

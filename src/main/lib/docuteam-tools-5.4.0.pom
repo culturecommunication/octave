@@ -4,7 +4,8 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>5.3.0</version>
+    <version>5.4.0</version>
+
   </parent>
   <artifactId>docuteam-tools</artifactId>
   <name>docuteam tools</name>
@@ -34,7 +35,7 @@
 			<filtering>false</filtering>
 		</resource>
 	</resources>
-	<!-- enable filtering: replaces variables in resources directory (run with 
+	<!-- enable filtering: replaces variables in resources directory (run with
 		"maven resources:testResources") -->
 	<testResources>
 		<testResource>
@@ -49,21 +50,14 @@
 			<filtering>false</filtering>
 		</testResource>
 	</testResources>
-	<plugins>          
+	<plugins>
       <plugin>
       	<groupId>org.apache.maven.plugins</groupId>
       	<artifactId>maven-surefire-plugin</artifactId>
       	<configuration>
-			<systemProperties>				 
-				<property>
-					<name>log4j.configurationFile</name>
-					<value>${project.build.testOutputDirectory}/config/log4j2.xml</value>
-				</property>     							
-			</systemProperties>		
-			
 			<!-- overwrite DOCUTOOLS_HOME environmentVariable for testing -->
-			<forkMode>always</forkMode>
-  			<environmentVariables>  			
+			<reuseForks>false</reuseForks>
+  			<environmentVariables>
      			<DOCUTOOLS_HOME>${test.env.resources}</DOCUTOOLS_HOME>
      			<TEST>${test.env.test}</TEST>
      			<PROPERTY_FILE_ROOT>${test.env.property.file.root}</PROPERTY_FILE_ROOT>
@@ -73,7 +67,7 @@
       <plugin>
       	<groupId>org.apache.maven.plugins</groupId>
       	<artifactId>maven-failsafe-plugin</artifactId>
-    	<executions>    	
+    	<executions>
 			<execution>
 				<id>integrationTest</id>
 				<phase>integration-test</phase>
@@ -84,13 +78,9 @@
 			</execution>
 		</executions>
       	<configuration>
-			<systemPropertyVariables>
-				<java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
-				<log4j.configurationFile>${project.build.testOutputDirectory}/config/log4j2.xml</log4j.configurationFile>
-			</systemPropertyVariables>
-			<!-- overwrite DOCUTOOLS_HOME environmentVariable for testing -->
-			<forkMode>always</forkMode>
-  			<environmentVariables>  			
+			<reuseForks>false</reuseForks>
+            <!-- overwrite DOCUTOOLS_HOME environmentVariable for testing -->
+  			<environmentVariables>
      			<DOCUTOOLS_HOME>${test.env.resources}</DOCUTOOLS_HOME>
      			<TEST>${test.env.test}</TEST>
      			<PROPERTY_FILE_ROOT>${test.env.property.file.root}</PROPERTY_FILE_ROOT>
@@ -106,7 +96,7 @@
     		<includeEmptyDirs>true</includeEmptyDirs>
   		</configuration>
 	  </plugin>
-		
+
     </plugins>
   </build>
 <dependencies>
@@ -154,7 +144,7 @@
 </dependency>
 <dependency>
 	<groupId>commons-io</groupId>
-	<artifactId>commons-io</artifactId>		    
+	<artifactId>commons-io</artifactId>
 </dependency>
 <dependency>
     <groupId>de.schlichtherle.truezip</groupId>
@@ -174,11 +164,11 @@
     <groupId>com.drewnoakes</groupId>
     <artifactId>metadata-extractor</artifactId>
     <version>${com.drewnoakes.metadata-extractor.version}</version>
-    <exclusions>	
+    <exclusions>
 		<exclusion>
 			<groupId>xerces</groupId>
-    		<artifactId>xercesImpl</artifactId> 
-		</exclusion>				
+    		<artifactId>xercesImpl</artifactId>
+		</exclusion>
 	</exclusions>
 </dependency>
 <dependency>
@@ -200,11 +190,11 @@
     <groupId>uk.gov.nationalarchives</groupId>
     <artifactId>droid-core</artifactId>
     <version>${uk.gov.nationalarchives.droid.version}</version>
-    <exclusions>				
+    <exclusions>
 		<exclusion>
 			<groupId>*</groupId>
-    		<artifactId>*</artifactId> 
-		</exclusion>		
+    		<artifactId>*</artifactId>
+		</exclusion>
     </exclusions>
 </dependency>
 <dependency>
@@ -212,22 +202,22 @@
     <artifactId>droid-core-interfaces</artifactId>
     <version>${uk.gov.nationalarchives.droid.version}</version>
     <exclusions>
-    	<exclusion>    		
+    	<exclusion>
     		<groupId>*</groupId>
     		<artifactId>*</artifactId>
-    	</exclusion>    	
+    	</exclusion>
     </exclusions>
 </dependency>
 <dependency>
     <groupId>uk.gov.nationalarchives</groupId>
     <artifactId>droid-container</artifactId>
-    <version>${uk.gov.nationalarchives.droid.version}</version> 
+    <version>${uk.gov.nationalarchives.droid.version}</version>
     <exclusions>
-    	<exclusion>    		
+    	<exclusion>
     		<groupId>*</groupId>
     		<artifactId>*</artifactId>
-    	</exclusion>    	
-    </exclusions>   
+    	</exclusion>
+    </exclusions>
 </dependency>
 <dependency>
     <groupId>uk.gov.nationalarchives</groupId>
@@ -237,7 +227,7 @@
     	<exclusion>
     		<groupId>*</groupId>
     		<artifactId>*</artifactId>
-    	</exclusion>    	
+    	</exclusion>
     </exclusions>
 </dependency>
 <dependency>
@@ -251,7 +241,7 @@
 	<artifactId>xercesImpl</artifactId>
 	<version>${xerces.xercesImpl.version}</version>
 </dependency>
-<!-- warn: get the jhove artifacts from the docuteam-nexus 
+<!-- warn: get the jhove artifacts from the docuteam-nexus
 <dependency>
   <groupId>org.openpreservation.jhove</groupId>
   <artifactId>jhove-core</artifactId>
@@ -280,15 +270,15 @@
 </dependency>
 	<dependency>
 	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi</artifactId>	    	   
+	    <artifactId>poi</artifactId>
 	</dependency>
     <dependency>
         <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-core</artifactId>        
+        <artifactId>jaxb-core</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit</artifactId>      
+      <artifactId>junit</artifactId>
     </dependency>
     <dependency>
     	<!-- used to be version 1.4.1 but the test is failing with this -->
@@ -314,7 +304,7 @@
     		<exclusions>
     			<exclusion>
     				<groupId>xml-apis</groupId>
-    				<artifactId>xml-apis</artifactId> 
+    				<artifactId>xml-apis</artifactId>
     			</exclusion>
     		</exclusions>
 	</dependency>
@@ -323,5 +313,11 @@
     	<artifactId>xml-apis</artifactId>
     	<version>${xml-apis.xml-apis.version}</version>
 	</dependency>
-  </dependencies>
+	<dependency>
+	    <groupId>ch.docuteam</groupId>
+	    <artifactId>docuteam-test</artifactId>
+	    <version>${project.version}</version>
+	    <scope>test</scope>
+	</dependency>
+</dependencies>
 </project>

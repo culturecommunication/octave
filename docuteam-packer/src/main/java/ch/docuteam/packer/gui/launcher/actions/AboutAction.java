@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.INFO_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,21 +33,26 @@ import ch.docuteam.tools.translations.I18N;
 
 public class AboutAction extends AbstractDocuAction {
 
-	public AboutAction(LauncherView owner) {
-		super(I18N.translate("ActionAbout"), getImageIcon(INFO_PNG), owner);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipAbout"));
-		putValue(Action.ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		openAboutWindow();
+    public AboutAction(final LauncherView owner) {
+        super(I18N.translate("ActionAbout"), getImageIcon(INFO_PNG), owner);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipAbout"));
+        putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    }
 
-	}
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        openAboutWindow();
 
-	// TODO hope there is no regression because of above comment
-	public void openAboutWindow() {
-		new AboutView(owner);
-	}
+    }
+
+    // TODO hope there is no regression because of above comment
+    public void openAboutWindow() {
+        new AboutView(owner);
+    }
 }

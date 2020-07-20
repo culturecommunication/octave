@@ -20,36 +20,34 @@ package ch.docuteam.packer.admin;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.util.BuildInfoUtil;
 
-
 /**
  * Uses build.properties in packer module.
- * 
- * @author lavinia
  *
+ * @author lavinia
  */
 public class BuildInfo {
-		
-private static BuildInfoUtil buildInfo;
-	
-	static {
-		buildInfo = new BuildInfoUtil();			
-	}
 
-	public static String getVersion() {
-		return buildInfo.getVersion();	
-	}
-	
-	public static String getLastChange() {		
-		return buildInfo.getLastChange();
-	}
-	
-	public static String getProduct() {
-		return buildInfo.getProduct();
-	}
-		
-	public static void main(String[] args) throws Exception {
-		Logger.info("product: " + getProduct());
-		Logger.info("version: " + getVersion());
-		Logger.info("last changed: " + getLastChange());
-	}	
+    private static BuildInfoUtil buildInfo;
+
+    static {
+        buildInfo = new BuildInfoUtil();
+    }
+
+    public static String getVersion() {
+        return buildInfo.getVersion();
+    }
+
+    public static String getLastChange() {
+        return buildInfo.getLastChange();
+    }
+
+    public static String getProduct() {
+        return buildInfo.getProduct();
+    }
+
+    public static void main(final String[] args) throws Exception {
+        Logger.info("product: " + getProduct());
+        Logger.info("version: " + getVersion());
+        Logger.info("last changed: " + getLastChange());
+    }
 }

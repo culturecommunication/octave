@@ -14,50 +14,58 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.HOME_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
+
 import ch.docuteam.packer.gui.launcher.LauncherView;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.translations.I18N;
 
 public class OpenDocuteamHomepageAction extends AbstractDocuAction {
 
-	public OpenDocuteamHomepageAction(LauncherView owner) {
-		super(I18N.translate("ActionOpenDocuteamHomepage"), getImageIcon(HOME_PNG), owner);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenDocuteamHomepage"));
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		openDocuteamHomepage();
+    public OpenDocuteamHomepageAction(final LauncherView owner) {
+        super(I18N.translate("ActionOpenDocuteamHomepage"), getImageIcon(HOME_PNG), owner);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenDocuteamHomepage"));
+    }
 
-	}
-	
-	//TODO this method here is used by the logo and this is probably not a good design
-	public void openDocuteamHomepage() {
-		if (!java.awt.Desktop.isDesktopSupported()) {
-			System.err.println("Desktop is not supported");
-			return;
-		}
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        openDocuteamHomepage();
 
-		Desktop desktop = Desktop.getDesktop();
+    }
 
-		if (!desktop.isSupported(Desktop.Action.BROWSE)) {
-			System.err.println("Desktop doesn't support the browse action");
-			return;
-		}
+    // TODO this method here is used by the logo and this is probably not a good design
+    public void openDocuteamHomepage() {
+        if (!java.awt.Desktop.isDesktopSupported()) {
+            System.err.println("Desktop is not supported");
+            return;
+        }
 
-		try {
-			desktop.browse(new java.net.URI("http://www.docuteam.ch"));
-		} catch (java.lang.Exception ex) {
-			Logger.error(ex.getMessage(), ex);
-		}
-	}
+        final Desktop desktop = Desktop.getDesktop();
+
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+            System.err.println("Desktop doesn't support the browse action");
+            return;
+        }
+
+        try {
+            desktop.browse(new java.net.URI("http://www.docuteam.ch"));
+        } catch (final java.lang.Exception ex) {
+            Logger.error(ex.getMessage(), ex);
+        }
+    }
 
 }

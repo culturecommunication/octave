@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.cellRenderer;
 
 import static ch.docuteam.packer.gui.PackerConstants.ICON_LEVEL_NOT_ALLOWED;
@@ -31,76 +32,84 @@ import ch.docuteam.darc.mets.structmap.NodeFile;
 import ch.docuteam.darc.mets.structmap.NodeFolder;
 import ch.docuteam.tools.translations.I18N;
 
-
 public class MyTreeCellRenderer extends DefaultTreeCellRenderer {
 
-	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf,
-			int row, boolean hasFocus) {
-		MyTreeCellRenderer component = (MyTreeCellRenderer) super.getTreeCellRendererComponent(tree, value, sel,
-				expanded, leaf, row, hasFocus);
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		if (value == null)
-			return component;
+    @Override
+    public Component getTreeCellRendererComponent(final JTree tree, final Object value, final boolean sel,
+            final boolean expanded, final boolean leaf,
+            final int row, final boolean hasFocus) {
+        final MyTreeCellRenderer component = (MyTreeCellRenderer) super.getTreeCellRendererComponent(tree, value, sel,
+                expanded, leaf, row, hasFocus);
 
-		NodeAbstract node = (NodeAbstract) value;
+        if (value == null) {
+            return component;
+        }
 
-		component.setText(node.getLabel());
-		StringBuilder toolTipBuilder = new StringBuilder("<html>");
-		toolTipBuilder.append(I18N.translate("HeaderName")).append(" ").append(node.getLabel()).append("<br>")
-				.append(I18N.translate("LabelTitle")).append(" ").append(node.getUnitTitle()).append("<br>")
-				.append(I18N.translate("LabelLevel")).append(" ")
-				.append(node.getLevel() != null ? node.getLevel().getName() : "?").append("<br>");
+        final NodeAbstract node = (NodeAbstract) value;
 
-		try {
-			if (!node.isAllowedBySA()) {
-				component.setIcon(ICON_NOT_ALLOWED_BY_SA);
-				toolTipBuilder.append("(").append(I18N.translate("ToolTipIconNotAllowedBySA")).append(")");
-			} else if (!node.doesParentAllowMyLevel()) {
-				//	allow broken levels logic if it was caused by a migration action keeping originals (and therefore creating an additional intermediary level)
-				if (node.isFile() 
-						&& !(((NodeFile)node).getMigrationDerivedNode() == null && ((NodeFile)node).getMigrationSourceNode() == null)) {
-					ImageIcon icon = node.getLevel().getIcon();
-					if (icon == null) {
-						component.setIcon(ICON_LEVEL_UNKNOWN);
-						toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeFound")).append(")");
-					} else {
-						component.setIcon(icon);
-					}
-				} else {
-					component.setIcon(ICON_LEVEL_NOT_ALLOWED);
-					toolTipBuilder.append("(")
-							.append(I18N.translate("ToolTipLevelIconParentDoesntAllow",
-									((NodeFolder) node.getParent()).getLevel().getName(), node.getLevel().getName()))
-							.append(")");
-				}
-			} else if (node.getLevel() == null) {
-				component.setIcon(ICON_LEVEL_UNKNOWN);
-			} else {
-				ImageIcon icon = node.getLevel().getIcon();
-				if (icon == null) {
-					component.setIcon(ICON_LEVEL_UNKNOWN);
-					toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeFound")).append(")");
-				} else {
-					component.setIcon(icon);
-				}
-			}
-		} catch (Exception x) {
-			component.setIcon(ICON_LEVEL_UNKNOWN);
-			toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeLoaded")).append(")");
-		}
+        component.setText(node.getLabel());
+        final StringBuilder toolTipBuilder = new StringBuilder("<html>");
+        toolTipBuilder.append(I18N.translate("HeaderName")).append(" ").append(node.getLabel()).append("<br>")
+                .append(I18N.translate("LabelTitle")).append(" ").append(node.getUnitTitle()).append("<br>")
+                .append(I18N.translate("LabelLevel")).append(" ")
+                .append(node.getLevel() != null ? node.getLevel().getName() : "?").append("<br>");
 
-		if (!node.fileExists()) {
-			toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsMissing"));
-		} else if (!node.canRead()) {
-			toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsNotReadable"));
-		} else if (!node.canWrite()) {
-			toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsReadOnly"));
-		}
+        try {
+            if (!node.isAllowedBySA()) {
+                component.setIcon(ICON_NOT_ALLOWED_BY_SA);
+                toolTipBuilder.append("(").append(I18N.translate("ToolTipIconNotAllowedBySA")).append(")");
+            } else if (!node.doesParentAllowMyLevel()) {
+                // allow broken levels logic if it was caused by a migration action keeping originals (and therefore
+                // creating an additional intermediary level)
+                if (node.isFile() && !(((NodeFile) node).getMigrationDerivedNode() == null && ((NodeFile) node)
+                        .getMigrationSourceNode() == null)) {
+                    final ImageIcon icon = node.getLevel().getIcon();
+                    if (icon == null) {
+                        component.setIcon(ICON_LEVEL_UNKNOWN);
+                        toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeFound")).append(
+                                ")");
+                    } else {
+                        component.setIcon(icon);
+                    }
+                } else {
+                    component.setIcon(ICON_LEVEL_NOT_ALLOWED);
+                    toolTipBuilder.append("(")
+                            .append(I18N.translate("ToolTipLevelIconParentDoesntAllow",
+                                    ((NodeFolder) node.getParent()).getLevel().getName(), node.getLevel().getName()))
+                            .append(")");
+                }
+            } else if (node.getLevel() == null) {
+                component.setIcon(ICON_LEVEL_UNKNOWN);
+            } else {
+                final ImageIcon icon = node.getLevel().getIcon();
+                if (icon == null) {
+                    component.setIcon(ICON_LEVEL_UNKNOWN);
+                    toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeFound")).append(")");
+                } else {
+                    component.setIcon(icon);
+                }
+            }
+        } catch (final Exception x) {
+            component.setIcon(ICON_LEVEL_UNKNOWN);
+            toolTipBuilder.append("(").append(I18N.translate("ToolTipLevelIconCouldNotBeLoaded")).append(")");
+        }
 
-		component.setToolTipText(toolTipBuilder.toString());
+        if (!node.fileExists()) {
+            toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsMissing"));
+        } else if (!node.canRead()) {
+            toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsNotReadable"));
+        } else if (!node.canWrite()) {
+            toolTipBuilder.append("<br>*****&nbsp;&nbsp;&nbsp;").append(I18N.translate("ToolTipFileIsReadOnly"));
+        }
 
-		return component;
-	}
+        component.setToolTipText(toolTipBuilder.toString());
+
+        return component;
+    }
 
 }

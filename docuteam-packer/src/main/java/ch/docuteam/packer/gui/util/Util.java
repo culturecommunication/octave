@@ -30,19 +30,18 @@ import ch.docuteam.tools.gui.SmallPeskyMessageWindow;
 import ch.docuteam.tools.translations.I18N;
 
 /**
- * 
  * @author l.dumitrescu
- *
  */
 public class Util {
 
-	public static void showAllFromExceptionCollector(SmallPeskyMessageWindow waitWindow, Window parent) {
+    public static void showAllFromExceptionCollector(final SmallPeskyMessageWindow waitWindow, final Window parent) {
         if (!ExceptionCollector.isEmpty()) {
-        	if(waitWindow!=null){ 
-                waitWindow.close();     //  In case it was not closed yet...
+            if (waitWindow != null) {
+                waitWindow.close(); // In case it was not closed yet...
             }
             new ScrollableMessageDialog(parent, I18N.translate("TitleWarningsOccurred"),
-                    ExceptionCollector.getAllTranslatedMessages(EXCEPTION_COLLECTOR_NO_EXCEPTION, EXCEPTION_COLLECTOR_PREFIX), getImageIcon(PACKER_PNG));
-        }         
+                    ExceptionCollector.getAllTranslatedMessages(EXCEPTION_COLLECTOR_NO_EXCEPTION,
+                            EXCEPTION_COLLECTOR_PREFIX), getImageIcon(PACKER_PNG));
+        }
     }
 }

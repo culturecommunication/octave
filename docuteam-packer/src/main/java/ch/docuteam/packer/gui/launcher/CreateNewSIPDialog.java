@@ -14,10 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
-import static ch.docuteam.packer.gui.ComponentNames.*;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_OK_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_DESTINATION_NAME_TEXT_FIELD;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_FROM_SOURCE_FILE_OR_FOLDER_RADIO_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FILE_OR_FOLDER_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER;
+import static ch.docuteam.packer.gui.PackerConstants.OPEN_FOLDER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.SAVE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.ZIP;
+import static ch.docuteam.packer.gui.PackerConstants.ZIP_EXT;
+import static ch.docuteam.packer.gui.PackerConstants.getImage;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -38,11 +52,11 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.docuteam.darc.sa.SubmissionAgreement;
@@ -53,344 +67,395 @@ import ch.docuteam.tools.translations.I18N;
 
 public class CreateNewSIPDialog extends JDialog {
 
-	private LauncherView launcherView;
-	protected JButton selectSourceFileOrFolderButton;
-	protected JButton selectDestinationZIPOrFolderButton;
-	protected JButton selectDestinationIsWorkspaceButton;
-	protected JButton goButton;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected JRadioButton selectSIPEmptyRadioButton;
-	protected JRadioButton selectSIPFromSourceFileOrFolderRadioButton;
+    private final LauncherView launcherView;
 
-	protected JTextField rootFolderNameTextField;
-	protected JTextField sourceFileOrFolderTextField;
-	protected JCheckBox deleteSourcesCheckBox;
-	protected JTextField destinationFolderTextField;
-	protected JTextField destinationNameTextField;
-	protected JCheckBox beZIPCheckBox;
-	protected JComboBox saComboBox;
+    protected JButton selectSourceFileOrFolderButton;
 
-	protected JLabel messageLabel;
+    protected JButton selectDestinationZIPOrFolderButton;
 
-	protected boolean goButtonWasClicked = false;
+    protected JButton selectDestinationIsWorkspaceButton;
 
-	protected CreateNewSIPDialog(LauncherView launcherView) {
-		super(launcherView, I18N.translate("TitleCreateNewSIP"), true);
-		this.launcherView = launcherView;
+    protected JButton goButton;
 
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    protected JRadioButton selectSIPEmptyRadioButton;
 
-		this.selectSIPEmptyRadioButton = new JRadioButton();
-		this.selectSIPEmptyRadioButton.setSelected(true);
-		this.selectSIPEmptyRadioButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.selectSIPRootRadioButtonClicked();
-			}
-		});
-		this.selectSIPFromSourceFileOrFolderRadioButton = new JRadioButton();
-		this.selectSIPFromSourceFileOrFolderRadioButton.setName(SIP_SELECT_FROM_SOURCE_FILE_OR_FOLDER_RADIO_BUTTON);
-		this.selectSIPFromSourceFileOrFolderRadioButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.selectSIPRootRadioButtonClicked();
-			}
-		});
+    protected JRadioButton selectSIPFromSourceFileOrFolderRadioButton;
 
-		ButtonGroup radioButtonGroup = new ButtonGroup();
-		radioButtonGroup.add(this.selectSIPEmptyRadioButton);
-		radioButtonGroup.add(this.selectSIPFromSourceFileOrFolderRadioButton);
+    protected JTextField rootFolderNameTextField;
 
-		this.rootFolderNameTextField = new JTextField("");
-		this.rootFolderNameTextField.setName(SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD);
-		this.rootFolderNameTextField.setToolTipText(I18N.translate("ToolTipRootFolderName"));
-		this.rootFolderNameTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.rootFolderNameTextFieldChanged();
-			}
-		});
-		this.rootFolderNameTextField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				CreateNewSIPDialog.this.rootFolderNameTextFieldChanged();
-			}
-		});
+    protected JTextField sourceFileOrFolderTextField;
 
-		this.selectSourceFileOrFolderButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
-		this.selectSourceFileOrFolderButton.setName(SIP_SELECT_SOURCE_FILE_OR_FOLDER_BUTTON);
-		this.selectSourceFileOrFolderButton.setToolTipText(I18N.translate("ToolTipSelectSource"));
-		this.selectSourceFileOrFolderButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.selectSourceFolderButtonClicked();
-			}
-		});
+    // if added to the docuteamPacker.actionsNotVisible, it doesn't show deleteSourcesCheckBox
+    private static final String ACTION_NAME_DELETE_SOURCES = "deleteSourcesCreateNewCheckbox";
 
-		this.sourceFileOrFolderTextField = new JTextField(new File(launcherView.getDataDirectory()).getAbsolutePath());
-		this.sourceFileOrFolderTextField.setToolTipText(I18N.translate("ToolTipSourceFileOrFolder"));
-		this.sourceFileOrFolderTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.sourceFolderTextFieldChanged();
-			}
-		});
-		this.sourceFileOrFolderTextField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				CreateNewSIPDialog.this.sourceFolderTextFieldChanged();
-			}
-		});
+    private JCheckBox deleteSourcesCheckBox;
 
-		this.selectDestinationZIPOrFolderButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
-		this.selectDestinationZIPOrFolderButton.setToolTipText(I18N.translate("ToolTipSelectDestinationFolder"));
-		this.selectDestinationZIPOrFolderButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.selectDestinationFolderButtonClicked();
-			}
-		});
+    protected JTextField destinationFolderTextField;
 
-		this.selectDestinationIsWorkspaceButton = new JButton(getImageIcon("Workspace.png"));
-		this.selectDestinationIsWorkspaceButton.setName(SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON);
-		this.selectDestinationIsWorkspaceButton
-				.setToolTipText(I18N.translate("ToolTipSelectDestinationIsWorkspaceFolder"));
-		this.selectDestinationIsWorkspaceButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.selectDestinationIsWorkspaceButtonClicked();
-			}
-		});
+    protected JTextField destinationNameTextField;
 
-		this.deleteSourcesCheckBox = new JCheckBox(I18N.translate("LabelDeleteSources"), launcherView.isDeleteSourcesByDefault());
-		this.deleteSourcesCheckBox.setToolTipText(I18N.translate("ToolTipDeleteSources"));
+    protected JCheckBox beZIPCheckBox;
 
-		this.destinationFolderTextField = new JTextField(
-				new File(launcherView.getLastUsedOpenOrSaveDirectory()).getAbsolutePath());
-		this.destinationFolderTextField.setToolTipText(I18N.translate("ToolTipDestinationFolder"));
-		this.destinationFolderTextField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				CreateNewSIPDialog.this.destinationFolderTextField
-						.setText(CreateNewSIPDialog.this.destinationFolderTextField.getText().trim());
-			}
-		});
+    protected JComboBox saComboBox;
 
-		this.destinationNameTextField = new JTextField(new File(launcherView.getDataDirectory()).getName());
-		this.destinationNameTextField.setName(SIP_DESTINATION_NAME_TEXT_FIELD);
-		this.destinationNameTextField.setToolTipText(I18N.translate("ToolTipDestinationName"));
-		this.destinationNameTextField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				CreateNewSIPDialog.this.enableOrDisableButtonsAndFields();
-			}
-		});
-		this.destinationNameTextField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				CreateNewSIPDialog.this.destinationNameTextField
-						.setText(CreateNewSIPDialog.this.destinationNameTextField.getText().trim());
-			}
-		});
+    protected JLabel messageLabel;
 
-		this.beZIPCheckBox = new JCheckBox(ZIP, launcherView.isNewSIPZippedByDefault());
-		this.beZIPCheckBox.setToolTipText(I18N.translate("ToolTipBeZIP"));
+    protected boolean goButtonWasClicked = false;
 
-		this.saComboBox = new JComboBox(this.readSAOverviewFile().toArray());
-		this.saComboBox.setToolTipText(I18N.translate("ToolTipSelectSA"));
+    protected CreateNewSIPDialog(final LauncherView launcherView) {
+        super(launcherView, I18N.translate("TitleCreateNewSIP"), true);
+        this.launcherView = launcherView;
 
-		this.messageLabel = new JLabel();
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
-		this.goButton = new JButton(getImageIcon(SAVE_PNG));
-		this.goButton.setName(SIP_CREATE_OK_BUTTON);
-		this.goButton.setToolTipText(I18N.translate("ToolTipCreateNew"));
-		this.goButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CreateNewSIPDialog.this.goButtonClicked();
-			}
-		});
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		GridBagPanel gridBag = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 0));
-		gridBag.add(this.selectSIPEmptyRadioButton, 0, 0, GridBagConstraints.EAST);
-		gridBag.add(new JLabel(I18N.translate("LabelNewSIPRootName")), 0, 1, GridBagConstraints.EAST);
-		gridBag.add(this.rootFolderNameTextField, 0, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.selectSIPFromSourceFileOrFolderRadioButton, 1, 0, GridBagConstraints.EAST);
-		gridBag.add(new JLabel(I18N.translate("LabelNewSIPSource")), 1, 1, GridBagConstraints.EAST);
-		gridBag.add(this.selectSourceFileOrFolderButton, 1, 3);
-		gridBag.add(this.sourceFileOrFolderTextField, 1, 1, 4, 6, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.deleteSourcesCheckBox, 2, 2, 4, 6, GridBagConstraints.WEST);
-		gridBag.add(new JLabel(" "), 3, 2);
-		gridBag.add(new JLabel(I18N.translate("LabelNewSIPDestination")), 4, 1, GridBagConstraints.EAST);
-		gridBag.add(this.selectDestinationIsWorkspaceButton, 4, 2);
-		gridBag.add(this.selectDestinationZIPOrFolderButton, 4, 3);
-		gridBag.add(this.destinationFolderTextField, 4, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 2,
-				0);
-		gridBag.add(this.destinationNameTextField, 4, 5, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.beZIPCheckBox, 4, 6);
-		gridBag.add(new JLabel(I18N.translate("LabelNewSIPSA")), 5, 1, GridBagConstraints.EAST);
-		gridBag.add(this.saComboBox, 5, 5, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.messageLabel, 6, 6, 0, 5, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.goButton, 6, 6, GridBagConstraints.EAST);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-		this.add(gridBag);
+        selectSIPEmptyRadioButton = new JRadioButton();
+        selectSIPEmptyRadioButton.setSelected(true);
+        selectSIPEmptyRadioButton.addActionListener(new ActionListener() {
 
-		this.setPreferredSize(new Dimension(800, 240));
-		this.pack();
-		this.setLocationRelativeTo(launcherView);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.selectSIPRootRadioButtonClicked();
+            }
+        });
+        selectSIPFromSourceFileOrFolderRadioButton = new JRadioButton();
+        selectSIPFromSourceFileOrFolderRadioButton.setName(SIP_SELECT_FROM_SOURCE_FILE_OR_FOLDER_RADIO_BUTTON);
+        selectSIPFromSourceFileOrFolderRadioButton.addActionListener(new ActionListener() {
 
-		this.rootFolderNameTextField.requestFocusInWindow();
-		this.selectSIPRootRadioButtonClicked();
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.selectSIPRootRadioButtonClicked();
+            }
+        });
 
-		this.setVisible(true);
-	}
+        final ButtonGroup radioButtonGroup = new ButtonGroup();
+        radioButtonGroup.add(selectSIPEmptyRadioButton);
+        radioButtonGroup.add(selectSIPFromSourceFileOrFolderRadioButton);
 
-	protected void selectSIPRootRadioButtonClicked() {
-		if (this.selectSIPEmptyRadioButton.isSelected())
-			this.destinationNameTextField.setText(this.rootFolderNameTextField.getText());
-		else
-			this.destinationNameTextField.setText(new File(this.sourceFileOrFolderTextField.getText()).getName());
+        rootFolderNameTextField = new JTextField("");
+        rootFolderNameTextField.setName(SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD);
+        rootFolderNameTextField.setToolTipText(I18N.translate("ToolTipRootFolderName"));
+        rootFolderNameTextField.addActionListener(new ActionListener() {
 
-		this.enableOrDisableButtonsAndFields();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.rootFolderNameTextFieldChanged();
+            }
+        });
+        rootFolderNameTextField.addFocusListener(new FocusAdapter() {
 
-	protected void selectSourceFolderButtonClicked() {
-		JFileChooser fileChooser = new JFileChooser(this.sourceFileOrFolderTextField.getText());
-		fileChooser.setName(SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER);
-		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		fileChooser.setDialogTitle(I18N.translate("TitleSelectSourceFileOrFolder"));
-		fileChooser.setMultiSelectionEnabled(false);
-		int result = fileChooser.showOpenDialog(this);
-		if (result == JFileChooser.CANCEL_OPTION)
-			return;
+            @Override
+            public void focusLost(final FocusEvent e) {
+                CreateNewSIPDialog.this.rootFolderNameTextFieldChanged();
+            }
+        });
 
-		this.sourceFileOrFolderTextField.setText(fileChooser.getSelectedFile().getPath());
-		this.sourceFolderTextFieldChanged();
-	}
+        selectSourceFileOrFolderButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
+        selectSourceFileOrFolderButton.setName(SIP_SELECT_SOURCE_FILE_OR_FOLDER_BUTTON);
+        selectSourceFileOrFolderButton.setToolTipText(I18N.translate("ToolTipSelectSource"));
+        selectSourceFileOrFolderButton.addActionListener(new ActionListener() {
 
-	protected void rootFolderNameTextFieldChanged() {
-		this.rootFolderNameTextField.setText(this.rootFolderNameTextField.getText().trim());
-		this.destinationNameTextField.setText(this.rootFolderNameTextField.getText());
-		this.enableOrDisableButtonsAndFields();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.selectSourceFolderButtonClicked();
+            }
+        });
 
-	protected void sourceFolderTextFieldChanged() {
-		this.sourceFileOrFolderTextField.setText(this.sourceFileOrFolderTextField.getText().trim());
-		this.destinationNameTextField.setText(new File(this.sourceFileOrFolderTextField.getText()).getName());
-		this.enableOrDisableButtonsAndFields();
-	}
+        sourceFileOrFolderTextField = new JTextField(new File(launcherView.getDataDirectory()).getAbsolutePath());
+        sourceFileOrFolderTextField.setToolTipText(I18N.translate("ToolTipSourceFileOrFolder"));
+        sourceFileOrFolderTextField.addActionListener(new ActionListener() {
 
-	protected void selectDestinationFolderButtonClicked() {
-		JFileChooser fileChooser = new JFileChooser(this.destinationFolderTextField.getText());
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fileChooser.setDialogTitle(I18N.translate("TitleSelectDestinationFolder"));
-		fileChooser.setMultiSelectionEnabled(false);
-		int result = fileChooser.showSaveDialog(this);
-		if (result == JFileChooser.CANCEL_OPTION)
-			return;
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.sourceFolderTextFieldChanged();
+            }
+        });
+        sourceFileOrFolderTextField.addFocusListener(new FocusAdapter() {
 
-		this.destinationFolderTextField.setText(fileChooser.getSelectedFile().getPath());
-	}
+            @Override
+            public void focusLost(final FocusEvent e) {
+                CreateNewSIPDialog.this.sourceFolderTextFieldChanged();
+            }
+        });
 
-	protected void selectDestinationIsWorkspaceButtonClicked() {
-		this.destinationFolderTextField.setText(launcherView.getSipDirectory());
-	}
+        selectDestinationZIPOrFolderButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
+        selectDestinationZIPOrFolderButton.setToolTipText(I18N.translate("ToolTipSelectDestinationFolder"));
+        selectDestinationZIPOrFolderButton.addActionListener(new ActionListener() {
 
-	protected void goButtonClicked() {
-		String rootFolderName = this.rootFolderNameTextField.getText();
-		String sourceFileOrFolder = this.sourceFileOrFolderTextField.getText();
-		String destinationFolder = this.destinationFolderTextField.getText();
-		String destinationName = this.destinationNameTextField.getText();
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.selectDestinationFolderButtonClicked();
+            }
+        });
 
-		// Don't accept empty SIP name:
-		if (destinationName.isEmpty()) {
-			GUIUtil.shake(this);
-			this.messageLabel.setText(I18N.translate("MessageDestinationNameIsEmpty"));
-			return;
-		}
+        selectDestinationIsWorkspaceButton = new JButton(getImageIcon("Workspace.png"));
+        selectDestinationIsWorkspaceButton.setName(SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON);
+        selectDestinationIsWorkspaceButton
+                .setToolTipText(I18N.translate("ToolTipSelectDestinationIsWorkspaceFolder"));
+        selectDestinationIsWorkspaceButton.addActionListener(new ActionListener() {
 
-		if (this.selectSIPFromSourceFileOrFolderRadioButton.isSelected()) {
-			// Don't accept empty source file or folder:
-			if (sourceFileOrFolder.isEmpty()) {
-				GUIUtil.shake(this);
-				this.messageLabel.setText(I18N.translate("MessageSourceFileOrFolderIsEmpty"));
-				return;
-			}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.selectDestinationIsWorkspaceButtonClicked();
+            }
+        });
 
-			// If the destination folder lies within the source folder, show
-			// message and reject:
-			if (destinationFolder.contains(sourceFileOrFolder)) {
-				GUIUtil.shake(this);
-				this.messageLabel.setText(I18N.translate("MessageDestinationIsWithinSource"));
-				return;
-			}
-		} else {
-			// Don't accept empty root folder name:
-			if (rootFolderName.isEmpty()) {
-				GUIUtil.shake(this);
-				this.messageLabel.setText(I18N.translate("MessageRootFolderNameIsEmpty"));
-				return;
-			}
-		}
+        boolean deleteSourcesByDefaultSelected = !launcherView.isActionNotVisible(ACTION_NAME_DELETE_SOURCES)
+                && launcherView.isDeleteSourcesByDefault();
+        deleteSourcesCheckBox = new JCheckBox(I18N.translate("LabelDeleteSources"), deleteSourcesByDefaultSelected);
+        deleteSourcesCheckBox.setToolTipText(I18N.translate("ToolTipDeleteSources"));
 
-		if (this.beZIPCheckBox.isSelected()) {
-			if (!destinationName.toLowerCase().endsWith(ZIP_EXT))
-				destinationName += ZIP_EXT;
-		} else {
-			if (destinationName.toLowerCase().endsWith(ZIP_EXT))
-				destinationName = destinationName.substring(0, destinationName.length() - 4);
-		}
+        destinationFolderTextField = new JTextField(
+                new File(launcherView.getLastUsedOpenOrSaveDirectory()).getAbsolutePath());
+        destinationFolderTextField.setToolTipText(I18N.translate("ToolTipDestinationFolder"));
+        destinationFolderTextField.addFocusListener(new FocusAdapter() {
 
-		File destinationFile = new File(destinationFolder + "/" + destinationName);
+            @Override
+            public void focusLost(final FocusEvent e) {
+                destinationFolderTextField
+                        .setText(destinationFolderTextField.getText().trim());
+            }
+        });
 
-		// Don't accept if a SIP with this name already exists:
-		if (destinationFile.exists()) {
-			GUIUtil.shake(this);
-			this.messageLabel.setText(I18N.translate("MessageSIPExistsAlready"));
-			return;
-		}
+        destinationNameTextField = new JTextField(new File(launcherView.getDataDirectory()).getName());
+        destinationNameTextField.setName(SIP_DESTINATION_NAME_TEXT_FIELD);
+        destinationNameTextField.setToolTipText(I18N.translate("ToolTipDestinationName"));
+        destinationNameTextField.addKeyListener(new KeyAdapter() {
 
-		// Remember the Data and SIP directories:
-		launcherView.setDataDirectory(sourceFileOrFolder);
-		launcherView.setLastUsedOpenOrSaveDirectory(destinationFolder);
+            @Override
+            public void keyTyped(final KeyEvent e) {
+                CreateNewSIPDialog.this.enableOrDisableButtonsAndFields();
+            }
+        });
+        destinationNameTextField.addFocusListener(new FocusAdapter() {
 
-		this.goButtonWasClicked = true;
-		this.close();
-	}
+            @Override
+            public void focusLost(final FocusEvent e) {
+                destinationNameTextField
+                        .setText(destinationNameTextField.getText().trim());
+            }
+        });
 
-	protected void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+        beZIPCheckBox = new JCheckBox(ZIP, launcherView.isNewSIPZippedByDefault());
+        beZIPCheckBox.setToolTipText(I18N.translate("ToolTipBeZIP"));
 
-	protected List<Overview> readSAOverviewFile() {
-		return SubmissionAgreement.getAllFinalOverviews();
-	}
+        saComboBox = new JComboBox(readSAOverviewFile().toArray());
+        saComboBox.setToolTipText(I18N.translate("ToolTipSelectSA"));
 
-	protected void enableOrDisableButtonsAndFields() {
-		if (this.selectSIPEmptyRadioButton.isSelected()) {
-			this.rootFolderNameTextField.setEnabled(true);
-			this.selectSourceFileOrFolderButton.setEnabled(false);
-			this.sourceFileOrFolderTextField.setEnabled(false);
+        messageLabel = new JLabel();
 
-			this.goButton.setEnabled(!(this.destinationNameTextField.getText().isEmpty()
-					|| this.rootFolderNameTextField.getText().isEmpty()));
-		} else {
-			this.rootFolderNameTextField.setEnabled(false);
-			this.selectSourceFileOrFolderButton.setEnabled(true);
-			this.sourceFileOrFolderTextField.setEnabled(true);
+        goButton = new JButton(getImageIcon(SAVE_PNG));
+        goButton.setName(SIP_CREATE_OK_BUTTON);
+        goButton.setToolTipText(I18N.translate("ToolTipCreateNew"));
+        goButton.addActionListener(new ActionListener() {
 
-			this.goButton.setEnabled(!(this.destinationNameTextField.getText().isEmpty()
-					|| this.sourceFileOrFolderTextField.getText().isEmpty()));
-		}
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CreateNewSIPDialog.this.goButtonClicked();
+            }
+        });
+
+        final GridBagPanel gridBag = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 0));
+        gridBag.add(selectSIPEmptyRadioButton, 0, 0, GridBagConstraints.EAST);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPRootName")), 0, 1, GridBagConstraints.EAST);
+        gridBag.add(rootFolderNameTextField, 0, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(selectSIPFromSourceFileOrFolderRadioButton, 1, 0, GridBagConstraints.EAST);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPSource")), 1, 1, GridBagConstraints.EAST);
+        gridBag.add(selectSourceFileOrFolderButton, 1, 3);
+        gridBag.add(sourceFileOrFolderTextField, 1, 1, 4, 6, GridBagConstraints.WEST,
+                GridBagConstraints.HORIZONTAL, 1, 0);
+        if (!launcherView.isActionNotVisible(ACTION_NAME_DELETE_SOURCES)) {
+            gridBag.add(deleteSourcesCheckBox, 2, 2, 4, 6, GridBagConstraints.WEST);
+        }
+        gridBag.add(new JLabel(" "), 3, 2);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPDestination")), 4, 1, GridBagConstraints.EAST);
+        gridBag.add(selectDestinationIsWorkspaceButton, 4, 2);
+        gridBag.add(selectDestinationZIPOrFolderButton, 4, 3);
+        gridBag.add(destinationFolderTextField, 4, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 2,
+                0);
+        gridBag.add(destinationNameTextField, 4, 5, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(beZIPCheckBox, 4, 6);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPSA")), 5, 1, GridBagConstraints.EAST);
+        gridBag.add(saComboBox, 5, 5, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(messageLabel, 6, 6, 0, 5, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(goButton, 6, 6, GridBagConstraints.EAST);
+
+        this.add(gridBag);
+
+        setPreferredSize(new Dimension(800, 240));
+        pack();
+        setLocationRelativeTo(launcherView);
+
+        rootFolderNameTextField.requestFocusInWindow();
+        selectSIPRootRadioButtonClicked();
+
+        setVisible(true);
+    }
+
+    protected void selectSIPRootRadioButtonClicked() {
+        if (selectSIPEmptyRadioButton.isSelected()) {
+            destinationNameTextField.setText(rootFolderNameTextField.getText());
+        } else {
+            destinationNameTextField.setText(new File(sourceFileOrFolderTextField.getText()).getName());
+        }
+
+        enableOrDisableButtonsAndFields();
+    }
+
+    protected void selectSourceFolderButtonClicked() {
+        final JFileChooser fileChooser = new JFileChooser(sourceFileOrFolderTextField.getText());
+        fileChooser.setName(SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fileChooser.setDialogTitle(I18N.translate("TitleSelectSourceFileOrFolder"));
+        fileChooser.setMultiSelectionEnabled(false);
+        final int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.CANCEL_OPTION) {
+            return;
+        }
+
+        sourceFileOrFolderTextField.setText(fileChooser.getSelectedFile().getPath());
+        sourceFolderTextFieldChanged();
+    }
+
+    protected void rootFolderNameTextFieldChanged() {
+        rootFolderNameTextField.setText(rootFolderNameTextField.getText().trim());
+        destinationNameTextField.setText(rootFolderNameTextField.getText());
+        enableOrDisableButtonsAndFields();
+    }
+
+    protected void sourceFolderTextFieldChanged() {
+        sourceFileOrFolderTextField.setText(sourceFileOrFolderTextField.getText().trim());
+        destinationNameTextField.setText(new File(sourceFileOrFolderTextField.getText()).getName());
+        enableOrDisableButtonsAndFields();
+    }
+
+    protected void selectDestinationFolderButtonClicked() {
+        final JFileChooser fileChooser = new JFileChooser(destinationFolderTextField.getText());
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setDialogTitle(I18N.translate("TitleSelectDestinationFolder"));
+        fileChooser.setMultiSelectionEnabled(false);
+        final int result = fileChooser.showSaveDialog(this);
+        if (result == JFileChooser.CANCEL_OPTION) {
+            return;
+        }
+
+        destinationFolderTextField.setText(fileChooser.getSelectedFile().getPath());
+    }
+
+    protected void selectDestinationIsWorkspaceButtonClicked() {
+        destinationFolderTextField.setText(launcherView.getSipDirectory());
+    }
+
+    protected void goButtonClicked() {
+        final String rootFolderName = rootFolderNameTextField.getText();
+        final String sourceFileOrFolder = sourceFileOrFolderTextField.getText();
+        final String destinationFolder = destinationFolderTextField.getText();
+        String destinationName = destinationNameTextField.getText();
+
+        // Don't accept empty SIP name:
+        if (destinationName.isEmpty()) {
+            GUIUtil.shake(this);
+            messageLabel.setText(I18N.translate("MessageDestinationNameIsEmpty"));
+            return;
+        }
+
+        if (selectSIPFromSourceFileOrFolderRadioButton.isSelected()) {
+            // Don't accept empty source file or folder:
+            if (sourceFileOrFolder.isEmpty()) {
+                GUIUtil.shake(this);
+                messageLabel.setText(I18N.translate("MessageSourceFileOrFolderIsEmpty"));
+                return;
+            }
+
+            // If the destination folder lies within the source folder, show
+            // message and reject:
+            if (destinationFolder.contains(sourceFileOrFolder)) {
+                GUIUtil.shake(this);
+                messageLabel.setText(I18N.translate("MessageDestinationIsWithinSource"));
+                return;
+            }
+        } else {
+            // Don't accept empty root folder name:
+            if (rootFolderName.isEmpty()) {
+                GUIUtil.shake(this);
+                messageLabel.setText(I18N.translate("MessageRootFolderNameIsEmpty"));
+                return;
+            }
+        }
+
+        if (beZIPCheckBox.isSelected()) {
+            if (!destinationName.toLowerCase().endsWith(ZIP_EXT)) {
+                destinationName += ZIP_EXT;
+            }
+        } else {
+            if (destinationName.toLowerCase().endsWith(ZIP_EXT)) {
+                destinationName = destinationName.substring(0, destinationName.length() - 4);
+            }
+        }
+
+        final File destinationFile = new File(destinationFolder + "/" + destinationName);
+
+        // Don't accept if a SIP with this name already exists:
+        if (destinationFile.exists()) {
+            GUIUtil.shake(this);
+            messageLabel.setText(I18N.translate("MessageSIPExistsAlready"));
+            return;
+        }
+
+        // Remember the Data and SIP directories:
+        launcherView.setDataDirectory(sourceFileOrFolder);
+        launcherView.setLastUsedOpenOrSaveDirectory(destinationFolder);
+
+        goButtonWasClicked = true;
+        close();
+    }
+
+    protected void close() {
+        setVisible(false);
+        dispose();
+    }
+
+    protected List<Overview> readSAOverviewFile() {
+        return SubmissionAgreement.getAllFinalOverviews();
+    }
+
+    protected void enableOrDisableButtonsAndFields() {
+        if (selectSIPEmptyRadioButton.isSelected()) {
+            rootFolderNameTextField.setEnabled(true);
+            selectSourceFileOrFolderButton.setEnabled(false);
+            sourceFileOrFolderTextField.setEnabled(false);
+
+            goButton.setEnabled(!(destinationNameTextField.getText().isEmpty() || rootFolderNameTextField.getText()
+                    .isEmpty()));
+        } else {
+            rootFolderNameTextField.setEnabled(false);
+            selectSourceFileOrFolderButton.setEnabled(true);
+            sourceFileOrFolderTextField.setEnabled(true);
+
+            goButton.setEnabled(!(destinationNameTextField.getText().isEmpty() || sourceFileOrFolderTextField
+                    .getText().isEmpty()));
+        }
+    }
+
+    boolean isDeleteSourcesCheckBoxSelected() {
+        return deleteSourcesCheckBox.isSelected();
+    }
 
 }

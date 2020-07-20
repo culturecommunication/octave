@@ -14,43 +14,52 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.cellRenderer;
 
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import javax.swing.table.DefaultTableCellRenderer;
 
 import ch.docuteam.darc.mets.structmap.NodeAbstract.SubmitStatus;
 import ch.docuteam.tools.translations.I18N;
-import static ch.docuteam.packer.gui.PackerConstants.*;
 
 public class SubmitStatusTableCellRenderer extends DefaultTableCellRenderer {
-	@Override
-	public void setValue(Object object) {
-		if (object == null)
-			return;
 
-		SubmitStatus submitStatus = (SubmitStatus) object;
-		switch (submitStatus) {
-		case SubmitUndefined:
-			setIcon(null);
-			break;
-		case SubmitRequested:
-			setIcon(getImageIcon("SubmitRequestedFlag.png"));
-			break;
-		case SubmitRequestPending:
-			setIcon(getImageIcon("SubmitRequestPendingFlag.png"));
-			break;
-		case SubmitFailed:
-			setIcon(getImageIcon("SubmitFailedFlag.png"));
-			break;
-		case Submitted:
-			setIcon(getImageIcon("SubmittedFlag.png"));
-			break;
-		default:
-			setIcon(null);
-			break;
-		}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		setToolTipText(I18N.translate("HeaderPropertiesSubmitStatus") + " " + I18N.translate(submitStatus.toString()));
-	}
+    @Override
+    public void setValue(final Object object) {
+        if (object == null) {
+            return;
+        }
+
+        final SubmitStatus submitStatus = (SubmitStatus) object;
+        switch (submitStatus) {
+            case SubmitUndefined:
+                setIcon(null);
+                break;
+            case SubmitRequested:
+                setIcon(getImageIcon("SubmitRequestedFlag.png"));
+                break;
+            case SubmitRequestPending:
+                setIcon(getImageIcon("SubmitRequestPendingFlag.png"));
+                break;
+            case SubmitFailed:
+                setIcon(getImageIcon("SubmitFailedFlag.png"));
+                break;
+            case Submitted:
+                setIcon(getImageIcon("SubmittedFlag.png"));
+                break;
+            default:
+                setIcon(null);
+                break;
+        }
+
+        setToolTipText(I18N.translate("HeaderPropertiesSubmitStatus") + " " + I18N.translate(submitStatus
+                .toString()));
+    }
 }

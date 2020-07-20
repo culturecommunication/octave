@@ -14,26 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher;
 
+import static ch.docuteam.packer.gui.PackerConstants.DATE_FORMAT;
+
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import static ch.docuteam.packer.gui.PackerConstants.DATE_FORMAT;
 import ch.docuteam.tools.string.DateFormatter;
 
 public class DateTableCellRenderer extends DefaultTableCellRenderer {
 
-	public DateTableCellRenderer() {
-		super();
-		this.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void setValue(Object object) {
-		if (object == null){
-			return;
-		}
-		super.setValue(DateFormatter.getDateTimeString((Long) object, DATE_FORMAT));
-	}
+    public DateTableCellRenderer() {
+        super();
+        setHorizontalAlignment(SwingConstants.RIGHT);
+    }
+
+    @Override
+    public void setValue(final Object object) {
+        if (object == null) {
+            return;
+        }
+        super.setValue(DateFormatter.getDateTimeString((Long) object, DATE_FORMAT));
+    }
 
 }

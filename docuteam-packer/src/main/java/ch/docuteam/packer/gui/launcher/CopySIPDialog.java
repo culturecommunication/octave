@@ -14,13 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher;
 
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.SAVE_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.ZIP;
 import static ch.docuteam.packer.gui.PackerConstants.ZIP_EXT;
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.getImage;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -35,10 +37,10 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.docuteam.tools.file.FileUtil;
@@ -48,88 +50,108 @@ import ch.docuteam.tools.translations.I18N;
 
 public class CopySIPDialog extends JDialog {
 
-	protected JTextField copyNameTextField;
-	protected JCheckBox beZIPCheckBox;
-	protected JButton goButton;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected boolean goButtonWasClicked = false;
+    protected JTextField copyNameTextField;
 
-	protected static String open(LauncherView owner, String message, String title, String textFieldContent) {
-		CopySIPDialog dialog = new CopySIPDialog(owner, message, title, textFieldContent);
+    protected JCheckBox beZIPCheckBox;
 
-		if (!dialog.goButtonWasClicked)
-			return null;
+    protected JButton goButton;
 
-		String name = dialog.copyNameTextField.getText();
-		if (dialog.beZIPCheckBox.isSelected()) {
-			if (!name.toLowerCase().endsWith(ZIP_EXT))
-				name += ZIP_EXT;
-		} else {
-			if (name.toLowerCase().endsWith(ZIP_EXT))
-				name = FileUtil.asFilePathWithoutExtension(name);
-		}
+    protected boolean goButtonWasClicked = false;
 
-		return name;
-	}
+    protected static String open(final LauncherView owner, final String message, final String title,
+            final String textFieldContent) {
+        final CopySIPDialog dialog = new CopySIPDialog(owner, message, title, textFieldContent);
 
-	private CopySIPDialog(LauncherView owner, String message, String title, String textFieldContent) {
-		super(owner, title, true);
+        if (!dialog.goButtonWasClicked) {
+            return null;
+        }
 
-		this.setIconImage(getImage(PACKER_PNG));
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getRootPane().registerKeyboardAction(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CopySIPDialog.this.close();
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        String name = dialog.copyNameTextField.getText();
+        if (dialog.beZIPCheckBox.isSelected()) {
+            if (!name.toLowerCase().endsWith(ZIP_EXT)) {
+                name += ZIP_EXT;
+            }
+        } else {
+            if (name.toLowerCase().endsWith(ZIP_EXT)) {
+                name = FileUtil.asFilePathWithoutExtension(name);
+            }
+        }
 
-		this.copyNameTextField = new JTextField(textFieldContent);
-		this.copyNameTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CopySIPDialog.this.goButtonWasClicked();
-			}
-		});
+        return name;
+    }
 
-		this.beZIPCheckBox = new JCheckBox(ZIP, owner.isNewSIPZippedByDefault());
-		this.beZIPCheckBox.setToolTipText(I18N.translate("ToolTipBeZIP"));
+    private CopySIPDialog(final LauncherView owner, final String message, final String title,
+            final String textFieldContent) {
+        super(owner, title, true);
 
-		this.goButton = new JButton(getImageIcon(SAVE_PNG));
-		this.goButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CopySIPDialog.this.goButtonWasClicked();
-			}
-		});
+        setIconImage(getImage(PACKER_PNG));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getRootPane().registerKeyboardAction(new AbstractAction() {
 
-		new JLabel(getImageIcon(PACKER_PNG));
-		GridBagPanel gridBag = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 5));
-		gridBag.add(new JLabel(getImageIcon(PACKER_PNG)), 0, 2, 0, 0, GridBagConstraints.CENTER);
-		gridBag.add(new MultiLineLabel(message, Component.LEFT_ALIGNMENT), 1, 1, GridBagConstraints.WEST);
-		gridBag.add(this.copyNameTextField, 2, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-		gridBag.add(this.beZIPCheckBox, 2, 2);
-		gridBag.add(this.goButton, 3, 2, GridBagConstraints.EAST);
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-		this.add(gridBag);
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CopySIPDialog.this.close();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-		this.setPreferredSize(new Dimension(450, 150));
-		this.pack();
-		this.setLocationRelativeTo(owner);
+        copyNameTextField = new JTextField(textFieldContent);
+        copyNameTextField.addActionListener(new ActionListener() {
 
-		this.copyNameTextField.requestFocusInWindow();
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CopySIPDialog.this.goButtonWasClicked();
+            }
+        });
 
-		this.setVisible(true);
-	}
+        beZIPCheckBox = new JCheckBox(ZIP, owner.isNewSIPZippedByDefault());
+        beZIPCheckBox.setToolTipText(I18N.translate("ToolTipBeZIP"));
 
-	private void goButtonWasClicked() {
-		this.goButtonWasClicked = true;
-		this.close();
-	}
+        goButton = new JButton(getImageIcon(SAVE_PNG));
+        goButton.addActionListener(new ActionListener() {
 
-	private void close() {
-		this.setVisible(false);
-		this.dispose();
-	}
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                CopySIPDialog.this.goButtonWasClicked();
+            }
+        });
+
+        new JLabel(getImageIcon(PACKER_PNG));
+        final GridBagPanel gridBag = new GridBagPanel(new EmptyBorder(10, 10, 10, 10), new Insets(0, 5, 0, 5));
+        gridBag.add(new JLabel(getImageIcon(PACKER_PNG)), 0, 2, 0, 0, GridBagConstraints.CENTER);
+        gridBag.add(new MultiLineLabel(message, Component.LEFT_ALIGNMENT), 1, 1, GridBagConstraints.WEST);
+        gridBag.add(copyNameTextField, 2, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(beZIPCheckBox, 2, 2);
+        gridBag.add(goButton, 3, 2, GridBagConstraints.EAST);
+
+        this.add(gridBag);
+
+        setPreferredSize(new Dimension(450, 150));
+        pack();
+        setLocationRelativeTo(owner);
+
+        copyNameTextField.requestFocusInWindow();
+
+        setVisible(true);
+    }
+
+    private void goButtonWasClicked() {
+        goButtonWasClicked = true;
+        close();
+    }
+
+    private void close() {
+        setVisible(false);
+        dispose();
+    }
 
 }

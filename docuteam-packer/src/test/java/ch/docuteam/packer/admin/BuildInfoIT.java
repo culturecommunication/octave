@@ -14,24 +14,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.admin;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class BuildInfoIT {
 
-	@Test
-	public void test() {
-		//build.properties was found
-		assertNotNull(BuildInfo.getProduct());
-		assertNotNull(BuildInfo.getVersion());
-		assertNotNull(BuildInfo.getLastChange());	
-		
-		//build.properties was filtered
-		assertTrue("build.properties was not filtered", !BuildInfo.getProduct().startsWith("$"));
-		assertTrue(BuildInfo.getProduct().contains("packer"));
-	}
+    @Test
+    public void test() {
+        // build.properties was found
+        assertNotNull(BuildInfo.getProduct());
+        assertNotNull(BuildInfo.getVersion());
+        assertNotNull(BuildInfo.getLastChange());
+
+        // build.properties was filtered
+        assertTrue("build.properties was not filtered", !BuildInfo.getProduct().startsWith("$"));
+        assertTrue(BuildInfo.getProduct().contains("packer"));
+    }
 
 }

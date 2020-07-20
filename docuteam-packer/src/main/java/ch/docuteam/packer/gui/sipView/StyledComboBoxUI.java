@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
 import java.awt.Rectangle;
@@ -25,15 +26,22 @@ import javax.swing.plaf.basic.ComboPopup;
 //taken from http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4880218
 public class StyledComboBoxUI extends BasicComboBoxUI {
 
-	protected ComboPopup createPopup() {
-		BasicComboPopup popup = new BasicComboPopup(comboBox) {
-			@Override
-			protected Rectangle computePopupBounds(int px, int py, int pw, int ph) {
-				return super.computePopupBounds(px, py, Math.max(comboBox.getPreferredSize().width, pw), ph);
-			}
-		};
-		popup.getAccessibleContext().setAccessibleParent(comboBox);
-		return popup;
-	}
+    @Override
+    protected ComboPopup createPopup() {
+        final BasicComboPopup popup = new BasicComboPopup(comboBox) {
+
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected Rectangle computePopupBounds(final int px, final int py, final int pw, final int ph) {
+                return super.computePopupBounds(px, py, Math.max(comboBox.getPreferredSize().width, pw), ph);
+            }
+        };
+        popup.getAccessibleContext().setAccessibleParent(comboBox);
+        return popup;
+    }
 
 }

@@ -14,48 +14,56 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.launcher.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.HELP_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Action;
+
 import ch.docuteam.packer.gui.launcher.LauncherView;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.translations.I18N;
 
 public class HelpAction extends AbstractDocuAction {
 
-	public HelpAction(LauncherView owner) {
-		super(I18N.translate("ActionHelp"), getImageIcon(HELP_PNG), owner);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipHelp"));
-		putValue(Action.ACCELERATOR_KEY, owner.getKeyStroke(KeyEvent.VK_H,
-				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), KeyEvent.VK_F1, 0));
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (!java.awt.Desktop.isDesktopSupported()) {
-			System.err.println("Desktop is not supported");
-			return;
-		}
+    public HelpAction(final LauncherView owner) {
+        super(I18N.translate("ActionHelp"), getImageIcon(HELP_PNG), owner);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipHelp"));
+        putValue(Action.ACCELERATOR_KEY, owner.getKeyStroke(KeyEvent.VK_H,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), KeyEvent.VK_F1, 0));
+    }
 
-		java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        if (!java.awt.Desktop.isDesktopSupported()) {
+            System.err.println("Desktop is not supported");
+            return;
+        }
 
-		if (!desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
-			System.err.println("Desktop doesn't support the browse action");
-			return;
-		}
+        final java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 
-		try {
-			desktop.browse(new java.net.URI(I18N.translate("HelpPageURL")));
-		} catch (java.lang.Exception ex) {
-			Logger.error(ex.getMessage(), ex);
-		}
+        if (!desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+            System.err.println("Desktop doesn't support the browse action");
+            return;
+        }
 
-	}
+        try {
+            desktop.browse(new java.net.URI(I18N.translate("HelpPageURL")));
+        } catch (final java.lang.Exception ex) {
+            Logger.error(ex.getMessage(), ex);
+        }
+
+    }
 
 }

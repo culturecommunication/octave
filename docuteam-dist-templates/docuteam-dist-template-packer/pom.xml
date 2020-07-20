@@ -4,12 +4,13 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam-dist-templates</artifactId>
-    <version>5.3.0</version>
+    <version>5.4.0</version>
+
   </parent>
 
   <artifactId>docuteam-dist-template-packer</artifactId>
   <packaging>pom</packaging>
-  <name>dist template for packer</name>
+  <name>docuteam dist template for packer</name>
 
   <properties>
     <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->

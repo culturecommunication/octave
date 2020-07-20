@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui;
 
 import java.io.File;
@@ -22,117 +23,127 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import ch.docuteam.darc.mets.Document;
 
 public class FileProperty implements Comparable<FileProperty> {
 
-	private NumberFormat sizeFormatter;
-	private boolean isInWorkspace;
-	private File file;
-	private Document document;
-	private String name;
-	private String lockedBy;
-	private Long size;
-	private Long lastModified;
+    private final NumberFormat sizeFormatter;
 
-	public FileProperty(File file, boolean isInWorkspace) {
-		sizeFormatter = DecimalFormat.getInstance();
-		this.isInWorkspace = isInWorkspace;
-		this.file = file;
-		Path path = Paths.get(file.getPath());
-		name = path.getFileName().toString();
-		BasicFileAttributes attrs = null;
-		try {
-			if (Files.isDirectory(path)) {
-				//we regard the mets.xml and we don't get the size here
-				path = path.resolve(Document.DEFAULT_METS_FILE_NAME);
-				attrs = Files.readAttributes(path, BasicFileAttributes.class);
-			} else {
-				attrs = Files.readAttributes(path, BasicFileAttributes.class);
-				size = attrs.size();
-			}
-			lastModified = attrs.lastModifiedTime().toMillis();
-		} catch (IOException e) {
-			// TODO Not sure what should happen here
-		}
-	}
+    private final boolean isInWorkspace;
 
-	public boolean isInWorkspace() {
-		return isInWorkspace;
-	}
+    private final File file;
 
-	public File getFile() {
-		return this.file;
-	}
+    private Document document;
 
-	public String getName() {
-		return this.name;
-	}
+    private final String name;
 
-	public void setDocument(Document document) {
-		this.document = document;
-	}
+    private String lockedBy;
 
-	public Document getDocument() {
-		return this.document;
-	}
+    private Long size;
 
-	public void setLockedBy(String lockedBy) {
-		this.lockedBy = lockedBy;
-	}
+    private Long lastModified;
 
-	public String getLockedBy() {
-		return lockedBy == null ? "?" : lockedBy;
-	}
+    public FileProperty(final File file, final boolean isInWorkspace) {
+        sizeFormatter = NumberFormat.getInstance();
+        this.isInWorkspace = isInWorkspace;
+        this.file = file;
+        Path path = Paths.get(file.getPath());
+        name = path.getFileName().toString();
+        BasicFileAttributes attrs = null;
+        try {
+            if (Files.isDirectory(path)) {
+                // we regard the mets.xml and we don't get the size here
+                path = path.resolve(Document.DEFAULT_METS_FILE_NAME);
+                attrs = Files.readAttributes(path, BasicFileAttributes.class);
+            } else {
+                attrs = Files.readAttributes(path, BasicFileAttributes.class);
+                size = attrs.size();
+            }
+            lastModified = attrs.lastModifiedTime().toMillis();
+        } catch (final IOException e) {
+            // TODO Not sure what should happen here
+        }
+    }
 
-	public void setSize(Long size) {
-		this.size = size;
-	}
+    public boolean isInWorkspace() {
+        return isInWorkspace;
+    }
 
-	public String getSize() {
-		return size == null ? "?" : sizeFormatter.format(size.longValue() / 1024);
-	}
+    public File getFile() {
+        return file;
+    }
 
-	public long getLastModified() {
-		return this.lastModified;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public boolean isLocked() {
-		return Document.isLockedBySomebodyElse(file);
-	}
+    public void setDocument(final Document document) {
+        this.document = document;
+    }
 
-	@Override
-	public int compareTo(FileProperty other) {
-		return this.getName().compareTo(other.getName());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		FileProperty other = (FileProperty) obj;
-		if (file == null) {
-			if (other.file != null)
-				return false;
-		} else if (!file.getName().equals(other.file.getName()))
-			return false;
-		return true;
-	}
+    public Document getDocument() {
+        return document;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((file == null) ? 0 : file.getName().hashCode());
-		return result;
-	}
-		
+    public void setLockedBy(final String lockedBy) {
+        this.lockedBy = lockedBy;
+    }
+
+    public String getLockedBy() {
+        return lockedBy == null ? "?" : lockedBy;
+    }
+
+    public void setSize(final Long size) {
+        this.size = size;
+    }
+
+    public String getSize() {
+        return size == null ? "?" : sizeFormatter.format(size.longValue() / 1024);
+    }
+
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    public boolean isLocked() {
+        return Document.isLockedBySomebodyElse(file);
+    }
+
+    @Override
+    public int compareTo(final FileProperty other) {
+        return getName().compareTo(other.getName());
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FileProperty other = (FileProperty) obj;
+        if (file == null) {
+            if (other.file != null) {
+                return false;
+            }
+        } else if (!file.getName().equals(other.file.getName())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (file == null ? 0 : file.getName().hashCode());
+        return result;
+    }
 
 }

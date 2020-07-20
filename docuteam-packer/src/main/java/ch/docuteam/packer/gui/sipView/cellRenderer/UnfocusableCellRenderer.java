@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.cellRenderer;
 
 import static ch.docuteam.packer.gui.PackerConstants.EDITABLE_COLUMN_INDEX;
@@ -28,21 +29,27 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class UnfocusableCellRenderer extends DefaultTableCellRenderer {
 
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-			int row, int column) {
-		Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		// Display URLs in blue
-		if (column == EDITABLE_COLUMN_INDEX && value != null
-				&& value.toString().matches(URL_PATTERN)) {
-			comp.setForeground(Color.blue);
-		} else {
-			comp.setForeground((Color) UIManager.get("Table.foreground"));
-		}
+    @Override
+    public Component getTableCellRendererComponent(final JTable table, final Object value, final boolean isSelected,
+            final boolean hasFocus,
+            final int row, final int column) {
+        final Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		if (hasFocus) {
-			table.changeSelection(row, 2, false, false);
-		}
-		return comp;
-	}
+        // Display URLs in blue
+        if (column == EDITABLE_COLUMN_INDEX && value != null && value.toString().matches(URL_PATTERN)) {
+            comp.setForeground(Color.blue);
+        } else {
+            comp.setForeground((Color) UIManager.get("Table.foreground"));
+        }
+
+        if (hasFocus) {
+            table.changeSelection(row, 2, false, false);
+        }
+        return comp;
+    }
 }

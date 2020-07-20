@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView;
 
 import java.awt.Component;
@@ -25,25 +26,27 @@ import javax.swing.JOptionPane;
 
 public class ElementNamingDialog {
 
-	public Object showInputDialog(Component parentComponent, Object message, String title, int messageType, Icon icon,
-			Object[] selectionValues, Object initialSelectionValue, int width, int height) {
-		JOptionPane pane = new JOptionPane(message, messageType, JOptionPane.OK_CANCEL_OPTION, icon, null, null);
+    public Object showInputDialog(final Component parentComponent, final Object message, final String title,
+            final int messageType, final Icon icon,
+            final Object[] selectionValues, final Object initialSelectionValue, final int width, final int height) {
+        final JOptionPane pane = new JOptionPane(message, messageType, JOptionPane.OK_CANCEL_OPTION, icon, null,
+                null);
 
-		pane.setWantsInput(true);
-		pane.setSelectionValues(selectionValues);
-		pane.setInitialSelectionValue(initialSelectionValue);
-		pane.setComponentOrientation(parentComponent.getComponentOrientation());
+        pane.setWantsInput(true);
+        pane.setSelectionValues(selectionValues);
+        pane.setInitialSelectionValue(initialSelectionValue);
+        pane.setComponentOrientation(parentComponent.getComponentOrientation());
 
-		JDialog dialog = pane.createDialog(parentComponent, title);
-		dialog.setResizable(true);
-		dialog.setSize(new Dimension(width, height));
-		pane.selectInitialValue();
-		dialog.setVisible(true);
-		dialog.dispose();
+        final JDialog dialog = pane.createDialog(parentComponent, title);
+        dialog.setResizable(true);
+        dialog.setSize(new Dimension(width, height));
+        pane.selectInitialValue();
+        dialog.setVisible(true);
+        dialog.dispose();
 
-		String value = ((String) pane.getInputValue()).trim();
+        final String value = ((String) pane.getInputValue()).trim();
 
-		return value.equals(JOptionPane.UNINITIALIZED_VALUE) ? null : value;
-	}
+        return value.equals(JOptionPane.UNINITIALIZED_VALUE) ? null : value;
+    }
 
 }

@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.cellRenderer;
 
 import javax.swing.table.DefaultTableCellRenderer;
@@ -21,31 +22,39 @@ import javax.swing.table.TableColumn;
 
 public class RelativeSizeBarTableCellRenderer extends DefaultTableCellRenderer {
 
-	// 100 vertical bars:
-	private static final String BARS = "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||";
-	// Magic Number: approximate width of the "|" character in pixels!
-	private static final int BAR_CHAR_WIDTH = 5;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private TableColumn column;
+    // 100 vertical bars:
+    private static final String BARS =
+            "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||";
 
-	public RelativeSizeBarTableCellRenderer(TableColumn column) {
-		this.column = column;
-	}
+    // Magic Number: approximate width of the "|" character in pixels!
+    private static final int BAR_CHAR_WIDTH = 5;
 
-	@Override
-	public void setValue(Object object) {
-		if (object == null)
-			return;
+    private final TableColumn column;
 
-		int columnWidth = column.getWidth();
-		float relativeFileSize = new Integer(object.toString()).floatValue() / 100;
+    public RelativeSizeBarTableCellRenderer(final TableColumn column) {
+        this.column = column;
+    }
 
-		int nrOfBars100 = columnWidth / BAR_CHAR_WIDTH;
-		int nrOfBars = (int) (relativeFileSize * nrOfBars100);
-		String bars = BARS.substring(0, Math.min(BARS.length(), nrOfBars));
+    @Override
+    public void setValue(final Object object) {
+        if (object == null) {
+            return;
+        }
 
-		setToolTipText("" + relativeFileSize);
-		super.setValue(bars);
-	}
+        final int columnWidth = column.getWidth();
+        final float relativeFileSize = new Integer(object.toString()).floatValue() / 100;
+
+        final int nrOfBars100 = columnWidth / BAR_CHAR_WIDTH;
+        final int nrOfBars = (int) (relativeFileSize * nrOfBars100);
+        final String bars = BARS.substring(0, Math.min(BARS.length(), nrOfBars));
+
+        setToolTipText("" + relativeFileSize);
+        super.setValue(bars);
+    }
 
 }

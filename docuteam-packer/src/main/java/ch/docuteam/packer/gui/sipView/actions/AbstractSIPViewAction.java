@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
 import javax.swing.AbstractAction;
@@ -23,13 +24,18 @@ import ch.docuteam.packer.gui.sipView.SIPView;
 
 public abstract class AbstractSIPViewAction extends AbstractAction {
 
-	protected SIPView sipView;
-	
-	public AbstractSIPViewAction(String name, Icon icon, SIPView sipView) {
-		super(name, icon);
-		this.sipView = sipView;
-	}
-	
-	public abstract void enableOrDisable();
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    protected SIPView sipView;
+
+    public AbstractSIPViewAction(final String name, final Icon icon, final SIPView sipView) {
+        super(name, icon);
+        this.sipView = sipView;
+    }
+
+    public abstract void enableOrDisable();
 
 }

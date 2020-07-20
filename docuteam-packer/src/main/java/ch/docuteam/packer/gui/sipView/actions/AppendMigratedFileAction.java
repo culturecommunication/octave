@@ -14,9 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.MIGRATE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -36,67 +38,76 @@ import ch.docuteam.tools.translations.I18N;
 
 public class AppendMigratedFileAction extends AbstractSIPViewAction {
 
-	public AppendMigratedFileAction(SIPView sipView) {
-		super(I18N.translate("ButtonAppendMigratedFile"), getImageIcon(MIGRATE_PNG), sipView);
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		int selectedRow = sipView.getTreeTable().getSelectedRow();
-		NodeAbstract selectedNode = (NodeAbstract) sipView.getTreeTable().getPathForRow(selectedRow).getLastPathComponent();
-		String admId = selectedNode.getAdmId();
+    public AppendMigratedFileAction(final SIPView sipView) {
+        super(I18N.translate("ButtonAppendMigratedFile"), getImageIcon(MIGRATE_PNG), sipView);
+    }
 
-		AppendMigratedFileDialog dialog = new AppendMigratedFileDialog(this.sipView, selectedNode);
-		if (!dialog.goButtonWasClicked)
-			return;
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        final int selectedRow = sipView.getTreeTable().getSelectedRow();
+        final NodeAbstract selectedNode = (NodeAbstract) sipView.getTreeTable().getPathForRow(selectedRow)
+                .getLastPathComponent();
+        final String admId = selectedNode.getAdmId();
 
-		File newFile = new File(dialog.derivedFileTextField.getText());
-		if (!newFile.exists())
-			return;
-		
-		ExceptionCollector.clear();
-		if (dialog.keepOriginalCheckBox.isSelected()) {
-			try {
-				((NodeFile)selectedNode).migrateToFileKeepOriginal(newFile.getAbsolutePath(), "docuteam packer");
-			} catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException | FileAlreadyExistsException e1) {
-				Logger.error(e1.getMessage(), e1);
-			}
-		} else {
-			try {
-				((NodeFile)selectedNode).migrateToFile(newFile.getAbsolutePath(), "docuteam packer");
-			} catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException | FileAlreadyExistsException e1) {
-			    Logger.error(e1.getMessage(), e1);
-			}
-		}
+        final AppendMigratedFileDialog dialog = new AppendMigratedFileDialog(sipView, selectedNode);
+        if (!dialog.goButtonWasClicked) {
+            return;
+        }
 
-		//feedback from migration
-		Util.showAllFromExceptionCollector(null, sipView);
-		
-		// Refresh the selected node:
-		sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(selectedRow).getParentPath());
-		sipView.selectNode(admId);
-		sipView.enableOrDisableActions();
-	}
+        final File newFile = new File(dialog.derivedFileTextField.getText());
+        if (!newFile.exists()) {
+            return;
+        }
 
-	@Override
-	public void enableOrDisable() {
-		boolean isEnabled = false;
+        ExceptionCollector.clear();
+        if (dialog.keepOriginalCheckBox.isSelected()) {
+            try {
+                ((NodeFile) selectedNode).migrateToFileKeepOriginal(newFile.getAbsolutePath(), "docuteam packer");
+            } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
+                    FileAlreadyExistsException e1) {
+                Logger.error(e1.getMessage(), e1);
+            }
+        } else {
+            try {
+                ((NodeFile) selectedNode).migrateToFile(newFile.getAbsolutePath(), "docuteam packer");
+            } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
+                    FileAlreadyExistsException e1) {
+                Logger.error(e1.getMessage(), e1);
+            }
+        }
 
-		if (sipView.getTreeTable().getSelectedRowCount() == 1) {
-			int selectedRow = sipView.getTreeTable().getSelectedRow();
-			NodeAbstract node = (NodeAbstract) sipView.getTreeTable().getPathForRow(selectedRow).getLastPathComponent();
-				
-			// enabled is a consequence of several of the conditions being true
-			// for all the selected nodes
-			isEnabled = sipView.getDocument().getMode().equals(Mode.ReadWrite)
-			        && node.isFile()
-					&& node.canRead()
-					&& node.canWrite()
-					&& ((NodeFile)node).getMigrationDerivedNode() == null
-					&& node.getSubmitStatus().isEditingAllowed();
-		}
-		
-		setEnabled(isEnabled);
-	}
+        // feedback from migration
+        Util.showAllFromExceptionCollector(null, sipView);
+
+        // Refresh the selected node:
+        sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(selectedRow)
+                .getParentPath());
+        sipView.selectNode(admId);
+        sipView.enableOrDisableActions();
+    }
+
+    @Override
+    public void enableOrDisable() {
+        boolean isEnabled = false;
+
+        if (sipView.getTreeTable().getSelectedRowCount() == 1) {
+            final int selectedRow = sipView.getTreeTable().getSelectedRow();
+            final NodeAbstract node = (NodeAbstract) sipView.getTreeTable().getPathForRow(selectedRow)
+                    .getLastPathComponent();
+
+            // enabled is a consequence of several of the conditions being true
+            // for all the selected nodes
+            isEnabled = sipView.getDocument().getMode().equals(Mode.ReadWrite) && node.isFile() && node.canRead() &&
+                    node.canWrite() && ((NodeFile) node).getMigrationDerivedNode() == null && node.getSubmitStatus()
+                            .isEditingAllowed();
+        }
+
+        setEnabled(isEnabled);
+    }
 
 }

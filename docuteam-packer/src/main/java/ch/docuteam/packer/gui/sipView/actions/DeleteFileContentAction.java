@@ -15,10 +15,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 package ch.docuteam.packer.gui.sipView.actions;
 
-import static ch.docuteam.packer.gui.PackerConstants.*;
+import static ch.docuteam.packer.gui.PackerConstants.DELETE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.getImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -39,60 +39,67 @@ import ch.docuteam.tools.translations.I18N;
 
 /**
  * @author iliya
- *
  */
 public class DeleteFileContentAction extends AbstractSIPViewAction {
 
-	public DeleteFileContentAction(SIPView sipView) {
-		super(I18N.translate("DeleteFileContent"), getImageIcon(DELETE_PNG), sipView);
-		putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipDeleteFileContent"));
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
+    public DeleteFileContentAction(final SIPView sipView) {
+        super(I18N.translate("DeleteFileContent"), getImageIcon(DELETE_PNG), sipView);
+        putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipDeleteFileContent"));
+    }
 
-		int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
-		if (selectedRowCount == 0) {
-			return;
-		} else {
-			int[] selectedRows = sipView.getTreeTable().getSelectedRows();
-			if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteFileContent"),
-					I18N.translate("TitleDeleteFileContent"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-				// TODO Exceptions should be handled properly
-				try {
-					for (int selectedRow : selectedRows) {
-						((NodeFile) sipView.getTreeTable().getPathForRow(selectedRow).getLastPathComponent())
-								.deleteFileContent();
-						// sipView.getTreeTable().getPathForRow(selectedRow)
-						sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(selectedRow));
-						sipView.getTreeTableModel().refreshNode(sipView.getTreeTable().getPathForRow(selectedRow));
-					}
-				} catch (IOException | FileOperationNotAllowedException | FileUtilExceptionListException e) {
-					Logger.error(e.getMessage(), e);
-				} catch (NodeFileDeletionNotAllowedException e) {
-					Logger.error(e.getMessage(), e);
-				}
-			} else {
-				return;
-			}
-		}
-	}
-	@Override
-	public void enableOrDisable() {
-		int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
-		boolean isEnabled = sipView.getDocument().getMode().equals(Mode.ReadWrite) && selectedRowCount > 0;
-		int[] selectedRows = sipView.getTreeTable().getSelectedRows();
+    @Override
+    public void actionPerformed(final ActionEvent actionEvent) {
 
-		for (int selected : selectedRows) {
-			NodeAbstract node = (NodeAbstract) sipView.getTreeTable().getPathForRow(selected).getLastPathComponent();
-			// enabled is a consequence of several of the conditions being true
-			// for all the selected nodes
-			boolean enabledForCurrentNode = node.isFile() && node.canWrite()
-					&& node.getSubmitStatus().equals(SubmitStatus.Submitted);
-			isEnabled &= enabledForCurrentNode;
-		}
+        final int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
+        if (selectedRowCount == 0) {
+            return;
+        } else {
+            final int[] selectedRows = sipView.getTreeTable().getSelectedRows();
+            if (JOptionPane.showConfirmDialog(sipView, I18N.translate("QuestionDeleteFileContent"),
+                    I18N.translate("TitleDeleteFileContent"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                // TODO Exceptions should be handled properly
+                try {
+                    for (final int selectedRow : selectedRows) {
+                        ((NodeFile) sipView.getTreeTable().getPathForRow(selectedRow).getLastPathComponent())
+                                .deleteFileContent();
+                        // sipView.getTreeTable().getPathForRow(selectedRow)
+                        sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(
+                                selectedRow));
+                        sipView.getTreeTableModel().refreshNode(sipView.getTreeTable().getPathForRow(selectedRow));
+                    }
+                } catch (IOException | FileOperationNotAllowedException | FileUtilExceptionListException e) {
+                    Logger.error(e.getMessage(), e);
+                } catch (final NodeFileDeletionNotAllowedException e) {
+                    Logger.error(e.getMessage(), e);
+                }
+            } else {
+                return;
+            }
+        }
+    }
 
-		setEnabled(isEnabled);
-	}
+    @Override
+    public void enableOrDisable() {
+        final int selectedRowCount = sipView.getTreeTable().getSelectedRowCount();
+        boolean isEnabled = sipView.getDocument().getMode().equals(Mode.ReadWrite) && selectedRowCount > 0;
+        final int[] selectedRows = sipView.getTreeTable().getSelectedRows();
+
+        for (final int selected : selectedRows) {
+            final NodeAbstract node = (NodeAbstract) sipView.getTreeTable().getPathForRow(selected)
+                    .getLastPathComponent();
+            // enabled is a consequence of several of the conditions being true
+            // for all the selected nodes
+            final boolean enabledForCurrentNode = node.isFile() && node.canWrite() && node.getSubmitStatus().equals(
+                    SubmitStatus.Submitted);
+            isEnabled &= enabledForCurrentNode;
+        }
+
+        setEnabled(isEnabled);
+    }
 
 }

@@ -34,84 +34,90 @@ import ch.docuteam.packer.gui.util.CancellableOperation;
 import ch.docuteam.tools.translations.I18N;
 
 /**
- * Dialog window for displaying intermediary results a long operation.
- * It offers the possibility to interrupt the operation if wanted or
- * simply close the dialog window after operation was canceled / terminated.
- * 
- * Note: operation canceling effect depends on how interface CancellableOperation 
- * is implemented.
- * 
- * @author d.petric
+ * Dialog window for displaying intermediary results a long operation. It offers the possibility to interrupt the
+ * operation if wanted or simply close the dialog window after operation was canceled / terminated. Note: operation
+ * canceling effect depends on how interface CancellableOperation is implemented.
  *
+ * @author d.petric
  */
-class ActionMonitoringDialog extends JDialog
-{
-	private CancellableOperation operation;
-	private JTextArea textArea; 
-	private JButton   cancelButton;
-	private JButton   closeButton;
-	
-	public void appendMessage(String message) {
-		textArea.append(message);
-	}
+class ActionMonitoringDialog extends JDialog {
 
-	public void init() {
-		textArea.setText(null);
-		cancelButton.setVisible(true);
-		closeButton.setVisible(false);
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-	}
-	
-	public ActionMonitoringDialog(JFrame parent, String title) {
-		super(parent, title, ModalityType.APPLICATION_MODAL);		
-		
-		setLocationRelativeTo(parent);
-		JPanel messagePane = new JPanel();
-		messagePane.setLayout(new BoxLayout(messagePane, BoxLayout.Y_AXIS));
-		
-		textArea = new JTextArea(20, 100);
-		textArea.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(textArea);
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-		messagePane.add(scrollPane);
-		getContentPane().add(messagePane);
-		
-		JPanel buttonPane = new JPanel();
-		cancelButton = new JButton(I18N.translate("ButtonCancel"));
-		closeButton  = new JButton(I18N.translate("ButtonClose"));
+    private CancellableOperation operation;
 
-		buttonPane.add(closeButton);
-		buttonPane.add(cancelButton);
-		
-		cancelButton.addActionListener(new ActionListener() {				
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (operation != null) {
-					operation.cancelOperation();
-				}				
-			}
-		});
-		closeButton.addActionListener(new ActionListener() {				
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);	
-				dispose();
-			}
-		});
-		
-		getContentPane().add(buttonPane, BorderLayout.PAGE_END);
-		
-		init();
-		this.pack();
-	}
-	
-	public void setOver() {
-		cancelButton.setVisible(false);
-		closeButton.setVisible(true);
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	}
-	
-	public void setOperation(CancellableOperation listener ) {
-		this.operation = listener;
-	}
+    private final JTextArea textArea;
+
+    private final JButton cancelButton;
+
+    private final JButton closeButton;
+
+    public void appendMessage(final String message) {
+        textArea.append(message);
+    }
+
+    public void init() {
+        textArea.setText(null);
+        cancelButton.setVisible(true);
+        closeButton.setVisible(false);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    }
+
+    public ActionMonitoringDialog(final JFrame parent, final String title) {
+        super(parent, title, ModalityType.APPLICATION_MODAL);
+
+        setLocationRelativeTo(parent);
+        final JPanel messagePane = new JPanel();
+        messagePane.setLayout(new BoxLayout(messagePane, BoxLayout.Y_AXIS));
+
+        textArea = new JTextArea(20, 100);
+        textArea.setEditable(false);
+        final JScrollPane scrollPane = new JScrollPane(textArea);
+
+        messagePane.add(scrollPane);
+        getContentPane().add(messagePane);
+
+        final JPanel buttonPane = new JPanel();
+        cancelButton = new JButton(I18N.translate("ButtonCancel"));
+        closeButton = new JButton(I18N.translate("ButtonClose"));
+
+        buttonPane.add(closeButton);
+        buttonPane.add(cancelButton);
+
+        cancelButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                if (operation != null) {
+                    operation.cancelOperation();
+                }
+            }
+        });
+        closeButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                setVisible(false);
+                dispose();
+            }
+        });
+
+        getContentPane().add(buttonPane, BorderLayout.PAGE_END);
+
+        init();
+        pack();
+    }
+
+    public void setOver() {
+        cancelButton.setVisible(false);
+        closeButton.setVisible(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }
+
+    public void setOperation(final CancellableOperation listener) {
+        operation = listener;
+    }
 }
