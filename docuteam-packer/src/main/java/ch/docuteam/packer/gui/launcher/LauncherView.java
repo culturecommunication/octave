@@ -401,7 +401,7 @@ public class LauncherView extends JFrame {
      * @param args
      * @throws DROIDCouldNotInitializeException
      */
-    public static void main(final String[] args) throws DROIDCouldNotInitializeException {
+    public static void main(final String[] args) {
 
         final CommandLine commandLine = getCommandLine(args);
 
@@ -443,11 +443,11 @@ public class LauncherView extends JFrame {
      * @param args
      * @throws DROIDCouldNotInitializeException
      */
-    protected LauncherView(final String args) throws DROIDCouldNotInitializeException {
+    protected LauncherView(final String args) {
         this(getCommandLine(args));
     }
 
-    protected LauncherView(final CommandLine args) throws DROIDCouldNotInitializeException {
+    protected LauncherView(final CommandLine args) {
 
         // super(sipDirectory);
         initialize(args);
@@ -1076,7 +1076,7 @@ public class LauncherView extends JFrame {
      * 
      * @throws DROIDCouldNotInitializeException
      */
-    protected void initialize(final CommandLine commandLine) throws DROIDCouldNotInitializeException {
+    protected void initialize(final CommandLine commandLine) {
         final JFrame splashWindow = new JFrame();
         splashWindow.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         splashWindow.setIconImage(getImage(PACKER_PNG));
@@ -1132,8 +1132,7 @@ public class LauncherView extends JFrame {
     }
 
     // This is called on startup only:
-    protected void initializeProperties(final PropertiesWithResolvedEnvVars properties)
-            throws DROIDCouldNotInitializeException {
+    protected void initializeProperties(final PropertiesWithResolvedEnvVars properties) {
         this.properties = properties;
 
         final String language = properties.getProperty("docuteamPacker.displayLanguage");

@@ -74,6 +74,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 
+import ch.docuteam.packer.assertj.swing.AssertionHelper;
 import ch.docuteam.packer.assertj.swing.CustomTableCellFinder;
 import ch.docuteam.packer.assertj.swing.JXTreeTableComponentFixture;
 import ch.docuteam.packer.assertj.swing.JXTreeTableComponentFixtureExtension;
@@ -105,7 +106,7 @@ import org.junit.Test;
 
 public class LauncherViewSwingIT {
 
-    private static final int DEFAULT_PAUSE_MILLISECONDS = 500;
+    private static final int ASSERTION_TIMEOUT = 5000;
 
     private static final String SAMPLE_SIP_ZIP_1 = "sipwithlongpathnames.zip";
 
@@ -219,6 +220,7 @@ public class LauncherViewSwingIT {
         FileUtil.delete(WORKSPACE_FOLDER);
         FileUtil.delete(TEMPLATE_FOLDER);
 
+        pause(500);
         Logger.info("tearDown done");
     }
 
@@ -232,7 +234,7 @@ public class LauncherViewSwingIT {
         chooseWorkspace();
 
         // assert workspace selection - back/forward slashes
-        window.requireTitle(FileUtil.asCanonicalFileName(WORKSPACE_FOLDER));
+        AssertionHelper.assertTitle(window, FileUtil.asCanonicalFileName(WORKSPACE_FOLDER), ASSERTION_TIMEOUT);
     }
 
     /**
@@ -269,16 +271,16 @@ public class LauncherViewSwingIT {
         assertTrue("ERROR: Save button not enabled or not found!", sipWindow.button(SIP_SAVE_CURRENT_BUTTON)
                 .isEnabled());
         sipWindow.button(SIP_SAVE_CURRENT_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert footer text
         final Pattern sipViewPattern = Pattern.compile(I18N.translate("MessageFooterSaved") + ".*" + SAMPLE_SIP_1 +
                 ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(sipViewPattern);
 
-        pause(DEFAULT_PAUSE_MILLISECONDS);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
+
         // assert frame title
-        sipWindow.requireTitle(FileUtil.asCanonicalFileName(WORKSPACE_FOLDER + File.separator + SAMPLE_SIP_ZIP_1));
+        AssertionHelper.assertTitle(sipWindow, FileUtil.asCanonicalFileName(WORKSPACE_FOLDER + File.separator +
+                SAMPLE_SIP_ZIP_1), ASSERTION_TIMEOUT);
     }
 
     /**
@@ -293,16 +295,12 @@ public class LauncherViewSwingIT {
         assertTrue("ERROR: Save button not enabled or not found!", sipWindow.button(SIP_SAVE_CURRENT_BUTTON)
                 .isEnabled());
         sipWindow.menuItem(SIP_VIEW_FILE_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_VIEW_SAVE_AS_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // cannot find because it is a java.awt.FileDialog instead of a JFileChooser -> refactored
         final String renamedSIP = "Renamed" + SAMPLE_SIP_1;
         chooseFileByEnteringFilePath(sipWindow, WORKSPACE_FOLDER + File.separator + renamedSIP, true);
 
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        // assert frame title
-        sipWindow.requireTitle(WORKSPACE_FOLDER + File.separator + renamedSIP);
+        AssertionHelper.assertTitle(sipWindow, WORKSPACE_FOLDER + File.separator + renamedSIP, ASSERTION_TIMEOUT);
     }
 
     @Test
@@ -312,9 +310,7 @@ public class LauncherViewSwingIT {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_1);
 
         sipWindow.menuItem(SIP_VIEW_FILE_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_VIEW_SAVE_AS_TEMPLATE_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final String sipTemplateName = "sipTemplate" + System.currentTimeMillis();
         sipWindow.optionPane().textBox().setText(sipTemplateName);
@@ -323,7 +319,7 @@ public class LauncherViewSwingIT {
         // assert footer text ("Vorlage erstellt: " + sipTemplateName)
         final Pattern sipViewPattern = Pattern.compile(I18N.translate("MessageFooterTemplateSaved") + ".*" +
                 sipTemplateName + ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(sipViewPattern);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
     }
 
     /**
@@ -334,11 +330,10 @@ public class LauncherViewSwingIT {
     @Test
     public void test_createNewSIP_fromFolder() throws InterruptedException {
         chooseWorkspace();
+        robot = BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock();
 
         window.menuItem(SIP_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         window.menuItem(SIP_CREATE_NEW_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // select checkbox
         window.radioButton(SIP_SELECT_FROM_SOURCE_FILE_OR_FOLDER_RADIO_BUTTON).click();
@@ -351,41 +346,35 @@ public class LauncherViewSwingIT {
         // choose target folder
         assertTrue("ERROR: selectDestinationIsWorkspaceButton is not enabled!", window.button(
                 SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON).isEnabled());
-        window.button(SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON).doubleClick();// .click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
+        window.button(SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON).doubleClick();
 
         // add sip name in a textBox
         final String uniqueSIPName = "SIPjunitout" + System.currentTimeMillis();
         window.textBox(SIP_DESTINATION_NAME_TEXT_FIELD).selectAll().setText(uniqueSIPName);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // click save button
         assertTrue("ERROR: Save button is not enabled!", window.button(SIP_CREATE_OK_BUTTON).isEnabled());
         window.button(SIP_CREATE_OK_BUTTON).click();
 
-        // wait 30 sec., this is a very long operation
-        pause(30000);
-
-        // close warn message
+        // close warn message as soon as it is shown
+        WindowFinder.findDialog(ScrollableMessageDialog.COMPONENT_NAME).withTimeout(30000).using(robot);
         window.dialog(ScrollableMessageDialog.COMPONENT_NAME).close();
 
         // assert sip creation in the LauncherView (MessageFooterNewFile translation)
         final String newFileMessagePrefix = I18N.translate("MessageFooterNewFile");
         final Pattern pattern = Pattern.compile(newFileMessagePrefix + ".*" + uniqueSIPName + ".*");
-        window.textBox(FOOTER_TEXT_FIELD).requireText(pattern);
+        AssertionHelper.assertText(window.textBox(FOOTER_TEXT_FIELD), pattern, ASSERTION_TIMEOUT);
 
-        robot = BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock();
         sipWindow = WindowFinder.findFrame(SIP_VIEW_FRAME).using(robot);
 
         // assert footer text
         final Pattern sipViewPattern = Pattern.compile(I18N.translate("MessageFooterOpeningFile") + ".*" +
                 uniqueSIPName + ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(sipViewPattern);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
 
         // assert title
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         final String outSIPPathName = WORKSPACE_FOLDER + File.separator + uniqueSIPName + ".zip";
-        sipWindow.requireTitle(FileUtil.asCanonicalFileName(outSIPPathName));
+        AssertionHelper.assertTitle(sipWindow, FileUtil.asCanonicalFileName(outSIPPathName), ASSERTION_TIMEOUT);
 
         // cannot find tree
         // sipWindow.tree(SIP_VIEW_TREE).requireSelection(0);
@@ -401,14 +390,12 @@ public class LauncherViewSwingIT {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_1);
 
         sipWindow.button(SIP_VIEW_INSERT_FILE_OR_FOLDER_BUTTON).doubleClick();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         chooseFileByEnteringFilePath(sipWindow, INPUT_FOLDER_SMALL, false);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert modified
-        sipWindow.label(SIP_VIEW_INFO_LABEL).requireText(I18N.translate("LabelIsModified"));
-
+        AssertionHelper.assertText(sipWindow.label(SIP_VIEW_INFO_LABEL), I18N.translate("LabelIsModified"),
+                ASSERTION_TIMEOUT);
     }
 
     /**
@@ -424,7 +411,6 @@ public class LauncherViewSwingIT {
         if (saveAction) {
             fileChooser.target().setDialogType(JFileChooser.SAVE_DIALOG);
         }
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         if (pathName == null) {
             fileChooser.cancel();
@@ -434,7 +420,6 @@ public class LauncherViewSwingIT {
             if (OS.isMacOSX()) {
                 final File selection = new File(pathName);
                 fileChooser.setCurrentDirectory(selection.getParentFile());
-                pause(DEFAULT_PAUSE_MILLISECONDS);
                 if (saveAction) {
                     fileChooser.fileNameTextBox().setText(selection.getName());
                 } else {
@@ -457,7 +442,6 @@ public class LauncherViewSwingIT {
      */
     private void chooseFolderOrFile(final FrameFixture frameFixture, final String folderPath, final String filePath)
             throws InterruptedException {
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final JFileChooserFixture fileChooser = frameFixture.fileChooser();
 
@@ -467,11 +451,9 @@ public class LauncherViewSwingIT {
         }
 
         fileChooser.setCurrentDirectory(fileToSelect.getParentFile());
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         fileChooser.selectFile(fileToSelect);
         fileChooser.approve();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
     }
 
     /**
@@ -487,12 +469,10 @@ public class LauncherViewSwingIT {
                 SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
 
         // sort nodes first, root is selected
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         treeFixture.rightClick();
         sipWindow.menuItem(SIP_VIEW_SORT_FOLDER_MENU_ITEM).click();
 
         // select third row after root
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         treeFixture.changeSelection(3);
         treeFixture.rightClick();
         sipWindow.menuItem(SIP_REPLACE_FILE_MENU_ITEM).click();
@@ -500,17 +480,16 @@ public class LauncherViewSwingIT {
         // choose another file
         chooseFileByEnteringFilePath(sipWindow, ResourceUtil.getResourceCanonicalPath("data/" + SAMPLE_FILE), false);
 
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-
         // assert modified
-        sipWindow.label(SIP_VIEW_INFO_LABEL).requireText(I18N.translate("LabelIsModified"));
+        AssertionHelper.assertText(sipWindow.label(SIP_VIEW_INFO_LABEL), I18N.translate("LabelIsModified"),
+                ASSERTION_TIMEOUT);
 
         // select replaced and assert success
         // select third row after root
         treeFixture.changeSelection(3);
         // assert footer test
         final Pattern footerPattern = Pattern.compile(".*" + SAMPLE_FILE + ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(footerPattern);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), footerPattern, ASSERTION_TIMEOUT);
 
         // assert PREMIS event
         assertEquals("Event table doesn't contain the Replacement event.", 1, sipWindow.table(SIP_VIEW_EVENT_TABLE)
@@ -532,7 +511,6 @@ public class LauncherViewSwingIT {
         // check that a new Frame (SIPView) was opened
         robot = BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock(); // .robotWithCurrentAwtHierarchy();
         sipWindow = WindowFinder.findFrame(SIP_VIEW_FRAME).using(robot);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         return sipWindow;
     }
 
@@ -549,14 +527,11 @@ public class LauncherViewSwingIT {
         assertFalse(treeFixture.isExpanded(2));
 
         // sort nodes first, root is selected
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         treeFixture.rightClick();
         sipWindow.menuItem(SIP_VIEW_SORT_FOLDER_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // select view menu
         sipWindow.menuItem(SIP_VIEW_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // expand all
         sipWindow.menuItem(SIP_VIEW_EXPAND_MENU_ITEM).click();
@@ -565,8 +540,7 @@ public class LauncherViewSwingIT {
         // assertTrue(treeFixture.isVisible(path)); //doesn't work
         assertTrue(treeFixture.isExpanded(2));
         treeFixture.changeSelection(2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        assertEquals("subfolder_same_name", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("subfolder_same_name", treeFixture, ASSERTION_TIMEOUT);
 
         // collapse all
         sipWindow.menuItem(SIP_VIEW_COLLAPSE_MENU_ITEM).click();
@@ -581,11 +555,9 @@ public class LauncherViewSwingIT {
                 SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
         // deselect root
         treeFixture.changeSelection(0);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // select second row after root
         treeFixture.changeSelection(2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // get selected value
         final String rowValue = treeFixture.getSelectedRowValue();
@@ -594,13 +566,12 @@ public class LauncherViewSwingIT {
 
         treeFixture.rightClick();
         sipWindow.menuItem(SIP_DELETE_ITEM_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // confirm deletion
         sipWindow.optionPane().yesButton().click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert modified
-        sipWindow.label(SIP_VIEW_INFO_LABEL).requireText(I18N.translate("LabelIsModified"));
+        AssertionHelper.assertText(sipWindow.label(SIP_VIEW_INFO_LABEL), I18N.translate("LabelIsModified"),
+                ASSERTION_TIMEOUT);
         // assert no tree selection
         assertEquals("No tree selection expected", -1, treeFixture.getSelectedRow());
         // assert row deleted
@@ -617,9 +588,7 @@ public class LauncherViewSwingIT {
         chooseWorkspace();
 
         window.menuItem(SIP_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         window.menuItem(SIP_CREATE_NEW_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final String brandNewSIP = "NewSIP" + System.currentTimeMillis();
         // choose SIP name
@@ -629,37 +598,31 @@ public class LauncherViewSwingIT {
         assertTrue("ERROR: selectDestinationIsWorkspaceButton is not enabled!", window.button(
                 SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON).isEnabled());
         window.button(SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON).doubleClick();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // click save button
         assertTrue("ERROR: Save button is not enabled!", window.button(SIP_CREATE_OK_BUTTON).isEnabled());
         window.button(SIP_CREATE_OK_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert sip creation in the LauncherView (MessageFooterNewFile translation)
         final String newFileMessagePrefix = I18N.translate("MessageFooterNewFile");
         final Pattern pattern = Pattern.compile(newFileMessagePrefix + ".*" + brandNewSIP + ".*");
-        window.textBox(FOOTER_TEXT_FIELD).requireText(pattern);
+        AssertionHelper.assertText(window.textBox(FOOTER_TEXT_FIELD), pattern, ASSERTION_TIMEOUT);
 
         // check that a new Frame (SIPView) was opened
         robot = BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock(); // .robotWithCurrentAwtHierarchy();
         sipWindow = WindowFinder.findFrame(SIP_VIEW_FRAME).using(robot);
 
         // assert title
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         final String outSIPPathName = WORKSPACE_FOLDER + File.separator + brandNewSIP + ".zip";
-        sipWindow.requireTitle(FileUtil.asCanonicalFileName(outSIPPathName));
+        AssertionHelper.assertTitle(sipWindow, FileUtil.asCanonicalFileName(outSIPPathName), ASSERTION_TIMEOUT);
 
         // create new folder
         sipWindow.menuItem(SIP_VIEW_ELEMENT_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_VIEW_CREATE_FOLDER_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final String newFolderName = "NewFolder";
         sipWindow.dialog().textBox().setText(newFolderName);
         sipWindow.optionPane().buttonWithText("OK").click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // select newly created folder
         final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
@@ -669,35 +632,30 @@ public class LauncherViewSwingIT {
 
         // assert footer text, new folder name should be present
         Pattern sipViewPattern = Pattern.compile(".*" + brandNewSIP + ".*" + newFolderName + ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(sipViewPattern);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
 
         // rename folder
         // open POPUP_MENU
         treeFixture.rightClick();
 
         sipWindow.menuItem(SIP_VIEW_RENAME_FOLDER_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final String renamedFolderName = "RenamedFolder";
         sipWindow.dialog().textBox().setText(renamedFolderName);
         sipWindow.optionPane().buttonWithText("OK").click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // deselect current
         JXTreeTableComponentFixtureExtension.treeWithName(SIP_VIEW_TREE).createFixture(robot, sipWindow.target())
                 .changeSelection(1);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // select root
         JXTreeTableComponentFixtureExtension.treeWithName(SIP_VIEW_TREE).createFixture(robot, sipWindow.target())
                 .changeSelection(0);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // select first child again
         JXTreeTableComponentFixtureExtension.treeWithName(SIP_VIEW_TREE).createFixture(robot, sipWindow.target())
                 .changeSelection(1);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         sipViewPattern = Pattern.compile(".*" + brandNewSIP + ".*" + renamedFolderName + ".*");
-        sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD).requireText(sipViewPattern);
+        AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
     }
 
     @Ignore
@@ -723,18 +681,14 @@ public class LauncherViewSwingIT {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
 
         sipWindow.menuItem(SIP_VIEW_FILE_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_METADATA_EXPORT_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_EAD_EXPORT_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // file chooser is visible
         final JFileChooserFixture fileChooser = sipWindow.fileChooser();
         fileChooser.requireVisible();
         fileChooser.setCurrentDirectory(new File(WORKSPACE_FOLDER));
         fileChooser.approve();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert success - since no GUI notification in case of success, check the exported file
         final File exportedFile = new File(WORKSPACE_FOLDER, SAMPLE_SIP_ZIP_2 + ".xml");
@@ -756,43 +710,32 @@ public class LauncherViewSwingIT {
     @Test
     public void test_searchInSIP() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         sipWindow.textBox(SIP_SEARCH_TEXT_FIELD).enterText("sample");
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         sipWindow.button(SIP_SEARCH_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
                 SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
-        assertEquals("the selected row is not SamplePDF.pdf", "SamplePDF.pdf", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("SamplePDF.pdf", treeFixture, ASSERTION_TIMEOUT);
 
         // clear and search again
         sipWindow.button(SIP_CLEAR_SEARCH_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         sipWindow.textBox(SIP_SEARCH_TEXT_FIELD).enterText("fundamentals");
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         sipWindow.button(SIP_SEARCH_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
-        assertEquals("the selected row is not 2fundamentals_lt.gif", "2fundamentals_lt.gif", treeFixture
-                .getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("2fundamentals_lt.gif", treeFixture, ASSERTION_TIMEOUT);
 
         // next match
         sipWindow.button(SIP_SEARCH_NEXT_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
-        assertEquals("the selected row is not 2fundamentals_lt.tif", "2fundamentals_lt.tif", treeFixture
-                .getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("2fundamentals_lt.tif", treeFixture, ASSERTION_TIMEOUT);
 
         // previous match
         sipWindow.button(SIP_SEARCH_PREVIOUS_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        assertEquals("the selected row is not 2fundamentals_lt.gif", "2fundamentals_lt.gif", treeFixture
-                .getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("2fundamentals_lt.gif", treeFixture, ASSERTION_TIMEOUT);
 
     }
 
@@ -829,7 +772,6 @@ public class LauncherViewSwingIT {
     public void test_removeDuplicates() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
 
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // check precondition: finds "FileWithUmlauts_üäö.txt" node at rowIndex
         final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
                 SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
@@ -837,23 +779,21 @@ public class LauncherViewSwingIT {
         assertTrue(treeFixture.findTreePathAfterExpandAll(11));
 
         sipWindow.menuItem(SIP_VIEW_FILE_MENU).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         sipWindow.menuItem(SIP_VIEW_REMOVE_DUPLICATES_MENU_ITEM).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         robot = BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock();
         final DialogFixture duplicatesTableDialog = WindowFinder.findDialog(DuplicatesTableDialog.class).using(robot);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         duplicatesTableDialog.table().cell("false").select();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         duplicatesTableDialog.button(DuplicatesTableDialog_REMOVE).click();
-        pause(60000);
 
         // assert success message: JOptionPane
-        JOptionPaneFinder.findOptionPane().using(robot).requireMessage(I18N.translate("MessageRemovedDuplicates"))
-                .okButton().click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
+        JOptionPaneFinder.findOptionPane()
+                .withTimeout(60000)
+                .using(robot)
+                .requireMessage(I18N.translate("MessageRemovedDuplicates"))
+                .okButton()
+                .click();
 
         // assert that the node was removed
         assertFalse(treeFixture.findTreePathAfterExpandAll(rowIndex));
@@ -862,48 +802,40 @@ public class LauncherViewSwingIT {
     @Test
     public void test_sortStartingFromRoot() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert precondition
         final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
                 SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
         // deselect root
         treeFixture.changeSelection(0);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // select first row after root
         treeFixture.changeSelection(1);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        assertEquals("the selected row is not SamplePDF.pdf", "SamplePDF.pdf", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("SamplePDF.pdf", treeFixture, ASSERTION_TIMEOUT);
         treeFixture.changeSelection(1);
         // select root again since the sorting needs a selected node
         treeFixture.changeSelection(0);
 
         // sort
         sipWindow.button(SIP_SORT_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // sorting deselects all
         treeFixture.changeSelection(4);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
         // "SamplePDF.pdf" node moved on the 4-th row
-        assertEquals("the selected row is not SamplePDF.pdf", "SamplePDF.pdf", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("SamplePDF.pdf", treeFixture, ASSERTION_TIMEOUT);
         treeFixture.changeSelection(4);
 
         // sorting: goes: folders before files
         treeFixture.changeSelection(1);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        assertEquals("the selected row is not subfolder1", "subfolder1", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("subfolder1", treeFixture, ASSERTION_TIMEOUT);
         treeFixture.changeSelection(1);
 
         treeFixture.changeSelection(2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
-        assertEquals("the selected row is not subfolder2", "subfolder2", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("subfolder2", treeFixture, ASSERTION_TIMEOUT);
     }
 
     @Test
     public void test_normalize() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // assert precondition
         final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
@@ -911,25 +843,19 @@ public class LauncherViewSwingIT {
 
         // normalize
         sipWindow.button(SIP_NORMALIZE_BUTTON).click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         // confirm normalize action
-        JOptionPaneFinder.findOptionPane().using(robot).yesButton().click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
+        JOptionPaneFinder.findOptionPane().withTimeout(ASSERTION_TIMEOUT).using(robot).yesButton().click();
 
         // feedback - how many normalized and show which not normalized
-        JOptionPaneFinder.findOptionPane().using(robot)
+        JOptionPaneFinder.findOptionPane().withTimeout(ASSERTION_TIMEOUT).using(robot)
                 .requireTitle(I18N.translate("MessageNormalizeAllSuccessful", 11))
                 .requireMessage(I18N.translate("MessageCannotNormalize"))
                 .okButton().click();
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
         treeFixture.changeSelection(4);
-        pause(DEFAULT_PAUSE_MILLISECONDS);
 
-        assertEquals("the selected row is not PREFileWithUmlauts_ueuauoSUF.txt", "PREFileWithUmlauts_ueaeoeSUF.txt",
-                treeFixture.getSelectedRowValue());
-        pause(DEFAULT_PAUSE_MILLISECONDS);
+        AssertionHelper.assertSelectedRowValue("PREFileWithUmlauts_ueaeoeSUF.txt", treeFixture, ASSERTION_TIMEOUT);
 
         // deselect previous
         treeFixture.changeSelection(4);
@@ -937,7 +863,7 @@ public class LauncherViewSwingIT {
 
         treeFixture.changeSelection(10);
         // this node was not normalized
-        assertEquals("the selected row is not FileWithUmlauts_üäö_duplicate_éàé.txt",
-                "FileWithUmlauts_üäö_duplicate_éàé.txt", treeFixture.getSelectedRowValue());
+        AssertionHelper.assertSelectedRowValue("FileWithUmlauts_üäö_duplicate_éàé.txt", treeFixture,
+                ASSERTION_TIMEOUT);
     }
 }
