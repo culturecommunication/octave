@@ -50,7 +50,7 @@
 		<maven.source.skip>true</maven.source.skip>
 
 		<!-- dependencies versions -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<javax.mail.version>1.4</javax.mail.version>
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
