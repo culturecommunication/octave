@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>5.7.0</version>
+    <version>5.7.1</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>5.7.0</version>
+  <version>5.7.1</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
