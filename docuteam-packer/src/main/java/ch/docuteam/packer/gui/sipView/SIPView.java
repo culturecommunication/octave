@@ -154,7 +154,6 @@ import ch.docuteam.darc.mets.structmap.NodeFile;
 import ch.docuteam.darc.mets.structmap.NodeFolder;
 import ch.docuteam.darc.premis.Event;
 import ch.docuteam.darc.util.CSVExport;
-import ch.docuteam.darc.util.XML2PDF;
 import ch.docuteam.darc.util.XMLTransformer;
 import ch.docuteam.darc.util.file.FileNameNormalizer;
 import ch.docuteam.mapping.ExporterSEDA;
@@ -177,6 +176,7 @@ import ch.docuteam.packer.gui.sipView.tableModel.FileDataViewTableModel;
 import ch.docuteam.packer.gui.sipView.tableModel.MetadataTableModel;
 import ch.docuteam.packer.gui.sipView.tableModel.TreeTableModel;
 import ch.docuteam.packer.gui.util.Util;
+import ch.docuteam.packer.util.XML2PDF;
 import ch.docuteam.tools.exception.ExceptionCollector;
 import ch.docuteam.tools.exception.ExceptionCollectorException;
 import ch.docuteam.tools.file.FileUtil;
@@ -995,7 +995,7 @@ public class SIPView extends JFrame {
         saveAsTemplateAction = new AbstractAction(I18N.translate("ButtonSaveAsTemplate"), getImageIcon(SAVE_PNG)) {
 
             /**
-             * 
+             *
              */
             private static final long serialVersionUID = 1L;
 
@@ -1635,7 +1635,7 @@ public class SIPView extends JFrame {
 
     /**
      * Adds a menu item only of this action is visible.
-     * 
+     *
      * @param itemMenu
      * @param action
      */
@@ -1674,7 +1674,7 @@ public class SIPView extends JFrame {
 
     /**
      * Open a new SIPView with the SIP passed. If admIdToSelect is not null, select the node with this admId.
-     * 
+     *
      * @param zipOrMETSFilePath
      * @param mode
      * @return
@@ -1718,7 +1718,7 @@ public class SIPView extends JFrame {
     /**
      * This method is called only once on packer startup. Assume that PropertyFile was already initialized with the
      * correct file path.
-     * 
+     *
      * @param propertyFileName
      */
     public static void initialize(Properties propertiesIn) {
@@ -1818,7 +1818,7 @@ public class SIPView extends JFrame {
 
     /**
      * Read the SIP. If admIdToSelect is not null, select the node with this admId.
-     * 
+     *
      * @param zipOrMETSFilePath
      * @param mode
      * @param admIdToSelect
@@ -2148,7 +2148,7 @@ public class SIPView extends JFrame {
 
     /**
      * Listen to row selections in the tree view:
-     * 
+     *
      * @param e: The event transporting all necessary info
      */
     protected void treeViewSelectionChanged(final ListSelectionEvent e) {
@@ -2224,7 +2224,7 @@ public class SIPView extends JFrame {
 
     /**
      * Special mouse clicks (like double-click or right-click) are handled here.
-     * 
+     *
      * @param e
      */
     protected void treeViewSelectionWasClicked(final MouseEvent e) {
@@ -2260,7 +2260,7 @@ public class SIPView extends JFrame {
 
     /**
      * Listen to row selections in the event table:
-     * 
+     *
      * @param e: The event transporting all necessary infos
      */
     protected void eventTableSelectionChanged(final ListSelectionEvent e) {
@@ -3319,7 +3319,7 @@ public class SIPView extends JFrame {
 
     /**
      * Select in the treeTable the node with the given admId. If this node doesn't exist, ignore it.
-     * 
+     *
      * @param admId
      */
     public void selectNode(final String admId) {
@@ -3335,7 +3335,7 @@ public class SIPView extends JFrame {
 
     /**
      * Select in the treeTable the node node. If node is null, ignore it.
-     * 
+     *
      * @param treePath
      */
     protected void selectNode(final NodeAbstract node) {
@@ -3350,7 +3350,7 @@ public class SIPView extends JFrame {
 
     /**
      * Select in the treeTable the node at treePath. If treePath is null, ignore it.
-     * 
+     *
      * @param treePath
      */
     private void selectNode(final TreePath treePath) {

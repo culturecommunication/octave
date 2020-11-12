@@ -10,7 +10,7 @@
 
 	<properties>
         <!-- version information -->
-        <revision>5.7.2</revision>
+        <revision>5.8.0</revision>
         <changelist/>
         <sha1/>
 
@@ -18,8 +18,8 @@
 		<maven-deploy-plugin.plugin.version>2.8.2</maven-deploy-plugin.plugin.version>
 		<maven-compiler-plugin.plugin.version>3.3</maven-compiler-plugin.plugin.version>
 		<sql-maven-plugin.plugin.version>1.5</sql-maven-plugin.plugin.version>
-		<maven-failsafe-plugin.plugin.version>2.22.1</maven-failsafe-plugin.plugin.version>
-		<maven-surefire-plugin.plugin.version>2.22.1</maven-surefire-plugin.plugin.version>
+		<maven-failsafe-plugin.plugin.version>3.0.0-M5</maven-failsafe-plugin.plugin.version>
+		<maven-surefire-plugin.plugin.version>3.0.0-M5</maven-surefire-plugin.plugin.version>
 		<maven-jar-plugin.plugin.version>3.0.2</maven-jar-plugin.plugin.version>
 		<maven-install-plugin.plugin.version>2.5.2</maven-install-plugin.plugin.version>
 		<maven-assembly-plugin.plugin.version>3.1.1</maven-assembly-plugin.plugin.version>
@@ -51,7 +51,7 @@
 		<maven.source.skip>true</maven.source.skip>
 
 		<!-- dependencies versions -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13</junit.version>
 		<javax.mail.version>1.4</javax.mail.version>
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
@@ -84,9 +84,9 @@
 		<org.apache.commons.commons-csv.version>1.5</org.apache.commons.commons-csv.version>
 		<org.apache.commons.commons-lang3.version>3.1</org.apache.commons.commons-lang3.version>
         <org.apache.kerby.version>1.1.1</org.apache.kerby.version>
-		<org.apache.logging.log4j.version>2.10.0</org.apache.logging.log4j.version>
+		<org.apache.logging.log4j.version>2.13.2</org.apache.logging.log4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>2.3.0</org.apache.xmlbeans.xmlbeans.version>
-		<org.apache.xmlgraphics.fop.version>1.1</org.apache.xmlgraphics.fop.version>
+		<org.apache.xmlgraphics.fop.version>2.5</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
 		<org.assertj.assertj-swing-junit.version>3.9.2</org.assertj.assertj-swing-junit.version>
 		<org.fcrepo.fcrepo.version>3.5</org.fcrepo.fcrepo.version>
@@ -95,23 +95,23 @@
 		<org.openoffice.version>3.0.1</org.openoffice.version>
 		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
 		<de.schlichtherle.truezip.version>7.7.10</de.schlichtherle.truezip.version>
-		<com.drewnoakes.metadata-extractor.version>2.6.2</com.drewnoakes.metadata-extractor.version>
-		<uk.gov.nationalarchives.droid.version>6.4</uk.gov.nationalarchives.droid.version>
+		<com.drewnoakes.metadata-extractor.version>2.13.0</com.drewnoakes.metadata-extractor.version>
+		<uk.gov.nationalarchives.droid.version>6.5</uk.gov.nationalarchives.droid.version>
 		<edu.harvard.hul.ois.jhove.version>1.2</edu.harvard.hul.ois.jhove.version>
 		<net.harawata.appdirs.version>1.0.1</net.harawata.appdirs.version>
-		<mysql-connector-java.version>5.1.36</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.16</mysql-connector-java.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
 		<com.jcraft.jsch.version>0.1.53</com.jcraft.jsch.version>
  		<com.google.guava.version>21.0</com.google.guava.version>
         <jopt-simple.version>4.9</jopt-simple.version>
-        <jaxws-rt.version>2.3.0.2</jaxws-rt.version>
+        <jaxws-rt.version>2.3.2</jaxws-rt.version>
         <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
         <com.sun.xml.bind.jaxb.version>2.3.0.1</com.sun.xml.bind.jaxb.version>
-        <rdf4j.version>2.3.2</rdf4j.version>
+        <rdf4j.version>3.4.1</rdf4j.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
         <org.pdftools.version>4.8.4.0</org.pdftools.version>
-        <org.apache.httpcomponents.version>4.5</org.apache.httpcomponents.version>
-        <org.apache.cxf.version>2.7.7</org.apache.cxf.version>
+        <org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
+        <org.apache.cxf.version>2.7.11</org.apache.cxf.version>
         <wsdl4j.wsdl4j.version>1.6.2</wsdl4j.wsdl4j.version>
         <commons.codec.version>1.10</commons.codec.version>
         <xerces.xercesImpl.version>2.9.1</xerces.xercesImpl.version>
@@ -119,7 +119,7 @@
         <net.byteseek.byteseek.version>2.0.3</net.byteseek.byteseek.version>
         <rhino.js.version>1.5R4.1</rhino.js.version>
         <xml-apis.xml-apis.version>1.3.04</xml-apis.xml-apis.version>
-		<ch.docuteam.fcrepo3-diringest.version>1.2.1-docuteam</ch.docuteam.fcrepo3-diringest.version>
+		<ch.docuteam.fcrepo3-diringest.version>1.2.2-docuteam</ch.docuteam.fcrepo3-diringest.version>
         <com.github.skjolber.mockito-soap-cxf.version>1.2.0</com.github.skjolber.mockito-soap-cxf.version>
 
 		<!-- sax parser factory -->
@@ -548,7 +548,7 @@
 		        <artifactId>maven-enforcer-plugin</artifactId>
 		        <version>${maven-enforcer-plugin.plugin.version}</version>
 		        <configuration>
-		            <rules><dependencyConvergence /></rules>
+		            <rules><dependencyConvergence/></rules>
 		        </configuration>
 		    </plugin>
 		    <plugin>
@@ -647,8 +647,8 @@
 		</repository>
 		<repository>
 			<id>central</id>
-			<name>Central Maven Repository</name>
-			<url>https://repo1.maven.org/maven2/</url>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>

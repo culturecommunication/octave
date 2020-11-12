@@ -5,33 +5,33 @@
 You can get your Cloudsmith API Key from [Cloudsmith Settings](https://cloudsmith.io/user/settings/api/). Use it as password in your personal maven settings ~/.m2/settings.xml:
 
 ```xml
-<servers>
-  <server>
-    <id>docuteam</id>
-    <username>cloudsmith-user</username>
-    <password>74ce4b089e3c2cxxxxxxxxx</password>
-  </server>
-  <server>
-    <id>docuteam-releases</id>
-    <username>cloudsmith-user</username>
-    <password>74ce4b089e3c2cxxxxxxxxx</password>
-  </server>
-  <server>
-    <id>docuteam-snapshots</id>
-    <username>cloudsmith-user</username>
-    <password>74ce4b089e3c2cxxxxxxxxx</password>
-  </server>
-  <server>
-    <id>docuteam-installers</id>
-    <username>cloudsmith-user</username>
-    <password>74ce4b089e3c2cxxxxxxxxx</password>
-  </server>
-  <server>
-    <id>docuteam-third-party</id>
-    <username>cloudsmith-user</username>
-    <password>74ce4b089e3c2cxxxxxxxxx</password>
-  </server>
-</servers>
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <servers>
+        <server>
+            <id>docuteam-releases</id>
+                <username>{cloudsmith-user}</username>
+                <password>{cloudsmith-api-key}</password>
+        </server>
+        <server>
+            <id>docuteam-snapshots</id>
+                <username>{cloudsmith-user}</username>
+                <password>{cloudsmith-api-key}</password>
+        </server>
+        <server>
+            <id>docuteam-installers</id>
+                <username>{cloudsmith-user}</username>
+                <password>{cloudsmith-api-key}</password>
+        </server>
+        <server>
+            <id>docuteam-third-party</id>
+                <username>{cloudsmith-user}</username>
+                <password>{cloudsmith-api-key}</password>
+        </server>
+    </servers>
+
+</settings>
 ```
 
 # Checkstyle and Code Formatting in Eclipse

@@ -439,7 +439,7 @@ public class LauncherView extends JFrame {
 
     /**
      * just for testing
-     * 
+     *
      * @param args
      * @throws DROIDCouldNotInitializeException
      */
@@ -998,7 +998,7 @@ public class LauncherView extends JFrame {
      * Retrieves the list of actions that should not be visible from docuteamPacker.actionsNotVisible property Note:
      * At action instantiation, each action which is expected to be not visible should get an actionID using
      * putValue(putValue(ACTION_HIDE_KEY, actionID) call.
-     * 
+     *
      * @return
      */
     private List<String> getHiddenActionKeys() {
@@ -1009,7 +1009,7 @@ public class LauncherView extends JFrame {
 
     /**
      * The action is visible, if it is not found in the list of the docuteamPacker.actionsNotVisible property.
-     * 
+     *
      * @param action
      * @return
      */
@@ -1022,7 +1022,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Checks if actionId should be visible or not
-     * 
+     *
      * @param actionId
      * @return true if this actionId should not be visible, false otherwise.
      */
@@ -1032,7 +1032,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Creates a menuItem for an action, with a name and adds it to the popupMenu.
-     * 
+     *
      * @param popupMenu
      * @param action
      * @param name
@@ -1073,7 +1073,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Initialize the system.
-     * 
+     *
      * @throws DROIDCouldNotInitializeException
      */
     protected void initialize(final CommandLine commandLine) {
@@ -1095,7 +1095,7 @@ public class LauncherView extends JFrame {
 
             Logger.info("Initializing docuteam packer:");
 
-            ConfigurationFileLoader configurationFileLoader = new ConfigurationFileLoader(commandLine.getOptionValue(
+            final ConfigurationFileLoader configurationFileLoader = new ConfigurationFileLoader(commandLine.getOptionValue(
                     "configDir"));
 
             // If a config directory is specified, take these configurations
@@ -1285,6 +1285,10 @@ public class LauncherView extends JFrame {
                 PROPERTY_FILE_PATH_OS_SUFFIX, OperatingSystem.javaTempDir() + "DocuteamPacker"));
         Logger.info("    tempDirectory: " + FileUtil.getTempFolder());
 
+        Document.setLockFilesDirectory(properties.getProperty("docuteamPacker.lockFilesDir" +
+                PROPERTY_FILE_PATH_OS_SUFFIX));
+        Logger.info("    lockFilesDirectory: " + Document.getLockFilesDirectory());
+
         try {
             AIPCreatorProxy.initializeImpl(properties.getProperty("docuteamPacker.AIPCreator.className"));
 
@@ -1304,10 +1308,10 @@ public class LauncherView extends JFrame {
         LevelOfDescription.setInitializationFilePath(levelsConfigFileName);
 
         // Use specific DROID signature file if defined
-        String droidSigFilePath = properties.getProperty("docuteamPacker.droid.signatureFile", "");
+        final String droidSigFilePath = properties.getProperty("docuteamPacker.droid.signatureFile", "");
         MetadataProviderDROID.setSignatureFileWithFallback(droidSigFilePath);
         // Use specific DROID container file if defined
-        String droidContFilePath = properties.getProperty("docuteamPacker.droid.containerFile", "");
+        final String droidContFilePath = properties.getProperty("docuteamPacker.droid.containerFile", "");
         MetadataProviderDROID.setContainerSignatureFileWithFallback(droidContFilePath);
         // Use specific DROID extension setting if defined
         final String droidExtensionUsage = properties.getProperty("docuteamPacker.droid.extensionUsage", "");
@@ -1505,7 +1509,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Remove this sipView from the list of opened sipViews and refresh the SIP table.
-     * 
+     *
      * @param sipView
      */
     public void unregister(final SIPView sipView) {
@@ -1549,7 +1553,7 @@ public class LauncherView extends JFrame {
 
     /**
      * This document is just being saved. When wanting to open it, wait until saving is finished.
-     * 
+     *
      * @param document
      */
     public void savingDocumentInProgress(final SIPView sipView) {
@@ -1558,7 +1562,7 @@ public class LauncherView extends JFrame {
 
     /**
      * This document is finished being saved. When wanting to open it, now go on!
-     * 
+     *
      * @param document
      */
     public void savingDocumentFinished(final SIPView sipView) {
@@ -2126,7 +2130,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Ask for a path then open this SIP.
-     * 
+     *
      * @param mode
      */
     protected void openSIP(final Mode mode) {
@@ -2148,7 +2152,7 @@ public class LauncherView extends JFrame {
      * Open the SIP denoted by fileProperty.getFile().getAbsolutePath(). If it is locked by anybody except the current
      * user, open readOnly. If this SIP is already open, bring this view to the front. If treePath is not null, try to
      * select the node at treePath.
-     * 
+     *
      * @param mode
      */
     protected void openSIP(final FileProperty fileProperty, final Mode mode, final String admIdToSelect) {
@@ -2189,7 +2193,7 @@ public class LauncherView extends JFrame {
 
     /**
      * Open the currently selected SIP. If it is locked by anybody except the current user, don't open.
-     * 
+     *
      * @param mode
      */
     public void openSelectedSIPInWorkspace(final Mode mode) {
