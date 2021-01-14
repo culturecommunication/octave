@@ -52,7 +52,7 @@
 		<!-- dependencies versions -->
 		<junit.version>4.12</junit.version>
 		<javax.mail.version>1.4</javax.mail.version>
-		<org.apache.poi.version>3.13</org.apache.poi.version>
+		<org.apache.poi.version>4.1.2</org.apache.poi.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
 		<com.artofsolving.jodconverter.version>2.2.2</com.artofsolving.jodconverter.version>
 		<com.exlibris.dps-sdk.version>5.1.0</com.exlibris.dps-sdk.version>
