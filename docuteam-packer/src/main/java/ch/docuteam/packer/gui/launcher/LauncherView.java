@@ -65,11 +65,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.SocketException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -141,7 +138,6 @@ import ch.docuteam.tools.gui.ScrollableMessageDialog;
 import ch.docuteam.tools.gui.SmallPeskyMessageWindow;
 import ch.docuteam.tools.gui.SystemOutView;
 import ch.docuteam.tools.id.DOIGenerator;
-import ch.docuteam.tools.os.OSXAdapter;
 import ch.docuteam.tools.os.OperatingSystem;
 import ch.docuteam.tools.out.Logger;
 import ch.docuteam.tools.string.StringUtil;
@@ -185,8 +181,6 @@ public class LauncherView extends JFrame {
     private String reportsDirectory;
 
     private String reportsDestinationDirectory;
-
-    private boolean inDevelopMode;
 
     private boolean newSIPDeleteSourcesByDefault;
 
@@ -360,10 +354,6 @@ public class LauncherView extends JFrame {
         return migrateFileKeepOriginal;
     }
 
-    public boolean isInDevelopMode() {
-        return inDevelopMode;
-    }
-
     public Action getOpenSIPInWorkspaceAction() {
         return openSIPInWorkspaceAction;
     }
@@ -425,12 +415,6 @@ public class LauncherView extends JFrame {
 
         // Open a SIP on startup (if specified in the commandLine):
         l.openSIP(commandLine);
-
-        final boolean inDevelopMode = Boolean.parseBoolean(l.getProperties().getProperty("docuteamPacker.isDevMode",
-                "false"));
-        if (inDevelopMode) {
-            debugClasspath();
-        }
     }
 
     private Properties getProperties() {
@@ -500,14 +484,6 @@ public class LauncherView extends JFrame {
         quitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipQuit"));
 
         aboutAction = new AboutAction(this);
-        // Use OSXAdapter to handle cmd-q and the OS X "About" menu entry:
-        try {
-            OSXAdapter.setQuitHandler(this, getClass().getMethod("requestQuit"));
-            final Method openAboutWindowMethod = aboutAction.getClass().getMethod("openAboutWindow");
-            OSXAdapter.setAboutHandler(this, openAboutWindowMethod);
-        } catch (final Exception e) {
-            Logger.error(e.getMessage(), e);
-        }
 
         // SA actions:
         updateSAsFromServerAction = new AbstractAction(I18N.translate("ActionLoadSAsFromServer"),
@@ -812,7 +788,7 @@ public class LauncherView extends JFrame {
         popupMenu.add(new JMenuItem(copySIPInWorkspaceAction));
         popupMenu.add(new JMenuItem(deleteSIPInWorkspaceAction));
 
-        programMenu = new JMenu(BuildInfo.getProduct());
+        programMenu = new JMenu(I18N.translate("TitleMain"));
         programMenu.setIcon(getImageIcon("DocuteamPackerSmall.png"));
 
         programMenu.add(new JMenuItem(aboutAction));
@@ -1158,22 +1134,15 @@ public class LauncherView extends JFrame {
             }
         }
 
-        inDevelopMode = Boolean.parseBoolean(properties.getProperty("docuteamPacker.isDevMode", "false"));
-        Logger.info("    isDevMode: " + inDevelopMode);
+        SystemOutView.install();
 
-        // When in dev mode, let the system output go to the console, otherwise
-        // to the SystemOutView:
-        if (!inDevelopMode) {
-            SystemOutView.install();
+        final boolean doOpenSystemOutViewOnOutput = "true"
+                .equalsIgnoreCase(properties.getProperty("docuteamPacker.openSystemOutViewOnOutput", "true"));
+        Logger.info("    openSystemOutViewOnOutput: " + doOpenSystemOutViewOnOutput);
 
-            final boolean doOpenSystemOutViewOnOutput = "true"
-                    .equalsIgnoreCase(properties.getProperty("docuteamPacker.openSystemOutViewOnOutput", "true"));
-            Logger.info("    openSystemOutViewOnOutput: " + doOpenSystemOutViewOnOutput);
-
-            // Switch on or off the automatic popping-up of the SystemOutView on
-            // output via property file:
-            SystemOutView.setDoPopUpOnWrite(doOpenSystemOutViewOnOutput);
-        }
+        // Switch on or off the automatic popping-up of the SystemOutView on
+        // output via property file:
+        SystemOutView.setDoPopUpOnWrite(doOpenSystemOutViewOnOutput);
 
         final StringBuilder additionalInfoText = new StringBuilder("----------\n")
                 .append(BuildInfo.getProduct())
@@ -1337,7 +1306,7 @@ public class LauncherView extends JFrame {
                 final List<String> saNamesToBeDeleted = updateSAsFromServer();
 
                 // When in dev mode, don't delete any SAs
-                if (!saNamesToBeDeleted.isEmpty() && !inDevelopMode) {
+                if (!saNamesToBeDeleted.isEmpty()) {
                     // Ask whether to delete the excessive SAs.
                     // Don't use "JOptionPane.showConfirmDialog(...)" because
                     // that way we can't explicitly specify the position of the
@@ -1464,12 +1433,10 @@ public class LauncherView extends JFrame {
     }
 
     /**
-     * The [Quit] button was clicked, or the [Window close] button was clicked, or <ctrl-q> or <cmd-q> was typed.
-     * First confirm. If confirmed and if the current document was modified, ask if to save the document. NOTES: This
-     * method has to be public because it is called by the OSXAdapter via reflection. This method has to return a
-     * boolean value which is interpreted by the OSXAdapter.
+     * The [Quit] button was clicked, or the [Window close] button was clicked, or <ctrl-q> was typed.
+     * First confirm. If confirmed and if the current document was modified, ask if to save the document.
      */
-    public boolean requestQuit() {
+    private boolean requestQuit() {
         Logger.debug("Requesting quit...");
 
         if (sipsWithSavingInProgress.size() > 0) {
@@ -2106,25 +2073,6 @@ public class LauncherView extends JFrame {
             Logger.debug("open: " + commandLine.getOptionValue("open"));
             final FileProperty fileProperty = findFilePropertyInSIPList(new File(commandLine.getOptionValue("open")));
             openSIP(fileProperty, Mode.ReadWrite, null);
-        } else if (inDevelopMode) {
-            // ToDo: When starting in development mode, open this file:
-
-            // Examples for Denis:
-            //
-            // open(); // Empty
-            // open("./files/ch-001194-4_55/mets modified.xml", false); // Big example
-            // open("./files/ch-001194-4_459/mets modified.xml", false); // Small example
-            // open("./files/DifferentFileTypes/mets.xml", false); // Many different file types
-            // open("./files/DifferentFileTypes/mets.xml", true); // Many different file types, open read-only
-            // openSIP("./files/DifferentLevels", false); // Different levels
-            // open("./files/Icons/mets.xml", false); // Big example with many icons
-            // open("./files/Locked/mets.xml", false); // Locked
-            // open("./files/RestrictedAccess/mets.xml", false); // Restricted file access
-            // open("/Users/denis/Desktop/SIP/mets.xml", false); // Temporary example
-            // open("/Users/docuteam/Desktop/Created/Humor/mets.xml", false); // Temporary example
-
-            // Examples for Andi:
-            // ...
         }
     }
 
@@ -2258,13 +2206,4 @@ public class LauncherView extends JFrame {
         }
     }
 
-    private static void debugClasspath() {
-        final ClassLoader cl = ClassLoader.getSystemClassLoader();
-
-        final URL[] urls = ((URLClassLoader) cl).getURLs();
-
-        for (final URL url : urls) {
-            Logger.info(url.getFile());
-        }
-    }
 }

@@ -1,9 +1,0 @@
-To build the distribution, use the "mvn package" goal.
-Indicate the version of packer to use for this client in the <parent><version> of the pom.xml.
-The given version's artifacts must be accessible either in the local maven repository or in the configured repositories.
-
-Logos are replaced by files with the same name as the generic ones, but containing the OCTAVE logo.
-
-The octave.exe was created by manually adapting the launch4j configuration within docuteam-packer/pom.xml, changing the <chdir> instruction to:
-	<chdir>./octave.app/Contents/docuteam packer</chdir>
-(anticipating the third step further down)

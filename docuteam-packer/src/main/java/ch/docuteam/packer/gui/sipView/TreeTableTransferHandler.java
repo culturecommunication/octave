@@ -129,16 +129,10 @@ public class TreeTableTransferHandler extends TransferHandler {
                         .getTransferData(TreeNodeListTransferable.DocuteamPackerTreeNodeListDataFlavor);
                 sourceSIP = transferData.getSipPath();
             } catch (final UnsupportedFlavorException ex) {
-                // Ignore silently:
-                if (sipView.getLauncherView().isInDevelopMode()) {
-                    Logger.error(ex.getMessage(), ex);
-                }
+                Logger.debug(ex.getMessage(), ex);
                 return false;
             } catch (final IOException ex) {
-                // Ignore silently:
-                if (sipView.getLauncherView().isInDevelopMode()) {
-                    Logger.error(ex.getMessage(), ex);
-                }
+                Logger.debug(ex.getMessage(), ex);
                 return false;
             }
 

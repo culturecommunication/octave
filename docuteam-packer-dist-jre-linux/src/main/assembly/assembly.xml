@@ -1,0 +1,66 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>dist</id>
+  <!-- Specifies that our binary distribution is a zip package -->
+  <formats>
+    <format>zip</format>
+  </formats>
+  <baseDirectory>octave</baseDirectory>
+
+  <!-- Adds the dependencies of our application to the lib directory -->
+  <dependencySets>
+    <dependencySet>
+      <excludes>
+        <exclude>ch.docuteam:docuteam-packer</exclude>
+      </excludes>
+      <!--
+          Project artifact is not copied under library directory since
+          it is added to the root directory of the zip package.
+      -->
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>lib</outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+
+    <dependencySet>
+      <includes>
+        <include>ch.docuteam:docuteam-packer</include>
+      </includes>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory></outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+  </dependencySets>
+
+  <fileSets>
+    <!--
+        Adds startup scripts to the zip package. These scripts have
+        to be copied first to have to correct file permissions -->
+    <fileSet>
+      <directory>${project.build.outputDirectory}/distribution</directory>
+      <outputDirectory/>
+      <includes>
+        <include>octave.sh</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.outputDirectory}/distribution</directory>
+      <outputDirectory/>
+    </fileSet>
+
+    <!-- adds the generic config to the distribution -->
+    <fileSet>
+      <directory>${project.build.outputDirectory}</directory>
+      <outputDirectory></outputDirectory>
+      <excludes>
+        <exclude>distribution/</exclude>
+      </excludes>
+    </fileSet>
+
+    <fileSet>
+      <directory>target/linux/${net.adoptopenjdk.java.jre.folderName}/</directory>
+      <outputDirectory>java</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

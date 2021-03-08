@@ -34,6 +34,8 @@ You can get your Cloudsmith API Key from [Cloudsmith Settings](https://cloudsmit
 </settings>
 ```
 
+A working settings file is provided in this folder.
+
 # Checkstyle and Code Formatting in Eclipse
 
 The coding style is automatically checked during a maven build. In Eclipse there exists a plugin to check the code.

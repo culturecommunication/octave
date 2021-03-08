@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <servers>
+        <server>
+            <id>cloudsmith-release</id>
+            <username>${env.CLOUDSMITH_API_USERNAME}</username>
+            <password>${env.CLOUDSMITH_API_KEY}</password>
+        </server>
+
+        <server>
+            <id>docuteam-third-party</id>
+            <username>${env.CLOUDSMITH_API_USERNAME}</username>
+            <password>${env.CLOUDSMITH_API_KEY}</password>
+        </server>
+
+        <server>
+            <id>docuteam-snapshots</id>
+            <username>${env.CLOUDSMITH_API_USERNAME}</username>
+            <password>${env.CLOUDSMITH_API_KEY}</password>
+        </server>
+
+        <server>
+            <id>docuteam-releases</id>
+            <username>${env.CLOUDSMITH_API_USERNAME}</username>
+            <password>${env.CLOUDSMITH_API_KEY}</password>
+        </server>
+
+        <server>
+            <id>docuteam-installers</id>
+            <username>${env.CLOUDSMITH_API_USERNAME}</username>
+            <password>${env.CLOUDSMITH_API_KEY}</password>
+        </server>
+    </servers>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <name>Central Repository</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                    <layout>default</layout>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+
+                <repository>
+                    <id>docuteam-third-party</id>
+                    <url>https://dl.cloudsmith.io/basic/docuteam/third-party/maven/</url>
+                </repository>
+
+                <repository>
+                    <id>docuteam-releases</id>
+                    <url>https://dl.cloudsmith.io/basic/docuteam/releases/maven/</url>
+                </repository>
+
+                <repository>
+                    <id>docuteam-installers</id>
+                    <url>https://dl.cloudsmith.io/basic/docuteam/installers/maven/</url>
+                </repository>
+
+                <repository>
+                    <id>docuteam-snapshots</id>
+                    <url>https://dl.cloudsmith.io/basic/docuteam/snapshots/maven/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>default</activeProfile>
+    </activeProfiles>
+</settings>

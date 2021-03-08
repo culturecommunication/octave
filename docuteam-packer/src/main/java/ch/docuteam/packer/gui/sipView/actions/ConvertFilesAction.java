@@ -149,9 +149,10 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
         }
 
         /**
-         * The method is mostly duplicated from ch.docuteam.feeder.ingest.SIPFileMigrator.migrateFile(NodeFile file,
-         * Boolean retainOriginalFile) Logs/error codes related to exceptions have been dropped in order to avoid [
-         * feeder <- packer ] dependency
+         * The method is mostly duplicated from ch.docuteam.actions.ingest.SIPFileMigrator.migrateFile(NodeFile file,
+         * Boolean retainOriginalFile).<br>
+         * Logs/error codes related to exceptions have been dropped in order to avoid [ actions <- packer ]
+         * dependency.
          *
          * @param file
          * @param retainOriginalFile

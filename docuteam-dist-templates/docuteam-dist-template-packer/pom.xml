@@ -1,33 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>ch.docuteam</groupId>
-    <artifactId>docuteam-dist-templates</artifactId>
-    <version>${revision}${sha1}${changelist}</version>
+    <parent>
+        <groupId>ch.docuteam</groupId>
+        <artifactId>docuteam-dist-templates</artifactId>
+        <version>${revision}${sha1}${changelist}</version>
 
-  </parent>
+    </parent>
 
-  <artifactId>docuteam-dist-template-packer</artifactId>
-  <packaging>pom</packaging>
-  <name>docuteam dist template for packer</name>
+    <artifactId>docuteam-dist-template-packer</artifactId>
+    <packaging>pom</packaging>
+    <name>docuteam dist template for packer</name>
 
-  <properties>
-    <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
-    <skip-jre>true</skip-jre>
-    <!-- if you want to bundle the dlls needed by PDFToolsConverter into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
-    <skip-pdf-dlls>true</skip-pdf-dlls>
-    <com.oracle.java.jre.version>1.8.0_181</com.oracle.java.jre.version>
-  </properties>
+    <properties>
+        <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
+        <skip-jre>true</skip-jre>
+        <!-- if you want to bundle the dlls needed by PDFToolsConverter into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
+        <skip-pdf-dlls>true</skip-pdf-dlls>
+        <com.oracle.java.jre.version>1.8.0_181</com.oracle.java.jre.version>
+    </properties>
 
-  <modules>
-    <module>octave-docuteam-packer-dist</module>
-  </modules>
-
-  <build>
-  	<plugins>
-       <plugin>
-            <!-- TODO: move this to pluginManagement section of the parent pom -->
+    <build>
+        <plugins>
+            <plugin>
+                <!-- TODO: move this to pluginManagement section of the parent pom -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven-dependency-plugin.plugin.version}</version>
@@ -57,7 +54,7 @@
                             <outputDirectory>${project.build.directory}/</outputDirectory>
                         </configuration>
                     </execution>
-                   <execution>
+                    <execution>
                         <!-- configure plugin execution for child modules -->
                         <inherited>true</inherited>
                         <id>unpack-jre</id>
@@ -80,7 +77,7 @@
                             <overWriteReleases>true</overWriteReleases>
                             <overWriteIfNewer>true</overWriteIfNewer>
                             <outputDirectory>${project.build.directory}/jre</outputDirectory>
-		                    <skip>${skip-jre}</skip>
+                            <skip>${skip-jre}</skip>
                         </configuration>
                     </execution>
                 </executions>
@@ -88,129 +85,115 @@
                     <skip>true</skip>
                 </configuration>
                 <inherited>false</inherited>
-      </plugin>
-      <plugin>
-            <!-- TODO: move this to pluginManagement section of the parent pom -->
-      		<groupId>org.codehaus.mojo</groupId>
-        	<artifactId>truezip-maven-plugin</artifactId>
-        	<version>${truezip-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <!-- TODO: move this to pluginManagement section of the parent pom -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>truezip-maven-plugin</artifactId>
+                <version>${truezip-maven-plugin.version}</version>
 
-    		<executions>
-          		<execution>
-                    <!-- configure plugin execution for child modules -->
-                    <inherited>true</inherited>
-            		<id>copy-into</id>
-            		<goals>
-              			<goal>copy</goal>
-            		</goals>
-            		<phase>package</phase>
-                    <configuration>
-        		        <fileset>
+                <executions>
+                    <execution>
+                        <!-- configure plugin execution for child modules -->
+                        <inherited>true</inherited>
+                        <id>copy-into</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <fileset>
 
-                            <directory>${project.basedir}/src/main/resources</directory>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer</outputDirectory>
-                        </fileset>
-                        <verbose>true</verbose>
-    		        </configuration>
-                </execution>
-                <execution>
-                    <!-- configure plugin execution for child modules -->
-                    <inherited>true</inherited>
-            		<id>copy-jre-into</id>
-            		<goals>
-              			<goal>copy</goal>
-            		</goals>
-            		<phase>package</phase>
-                    <configuration>
-        		        <fileset>
-                            <directory>${project.build.directory}/jre/jre${com.oracle.java.jre.version}</directory>
-                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/jre</outputDirectory>
-                        </fileset>
-                        <immediateUpdate>true</immediateUpdate>
-                        <verbose>true</verbose>
-                        <skip>${skip-jre}</skip>
-    		        </configuration>
-                </execution>
-                <execution>
-                    <!-- configure plugin execution for child modules -->
-                    <inherited>true</inherited>
-            		<id>moveO2PProxyDlls</id>
-            		<goals>
-              			<goal>move</goal>
-            		</goals>
-            		<phase>package</phase>
-                    <configuration>
-        		        <fileset>
-                            <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
-                            <include>*</include>
-                            <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/lib</outputDirectory>
-                        </fileset>
-                        <immediateUpdate>true</immediateUpdate>
-                        <verbose>true</verbose>
-                        <skip>${skip-pdf-dlls}</skip>
-    		        </configuration>
-                </execution>
-                <execution>
-                    <!-- configure plugin execution for child modules -->
-                    <inherited>true</inherited>
-            		<id>removeOptDllsFolder</id>
-            		<goals>
-              			<goal>remove</goal>
-            		</goals>
-            		<phase>package</phase>
-                    <configuration>
-        		        <fileset>
-                            <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
-                        </fileset>
-                        <immediateUpdate>true</immediateUpdate>
-                        <verbose>true</verbose>
-    		        </configuration>
-                </execution>
-        	</executions>
-            <configuration>
-                <!-- skip plugin execution for this module, but not for child modules -->
-                <skip>true</skip>
-            </configuration>
-            <inherited>false</inherited>
-      	</plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-install-plugin</artifactId>
-            <version>${maven-install-plugin.plugin.version}</version>
-            <executions>
-                <execution>
-                    <!-- reactivate this execution for the current pom -->
-                    <id>default-install</id>
-                    <inherited>false</inherited>
-                    <configuration>
-                    <skip>false</skip>
-                    </configuration>
-                </execution>
-            </executions>
-            <!-- skip plugin execution for child modules -->
-            <configuration>
-                <skip>true</skip>
-            </configuration>
-            <inherited>true</inherited>
-        </plugin>
-    </plugins>
-  </build>
+                                <directory>${project.basedir}/src/main/resources</directory>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                                <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer</outputDirectory>
+                            </fileset>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- configure plugin execution for child modules -->
+                        <inherited>true</inherited>
+                        <id>copy-jre-into</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <fileset>
+                                <directory>${project.build.directory}/jre/jre${com.oracle.java.jre.version}</directory>
+                                <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/jre</outputDirectory>
+                            </fileset>
+                            <immediateUpdate>true</immediateUpdate>
+                            <verbose>true</verbose>
+                            <skip>${skip-jre}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- configure plugin execution for child modules -->
+                        <inherited>true</inherited>
+                        <id>moveO2PProxyDlls</id>
+                        <goals>
+                            <goal>move</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <fileset>
+                                <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
+                                <include>*</include>
+                                <outputDirectory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/lib</outputDirectory>
+                            </fileset>
+                            <immediateUpdate>true</immediateUpdate>
+                            <verbose>true</verbose>
+                            <skip>${skip-pdf-dlls}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- configure plugin execution for child modules -->
+                        <inherited>true</inherited>
+                        <id>removeOptDllsFolder</id>
+                        <goals>
+                            <goal>remove</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <fileset>
+                                <directory>${project.build.directory}/docuteam-packer-dist-${project.version}.zip/docuteam-packer/docuteam packer.app/Contents/docuteam packer/optdlls</directory>
+                            </fileset>
+                            <immediateUpdate>true</immediateUpdate>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- skip plugin execution for this module, but not for child modules -->
+                    <skip>true</skip>
+                </configuration>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <!-- reactivate this execution for the current pom -->
+                        <id>default-install</id>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+                <!-- skip plugin execution for child modules -->
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+    </build>
 
-  <dependencies>
-    <dependency>
-    	<groupId>ch.docuteam</groupId>
-    	<artifactId>docuteam-packer-dist</artifactId>
-        <version>${project.version}</version>
-        <type>zip</type>
-	</dependency>
-	<dependency>
-		<groupId>com.oracle.java</groupId>
-		<artifactId>jre</artifactId>
-		<version>${com.oracle.java.jre.version}</version>
-		<type>tgz</type>
-	</dependency>
-  </dependencies>
 </project>

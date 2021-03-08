@@ -7,15 +7,13 @@
 |docuteamPacker.properties         ||
 |charConversionMap.properties      ||
 |container-signature-20180920.xml  |ch.docuteam.tools.file.MetadataProviderDROID |
-|crules.xml                        |ch.docuteam.feeder.storage.FOXMLCreator |
 |document-formats.xml              |ch.docuteam.converter.OOConverter |
 |DROID_SignatureFile_V95.xml       |ch.docuteam.tools.file.MetadataProviderDROID |
 |fileNameNormalizer.properties     ||
 |filePreviewConfigurator.properties||
 |jhove.conf                        |ch.docuteam.tools.file.MetadataProviderJHOVE, ch.docuteam.tools.file.FileChecksumCalculator? (propably only a obsolote JavaDoc) |
-|levels_BAR.xml                    |ch.docuteam.feeder.ingest.BARSIPConverter |
 |levels.xml                        |ch.docuteam.aipcreatorETH.ingest, ch.docuteam.darc.mdconfig.LevelOfDescription |
-|log4j2.xml                        |ch.docuteam.tools.out.Logger, ch.docuteam.feeder.util.Log4jFileAppender (deprecated and no longer used)|
+|log4j2.xml                        |ch.docuteam.tools.out.Logger|
 |migration-config.xml              |ch.docuteam.converter.FileConverter |
 |pdfToolsConverterWS.properties    |ch.docuteam.converter.PDFToolsConverterWSClient |
 

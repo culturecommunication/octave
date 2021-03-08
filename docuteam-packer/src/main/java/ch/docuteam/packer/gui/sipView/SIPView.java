@@ -187,7 +187,6 @@ import ch.docuteam.tools.gui.ScrollableMessageDialog;
 import ch.docuteam.tools.gui.SmallPeskyMessageWindow;
 import ch.docuteam.tools.os.OperatingSystem;
 import ch.docuteam.tools.out.Logger;
-import ch.docuteam.tools.out.Tracer;
 import ch.docuteam.tools.translations.I18N;
 
 import org.dom4j.DocumentException;
@@ -199,7 +198,6 @@ import org.jdesktop.swingx.decorator.HighlightPredicate;
 /**
  * @author denis
  */
-@SuppressWarnings("serial")
 public class SIPView extends JFrame {
 
     /**
@@ -979,19 +977,6 @@ public class SIPView extends JFrame {
         openDocuteamHomepageAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenDocuteamHomepage"));
         openDocuteamHomepageAction.setEnabled(true);
 
-        systemOutDocumentAction = new AbstractAction("SystemOut Document") {
-
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                systemOutDocument();
-            }
-        };
-
         saveAsTemplateAction = new AbstractAction(I18N.translate("ButtonSaveAsTemplate"), getImageIcon(SAVE_PNG)) {
 
             /**
@@ -1381,10 +1366,6 @@ public class SIPView extends JFrame {
         fileMenu.addSeparator();
         fileMenu.add(new JMenuItem(submitCheckAction));
         fileMenu.add(new JMenuItem(submitAction));
-        if (launcherView.isInDevelopMode()) {
-            fileMenu.addSeparator();
-            fileMenu.add(new JMenuItem(systemOutDocumentAction));
-        }
 
         searchMenu = new JMenu(I18N.translate("MenuSearch"));
         searchMenu.setIcon(getImageIcon("MenuSearch.png"));
@@ -2094,10 +2075,7 @@ public class SIPView extends JFrame {
 
                         Util.showAllFromExceptionCollector(waitWindow, SIPView.this);
                     } catch (final java.lang.Exception e) {
-                        if (launcherView.isInDevelopMode()) {
-                            Logger.error(e.getMessage(), e);
-                        }
-
+                        Logger.debug(e.getMessage(), e);
                         waitWindow.close(); // In case it was not closed yet...
                         JOptionPane.showMessageDialog(SIPView.this, e.toString(), I18N.translate(
                                 "TitleCantInsertFileOrFolder"), JOptionPane.ERROR_MESSAGE);
@@ -2108,10 +2086,6 @@ public class SIPView extends JFrame {
 
                     toFront();
                     requestFocus();
-
-                    if (launcherView.isInDevelopMode()) {
-                        traceTree();
-                    }
                 } finally {
                     waitWindow.close(); // In case it was not closed yet...
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2504,10 +2478,6 @@ public class SIPView extends JFrame {
         getTreeTableModel().refreshTreeStructure(treeTable.getPathForRow(selectedIndex));
 
         selectNode(newFolder);
-
-        if (launcherView.isInDevelopMode()) {
-            traceTree();
-        }
     }
 
     protected void normalizeButtonClicked() {
@@ -2638,10 +2608,6 @@ public class SIPView extends JFrame {
         updateView();
         final int lastEventIndex = selectedNode.getMyEvents().size() - 1;
         eventTable.getSelectionModel().setSelectionInterval(lastEventIndex, lastEventIndex);
-
-        if (launcherView.isInDevelopMode()) {
-            traceTree();
-        }
     }
 
     /**
@@ -2748,10 +2714,6 @@ public class SIPView extends JFrame {
         }
 
         enableOrDisableActions();
-
-        if (launcherView.isInDevelopMode()) {
-            traceTree();
-        }
     }
 
     protected void replaceFileButtonClicked() {
@@ -4013,10 +3975,6 @@ public class SIPView extends JFrame {
 
     protected void systemOutDocument() {
         Logger.info(document);
-    }
-
-    protected void traceTree() {
-        Tracer.trace(((NodeAbstract) getTreeTableModel().getRoot()).treeString(0));
     }
 
     private void sortButtonClicked() {

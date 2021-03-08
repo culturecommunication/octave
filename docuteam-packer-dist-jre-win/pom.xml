@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ch.docuteam</groupId>
+    <artifactId>docuteam</artifactId>
+    <version>${revision}${sha1}${changelist}</version>
+  </parent>
+
+  <artifactId>octave-dist-jre-win</artifactId>
+  <name>octave distribution with jre bundled for windows</name>
+  <packaging>pom</packaging>
+
+  <properties>
+    <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
+    <skip-jre>false</skip-jre>
+    <net.adoptopenjdk.java.jre.folderName>jdk-11.0.9.1+1-jre</net.adoptopenjdk.java.jre.folderName>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/../docuteam-packer-dist/src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/main/resources-filtered</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>resources-filtered-bat-scripts</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <configuration>
+              <encoding>US-ASCII</encoding>
+              <resources>
+                <resource>
+                  <directory>src/main/resources-filtered</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <includes>*.bat</includes>
+                  </includes>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${maven-dependency-plugin.plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>net.adoptopenjdk</includeGroupIds>
+              <includeTypes>zip</includeTypes>
+              <includeArtifactIds>jre-win</includeArtifactIds>
+              <outputDirectory>target/win</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- create a packer.exe with LAUNCH4J (s. http://launch4j.sourceforge.net/docs.html#Configuration_file) (executed before assembly)
+		      	mvn -pl docuteam-packer-dist clean package -Pwin assembly:single
+		      	-->
+
+      <plugin>
+        <!-- This calls launch4j to create the program EXE -->
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
+        <version>${launch4j-maven-plugin.plugin.version}</version>
+        <!-- fix WARNING: Illegal reflective access by com.thoughtworks.xstream.core.util.Fields
+        https://github.com/x-stream/xstream/issues/101#issuecomment-722701986 -->
+        <dependencies>
+          <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${com.thoughtworks.xstream.xstream.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>l4j-clui</id>
+            <phase>package</phase>
+            <goals>
+              <goal>launch4j</goal>
+            </goals>
+            <configuration>
+              <headerType>gui</headerType>
+              <dontWrapJar>true</dontWrapJar>
+              <!-- this is a workaround because the content of the <jar> is put as the first element of the classpath,
+                even before the <preCp>. However, we want some directories as first elements of the classpath,
+                and therefore the jar is added as part of the classpath instead -->
+              <jar>does-not-exist.jar</jar>
+              <outfile>${project.build.outputDirectory}/distribution/octave.exe</outfile>
+              <classPath>
+                <mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
+                <addDependencies>false</addDependencies>
+                <preCp>config\;.\;docuteam-packer-${project.version}.jar</preCp>
+              </classPath>
+              <cmdLine>-configDir="./config"</cmdLine>
+              <icon>${project.build.outputDirectory}/distribution/DocuteamPacker.ico</icon>
+              <jre>
+                <path>./java</path>
+                <bundledJre64Bit>true</bundledJre64Bit>
+                <bundledJreAsFallback>false</bundledJreAsFallback>
+                <jdkPreference>preferJre</jdkPreference>
+                <runtimeBits>64/32</runtimeBits>
+                <initialHeapSize>512</initialHeapSize>
+                <maxHeapSize>2048</maxHeapSize>
+                <opts>
+                  <opt>-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager</opt>
+                  <opt>-Dfile.encoding=utf-8</opt>
+                  <opt>-Djava.library.path=lib</opt>
+                </opts>
+              </jre>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- create a packer distribution:
+     mvn -pl docuteam-packer clean package assembly:single
+     -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven-assembly-plugin.plugin.version}</version>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <!-- Configures the used assembly descriptor -->
+          <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-archive</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>ch.docuteam</groupId>
+      <artifactId>docuteam-packer</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.adoptopenjdk</groupId>
+      <artifactId>jre-win</artifactId>
+      <type>zip</type>
+      <version>${net.adoptopenjdk.java.jre.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
