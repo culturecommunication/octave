@@ -10,7 +10,7 @@
 
 	<properties>
         <!-- version information -->
-        <revision>5.8.1</revision>
+        <revision>5.9.0</revision>
         <changelist/>
         <sha1/>
 
@@ -104,14 +104,15 @@
 		<com.jcraft.jsch.version>0.1.53</com.jcraft.jsch.version>
  		<com.google.guava.version>21.0</com.google.guava.version>
         <jopt-simple.version>4.9</jopt-simple.version>
-        <jaxws-rt.version>2.3.2</jaxws-rt.version>
-        <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
-        <com.sun.xml.bind.jaxb.version>2.3.0.1</com.sun.xml.bind.jaxb.version>
+        <jaxws-rt.version>2.2.7</jaxws-rt.version>
+        <javax.xml.bind.jaxb-api.version>2.2.8</javax.xml.bind.jaxb-api.version>
+        <com.sun.xml.bind.jaxb.version>2.2.6</com.sun.xml.bind.jaxb.version>
         <rdf4j.version>3.4.1</rdf4j.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
         <org.pdftools.version>4.8.4.0</org.pdftools.version>
         <org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
         <org.apache.cxf.version>2.7.11</org.apache.cxf.version>
+        <org.codehaus.woodstox.woodstox-core-asl.version>4.2.1</org.codehaus.woodstox.woodstox-core-asl.version>
         <wsdl4j.wsdl4j.version>1.6.2</wsdl4j.wsdl4j.version>
         <commons.codec.version>1.10</commons.codec.version>
         <xerces.xercesImpl.version>2.9.1</xerces.xercesImpl.version>
@@ -170,11 +171,6 @@
             </dependency>
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <version>${com.sun.xml.bind.jaxb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
                 <version>${com.sun.xml.bind.jaxb.version}</version>
             </dependency>
@@ -192,6 +188,11 @@
 				<groupId>fcrepo3-diringest</groupId>
 				<artifactId>fcrepo3-diringest</artifactId>
 				<version>${ch.docuteam.fcrepo3-diringest.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>woodstox-core-asl</artifactId>
+				<version>${org.codehaus.woodstox.woodstox-core-asl.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -319,11 +320,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.1.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.7.0.1746</version>
             </plugin>
         <plugin>
           <groupId>com.mycila</groupId>
