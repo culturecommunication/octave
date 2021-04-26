@@ -107,7 +107,7 @@
         <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
         <com.sun.xml.bind.jaxb.version>2.3.0.1</com.sun.xml.bind.jaxb.version>
         <rdf4j.version>2.3.2</rdf4j.version>
-        <apache.commons.io.version>2.4</apache.commons.io.version>
+        <apache.commons.io.version>2.7</apache.commons.io.version>
         <org.pdftools.version>4.8.4.0</org.pdftools.version>
         <org.apache.httpcomponents.version>4.5</org.apache.httpcomponents.version>
         <org.apache.cxf.version>2.2.12</org.apache.cxf.version>
