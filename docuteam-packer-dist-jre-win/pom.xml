@@ -97,15 +97,6 @@
         <groupId>com.akathist.maven.plugins.launch4j</groupId>
         <artifactId>launch4j-maven-plugin</artifactId>
         <version>${launch4j-maven-plugin.plugin.version}</version>
-        <!-- fix WARNING: Illegal reflective access by com.thoughtworks.xstream.core.util.Fields
-        https://github.com/x-stream/xstream/issues/101#issuecomment-722701986 -->
-        <dependencies>
-          <dependency>
-            <groupId>com.thoughtworks.xstream</groupId>
-            <artifactId>xstream</artifactId>
-            <version>${com.thoughtworks.xstream.xstream.version}</version>
-          </dependency>
-        </dependencies>
         <executions>
           <execution>
             <id>l4j-clui</id>

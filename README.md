@@ -40,5 +40,3 @@ s. http://code.mycila.com/license-maven-plugin/
 ```
   mvn -Dtest=XMLTransformerTest test
 ```
-
-You can get your CLOUDSMITH_API_KEY from [Cloudsmith Settings](https://cloudsmith.io/user/settings/api/)

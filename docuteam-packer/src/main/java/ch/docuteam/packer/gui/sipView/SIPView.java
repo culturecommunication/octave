@@ -2075,7 +2075,7 @@ public class SIPView extends JFrame {
 
                         Util.showAllFromExceptionCollector(waitWindow, SIPView.this);
                     } catch (final java.lang.Exception e) {
-                        Logger.debug(e.getMessage(), e);
+                        Logger.error(e.getMessage(), e);
                         waitWindow.close(); // In case it was not closed yet...
                         JOptionPane.showMessageDialog(SIPView.this, e.toString(), I18N.translate(
                                 "TitleCantInsertFileOrFolder"), JOptionPane.ERROR_MESSAGE);

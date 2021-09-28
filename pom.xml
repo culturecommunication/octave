@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.0.0</revision>
+		<revision>6.0.1</revision>
 		<changelist/>
 		<sha1/>
 
@@ -26,7 +26,7 @@
 		<maven-install-plugin.plugin.version>2.5.2</maven-install-plugin.plugin.version>
 		<maven-assembly-plugin.plugin.version>3.1.1</maven-assembly-plugin.plugin.version>
 		<build-helper-maven-plugin.plugin.version>3.0.0</build-helper-maven-plugin.plugin.version>
-		<launch4j-maven-plugin.plugin.version>1.7.25</launch4j-maven-plugin.plugin.version>
+		<launch4j-maven-plugin.plugin.version>2.1.0</launch4j-maven-plugin.plugin.version>
 		<cxf-codegen.plugin.version>3.4.2</cxf-codegen.plugin.version>
 		<net.sourceforge.spnego.spnego>7.0</net.sourceforge.spnego.spnego>
 		<com.kerb4j.kerb4j.plugin.version>0.1.0</com.kerb4j.kerb4j.plugin.version>
@@ -54,13 +54,13 @@
 
 		<!-- dependencies versions -->
 		<junit.version>4.13.2</junit.version>
-		<javax.mail.version>1.4</javax.mail.version>
-		<org.apache.poi.version>4.1.1</org.apache.poi.version>
+		<javax.mail.version>1.4.7</javax.mail.version>
+		<org.apache.poi.version>4.1.2</org.apache.poi.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
 		<com.artofsolving.jodconverter.version>2.2.2</com.artofsolving.jodconverter.version>
 		<com.exlibris.dps-sdk.version>5.1.0</com.exlibris.dps-sdk.version>
-		<com.google.code.gson.gson.version>2.2.4</com.google.code.gson.gson.version>
-		<com.kerb4j.kerb4j-client.version>0.1.0</com.kerb4j.kerb4j-client.version>
+		<com.google.code.gson.gson.version>2.8.8</com.google.code.gson.gson.version>
+		<com.kerb4j.kerb4j-client.version>0.1.2</com.kerb4j.kerb4j-client.version>
 		<com.opentext.cws.version>10.5.1</com.opentext.cws.version>
 		<com.oracle.ojdbc6.version>12.1.0</com.oracle.ojdbc6.version>
 		<com.pdftools.converter.version>2.0.1.0</com.pdftools.converter.version>
@@ -68,50 +68,50 @@
 		<com.sun.jersey.jersey.version>1.17.1</com.sun.jersey.jersey.version>
 		<com.sun.jimi.version>1.0</com.sun.jimi.version>
 		<com.sun.media.jai-codec.version>1.1.3</com.sun.media.jai-codec.version>
-		<com.thoughtworks.xstream.xstream.version>1.4.15</com.thoughtworks.xstream.xstream.version>
+		<com.thoughtworks.xstream.xstream.version>1.4.17</com.thoughtworks.xstream.xstream.version>
 		<com.yourmediashelf.fedora.client.fedora-client-core.version>0.7</com.yourmediashelf.fedora.client.fedora-client-core.version>
-		<commons-cli.commons-cli.version>1.2</commons-cli.commons-cli.version>
+		<commons-cli.commons-cli.version>1.4</commons-cli.commons-cli.version>
 		<commons.logging.version>1.2</commons.logging.version>
 		<commons-lang.commons-lang.version>2.6</commons-lang.commons-lang.version>
 		<commons-httpclient.commons-httpclient.version>3.1</commons-httpclient.commons-httpclient.version>
 		<dom4j.dom4j.version>1.6.1</dom4j.dom4j.version>
 		<javax.servlet.servlet-api.version>2.4</javax.servlet.servlet-api.version>
 		<javax.xml.jaxrpc-api.version>1.1</javax.xml.jaxrpc-api.version>
-		<jaxen.jaxen.version>1.1.6</jaxen.jaxen.version>
+		<jaxen.jaxen.version>1.2.0</jaxen.jaxen.version>
 	    <net.adoptopenjdk.java.jre.version>11.0.9.1_1</net.adoptopenjdk.java.jre.version>
 		<net.iharder.base64.version>2.3.7</net.iharder.base64.version>
-		<net.sf.saxon.Saxon-HE.version>9.5.1-5</net.sf.saxon.Saxon-HE.version>
-		<org.apache.commons.commons-csv.version>1.5</org.apache.commons.commons-csv.version>
-		<org.apache.commons.commons-lang3.version>3.1</org.apache.commons.commons-lang3.version>
+		<net.sf.saxon.Saxon-HE.version>9.9.1-8</net.sf.saxon.Saxon-HE.version>
+		<org.apache.commons.commons-csv.version>1.9.0</org.apache.commons.commons-csv.version>
+		<org.apache.commons.commons-lang3.version>3.12.0</org.apache.commons.commons-lang3.version>
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
-		<org.apache.logging.log4j.version>2.13.2</org.apache.logging.log4j.version>
-		<org.apache.xmlbeans.xmlbeans.version>3.0.2</org.apache.xmlbeans.xmlbeans.version>
+		<org.apache.logging.log4j.version>2.14.1</org.apache.logging.log4j.version>
+		<org.apache.xmlbeans.xmlbeans.version>3.1.0</org.apache.xmlbeans.xmlbeans.version>
 		<org.apache.xmlgraphics.fop.version>2.6</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
 		<org.assertj.assertj-swing-junit.version>3.9.2</org.assertj.assertj-swing-junit.version>
 		<org.fcrepo.fcrepo.version>3.8.1</org.fcrepo.fcrepo.version>
 		<org.icepdf.os.icepdf-viewer.version>6.2.2</org.icepdf.os.icepdf-viewer.version>
 		<org.jsoup.jsoup.version>1.9.2</org.jsoup.jsoup.version>
-		<org.openoffice.version>3.0.1</org.openoffice.version>
+		<org.openoffice.version>3.2.1</org.openoffice.version>
 		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
 		<de.schlichtherle.truezip.version>7.7.10</de.schlichtherle.truezip.version>
-		<com.drewnoakes.metadata-extractor.version>2.13.0</com.drewnoakes.metadata-extractor.version>
+		<com.drewnoakes.metadata-extractor.version>2.16.0</com.drewnoakes.metadata-extractor.version>
 		<uk.gov.nationalarchives.droid.version>6.5</uk.gov.nationalarchives.droid.version>
-		<edu.harvard.hul.ois.jhove.version>1.2</edu.harvard.hul.ois.jhove.version>
-		<net.harawata.appdirs.version>1.0.1</net.harawata.appdirs.version>
-		<mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+		<edu.harvard.hul.ois.jhove.version>1.20.1</edu.harvard.hul.ois.jhove.version>
+		<net.harawata.appdirs.version>1.2.1</net.harawata.appdirs.version>
+		<mysql-connector-java.version>8.0.26</mysql-connector-java.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
 		<com.jcraft.jsch.version>0.1.55</com.jcraft.jsch.version>
-		<com.google.guava.version>30.1-jre</com.google.guava.version>
+		<com.google.guava.version>30.1.1-jre</com.google.guava.version>
 		<jopt-simple.version>4.9</jopt-simple.version>
-		<jaxws-rt.version>2.3.2</jaxws-rt.version>
+		<jaxws-rt.version>2.3.5</jaxws-rt.version>
 		<javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
-		<com.sun.xml.bind.jaxb.version>3.0.0</com.sun.xml.bind.jaxb.version>
-		<rdf4j.version>3.5.0</rdf4j.version>
-		<apache.commons.io.version>2.4</apache.commons.io.version>
-		<org.pdftools.version>4.8.4.0</org.pdftools.version>
+		<com.sun.xml.bind.jaxb.version>3.0.2</com.sun.xml.bind.jaxb.version>
+		<rdf4j.version>3.7.2</rdf4j.version>
+		<apache.commons.io.version>2.11.0</apache.commons.io.version>
+		<org.pdftools.version>6.15.0.1</org.pdftools.version>
 		<org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
-		<org.apache.cxf.version>3.4.2</org.apache.cxf.version>
+		<org.apache.cxf.version>3.4.4</org.apache.cxf.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<xerces.xercesImpl.version>2.12.1</xerces.xercesImpl.version>
 		<gov.loc.bagit.version>5.2.0</gov.loc.bagit.version>
@@ -186,6 +186,11 @@
 				<artifactId>fcrepo3-diringest</artifactId>
 				<version>${ch.docuteam.fcrepo3-diringest.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>2.3</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -399,54 +404,6 @@
 					 </configuration>
 			      </execution>
 			      <execution>
-			         <id>install-jhove-jar</id>
-			         <goals>
-			            <goal>install-file</goal>
-			         </goals>
-			         <phase>validate</phase>
-					 <configuration>
-					    <groupId>edu.harvard.hul.ois</groupId>
-					    <artifactId>jhove</artifactId>
-					    <version>${edu.harvard.hul.ois.jhove.version}</version>
-					    <packaging>jar</packaging>
-					    <file>${basedir}/src/main/lib/jhove-${edu.harvard.hul.ois.jhove.version}.jar</file>
-					    <generatePom>false</generatePom>
-					    <pomFile>${basedir}/src/main/lib/jhove-${edu.harvard.hul.ois.jhove.version}.pom</pomFile>
-					 </configuration>
-			      </execution>
-			      <execution>
-			         <id>install-jhove-handler-jar</id>
-			         <goals>
-			            <goal>install-file</goal>
-			         </goals>
-			         <phase>validate</phase>
-					 <configuration>
-					    <groupId>edu.harvard.hul.ois</groupId>
-					    <artifactId>jhove-handler</artifactId>
-					    <version>${edu.harvard.hul.ois.jhove.version}</version>
-					    <packaging>jar</packaging>
-					    <file>${basedir}/src/main/lib/jhove-handler-${edu.harvard.hul.ois.jhove.version}.jar</file>
-					    <generatePom>false</generatePom>
-					    <pomFile>${basedir}/src/main/lib/jhove-handler-${edu.harvard.hul.ois.jhove.version}.pom</pomFile>
-					 </configuration>
-			      </execution>
-			      <execution>
-			         <id>install-jhove-module-jar</id>
-			         <goals>
-			            <goal>install-file</goal>
-			         </goals>
-			         <phase>validate</phase>
-					 <configuration>
-					    <groupId>edu.harvard.hul.ois</groupId>
-					    <artifactId>jhove-module</artifactId>
-					    <version>${edu.harvard.hul.ois.jhove.version}</version>
-					    <packaging>jar</packaging>
-					    <file>${basedir}/src/main/lib/jhove-module-${edu.harvard.hul.ois.jhove.version}.jar</file>
-					    <generatePom>false</generatePom>
-					    <pomFile>${basedir}/src/main/lib/jhove-module-${edu.harvard.hul.ois.jhove.version}.pom</pomFile>
-					 </configuration>
-			      </execution>
-			      <execution>
 			         <id>install-jre-linux</id>
 			         <goals>
 			            <goal>install-file</goal>
@@ -618,29 +575,7 @@
 	</reporting>
 	<repositories>
 		<repository>
-			<id>geotoolkit</id>
-			<name>geotoolkit</name>
-			<url>http://maven.geotoolkit.org</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<!-- https://github.com/openpreserve/jhove#for-developers-jhove-jars-via-maven -->
-			<id>opf-dev-mvn</id>
-			<name>opf-dev</name>
-			<url>http://artifactory.openpreservation.org/artifactory/opf-dev/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
+			<!-- com.sun.media:jai-codec (packer) -->
 			<id>JBoss_3rd-party</id>
 			<name>JBoss_3rd-party</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
@@ -652,70 +587,15 @@
 			</snapshots>
 		</repository>
 		<repository>
-			<id>Atlassian_3rd-Party</id>
-			<name>Atlassian_3rd-Party</name>
-			<url>https://maven.atlassian.com/3rdparty/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>MyGrid_Repository</id>
-			<name>MyGrid_Repository</name>
-			<url>http://www.mygrid.org.uk/maven/repository/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
 			<id>Duraspace</id>
 			<name>Duraspace</name>
 			<url>http://m2.duraspace.org/content/repositories/releases/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 		<repository>
+			<!-- com.artofsolving:jodconverter (converter) -->
 			<id>nuxeo</id>
 			<name>nuxeo</name>
-			<url>https://maven-us.nuxeo.org/nexus/content/repositories/vendor-releases/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>pentaho-repo</id>
-			<name>pentaho-repo</name>
-			<url>https://public.nexus.pentaho.org/content/groups/omni/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>icesoft-releases</id>
-			<name>ICEsoft Releases</name>
-			<url>http://anonsvn.icesoft.org/repo/maven2/releases/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<url>https://maven-eu.nuxeo.org/nexus/content/repositories/vendor-releases/</url>
 		</repository>
 		<repository>
 			<!-- com.sun.jimi:1.0 -->
@@ -739,17 +619,13 @@
 		<module>docuteam-dist-templates</module>
 	</modules>
 	<scm>
-		<url>http://192.168.0.100/svn/docuteam/trunk/</url>
-		<!-- read access -->
-		<connection>scm:svn:http://192.168.0.100/svn/docuteam/trunk/</connection>
-		<!-- write access -->
-		<developerConnection>scm:svn:http://192.168.0.100/svn/docuteam/trunk/ </developerConnection>
+		<url>https://bitbucket.org/docuteam/cosmos</url>
 	</scm>
 	<issueManagement>
-		<url>https://docuteam.atlassian.net/</url>
+		<url>https://docuteam.atlassian.net/jira/software/c/projects/COSMOS/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<url>https://bitbucket.org/docuteam/</url>
+		<url>https://bitbucket.org/docuteam/cosmos/addon/pipelines/home</url>
 	</ciManagement>
 
 	<organization>
