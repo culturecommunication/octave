@@ -23,6 +23,7 @@ import static ch.docuteam.packer.gui.ComponentNames.SIP_CLEAR_SEARCH_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_NEW_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_OK_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CSV_IMPORT_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_DELETE_ITEM_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_DESTINATION_NAME_TEXT_FIELD;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_EAD_EXPORT_MENU_ITEM;
@@ -51,6 +52,7 @@ import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_FRAME;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_INFO_LABEL;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_INSERT_FILE_OR_FOLDER_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_MENU;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_REMOVE_DUPLICATES_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_RENAME_FOLDER_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_SAVE_AS_MENU_ITEM;
@@ -119,6 +121,8 @@ public class LauncherViewSwingIT {
     private static final String SAMPLE_FOLDER = "folder";
 
     private static final String SAMPLE_FILE = "samplePNG.png";
+
+    private static final String SAMPLE_CSV_IMPORT_FILE = "sampleSIP_import.csv";
 
     private static String WORKSPACE_FOLDER; // temporary folder, must be deleted at tearDown
 
@@ -674,6 +678,32 @@ public class LauncherViewSwingIT {
     @Test
     public void test_elementExport() {
         fail("Not implemented");
+    }
+
+    @Test
+    public void test_metadataCSVImport() throws InterruptedException {
+        sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
+
+        sipWindow.menuItem(SIP_VIEW_FILE_MENU).click();
+        sipWindow.menuItem(SIP_CSV_IMPORT_MENU_ITEM).click();
+
+        chooseFolderOrFile(sipWindow, ResourceUtil.getResourceCanonicalPath("data/"), SAMPLE_CSV_IMPORT_FILE);
+
+        // assert success message: JOptionPane
+        JOptionPaneFinder.findOptionPane()
+                .withTimeout(5000)
+                .using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock())
+                .requireMessage(I18N.translate("ImportCsvSuccess"))
+                .okButton()
+                .click();
+
+        final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
+                SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
+        // select root
+        treeFixture.changeSelection(0);
+
+        sipWindow.tabbedPane().selectTab(1);
+        sipWindow.textBox(SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD).requireText("importedTitle");
     }
 
     @Test

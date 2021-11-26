@@ -1090,7 +1090,7 @@ public class LauncherView extends JFrame {
                     levelsConfigFileName = levelsConfigFile;
                 }
             } else {
-                Logger.warn("Command line doesn't have a configDir, commandLine:" + commandLine.getArgList());
+                Logger.debug("Command line doesn't have a configDir, commandLine:" + commandLine.getArgList());
             }
 
             initializeProperties(new PropertiesWithResolvedEnvVars(configurationFileLoader.loadProperties(
@@ -1345,14 +1345,6 @@ public class LauncherView extends JFrame {
         } else {
             Logger.info("    getSAsFromServerOnStartup: false");
         }
-
-        // Initialize OOConverter:
-        final String ooConverterInitRetries = properties.getProperty(
-                "docuteamPacker.OOConverter.initializationRetries", "");
-        if (!ooConverterInitRetries.isEmpty()) {
-            OOConverter.setNumberOfInitializationRetries(new Integer(ooConverterInitRetries));
-        }
-        Logger.info("    ooConverterInitRetries: " + OOConverter.getNumberOfInitializationRetries());
 
         OOConverter.initializeDontWait(properties.getProperty("docuteamPacker.OOConverter.path" +
                 PROPERTY_FILE_PATH_OS_SUFFIX, ""));

@@ -84,6 +84,8 @@ public class ComponentNames {
 
     public static final String SIP_VIEW_EVENT_TABLE = "SIP_VIEW_EVENT_TABLE";
 
+    public static final String SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD = "SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD";
+
     public static final String SIP_DELETE_ITEM_MENU_ITEM = "SIP_DELETE_ITEM_MENU_ITEM";
 
     public static final String SIP_VIEW_MENU = "SIP_VIEW_MENU";
@@ -91,6 +93,8 @@ public class ComponentNames {
     public static final String SIP_VIEW_EXPAND_MENU_ITEM = "SIP_VIEW_EXPAND_MENU_ITEM";
 
     public static final String SIP_VIEW_COLLAPSE_MENU_ITEM = "SIP_VIEW_COLLAPSE_MENU_ITEM";
+
+    public static final String SIP_CSV_IMPORT_MENU_ITEM = "SIP_CSV_IMPORT_MENU_ITEM";
 
     public static final String SIP_METADATA_EXPORT_MENU = "SIP_METADATA_EXPORT_MENU";
 

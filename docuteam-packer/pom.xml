@@ -5,8 +5,8 @@
 		<groupId>ch.docuteam</groupId>
 		<artifactId>docuteam</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
-
 	</parent>
+
 	<artifactId>docuteam-packer</artifactId>
 	<name>OCTAVE/docuteam packer</name>
 

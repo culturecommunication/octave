@@ -18,6 +18,7 @@
 package ch.docuteam.packer.gui.sipView;
 
 import static ch.docuteam.mapping.util.ExporterUtil.PACKER_CONSTANTS_OPERATOR;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CSV_IMPORT_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_DELETE_ITEM_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_EAD_EXPORT_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_METADATA_EXPORT_MENU;
@@ -36,6 +37,7 @@ import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_FRAME;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_INFO_LABEL;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_INSERT_FILE_OR_FOLDER_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_MENU;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_REMOVE_DUPLICATES_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_RENAME_FOLDER_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_VIEW_SAVE_AS_MENU_ITEM;
@@ -166,6 +168,7 @@ import ch.docuteam.packer.gui.sipView.actions.ConvertFilesAction;
 import ch.docuteam.packer.gui.sipView.actions.DeleteFileContentAction;
 import ch.docuteam.packer.gui.sipView.actions.DeleteItemAction;
 import ch.docuteam.packer.gui.sipView.actions.ExploreAction;
+import ch.docuteam.packer.gui.sipView.actions.ImportMetadataFromCSVAction;
 import ch.docuteam.packer.gui.sipView.cellRenderer.HasMandatoryMetadataFieldsNotSetCellRenderer;
 import ch.docuteam.packer.gui.sipView.cellRenderer.MyTreeCellRenderer;
 import ch.docuteam.packer.gui.sipView.cellRenderer.RelativeSizeBarTableCellRenderer;
@@ -317,6 +320,10 @@ public class SIPView extends JFrame {
     protected Action openAssignLevelsByLayerViewAction;
 
     protected Action openAssignLevelsByLabelViewAction;
+
+    protected ImportMetadataFromCSVAction importMetadataFromCSVMenuAction;
+
+    protected ImportMetadataFromCSVAction importMetadataFromCSVContextAction;
 
     protected Action exportAsEADFileAction;
 
@@ -599,6 +606,7 @@ public class SIPView extends JFrame {
         // TextFields:
 
         metaTitleTextField = new JTextField();
+        metaTitleTextField.setName(SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD);
         metaTitleTextField.addFocusListener(
                 new FocusAdapter() {
 
@@ -879,6 +887,9 @@ public class SIPView extends JFrame {
         openAssignLevelsByLabelViewAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate(
                 "ToolTipOpenAssignLevelsByLabelView"));
         openAssignLevelsByLabelViewAction.setEnabled(true);
+
+        importMetadataFromCSVMenuAction = new ImportMetadataFromCSVAction(this, false);
+        importMetadataFromCSVContextAction = new ImportMetadataFromCSVAction(this, true);
 
         exportAsEADFileAction = new AbstractAction(I18N.translate("ButtonExportAsEADFile"), getImageIcon(
                 "ExportAsEADFile.png")) {
@@ -1348,6 +1359,12 @@ public class SIPView extends JFrame {
         fileMenu.addSeparator();
         fileMenu.add(new JMenuItem(closeAction));
         fileMenu.addSeparator();
+
+        final JMenuItem importMetadataFromCSV = new JMenuItem(importMetadataFromCSVMenuAction);
+        importMetadataFromCSV.setName(SIP_CSV_IMPORT_MENU_ITEM);
+        fileMenu.add(importMetadataFromCSV);
+
+        fileMenu.addSeparator();
         fileMenu.add(mdExportSubMenu);
         fileMenu.add(reportsSubMenu);
         fileMenu.add(sipExportSubMenu);
@@ -1425,6 +1442,7 @@ public class SIPView extends JFrame {
         popupMenu.add(sortItem);
 
         popupMenu.add(normalizeAction);
+        addMenuItem(popupMenu, importMetadataFromCSVContextAction, Optional.empty());
         popupMenu.addSeparator();
 
         final JMenuItem replaceFileMenuItem = new JMenuItem(replaceFileAction);
@@ -3629,6 +3647,8 @@ public class SIPView extends JFrame {
         if (properties.getProperty("docuteamPacker.SA.BASE.URL") != null) {
             openSAExternallyAction.setEnabled(true);
         }
+        importMetadataFromCSVMenuAction.enableOrDisable();
+        importMetadataFromCSVContextAction.enableOrDisable();
         exportAsEADFileAction.setEnabled(true);
         expandAllAction.setEnabled(true);
         collapseAllAction.setEnabled(true);
@@ -4019,8 +4039,6 @@ public class SIPView extends JFrame {
         final TreePath rootPath = treeTable.getPathForRow(-1);
         getTreeTableModel().refreshTreeStructure(rootPath);
         updateView();
-        JOptionPane.showMessageDialog(this, I18N.translate("MessageRemovedDuplicates"), I18N.translate(
-                "MessageTitleRemovedDuplicates"), JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.0.1</revision>
+		<revision>6.1.0</revision>
 		<changelist/>
 		<sha1/>
 
@@ -57,9 +57,9 @@
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<org.apache.poi.version>4.1.2</org.apache.poi.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
-		<com.artofsolving.jodconverter.version>2.2.2</com.artofsolving.jodconverter.version>
+        <org.jodconverter.jodconverter-local.version>4.4.2</org.jodconverter.jodconverter-local.version>
 		<com.exlibris.dps-sdk.version>5.1.0</com.exlibris.dps-sdk.version>
-		<com.google.code.gson.gson.version>2.8.8</com.google.code.gson.gson.version>
+		<com.google.code.gson.gson.version>2.8.9</com.google.code.gson.gson.version>
 		<com.kerb4j.kerb4j-client.version>0.1.2</com.kerb4j.kerb4j-client.version>
 		<com.opentext.cws.version>10.5.1</com.opentext.cws.version>
 		<com.oracle.ojdbc6.version>12.1.0</com.oracle.ojdbc6.version>
@@ -92,14 +92,13 @@
 		<org.fcrepo.fcrepo.version>3.8.1</org.fcrepo.fcrepo.version>
 		<org.icepdf.os.icepdf-viewer.version>6.2.2</org.icepdf.os.icepdf-viewer.version>
 		<org.jsoup.jsoup.version>1.9.2</org.jsoup.jsoup.version>
-		<org.openoffice.version>3.2.1</org.openoffice.version>
 		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
 		<de.schlichtherle.truezip.version>7.7.10</de.schlichtherle.truezip.version>
 		<com.drewnoakes.metadata-extractor.version>2.16.0</com.drewnoakes.metadata-extractor.version>
 		<uk.gov.nationalarchives.droid.version>6.5</uk.gov.nationalarchives.droid.version>
 		<edu.harvard.hul.ois.jhove.version>1.20.1</edu.harvard.hul.ois.jhove.version>
 		<net.harawata.appdirs.version>1.2.1</net.harawata.appdirs.version>
-		<mysql-connector-java.version>8.0.26</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.27</mysql-connector-java.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
 		<com.jcraft.jsch.version>0.1.55</com.jcraft.jsch.version>
 		<com.google.guava.version>30.1.1-jre</com.google.guava.version>
@@ -107,11 +106,11 @@
 		<jaxws-rt.version>2.3.5</jaxws-rt.version>
 		<javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
 		<com.sun.xml.bind.jaxb.version>3.0.2</com.sun.xml.bind.jaxb.version>
-		<rdf4j.version>3.7.2</rdf4j.version>
+		<rdf4j.version>3.7.3</rdf4j.version>
 		<apache.commons.io.version>2.11.0</apache.commons.io.version>
 		<org.pdftools.version>6.15.0.1</org.pdftools.version>
 		<org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
-		<org.apache.cxf.version>3.4.4</org.apache.cxf.version>
+		<org.apache.cxf.version>3.4.5</org.apache.cxf.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<xerces.xercesImpl.version>2.12.1</xerces.xercesImpl.version>
 		<gov.loc.bagit.version>5.2.0</gov.loc.bagit.version>
@@ -579,17 +578,11 @@
 			<id>JBoss_3rd-party</id>
 			<name>JBoss_3rd-party</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 		<repository>
 			<id>Duraspace</id>
 			<name>Duraspace</name>
-			<url>http://m2.duraspace.org/content/repositories/releases/</url>
+			<url>https://m2.duraspace.org/content/repositories/releases/</url>
 		</repository>
 		<repository>
 			<!-- com.artofsolving:jodconverter (converter) -->

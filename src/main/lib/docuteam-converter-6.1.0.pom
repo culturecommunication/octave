@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.0.1</version>
+    <version>6.1.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-converter</artifactId>
-  <version>6.0.1</version>
+  <version>6.1.0</version>
   <name>docuteam converter</name>
   <licenses>
     <license>
@@ -29,29 +29,19 @@
     <test.converter.ws.pdftoolsconverter.username>sampleusername</test.converter.ws.pdftoolsconverter.username>
     <test.converter.snbpdfgenerator.url>http://localhost:8080/snbpdfgenerator.asmx</test.converter.snbpdfgenerator.url>
     <test.converter.ws.pdftoolsconverter.url>http://localhost/o2p/Converter.asmx?WSDL</test.converter.ws.pdftoolsconverter.url>
-    <test.ooconverter.path>/usr/bin/soffice</test.ooconverter.path>
+    <test.ooconverter.path>/usr/lib/libreoffice</test.ooconverter.path>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>com.artofsolving</groupId>
-      <artifactId>jodconverter</artifactId>
-      <version>${com.artofsolving.jodconverter.version}</version>
+      <groupId>org.jodconverter</groupId>
+      <artifactId>jodconverter-local</artifactId>
+      <version>${org.jodconverter.jodconverter-local.version}</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>ridl</artifactId>
-      <version>${org.openoffice.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>unoil</artifactId>
-      <version>${org.openoffice.version}</version>
     </dependency>
     <dependency>
       <groupId>com.pdftools</groupId>
@@ -82,11 +72,6 @@
         </exclusion>
       </exclusions>
       <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.thoughtworks.xstream</groupId>
-      <artifactId>xstream</artifactId>
-      <version>${com.thoughtworks.xstream.xstream.version}</version>
     </dependency>
     <dependency>
       <groupId>com.pdftools</groupId>

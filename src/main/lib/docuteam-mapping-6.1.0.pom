@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.0.1</version>
+    <version>6.1.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-mapping</artifactId>
-  <version>6.0.1</version>
+  <version>6.1.0</version>
   <name>docuteam mapping</name>
   <url>http://maven.apache.org</url>
   <licenses>
@@ -153,6 +153,18 @@
             <configuration>
               <sources>
                 <source>src/main/resources/config/edidoc-mapping.xsd</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>xjc-csv-to-METS</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/resources/config/csv-mapping.xsd</source>
               </sources>
             </configuration>
           </execution>

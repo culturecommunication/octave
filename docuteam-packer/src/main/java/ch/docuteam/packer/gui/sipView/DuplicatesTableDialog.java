@@ -33,6 +33,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -159,6 +160,8 @@ public class DuplicatesTableDialog extends JDialog {
         dispose();
         if (anythingDeleted) {
             sipView.updateTree();
+            JOptionPane.showMessageDialog(sipView, I18N.translate("MessageRemovedDuplicates"), I18N.translate(
+                    "MessageTitleRemovedDuplicates"), JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

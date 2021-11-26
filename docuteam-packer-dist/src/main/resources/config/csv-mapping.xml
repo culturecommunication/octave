@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- the defaults below refer to a CSV produced by Archifiltre in the ReSIP format -->
+<importTableConfig
+        xmlns="ch:docuteam:mapping:csv"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="ch:docuteam:mapping:csv csv-mapping.xsd">
+
+    <csvFormat>
+        <charset>UTF-8</charset>
+        <delimiter>;</delimiter>
+    </csvFormat>
+
+    <checkAllLines>1</checkAllLines>
+    <checkAllNodes>1</checkAllNodes>
+    <existingValues>overwrite</existingValues>
+    <referenceColumnLabel>Path</referenceColumnLabel>
+
+    <columnMapping>
+        <column tableHeaderLabel="unitTitle" matterhornMetsAccessorID="unitTitle" />
+        <column tableHeaderLabel="levelOfDescription" matterhornMetsAccessorID="levelOfDescription"/>
+        <column tableHeaderLabel="otherLevelName" matterhornMetsAccessorID="otherLevelName"/>
+        <column tableHeaderLabel="accessPolicy" matterhornMetsAccessorID="accessPolicy"/>
+        <column tableHeaderLabel="accessRestrictionClassification" matterhornMetsAccessorID="accessRestrictionClassification"/>
+        <column tableHeaderLabel="accessRestrictionClosureYear" matterhornMetsAccessorID="accessRestrictionClosureYear"/>
+        <column tableHeaderLabel="accessRestrictionExplanation" matterhornMetsAccessorID="accessRestrictionExplanation"/>
+        <column tableHeaderLabel="accessRestrictionIsMetadataPublic" matterhornMetsAccessorID="accessRestrictionIsMetadataPublic"/>
+        <column tableHeaderLabel="accessRestrictionIsPublic" matterhornMetsAccessorID="accessRestrictionIsPublic"/>
+        <column tableHeaderLabel="accessRestrictionPeriod" matterhornMetsAccessorID="accessRestrictionPeriod"/>
+        <column tableHeaderLabel="accessRestrictionPeriodBaseYear" matterhornMetsAccessorID="accessRestrictionPeriodBaseYear"/>
+        <column tableHeaderLabel="accessRestrictionPrivacy" matterhornMetsAccessorID="accessRestrictionPrivacy"/>
+        <column tableHeaderLabel="accessRestrictionStatus" matterhornMetsAccessorID="accessRestrictionStatus"/>
+        <column tableHeaderLabel="accessRestrictionStatusExplanation" matterhornMetsAccessorID="accessRestrictionStatusExplanation"/>
+        <column tableHeaderLabel="retentionPeriodBaseYear" matterhornMetsAccessorID="retentionPeriodBaseYear"/>
+        <column tableHeaderLabel="accessRestriction" matterhornMetsAccessorID="accessRestriction"/>
+        <column tableHeaderLabel="retentionPeriod" matterhornMetsAccessorID="retentionPeriod"/>
+        <column tableHeaderLabel="retentionPolicy" matterhornMetsAccessorID="retentionPolicy"/>
+        <column tableHeaderLabel="usagePermission" matterhornMetsAccessorID="usagePermission"/>
+        <column tableHeaderLabel="usagePermissionExpiringDate" matterhornMetsAccessorID="usagePermissionExpiringDate"/>
+        <column tableHeaderLabel="accruals" matterhornMetsAccessorID="accruals"/>
+        <column tableHeaderLabel="accessNr" matterhornMetsAccessorID="accessNr"/>
+        <column tableHeaderLabel="reproductions" matterhornMetsAccessorID="reproductions"/>
+        <column tableHeaderLabel="appraisalDateDisposed" matterhornMetsAccessorID="appraisalDateDisposed"/>
+        <column tableHeaderLabel="appraisalIsOnHold" matterhornMetsAccessorID="appraisalIsOnHold"/>
+        <column tableHeaderLabel="appraisalRetentionPeriod" matterhornMetsAccessorID="appraisalRetentionPeriod"/>
+        <column tableHeaderLabel="appraisalAndDestruction" matterhornMetsAccessorID="appraisalAndDestruction"/>
+        <column tableHeaderLabel="arrangement" matterhornMetsAccessorID="arrangement"/>
+        <column tableHeaderLabel="bibliography" matterhornMetsAccessorID="bibliography"/>
+        <column tableHeaderLabel="dateOfBirth" matterhornMetsAccessorID="dateOfBirth"/>
+        <column tableHeaderLabel="firstname" matterhornMetsAccessorID="firstname"/>
+        <column tableHeaderLabel="lastname" matterhornMetsAccessorID="lastname"/>
+        <column tableHeaderLabel="nationality" matterhornMetsAccessorID="nationality"/>
+        <column tableHeaderLabel="sex" matterhornMetsAccessorID="sex"/>
+        <column tableHeaderLabel="deathOfAuthor" matterhornMetsAccessorID="deathOfAuthor"/>
+        <column tableHeaderLabel="biographicalHistory" matterhornMetsAccessorID="biographicalHistory"/>
+        <column tableHeaderLabel="institutionCreator" matterhornMetsAccessorID="institutionCreator"/>
+        <column tableHeaderLabel="institutionInvolved" matterhornMetsAccessorID="institutionInvolved"/>
+        <column tableHeaderLabel="institution" matterhornMetsAccessorID="institution"/>
+        <column tableHeaderLabel="familyName" matterhornMetsAccessorID="familyName"/>
+        <column tableHeaderLabel="function" matterhornMetsAccessorID="function"/>
+        <column tableHeaderLabel="objectType" matterhornMetsAccessorID="objectType"/>
+        <column tableHeaderLabel="geogName" matterhornMetsAccessorID="geogName"/>
+        <column tableHeaderLabel="authorGeneric" matterhornMetsAccessorID="authorGeneric"/>
+        <column tableHeaderLabel="compartment" matterhornMetsAccessorID="compartment"/>
+        <column tableHeaderLabel="designer" matterhornMetsAccessorID="designer"/>
+        <column tableHeaderLabel="editor" matterhornMetsAccessorID="editor"/>
+        <column tableHeaderLabel="fundingSource" matterhornMetsAccessorID="fundingSource"/>
+        <column tableHeaderLabel="illustrator" matterhornMetsAccessorID="illustrator"/>
+        <column tableHeaderLabel="institute" matterhornMetsAccessorID="institute"/>
+        <column tableHeaderLabel="journal" matterhornMetsAccessorID="journal"/>
+        <column tableHeaderLabel="keyword" matterhornMetsAccessorID="keyword"/>
+        <column tableHeaderLabel="location" matterhornMetsAccessorID="location"/>
+        <column tableHeaderLabel="method" matterhornMetsAccessorID="method"/>
+        <column tableHeaderLabel="photographer" matterhornMetsAccessorID="photographer"/>
+        <column tableHeaderLabel="placeOfPublication" matterhornMetsAccessorID="placeOfPublication"/>
+        <column tableHeaderLabel="publisher" matterhornMetsAccessorID="publisher"/>
+        <column tableHeaderLabel="status" matterhornMetsAccessorID="status"/>
+        <column tableHeaderLabel="submitStatus" matterhornMetsAccessorID="submitStatus"/>
+        <column tableHeaderLabel="typeOfAcquisition" matterhornMetsAccessorID="typeOfAcquisition"/>
+        <column tableHeaderLabel="university" matterhornMetsAccessorID="university"/>
+        <column tableHeaderLabel="occupation" matterhornMetsAccessorID="occupation"/>
+        <column tableHeaderLabel="author" matterhornMetsAccessorID="author"/>
+        <column tableHeaderLabel="creator" matterhornMetsAccessorID="creator"/>
+        <column tableHeaderLabel="involved" matterhornMetsAccessorID="involved"/>
+        <column tableHeaderLabel="responsible" matterhornMetsAccessorID="responsible"/>
+        <column tableHeaderLabel="staff" matterhornMetsAccessorID="staff"/>
+        <column tableHeaderLabel="subjectGeneral" matterhornMetsAccessorID="subjectGeneral"/>
+        <column tableHeaderLabel="subject" matterhornMetsAccessorID="subject"/>
+        <column tableHeaderLabel="uniformTitle" matterhornMetsAccessorID="uniformTitle"/>
+        <column tableHeaderLabel="modeOfAcquisition" matterhornMetsAccessorID="modeOfAcquisition"/>
+        <column tableHeaderLabel="sourceType" matterhornMetsAccessorID="sourceType"/>
+        <column tableHeaderLabel="archivalHistory" matterhornMetsAccessorID="archivalHistory"/>
+        <column tableHeaderLabel="PID" matterhornMetsAccessorID="PID"/>
+        <column tableHeaderLabel="abstract" matterhornMetsAccessorID="abstract"/>
+        <column tableHeaderLabel="languageNotes" matterhornMetsAccessorID="languageNotes"/>
+        <column tableHeaderLabel="language" matterhornMetsAccessorID="language"/>
+        <column tableHeaderLabel="cartographicMaterial" matterhornMetsAccessorID="cartographicMaterial"/>
+        <column tableHeaderLabel="scale" matterhornMetsAccessorID="scale"/>
+        <column tableHeaderLabel="origination" matterhornMetsAccessorID="origination"/>
+        <column tableHeaderLabel="originationAgency" matterhornMetsAccessorID="originationAgency"/>
+        <column tableHeaderLabel="originationDepartment" matterhornMetsAccessorID="originationDepartment"/>
+        <column tableHeaderLabel="format" matterhornMetsAccessorID="format"/>
+        <column tableHeaderLabel="size" matterhornMetsAccessorID="size"/>
+        <column tableHeaderLabel="dimensionsCategory" matterhornMetsAccessorID="dimensionsCategory"/>
+        <column tableHeaderLabel="dimensions" matterhornMetsAccessorID="dimensions"/>
+        <column tableHeaderLabel="extentNote" matterhornMetsAccessorID="extentNote"/>
+        <column tableHeaderLabel="extentPrint" matterhornMetsAccessorID="extentPrint"/>
+        <column tableHeaderLabel="extent" matterhornMetsAccessorID="extent"/>
+        <column tableHeaderLabel="extentUnit" matterhornMetsAccessorID="extentUnit"/>
+        <column tableHeaderLabel="material" matterhornMetsAccessorID="material"/>
+        <column tableHeaderLabel="codeLocation" matterhornMetsAccessorID="codeLocation"/>
+        <column tableHeaderLabel="fullLocation" matterhornMetsAccessorID="fullLocation"/>
+        <column tableHeaderLabel="creationPeriod" matterhornMetsAccessorID="creationPeriod"/>
+        <column tableHeaderLabel="creationPeriodNotes" matterhornMetsAccessorID="creationPeriodNotes"/>
+        <column tableHeaderLabel="date" matterhornMetsAccessorID="date"/>
+        <column tableHeaderLabel="from" matterhornMetsAccessorID="from"/>
+        <column tableHeaderLabel="fromYear" matterhornMetsAccessorID="fromYear"/>
+        <column tableHeaderLabel="invalid" matterhornMetsAccessorID="invalid"/>
+        <column tableHeaderLabel="letter" matterhornMetsAccessorID="letter"/>
+        <column tableHeaderLabel="relationPeriod" matterhornMetsAccessorID="relationPeriod"/>
+        <column tableHeaderLabel="to" matterhornMetsAccessorID="to"/>
+        <column tableHeaderLabel="toYear" matterhornMetsAccessorID="toYear"/>
+        <column tableHeaderLabel="year" matterhornMetsAccessorID="year"/>
+        <column tableHeaderLabel="accessionNumber" matterhornMetsAccessorID="accessionNumber"/>
+        <column tableHeaderLabel="edition" matterhornMetsAccessorID="edition"/>
+        <column tableHeaderLabel="ISBN" matterhornMetsAccessorID="ISBN"/>
+        <column tableHeaderLabel="ISSN" matterhornMetsAccessorID="ISSN"/>
+        <column tableHeaderLabel="refCodeIsVisible" matterhornMetsAccessorID="refCodeIsVisible"/>
+        <column tableHeaderLabel="DOI" matterhornMetsAccessorID="DOI"/>
+        <column tableHeaderLabel="publication" matterhornMetsAccessorID="publication"/>
+        <column tableHeaderLabel="refCode" matterhornMetsAccessorID="refCode"/>
+        <column tableHeaderLabel="refCodeAdmin" matterhornMetsAccessorID="refCodeAdmin"/>
+        <column tableHeaderLabel="refCodeOld" matterhornMetsAccessorID="refCodeOld"/>
+        <column tableHeaderLabel="refCodeSeparator" matterhornMetsAccessorID="refCodeSeparator"/>
+        <column tableHeaderLabel="unitTitleAdditional" matterhornMetsAccessorID="unitTitleAdditional"/>
+        <column tableHeaderLabel="unitTitle" matterhornMetsAccessorID="unitTitle"/>
+        <column tableHeaderLabel="unitTitleOriginal" matterhornMetsAccessorID="unitTitleOriginal"/>
+        <column tableHeaderLabel="unitTitleVarying" matterhornMetsAccessorID="unitTitleVarying"/>
+        <column tableHeaderLabel="filePlanPosition" matterhornMetsAccessorID="filePlanPosition"/>
+        <column tableHeaderLabel="comment" matterhornMetsAccessorID="comment"/>
+        <column tableHeaderLabel="DoiJournal" matterhornMetsAccessorID="DoiJournal"/>
+        <column tableHeaderLabel="editionStatement" matterhornMetsAccessorID="editionStatement"/>
+        <column tableHeaderLabel="event" matterhornMetsAccessorID="event"/>
+        <column tableHeaderLabel="project" matterhornMetsAccessorID="project"/>
+        <column tableHeaderLabel="projectAbbreviation" matterhornMetsAccessorID="projectAbbreviation"/>
+        <column tableHeaderLabel="projectName" matterhornMetsAccessorID="projectName"/>
+        <column tableHeaderLabel="projectTitle" matterhornMetsAccessorID="projectTitle"/>
+        <column tableHeaderLabel="usage" matterhornMetsAccessorID="usage"/>
+        <column tableHeaderLabel="locationOfOriginals" matterhornMetsAccessorID="locationOfOriginals"/>
+        <column tableHeaderLabel="findingAids" matterhornMetsAccessorID="findingAids"/>
+        <column tableHeaderLabel="characteristicsNote" matterhornMetsAccessorID="characteristicsNote"/>
+        <column tableHeaderLabel="characteristics" matterhornMetsAccessorID="characteristics"/>
+        <column tableHeaderLabel="processInfoArchivist" matterhornMetsAccessorID="processInfoArchivist"/>
+        <column tableHeaderLabel="processInfoDate" matterhornMetsAccessorID="processInfoDate"/>
+        <column tableHeaderLabel="digitization" matterhornMetsAccessorID="digitization"/>
+        <column tableHeaderLabel="descriptionLevel" matterhornMetsAccessorID="descriptionLevel"/>
+        <column tableHeaderLabel="descriptionLevelNotes" matterhornMetsAccessorID="descriptionLevelNotes"/>
+        <column tableHeaderLabel="revisions" matterhornMetsAccessorID="revisions"/>
+        <column tableHeaderLabel="descriptionRules" matterhornMetsAccessorID="descriptionRules"/>
+        <column tableHeaderLabel="relatedMaterialExtern" matterhornMetsAccessorID="relatedMaterialExtern"/>
+        <column tableHeaderLabel="relatedMaterial" matterhornMetsAccessorID="relatedMaterial"/>
+        <column tableHeaderLabel="scopeContent" matterhornMetsAccessorID="scopeContent"/>
+        <column tableHeaderLabel="conditionsOfReproductions" matterhornMetsAccessorID="conditionsOfReproductions"/>
+    </columnMapping>
+
+</importTableConfig>

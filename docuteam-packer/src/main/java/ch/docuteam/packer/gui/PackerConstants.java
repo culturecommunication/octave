@@ -65,6 +65,8 @@ public class PackerConstants {
     public static final String MIGRATE_FILE_KEEP_ORIGINAL = "false";
 
     // Resources
+    public static final String IMPORT_CSV_PNG = "ImportCSV.png";
+
     public static final String DELETE_PNG = "Delete.png";
 
     public static final String MIGRATE_PNG = "Migrate.png";

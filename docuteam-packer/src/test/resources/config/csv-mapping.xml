@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- the defaults below refer to a CSV produced by Archifiltre in the ReSIP format -->
+<importTableConfig xmlns="ch:docuteam:mapping:csv"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="ch:docuteam:mapping:csv csv-mapping.xsd">
+
+    <csvFormat>
+        <charset>UTF-8</charset>
+        <delimiter>;</delimiter>
+        <quoteCharacter>&quot;</quoteCharacter>
+    </csvFormat>
+
+    <checkAllLines>true</checkAllLines>
+    <checkAllNodes>false</checkAllNodes>
+    <existingValues>overwrite</existingValues>
+    <referenceColumnLabel>Path</referenceColumnLabel>
+
+    <columnMapping>
+        <column tableHeaderLabel="unitTitle" matterhornMetsAccessorID="unitTitle" />
+    </columnMapping>
+
+</importTableConfig>

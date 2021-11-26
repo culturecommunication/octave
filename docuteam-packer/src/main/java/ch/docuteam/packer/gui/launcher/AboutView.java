@@ -43,7 +43,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
-import ch.docuteam.converter.OOConverter;
 import ch.docuteam.packer.admin.BuildInfo;
 import ch.docuteam.tools.gui.GridBagPanel;
 import ch.docuteam.tools.os.OperatingSystem;
@@ -138,20 +137,6 @@ public class AboutView extends JDialog {
         gridBagPanel2.add(new JLabel("Local:"), 2, 2, GridBagConstraints.CENTER);
         gridBagPanel2.add(new JLabel("Remote:"), 2, 3, GridBagConstraints.CENTER);
         gridBagPanel2.add(new JLabel("Windows:"), 3, 1, GridBagConstraints.EAST);
-        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForWindows() ? "X" : ""), 3, 2,
-                GridBagConstraints.CENTER);
-        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForWindows()), 3, 3,
-                GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-        gridBagPanel2.add(new JLabel("OS X:"), 4, 1, GridBagConstraints.EAST);
-        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForOSX() ? "X" : ""), 4, 2,
-                GridBagConstraints.CENTER);
-        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForOSX()), 4, 3, GridBagConstraints.WEST,
-                GridBagConstraints.HORIZONTAL, 1, 0);
-        gridBagPanel2.add(new JLabel("Linux:"), 5, 1, GridBagConstraints.EAST);
-        gridBagPanel2.add(new JLabel(OOConverter.isInstalledLocallyForLinux() ? "X" : ""), 5, 2,
-                GridBagConstraints.CENTER);
-        gridBagPanel2.add(new JLabel(OOConverter.getRemotePathForLinux()), 5, 3, GridBagConstraints.WEST,
-                GridBagConstraints.HORIZONTAL, 1, 0);
 
         final Box box = new Box(BoxLayout.Y_AXIS);
         box.add(gridBagPanel1);
