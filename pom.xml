@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.1.1</revision>
+		<revision>6.1.2</revision>
 		<changelist/>
 		<sha1/>
 
@@ -27,7 +27,7 @@
 		<maven-assembly-plugin.plugin.version>3.1.1</maven-assembly-plugin.plugin.version>
 		<build-helper-maven-plugin.plugin.version>3.0.0</build-helper-maven-plugin.plugin.version>
 		<launch4j-maven-plugin.plugin.version>2.1.0</launch4j-maven-plugin.plugin.version>
-		<cxf-codegen.plugin.version>3.4.2</cxf-codegen.plugin.version>
+		<cxf-codegen.plugin.version>3.4.5</cxf-codegen.plugin.version>
 		<net.sourceforge.spnego.spnego>7.0</net.sourceforge.spnego.spnego>
 		<com.kerb4j.kerb4j.plugin.version>0.1.0</com.kerb4j.kerb4j.plugin.version>
 		<jaxb2-maven-plugin.plugin.version>2.5.0</jaxb2-maven-plugin.plugin.version>
@@ -84,7 +84,7 @@
 		<org.apache.commons.commons-csv.version>1.9.0</org.apache.commons.commons-csv.version>
 		<org.apache.commons.commons-lang3.version>3.12.0</org.apache.commons.commons-lang3.version>
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
-		<org.apache.logging.log4j.version>2.14.1</org.apache.logging.log4j.version>
+		<org.apache.logging.log4j.version>2.15.0</org.apache.logging.log4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>3.1.0</org.apache.xmlbeans.xmlbeans.version>
 		<org.apache.xmlgraphics.fop.version>2.6</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
@@ -190,6 +190,31 @@
                 <artifactId>json-smart</artifactId>
                 <version>2.3</version>
             </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-core</artifactId>
+	            <version>${org.apache.logging.log4j.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-api</artifactId>
+	            <version>${org.apache.logging.log4j.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-slf4j-impl</artifactId>
+	            <version>${org.apache.logging.log4j.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-jul</artifactId>
+	            <version>${org.apache.logging.log4j.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-jcl</artifactId>
+	            <version>${org.apache.logging.log4j.version}</version>
+	        </dependency>
 		</dependencies>
 	</dependencyManagement>
 

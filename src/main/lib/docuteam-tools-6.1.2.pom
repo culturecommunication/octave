@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.1.1</version>
+    <version>6.1.2</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>6.1.1</version>
+  <version>6.1.2</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
@@ -27,27 +27,22 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>${org.apache.logging.log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>${org.apache.logging.log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${org.apache.logging.log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-jul</artifactId>
-      <version>${org.apache.logging.log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-jcl</artifactId>
-      <version>${org.apache.logging.log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
