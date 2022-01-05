@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.1.4</revision>
+		<revision>6.1.5</revision>
 		<changelist/>
 		<sha1/>
 
@@ -84,7 +84,7 @@
 		<org.apache.commons.commons-csv.version>1.9.0</org.apache.commons.commons-csv.version>
 		<org.apache.commons.commons-lang3.version>3.12.0</org.apache.commons.commons-lang3.version>
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
-		<org.apache.logging.log4j.version>2.17.0</org.apache.logging.log4j.version>
+		<org.apache.logging.log4j.version>2.17.1</org.apache.logging.log4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>3.1.0</org.apache.xmlbeans.xmlbeans.version>
 		<org.apache.xmlgraphics.fop.version>2.6</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
