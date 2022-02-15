@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.1.5</revision>
+		<revision>6.2.0</revision>
 		<changelist/>
 		<sha1/>
 
@@ -605,6 +605,7 @@
 			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
 		</repository>
 		<repository>
+
 			<id>Duraspace</id>
 			<name>Duraspace</name>
 			<url>https://m2.duraspace.org/content/repositories/releases/</url>

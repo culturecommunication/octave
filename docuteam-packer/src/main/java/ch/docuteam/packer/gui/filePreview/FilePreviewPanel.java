@@ -351,7 +351,7 @@ public class FilePreviewPanel extends JPanel {
                 Logger.error(ex.getMessage(), ex);
             }
             try {
-                FileUtil.deleteOnExit(s);
+                FileUtil.delete(s);
             } catch (final Throwable ex) {
                 // TODO Auto-generated catch block
                 Logger.error(ex.getMessage(), ex);
@@ -369,7 +369,7 @@ public class FilePreviewPanel extends JPanel {
                 Logger.error(ex.getMessage(), ex);
             }
             try {
-                FileUtil.deleteOnExit(s);
+                FileUtil.delete(s);
             } catch (final Throwable ex) {
                 // TODO Auto-generated catch block
                 Logger.error(ex.getMessage(), ex);

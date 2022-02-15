@@ -62,6 +62,7 @@ import ch.docuteam.darc.exceptions.ZIPDoesNotContainMETSFileException;
 import ch.docuteam.darc.mets.Document;
 import ch.docuteam.darc.mets.Document.Mode;
 import ch.docuteam.darc.mets.structmap.NodeAbstract;
+import ch.docuteam.tools.file.exception.FileUtilExceptionListException;
 import ch.docuteam.tools.gui.GridBagPanel;
 import ch.docuteam.tools.gui.SmallPeskyMessageWindow;
 import ch.docuteam.tools.out.Logger;
@@ -358,7 +359,7 @@ public class SearchView extends JFrame {
                             if (doc != null) {
                                 try {
                                     doc.cleanupWorkingCopy();
-                                } catch (final Exception ex) {
+                                } catch (final FileUtilExceptionListException ex) {
                                 }
                             }
                         }
