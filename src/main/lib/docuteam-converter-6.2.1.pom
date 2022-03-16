@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.2.0</version>
+    <version>6.2.1</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-converter</artifactId>
-  <version>6.2.0</version>
+  <version>6.2.1</version>
   <name>docuteam converter</name>
   <licenses>
     <license>
@@ -25,7 +25,7 @@
     <test.converter.ws.pdftoolsconverter.password>samplepasswort</test.converter.ws.pdftoolsconverter.password>
     <test.shell.executable>/bin/bash</test.shell.executable>
     <test.converter.ws.pdftoolsconverter.timeout>60000</test.converter.ws.pdftoolsconverter.timeout>
-    <test.converter.ws.pdftoolsconverter.mtom>false</test.converter.ws.pdftoolsconverter.mtom>
+    <test.converter.ws.pdftoolsconverter.mtom>true</test.converter.ws.pdftoolsconverter.mtom>
     <test.converter.ws.pdftoolsconverter.username>sampleusername</test.converter.ws.pdftoolsconverter.username>
     <test.converter.snbpdfgenerator.url>http://localhost:8080/snbpdfgenerator.asmx</test.converter.snbpdfgenerator.url>
     <test.converter.ws.pdftoolsconverter.url>http://localhost/o2p/Converter.asmx?WSDL</test.converter.ws.pdftoolsconverter.url>

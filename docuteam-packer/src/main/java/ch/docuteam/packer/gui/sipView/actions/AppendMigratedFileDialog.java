@@ -153,7 +153,7 @@ public class AppendMigratedFileDialog extends JDialog {
 
     protected void selectSourceFolderButtonClicked() {
         final JFileChooser fileChooser = new JFileChooser(defaultFileChooserFolder);
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         fileChooser.setDialogTitle(I18N.translate("TitleSelectMigratedFile"));
         fileChooser.setMultiSelectionEnabled(false);
         final int result = fileChooser.showOpenDialog(this);

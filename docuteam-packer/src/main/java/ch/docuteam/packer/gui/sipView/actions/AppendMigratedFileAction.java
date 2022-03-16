@@ -24,6 +24,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import ch.docuteam.darc.exceptions.FileAlreadyExistsException;
 import ch.docuteam.darc.exceptions.FileOperationNotAllowedException;
 import ch.docuteam.darc.exceptions.FolderNameIsEmptyException;
@@ -66,20 +68,17 @@ public class AppendMigratedFileAction extends AbstractSIPViewAction {
         }
 
         ExceptionCollector.clear();
-        if (dialog.keepOriginalCheckBox.isSelected()) {
-            try {
+        try {
+            if (dialog.keepOriginalCheckBox.isSelected()) {
                 ((NodeFile) selectedNode).migrateToFileKeepOriginal(newFile.getAbsolutePath(), "docuteam packer");
-            } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
-                    FileAlreadyExistsException | FolderNameIsEmptyException e1) {
-                Logger.error(e1.getMessage(), e1);
-            }
-        } else {
-            try {
+            } else {
                 ((NodeFile) selectedNode).migrateToFile(newFile.getAbsolutePath(), "docuteam packer");
-            } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
-                    FileAlreadyExistsException | FolderNameIsEmptyException e1) {
-                Logger.error(e1.getMessage(), e1);
             }
+        } catch (FileOperationNotAllowedException | FileUtilExceptionListException | IOException |
+                FileAlreadyExistsException | FolderNameIsEmptyException e1) {
+            Logger.error(e1.getMessage(), e1);
+            JOptionPane.showMessageDialog(sipView, e1.toString(), I18N.translate("TitleCantInsertFileOrFolder"),
+                    JOptionPane.ERROR_MESSAGE);
         }
 
         // feedback from migration
