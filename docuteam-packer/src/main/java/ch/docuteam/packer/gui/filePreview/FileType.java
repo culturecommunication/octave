@@ -21,8 +21,8 @@ import ch.docuteam.tools.file.FileUtil;
 import ch.docuteam.tools.out.Logger;
 
 enum FileType {
-    Folder, Text, HTML, PDF, OOConvertable, GraphicsNative, GraphicsImageIO, GraphicsJAIConvertable,
-    GraphicsJAIConvertableImageRead, GraphicsJIMIConvertable, GraphicsImageMagickConvertable, Unknown;
+    Folder, Text, HTML, PDF, OOConvertable, GraphicsNative, GraphicsImageIO, GraphicsJAIConvertableImageRead,
+    GraphicsJIMIConvertable, GraphicsImageMagickConvertable, Unknown;
 
     static FilePreviewConfigurator filePreviewConfigurator;
 

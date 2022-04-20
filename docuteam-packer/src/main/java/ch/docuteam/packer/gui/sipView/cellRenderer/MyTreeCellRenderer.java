@@ -66,7 +66,7 @@ public class MyTreeCellRenderer extends DefaultTreeCellRenderer {
             } else if (!node.doesParentAllowMyLevel()) {
                 // allow broken levels logic if it was caused by a migration action keeping originals (and therefore
                 // creating an additional intermediary level)
-                if (node.isFile() && !(((NodeFile) node).getMigrationDerivedNode() == null && ((NodeFile) node)
+                if (node.isFile() && !(node.getMigrationDerivedNode() == null && ((NodeFile) node)
                         .getMigrationSourceNode() == null)) {
                     final ImageIcon icon = node.getLevel().getIcon();
                     if (icon == null) {

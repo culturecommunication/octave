@@ -16,7 +16,7 @@
   <properties>
     <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
     <skip-jre>false</skip-jre>
-    <net.adoptopenjdk.java.jre.folderName>jdk-11.0.9.1+1-jre</net.adoptopenjdk.java.jre.folderName>
+    <net.adoptopenjdk.java.jre.folderName>jdk-11.0.14.1+1-jre</net.adoptopenjdk.java.jre.folderName>
   </properties>
 
   <build>

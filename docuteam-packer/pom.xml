@@ -111,6 +111,26 @@
 			<artifactId>commons-cli</artifactId>
 			<version>${commons-cli.commons-cli.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-bmp</artifactId>
+            <version>${com.twelvemonkeys.imageio.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>${com.twelvemonkeys.imageio.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tiff</artifactId>
+            <version>${com.twelvemonkeys.imageio.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.contrib</groupId>
+            <artifactId>contrib</artifactId>
+            <version>${com.twelvemonkeys.imageio.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>com.sun.media</groupId>
 			<artifactId>jai-codec</artifactId>

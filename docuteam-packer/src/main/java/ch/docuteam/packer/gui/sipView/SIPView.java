@@ -2391,13 +2391,12 @@ public class SIPView extends JFrame {
         final JFileChooser fileChooser = new JFileChooser(launcherView.getLastUsedOpenOrSaveDirectory());
         fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
         fileChooser.setDialogTitle(I18N.translate("TitleSaveSIPAs"));
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setMultiSelectionEnabled(false);
 
-        final File suggestedFile = getFileProperty().getFile();
+        fileChooser.setSelectedFile(new File(getFileProperty().getName()));
         File selectedFile;
         while (true) {
-            fileChooser.setSelectedFile(suggestedFile);
             final int answer = fileChooser.showSaveDialog(this);
             if (JFileChooser.CANCEL_OPTION == answer) {
                 return;

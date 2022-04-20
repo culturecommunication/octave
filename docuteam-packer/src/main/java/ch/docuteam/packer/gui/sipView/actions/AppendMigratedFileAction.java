@@ -85,8 +85,7 @@ public class AppendMigratedFileAction extends AbstractSIPViewAction {
         Util.showAllFromExceptionCollector(null, sipView);
 
         // Refresh the selected node:
-        sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(selectedRow)
-                .getParentPath());
+        sipView.getTreeTableModel().refreshTreeStructure(sipView.getTreeTable().getPathForRow(selectedRow));
         sipView.selectNode(admId);
         sipView.enableOrDisableActions();
     }
@@ -103,7 +102,7 @@ public class AppendMigratedFileAction extends AbstractSIPViewAction {
             // enabled is a consequence of several of the conditions being true
             // for all the selected nodes
             isEnabled = sipView.getDocument().getMode().equals(Mode.ReadWrite) && node.isFile() && node.canRead() &&
-                    node.canWrite() && ((NodeFile) node).getMigrationDerivedNode() == null && node.getSubmitStatus()
+                    node.canWrite() && node.getMigrationDerivedNode() == null && node.getSubmitStatus()
                             .isEditingAllowed();
         }
 

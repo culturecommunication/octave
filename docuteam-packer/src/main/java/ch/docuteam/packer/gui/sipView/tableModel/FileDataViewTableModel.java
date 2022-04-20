@@ -112,7 +112,7 @@ public class FileDataViewTableModel extends AbstractTableModel {
                     if (fileStructureNode.isFolder()) {
                         return null;
                     }
-                    NodeFile targetNode = ((NodeFile) fileStructureNode).getMigrationDerivedNode();
+                    NodeAbstract targetNode = fileStructureNode.getMigrationDerivedNode();
                     if (targetNode != null) {
                         return I18N.translate("PreservationRoleMaster");
                     }

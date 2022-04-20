@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.imageio.ImageIO;
+import javax.imageio.IIOImage;
 import javax.media.jai.JAI;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,6 +55,7 @@ import ch.docuteam.tools.string.StringUtil;
 import ch.docuteam.tools.translations.I18N;
 
 import com.sun.jimi.core.Jimi;
+import com.twelvemonkeys.contrib.exif.EXIFUtilities;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
 import org.icepdf.ri.common.views.DocumentViewController;
@@ -194,20 +196,9 @@ public class FilePreviewPanel extends JPanel {
                     Logger.debug("Item '" + node.getLabel() + "' identified as ImageIO graphics file");
 
                     try {
-                        this.add(new GraphicsPreviewer(this, new ImageIcon(ImageIO.read(new File(fileName)))));
+                        IIOImage img = EXIFUtilities.readWithOrientation(new File(fileName));
+                        this.add(new GraphicsPreviewer(this, new ImageIcon((BufferedImage) img.getRenderedImage())));
                     } catch (final IOException e) {
-                        Logger.error(e.getMessage(), e);
-                        this.add(new JScrollPane(createPreviewError(e.toString())));
-                    }
-                    break;
-                }
-                case GraphicsJAIConvertable: {
-                    Logger.debug("Item '" + node.getLabel() + "' identified as JAI graphics file");
-
-                    try {
-                        this.add(new GraphicsPreviewer(this, new ImageIcon(JAI.create("fileload", fileName)
-                                .getAsBufferedImage())));
-                    } catch (final Exception e) {
                         Logger.error(e.getMessage(), e);
                         this.add(new JScrollPane(createPreviewError(e.toString())));
                     }

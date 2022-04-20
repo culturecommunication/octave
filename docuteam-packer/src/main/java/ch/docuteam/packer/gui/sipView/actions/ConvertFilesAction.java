@@ -96,8 +96,7 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
 
     private boolean isNodeReadWrite(final NodeAbstract node) {
         return sipView.getDocument().getMode().equals(Mode.ReadWrite) && node.isFile() && node.canRead() && node
-            .canWrite() && node.getSubmitStatus().isEditingAllowed() && ((NodeFile) node)
-                .getMigrationDerivedNode() == null;
+                .canWrite() && node.getSubmitStatus().isEditingAllowed() && node.getMigrationDerivedNode() == null;
     }
 
     @Override
