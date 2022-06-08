@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.3.0</version>
+    <version>6.3.1</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-mapping</artifactId>
-  <version>6.3.0</version>
+  <version>6.3.1</version>
   <name>docuteam mapping</name>
   <url>http://maven.apache.org</url>
   <licenses>
@@ -35,10 +35,6 @@
           <groupId>xalan</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
     </dependency>
     <dependency>
       <groupId>gov.loc</groupId>
@@ -177,6 +173,16 @@
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
             <version>${xerces.xercesImpl.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${org.glassfish.jaxb.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+            <version>${org.glassfish.jaxb.version}</version>
           </dependency>
         </dependencies>
         <configuration>
