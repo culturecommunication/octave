@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="ch:docuteam:mapping:csv" targetNamespace="ch:docuteam:mapping:csv"
+           elementFormDefault="qualified">
+    <xs:include schemaLocation="csv-format.xsd"/>
+    <xs:element name="sipImportTableConfig">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="csvFormat"/>
+                <xs:element ref="sipImportColumnMapping" minOccurs="0"/>
+                <xs:element ref="sipImportMetadataColumnMapping" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sipImportColumnMapping">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sipImportColumn" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sipImportMetadataColumnMapping">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sipImportMetadataColumn" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sipImportColumn">
+        <xs:annotation>
+            <xs:documentation>Specify a mapping indicating the header of a column from the CSV file and its purpose for the SIP creation</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="tableHeaderLabel" use="required" type="xs:string"/>
+            <xs:attribute name="paramID" use="required" type="paramType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="paramType">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="ID"/>
+            <xs:enumeration value="parentID"/>
+            <xs:enumeration value="path"/>
+            <xs:enumeration value="descriptionLevel"/>
+            <xs:enumeration value="title"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="sipImportMetadataColumn">
+        <xs:annotation>
+            <xs:documentation>Specify a mapping indicating the header of a column from the CSV file and its corresponding metadata field in levels.xml</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="tableHeaderLabel" use="required" type="xs:string"/>
+            <xs:attribute name="matterhornMetsAccessorID" use="required" type="matterhornFieldType"/>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!--
+    ################################
+    ### Field types : matterhorn ###
+    ################################
+    -->
+
+    <xs:simpleType name="matterhornFieldType">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="abstract"/>
+            <xs:enumeration value="accessionNumber"/>
+            <xs:enumeration value="accessNr"/>
+            <xs:enumeration value="accessPolicy"/>
+            <xs:enumeration value="accessRestriction"/>
+            <xs:enumeration value="accessRestrictionClassification"/>
+            <xs:enumeration value="accessRestrictionClosureYear"/>
+            <xs:enumeration value="accessRestrictionExplanation"/>
+            <xs:enumeration value="accessRestrictionIsMetadataPublic"/>
+            <xs:enumeration value="accessRestrictionIsPublic"/>
+            <xs:enumeration value="accessRestrictionPeriod"/>
+            <xs:enumeration value="accessRestrictionPeriodBaseYear"/>
+            <xs:enumeration value="accessRestrictionPrivacy"/>
+            <xs:enumeration value="accessRestrictionStatus"/>
+            <xs:enumeration value="accessRestrictionStatusExplanation"/>
+            <xs:enumeration value="accruals"/>
+            <xs:enumeration value="appraisalAndDestruction"/>
+            <xs:enumeration value="appraisalDateDisposed"/>
+            <xs:enumeration value="appraisalIsOnHold"/>
+            <xs:enumeration value="appraisalRetentionPeriod"/>
+            <xs:enumeration value="archivalHistory"/>
+            <xs:enumeration value="arrangement"/>
+            <xs:enumeration value="author"/>
+            <xs:enumeration value="authorGeneric"/>
+            <xs:enumeration value="bibliography"/>
+            <xs:enumeration value="biographicalHistory"/>
+            <xs:enumeration value="cartographicMaterial"/>
+            <xs:enumeration value="characteristics"/>
+            <xs:enumeration value="characteristicsNote"/>
+            <xs:enumeration value="codeLocation"/>
+            <xs:enumeration value="comment"/>
+            <xs:enumeration value="compartment"/>
+            <xs:enumeration value="conditionsOfReproductions"/>
+            <xs:enumeration value="creationPeriod"/>
+            <xs:enumeration value="creationPeriodNotes"/>
+            <xs:enumeration value="creator"/>
+            <xs:enumeration value="date"/>
+            <xs:enumeration value="dateOfBirth"/>
+            <xs:enumeration value="deathOfAuthor"/>
+            <xs:enumeration value="descriptionLevel"/>
+            <xs:enumeration value="descriptionLevelNotes"/>
+            <xs:enumeration value="descriptionRules"/>
+            <xs:enumeration value="designer"/>
+            <xs:enumeration value="digitization"/>
+            <xs:enumeration value="dimensions"/>
+            <xs:enumeration value="dimensionsCategory"/>
+            <xs:enumeration value="DOI"/>
+            <xs:enumeration value="DoiJournal"/>
+            <xs:enumeration value="edition"/>
+            <xs:enumeration value="editionStatement"/>
+            <xs:enumeration value="editor"/>
+            <xs:enumeration value="event"/>
+            <xs:enumeration value="extent"/>
+            <xs:enumeration value="extentNote"/>
+            <xs:enumeration value="extentPrint"/>
+            <xs:enumeration value="extentUnit"/>
+            <xs:enumeration value="familyName"/>
+            <xs:enumeration value="filePlanPosition"/>
+            <xs:enumeration value="fileUrl"/>
+            <xs:enumeration value="fileName"/>
+            <xs:enumeration value="fileMimeType"/>
+            <xs:enumeration value="findingAids"/>
+            <xs:enumeration value="firstname"/>
+            <xs:enumeration value="format"/>
+            <xs:enumeration value="from"/>
+            <xs:enumeration value="fromYear"/>
+            <xs:enumeration value="fullLocation"/>
+            <xs:enumeration value="function"/>
+            <xs:enumeration value="fundingSource"/>
+            <xs:enumeration value="geogName"/>
+            <xs:enumeration value="illustrator"/>
+            <xs:enumeration value="institute"/>
+            <xs:enumeration value="institution"/>
+            <xs:enumeration value="institutionCreator"/>
+            <xs:enumeration value="institutionInvolved"/>
+            <xs:enumeration value="invalid"/>
+            <xs:enumeration value="involved"/>
+            <xs:enumeration value="ISBN"/>
+            <xs:enumeration value="ISSN"/>
+            <xs:enumeration value="journal"/>
+            <xs:enumeration value="keyword"/>
+            <xs:enumeration value="language"/>
+            <xs:enumeration value="languageNotes"/>
+            <xs:enumeration value="lastname"/>
+            <xs:enumeration value="letter"/>
+            <xs:enumeration value="levelOfDescription"/>
+            <xs:enumeration value="location"/>
+            <xs:enumeration value="locationOfOriginals"/>
+            <xs:enumeration value="material"/>
+            <xs:enumeration value="method"/>
+            <xs:enumeration value="modeOfAcquisition"/>
+            <xs:enumeration value="nationality"/>
+            <xs:enumeration value="objectType"/>
+            <xs:enumeration value="occupation"/>
+            <xs:enumeration value="origination"/>
+            <xs:enumeration value="originationAgency"/>
+            <xs:enumeration value="originationDepartment"/>
+            <xs:enumeration value="otherLevelName"/>
+            <xs:enumeration value="photographer"/>
+            <xs:enumeration value="PID"/>
+            <xs:enumeration value="placeOfPublication"/>
+            <xs:enumeration value="premisEventDetail"/>
+            <xs:enumeration value="premisEventDateTime"/>
+            <xs:enumeration value="premisEventType"/>
+            <xs:enumeration value="premisEventOutcomeDetail"/>
+            <xs:enumeration value="processInfoArchivist"/>
+            <xs:enumeration value="processInfoDate"/>
+            <xs:enumeration value="project"/>
+            <xs:enumeration value="projectAbbreviation"/>
+            <xs:enumeration value="projectName"/>
+            <xs:enumeration value="projectTitle"/>
+            <xs:enumeration value="publication"/>
+            <xs:enumeration value="publisher"/>
+            <xs:enumeration value="refCode"/>
+            <xs:enumeration value="refCodeAdmin"/>
+            <xs:enumeration value="refCodeIsVisible"/>
+            <xs:enumeration value="refCodeOld"/>
+            <xs:enumeration value="refCodeSeparator"/>
+            <xs:enumeration value="relatedMaterial"/>
+            <xs:enumeration value="relatedMaterialExtern"/>
+            <xs:enumeration value="relationPeriod"/>
+            <xs:enumeration value="reproductions"/>
+            <xs:enumeration value="responsible"/>
+            <xs:enumeration value="retentionPeriod"/>
+            <xs:enumeration value="retentionPeriodBaseYear"/>
+            <xs:enumeration value="retentionPolicy"/>
+            <xs:enumeration value="revisions"/>
+            <xs:enumeration value="scale"/>
+            <xs:enumeration value="scopeContent"/>
+            <xs:enumeration value="sex"/>
+            <xs:enumeration value="size"/>
+            <xs:enumeration value="sourceType"/>
+            <xs:enumeration value="special"/>
+            <xs:enumeration value="staff"/>
+            <xs:enumeration value="status"/>
+            <xs:enumeration value="subject"/>
+            <xs:enumeration value="subjectGeneral"/>
+            <xs:enumeration value="submitStatus"/>
+            <xs:enumeration value="to"/>
+            <xs:enumeration value="toYear"/>
+            <xs:enumeration value="typeOfAcquisition"/>
+            <xs:enumeration value="uniformTitle"/>
+            <xs:enumeration value="unitTitle"/>
+            <xs:enumeration value="unitTitleAdditional"/>
+            <xs:enumeration value="unitTitleOriginal"/>
+            <xs:enumeration value="unitTitleVarying"/>
+            <xs:enumeration value="university"/>
+            <xs:enumeration value="usage"/>
+            <xs:enumeration value="usagePermission"/>
+            <xs:enumeration value="usagePermissionExpiringDate"/>
+            <xs:enumeration value="year"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -101,6 +101,8 @@ public class PackerConstants {
 
     public static final String NEW_FROM_TEMPLATE_PNG = "NewFromTemplate.png";
 
+    public static final String NEW_FROM_CSV_PNG = "NewFromCSV.png";
+
     public static final String OPEN_PNG = "Open.png";
 
     public static final String CLEAR_PNG = "Clear.png";

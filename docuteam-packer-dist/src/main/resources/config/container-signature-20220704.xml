@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 
-<ContainerSignatureMapping schemaVersion="1.0" signatureVersion="27">
+<ContainerSignatureMapping schemaVersion="1.0" signatureVersion="30">
   <ContainerSignatures>
     <ContainerSignature Id="1000" ContainerType="OLE2">
       <Description>Microsoft Word 6.0/95 OLE2</Description>
@@ -4134,6 +4134,97 @@
         </File>
       </Files>
     </ContainerSignature>
+	<ContainerSignature Id="25100" ContainerType="OLE2">
+       <Description>PageMaker PC Document Version 6</Description>
+         <Files>
+			<File>
+				<Path>PageMaker</Path>
+				<BinarySignatures>
+					<InternalSignatureCollection>                    
+						<InternalSignature ID="300">
+							<ByteSequence Reference="BOFoffset">
+								<SubSequence Position="1" SubSeqMinOffset="6" SubSeqMaxOffset="128">
+									<Sequence>FF 99</Sequence>
+								</SubSequence>
+								<SubSequence Position="2" SubSeqMinOffset="0" SubSeqMaxOffset="128">
+									<Sequence>4D 50 00 06</Sequence>
+								</SubSequence>
+							</ByteSequence>
+						</InternalSignature>
+					</InternalSignatureCollection>
+				</BinarySignatures>
+			</File>             
+		</Files>
+	</ContainerSignature>
+	
+	<ContainerSignature Id="25101" ContainerType="OLE2">
+		<Description>PageMaker Mac Document Version 6</Description>
+		<Files>
+			<File>
+				<Path>PageMaker</Path>
+				<BinarySignatures>
+					<InternalSignatureCollection>                    
+						<InternalSignature ID="300">
+							<ByteSequence Reference="BOFoffset">
+								<SubSequence Position="1" SubSeqMinOffset="6" SubSeqMaxOffset="128">
+									<Sequence>99 FF</Sequence>
+								</SubSequence>
+								<SubSequence Position="2" SubSeqMinOffset="0" SubSeqMaxOffset="128">
+									<Sequence>50 4D 06 00</Sequence>
+								</SubSequence>
+							</ByteSequence>
+						</InternalSignature>
+					</InternalSignatureCollection>
+				</BinarySignatures>
+			</File>             
+		</Files>
+	</ContainerSignature>
+	
+	<ContainerSignature Id="25200" ContainerType="OLE2">
+		<Description>PageMaker PC Document Version 6.5</Description>
+		<Files>
+			<File>
+				<Path>PageMaker</Path>
+				<BinarySignatures>
+					<InternalSignatureCollection>                    
+						<InternalSignature ID="300">
+							<ByteSequence Reference="BOFoffset">
+								<SubSequence Position="1" SubSeqMinOffset="6" SubSeqMaxOffset="128">
+									<Sequence>FF 99</Sequence>
+								</SubSequence>
+								<SubSequence Position="2" SubSeqMinOffset="0" SubSeqMaxOffset="128">
+									<Sequence>4D 50 32 06</Sequence>
+								</SubSequence>
+							</ByteSequence>
+						</InternalSignature>
+					</InternalSignatureCollection>
+				</BinarySignatures>
+			</File>             
+		</Files>
+	</ContainerSignature>
+        
+	<ContainerSignature Id="25201" ContainerType="OLE2">
+		<Description>PageMaker Mac Document Version 6.5</Description>
+		<Files>
+			<File>
+				<Path>PageMaker</Path>
+				<BinarySignatures>
+					<InternalSignatureCollection>                    
+						<InternalSignature ID="300">
+							<ByteSequence Reference="BOFoffset">
+								<SubSequence Position="1" SubSeqMinOffset="6" SubSeqMaxOffset="128">
+									<Sequence>99 FF</Sequence>
+								</SubSequence>
+								<SubSequence Position="2" SubSeqMinOffset="0" SubSeqMaxOffset="128">
+									<Sequence>50 4D 06 32</Sequence>
+								</SubSequence>
+							</ByteSequence>
+						</InternalSignature>
+					</InternalSignatureCollection>
+				</BinarySignatures>
+			</File>             
+		</Files>
+	</ContainerSignature>
 
     <ContainerSignature Id="26000" ContainerType="OLE2">
       <Description>i2 Analysts Notebook</Description>
@@ -4898,6 +4989,25 @@
 	                            <ByteSequence Reference="BOFoffset">
 	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
 						<Sequence>'application/vnd.etsi.asic-s+zip'</Sequence>
+	                                </SubSequence>
+	                            </ByteSequence>
+	                        </InternalSignature>
+	                    </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+		        <ContainerSignature Id="39700" ContainerType="ZIP">
+            <Description>Associated Signature Container Extended (ASiC-E)</Description>
+            <Files>
+		<File>
+		  <Path>mimetype</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>                    
+	                        <InternalSignature ID="39700">
+	                            <ByteSequence Reference="BOFoffset">
+	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+						<Sequence>'application/vnd.etsi.asic-e+zip'</Sequence>
 	                                </SubSequence>
 	                            </ByteSequence>
 	                        </InternalSignature>
@@ -5910,7 +6020,173 @@
         </File>
              </Files>
         </ContainerSignature>
+
+         <ContainerSignature Id="59000" ContainerType="OLE2">
+            <Description>Roxio Label Creator Project File v4-5</Description>
+            <Files>
+		 <File>
+		    <Path>Contents</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>
+	                        <InternalSignature ID="59000">
+	                            <ByteSequence Reference="BOFoffset">
+	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+	                                    <Sequence>41 4A 43 44 20</Sequence>
+	                                </SubSequence>
+	                            </ByteSequence>
+	                        </InternalSignature>
+	                    </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+
+         <ContainerSignature Id="59010" ContainerType="OLE2">
+            <Description>Roxio Label Creator Project File v6-7</Description>
+            <Files>
+		 <File>
+		    <Path>Contents</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>
+	                        <InternalSignature ID="59010">
+	                            <ByteSequence Reference="BOFoffset">
+	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+	                                    <Sequence>52 4F 58 49 20</Sequence>
+	                                </SubSequence>
+	                            </ByteSequence>
+	                        </InternalSignature>
+	                    </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+		<ContainerSignature Id="60000" ContainerType="OLE2">
+            <Description>Crystal Reports File</Description>
+            <Files>
+                <File>
+                    <Path>Contents</Path>
+                </File>
+					 <File>
+                    <Path>SummaryInformation</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>                    
+	                        <InternalSignature ID="300">
+	                            <ByteSequence Reference="BOFoffset">
+	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="2048">
+	                                    <Sequence>'Crystal Reports'</Sequence>
+	                                </SubSequence>
+	                            </ByteSequence>
+	                        </InternalSignature>
+	                    </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>            
+            </Files>
+        </ContainerSignature>     
+        <ContainerSignature Id="60001" ContainerType="OLE2">
+            <Description>Crystal Reports File</Description>
+            <Files>
+                <File>
+                    <Path>Contents</Path>
+                </File>
+                <File>
+                    <Path>SummaryInformation</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>                    
+                            <InternalSignature ID="300">
+                                <ByteSequence Reference="BOFoffset">
+                                    <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="2048">
+                                        <Sequence>'C'00 'r'00 'y'00 's'00 't'00 'a'00 'l'00 ' '00 'R'00 'e'00 'p'00 'o'00 'r'00 't'00 's'00</Sequence>
+                                    </SubSequence>
+                                </ByteSequence>
+                            </InternalSignature>
+                        </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>            
+            </Files>
+        </ContainerSignature>
+
+        <ContainerSignature Id="70000" ContainerType="ZIP">
+            <Description>EndNote Library vX-X9 type 1</Description>
+            <Files>
+                <File>
+                    <Path>refs.MYD</Path>
+                </File>
+					 <File>
+                    <Path>refs.frm</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>
+	                        <InternalSignature ID="70000">
+	                            <ByteSequence Reference="BOFoffset">
+	                                <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+	                                    <Sequence>FE 01 09 09</Sequence>
+	                                </SubSequence>
+	                            </ByteSequence>
+	                        </InternalSignature>
+	                    </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+
+        <ContainerSignature Id="70001" ContainerType="ZIP">
+            <Description>EndNote Library vX-X9 type 2</Description>
+            <Files>
+                <File>
+                    <Path>refs.MYD</Path>
+                </File>
+                <File>
+                    <Path>refs.FRM</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>
+                            <InternalSignature ID="70001">
+                                <ByteSequence Reference="BOFoffset">
+                                    <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+                                        <Sequence>FE 01 09 09</Sequence>
+                                    </SubSequence>
+                                </ByteSequence>
+                            </InternalSignature>
+                        </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+
+        <ContainerSignature Id="70010" ContainerType="ZIP">
+            <Description>EndNote Compressed Library vX-X9</Description>
+            <Files>
+                <File>
+                    <Path>rdb/refs.MYD</Path>
+                </File>
+                <File>
+                    <Path>rdb/refs.frm</Path>
+                    <BinarySignatures>
+                        <InternalSignatureCollection>
+                            <InternalSignature ID="70010">
+                                <ByteSequence Reference="BOFoffset">
+                                    <SubSequence Position="1" SubSeqMinOffset="0" SubSeqMaxOffset="0">
+                                        <Sequence>FE 01 09 09</Sequence>
+                                    </SubSequence>
+                                </ByteSequence>
+                            </InternalSignature>
+                        </InternalSignatureCollection>
+                    </BinarySignatures>
+                </File>
+            </Files>
+        </ContainerSignature>
+
+        <ContainerSignature Id="70020" ContainerType="ZIP">
+            <Description>EndNote Compressed Library v20+</Description>
+            <Files>
+                <File>
+                    <Path>sdb/pdb.eni</Path>
+                </File>
+                <File>
+                    <Path>sdb/sdb.eni</Path>
+                </File>
+            </Files>
+        </ContainerSignature>
   </ContainerSignatures>
+
 
   <FileFormatMappings>
     <!--  Microsoft Word 6.0/95 (OLE2)-->
@@ -6289,6 +6565,14 @@
 
     <!--  PageMaker Document (Generic) (OLE2)-->
     <FileFormatMapping signatureId="25000" Puid="fmt/876"/>
+	<!--  PageMaker PC Document (6.0) (OLE2)-->
+    <FileFormatMapping signatureId="25100" Puid="x-fmt/174"/>
+	<!--  PageMaker Mac Document (6.0) (OLE2)-->
+    <FileFormatMapping signatureId="25101" Puid="fmt/1719"/>
+	<!--  PageMaker PC Document (6.5) (OLE2)-->
+    <FileFormatMapping signatureId="25200" Puid="x-fmt/181"/>
+	<!--  PageMaker Mac Document Mac (6.5) (OLE2)-->
+    <FileFormatMapping signatureId="25201" Puid="fmt/1718"/>
 
     <!--  i2 Analysts Notebook (OLE2)-->
     <FileFormatMapping signatureId="26000" Puid="fmt/893"/>
@@ -6371,6 +6655,8 @@
     <FileFormatMapping signatureId="39515" Puid="fmt/1342"/>
     <!-- Associated Signature Container Simple (ASiC-S) (ZIP)-->
     <FileFormatMapping signatureId="39600" Puid="fmt/1341"/>
+	<!-- Associated Signature Container Simple (ASiC-E) (ZIP)-->
+    <FileFormatMapping signatureId="39700" Puid="fmt/1564"/>
 
     <!-- ZFO (Form) File (ZIP)-->
     <FileFormatMapping signatureId="40000" Puid="fmt/1242"/>
@@ -6482,6 +6768,26 @@
 
     <!--  ISDOCX Information System Document (version 6.0.1) (ZIP)-->
     <FileFormatMapping signatureId="58000" Puid="fmt/1571"/>
+
+    <!--  Roxio Label Creator Project File v4-5 (OLE2)-->
+    <FileFormatMapping signatureId="59000" Puid="fmt/1644"/>
+
+    <!--  Roxio Label Creator Project File v6-7 (OLE2)-->
+    <FileFormatMapping signatureId="59010" Puid="fmt/1645"/>
+	
+	<!--  Crystal Reports File (OLE2)-->
+    <FileFormatMapping signatureId="60000" Puid="fmt/1648"/>
+	<FileFormatMapping signatureId="60001" Puid="fmt/1648"/>
+
+    <!--  EndNote Library vX-X9 (ZIP)-->
+    <FileFormatMapping signatureId="70000" Puid="fmt/1682"/>
+	<FileFormatMapping signatureId="70001" Puid="fmt/1682"/>
+
+    <!--  EndNote Compressed Library vX-X9 (ZIP)-->
+    <FileFormatMapping signatureId="70010" Puid="fmt/1683"/>
+
+    <!--  EndNote Compressed Library v20+ (ZIP)-->
+    <FileFormatMapping signatureId="70020" Puid="fmt/1685"/>
 
   </FileFormatMappings>
 

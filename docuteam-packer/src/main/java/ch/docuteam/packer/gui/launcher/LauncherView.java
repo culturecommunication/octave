@@ -32,6 +32,7 @@ import static ch.docuteam.packer.gui.PackerConstants.DELETE_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.DOWNLOAD_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.DO_INITIALLY_OPEN_WORKSPACEMANAGER;
 import static ch.docuteam.packer.gui.PackerConstants.MIGRATE_FILE_KEEP_ORIGINAL;
+import static ch.docuteam.packer.gui.PackerConstants.NEW_FROM_CSV_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.NEW_FROM_TEMPLATE_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.NEW_SIP_DEFAULTS_TO_ZIPPED;
 import static ch.docuteam.packer.gui.PackerConstants.NEW_SIP_DEFAULT_DELETE_SOURCES;
@@ -116,6 +117,9 @@ import ch.docuteam.darc.mets.Document;
 import ch.docuteam.darc.mets.Document.Mode;
 import ch.docuteam.darc.sa.SubmissionAgreement;
 import ch.docuteam.darc.sa.SubmissionAgreement.Overview;
+import ch.docuteam.mapping.csv.CsvToSipImporter;
+import ch.docuteam.mapping.csv.ImportResult;
+import ch.docuteam.mapping.csv.SipCreationArgs;
 import ch.docuteam.packer.admin.BuildInfo;
 import ch.docuteam.packer.gui.FileProperty;
 import ch.docuteam.packer.gui.filePreview.FilePreviewer;
@@ -223,6 +227,8 @@ public class LauncherView extends JFrame {
     protected Action createNewSIPAction;
 
     protected Action createNewSIPFromTemplateAction;
+
+    protected Action createNewSIPFromCSVAction;
 
     protected Action openSIPAction;
 
@@ -480,18 +486,18 @@ public class LauncherView extends JFrame {
             }
         };
         quitAction.putValue(Action.ACCELERATOR_KEY, getKeyStroke(KeyEvent.VK_Q,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK));
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK));
         quitAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipQuit"));
 
         aboutAction = new AboutAction(this);
 
         // SA actions:
         updateSAsFromServerAction = new AbstractAction(I18N.translate("ActionLoadSAsFromServer"),
-                getImageIcon(DOWNLOAD_PNG)) {
+            getImageIcon(DOWNLOAD_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -503,11 +509,11 @@ public class LauncherView extends JFrame {
 
         // Workspace actions:
         showWorkspaceManagerAction = new AbstractAction(I18N.translate("ActionShowWorkspaceManager"),
-                getImageIcon(WORKSPACE_MANAGER_SHOW_PNG)) {
+            getImageIcon(WORKSPACE_MANAGER_SHOW_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -518,11 +524,11 @@ public class LauncherView extends JFrame {
         showWorkspaceManagerAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipShowWorkspaceManager"));
 
         hideWorkspaceManagerAction = new AbstractAction(I18N.translate("ActionHideWorkspaceManager"),
-                getImageIcon(WORKSPACE_MANAGER_HIDE_PNG)) {
+            getImageIcon(WORKSPACE_MANAGER_HIDE_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -533,11 +539,11 @@ public class LauncherView extends JFrame {
         hideWorkspaceManagerAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipHideWorkspaceManager"));
 
         selectWorkspaceFolderAction = new AbstractAction(I18N.translate("ActionSelectWorkspaceFolder"),
-                getImageIcon(OPEN_FOLDER_PNG)) {
+            getImageIcon(OPEN_FOLDER_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -546,10 +552,10 @@ public class LauncherView extends JFrame {
             }
         };
         selectWorkspaceFolderAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate(
-                "ToolTipSelectWorkspaceFolder"));
+            "ToolTipSelectWorkspaceFolder"));
 
         searchWorkspaceAction = new AbstractAction(I18N.translate("ActionSearchWorkspace"), getImageIcon(
-                SEARCH_PNG)) {
+            SEARCH_PNG)) {
 
             /**
              *
@@ -562,15 +568,15 @@ public class LauncherView extends JFrame {
             }
         };
         searchWorkspaceAction.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+            KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         searchWorkspaceAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipSearchWorkspace"));
 
         rereadWorkspaceFolderAction = new AbstractAction(I18N.translate("ActionRereadWorkspaceFolder"),
-                getImageIcon(REDISPLAY_PNG)) {
+            getImageIcon(REDISPLAY_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -579,16 +585,16 @@ public class LauncherView extends JFrame {
             }
         };
         rereadWorkspaceFolderAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate(
-                "ToolTipRereadWorkspaceFolder"));
+            "ToolTipRereadWorkspaceFolder"));
         // rereadWorkspaceFolderAction.putValue(Action.ACCELERATOR_KEY,
         // getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), KeyEvent.VK_F5, 0));
 
         createNewSIPAction = new AbstractAction(I18N.translate("ActionCreateNew"),
-                getImageIcon("New.png")) {
+            getImageIcon("New.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -597,15 +603,15 @@ public class LauncherView extends JFrame {
             }
         };
         createNewSIPAction.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+            KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         createNewSIPAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipCreateNew"));
 
         createNewSIPFromTemplateAction = new AbstractAction(I18N.translate("ActionCreateNewFromTemplate"),
-                getImageIcon(NEW_FROM_TEMPLATE_PNG)) {
+            getImageIcon(NEW_FROM_TEMPLATE_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -614,9 +620,22 @@ public class LauncherView extends JFrame {
             }
         };
         createNewSIPFromTemplateAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
         createNewSIPFromTemplateAction.putValue(Action.SHORT_DESCRIPTION,
-                I18N.translate("ToolTipCreateNewFromTemplate"));
+            I18N.translate("ToolTipCreateNewFromTemplate"));
+
+        createNewSIPFromCSVAction = new AbstractAction(I18N.translate("ActionCreateNewFromCSV"),
+                getImageIcon(NEW_FROM_CSV_PNG)) {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                createNewSIPFromCSV();
+            }
+        };
+        createNewSIPFromCSVAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.SHIFT_DOWN_MASK));
+        createNewSIPFromCSVAction.putValue(Action.SHORT_DESCRIPTION,
+            I18N.translate("ToolTipCreateNewFromCSV"));
 
         openSIPAction = new AbstractAction(I18N.translate("ActionOpen"), getImageIcon(OPEN_PNG)) {
 
@@ -631,15 +650,15 @@ public class LauncherView extends JFrame {
             }
         };
         openSIPAction.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+            KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         openSIPAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpen"));
 
         openSIPReadWriteNoFileOpsAction = new AbstractAction(I18N.translate("ActionOpenReadWriteNoFileOps"),
-                getImageIcon("OpenReadWriteNoFileOps.png")) {
+            getImageIcon("OpenReadWriteNoFileOps.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -648,16 +667,16 @@ public class LauncherView extends JFrame {
             }
         };
         openSIPReadWriteNoFileOpsAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
         openSIPReadWriteNoFileOpsAction.putValue(Action.SHORT_DESCRIPTION,
-                I18N.translate("ToolTipOpenReadWriteNoFileOps"));
+            I18N.translate("ToolTipOpenReadWriteNoFileOps"));
 
         openSIPReadOnlyAction = new AbstractAction(I18N.translate("ActionOpenReadOnly"),
-                getImageIcon("OpenReadOnly.png")) {
+            getImageIcon("OpenReadOnly.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -666,18 +685,18 @@ public class LauncherView extends JFrame {
             }
         };
         openSIPReadOnlyAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.SHIFT_DOWN_MASK));
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.SHIFT_DOWN_MASK));
         openSIPReadOnlyAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipOpenReadOnly"));
 
         openSIPInWorkspaceAction = new OpenSIPInWorkspaceAction(this);
 
         openSIPInWorkspaceReadWriteNoFileOpsAction = new AbstractAction(
-                I18N.translate("ActionOpenInWorkspaceReadWriteNoFileOps"),
-                getImageIcon("OpenInWorkspaceReadWriteNoFileOps.png")) {
+            I18N.translate("ActionOpenInWorkspaceReadWriteNoFileOps"),
+            getImageIcon("OpenInWorkspaceReadWriteNoFileOps.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -686,16 +705,16 @@ public class LauncherView extends JFrame {
             }
         };
         openSIPInWorkspaceReadWriteNoFileOpsAction.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.ALT_DOWN_MASK));
+            KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.ALT_DOWN_MASK));
         openSIPInWorkspaceReadWriteNoFileOpsAction.putValue(Action.SHORT_DESCRIPTION,
-                I18N.translate("ToolTipOpenInWorkspaceReadWriteNoFileOps"));
+            I18N.translate("ToolTipOpenInWorkspaceReadWriteNoFileOps"));
 
         openSIPInWorkspaceReadOnlyAction = new AbstractAction(I18N.translate("ActionOpenInWorkspaceReadOnly"),
-                getImageIcon("OpenInWorkspaceReadOnly.png")) {
+            getImageIcon("OpenInWorkspaceReadOnly.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -704,16 +723,16 @@ public class LauncherView extends JFrame {
             }
         };
         openSIPInWorkspaceReadOnlyAction.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_DOWN_MASK));
+            KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_DOWN_MASK));
         openSIPInWorkspaceReadOnlyAction.putValue(Action.SHORT_DESCRIPTION,
-                I18N.translate("ToolTipOpenInWorkspaceReadOnly"));
+            I18N.translate("ToolTipOpenInWorkspaceReadOnly"));
 
         renameSIPInWorkspaceAction = new AbstractAction(I18N.translate("ActionRenameInWorkspace"),
-                getImageIcon("Rename.png")) {
+            getImageIcon("Rename.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -723,15 +742,15 @@ public class LauncherView extends JFrame {
         };
         renameSIPInWorkspaceAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipRenameSIP"));
         renameSIPInWorkspaceAction.putValue(Action.ACCELERATOR_KEY,
-                getKeyStroke(KeyEvent.VK_R, InputEvent.ALT_DOWN_MASK, KeyEvent.VK_F2, InputEvent.ALT_DOWN_MASK,
-                        KeyEvent.VK_F2, InputEvent.CTRL_DOWN_MASK));
+            getKeyStroke(KeyEvent.VK_R, InputEvent.ALT_DOWN_MASK, KeyEvent.VK_F2, InputEvent.ALT_DOWN_MASK,
+                KeyEvent.VK_F2, InputEvent.CTRL_DOWN_MASK));
 
         copySIPInWorkspaceAction = new AbstractAction(I18N.translate("ActionCopyInWorkspace"),
-                getImageIcon("Copy.png")) {
+            getImageIcon("Copy.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -741,14 +760,14 @@ public class LauncherView extends JFrame {
         };
         copySIPInWorkspaceAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipCopySIP"));
         copySIPInWorkspaceAction.putValue(Action.ACCELERATOR_KEY, getKeyStroke(KeyEvent.VK_C,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() | InputEvent.ALT_DOWN_MASK));
 
         deleteSIPInWorkspaceAction = new AbstractAction(I18N.translate("ActionDeleteInWorkspace"),
-                getImageIcon(DELETE_PNG)) {
+            getImageIcon(DELETE_PNG)) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -760,11 +779,11 @@ public class LauncherView extends JFrame {
         deleteSIPInWorkspaceAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 
         checkIngestFeedbackAction = new AbstractAction(I18N.translate("ActionCheckIngestFeedback"),
-                getImageIcon("SubmitCheckIngestFeedback.png")) {
+            getImageIcon("SubmitCheckIngestFeedback.png")) {
 
             /**
-                     *
-                     */
+             *
+             */
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -827,6 +846,7 @@ public class LauncherView extends JFrame {
         sipMenu.add(createNewMenuItem);
 
         sipMenu.add(new JMenuItem(createNewSIPFromTemplateAction));
+        sipMenu.add(new JMenuItem(createNewSIPFromCSVAction));
         sipMenu.addSeparator();
         sipMenu.add(new JMenuItem(openSIPAction));
         sipMenu.add(new JMenuItem(openSIPReadWriteNoFileOpsAction));
@@ -891,7 +911,7 @@ public class LauncherView extends JFrame {
         openSIPInWorkspaceButton.setHideActionText(true);
 
         final JButton openSIPInWorkspaceReadWriteNoFileOpsButton = new JButton(
-                openSIPInWorkspaceReadWriteNoFileOpsAction);
+            openSIPInWorkspaceReadWriteNoFileOpsAction);
         openSIPInWorkspaceReadWriteNoFileOpsButton.setHideActionText(true);
 
         final JButton openSIPInWorkspaceReadOnlyButton = new JButton(openSIPInWorkspaceReadOnlyAction);
@@ -979,7 +999,7 @@ public class LauncherView extends JFrame {
      */
     private List<String> getHiddenActionKeys() {
         final String actionsNotVisible = properties.getPropertyOrDefaultIfEmpty("docuteamPacker.actionsNotVisible",
-                "");
+            "");
         return Arrays.asList(actionsNotVisible.split("\\s?,\\s?"));
     }
 
@@ -991,7 +1011,7 @@ public class LauncherView extends JFrame {
      */
     public boolean isActionVisible(final Action action) {
         final String actionId = action.getValue(ACTION_HIDE_KEY) != null ? action.getValue(ACTION_HIDE_KEY).toString()
-                : null;
+            : null;
         final boolean isActionVisible = !isActionNotVisible(actionId);
         return isActionVisible;
     }
@@ -1058,7 +1078,7 @@ public class LauncherView extends JFrame {
         splashWindow.setIconImage(getImage(PACKER_PNG));
         splashWindow.setUndecorated(true);
         splashWindow.add(
-                new JLabel(BuildInfo.getVersion(), getImageIcon("SplashScreen.png"), SwingConstants.CENTER));
+            new JLabel(BuildInfo.getVersion(), getImageIcon("SplashScreen.png"), SwingConstants.CENTER));
         splashWindow.setSize(300, 100);
         splashWindow.setLocationRelativeTo(null);
 
@@ -1072,7 +1092,7 @@ public class LauncherView extends JFrame {
             Logger.info("Initializing docuteam packer:");
 
             final ConfigurationFileLoader configurationFileLoader = new ConfigurationFileLoader(commandLine.getOptionValue(
-                    "configDir"));
+                "configDir"));
 
             // If a config directory is specified, take these configurations
             // from there (if those files ARE there - if not, use the default
@@ -1094,7 +1114,7 @@ public class LauncherView extends JFrame {
             }
 
             initializeProperties(new PropertiesWithResolvedEnvVars(configurationFileLoader.loadProperties(
-                    PROPERTY_FILE_NAME)));
+                PROPERTY_FILE_NAME)));
 
             hiddenActionKeyList = getHiddenActionKeys();
 
@@ -1137,7 +1157,7 @@ public class LauncherView extends JFrame {
         SystemOutView.install();
 
         final boolean doOpenSystemOutViewOnOutput = "true"
-                .equalsIgnoreCase(properties.getProperty("docuteamPacker.openSystemOutViewOnOutput", "true"));
+            .equalsIgnoreCase(properties.getProperty("docuteamPacker.openSystemOutViewOnOutput", "true"));
         Logger.info("    openSystemOutViewOnOutput: " + doOpenSystemOutViewOnOutput);
 
         // Switch on or off the automatic popping-up of the SystemOutView on
@@ -1145,37 +1165,37 @@ public class LauncherView extends JFrame {
         SystemOutView.setDoPopUpOnWrite(doOpenSystemOutViewOnOutput);
 
         final StringBuilder additionalInfoText = new StringBuilder("----------\n")
-                .append(BuildInfo.getProduct())
-                .append(" ")
-                .append(BuildInfo.getVersion())
-                .append(" (")
-                .append(BuildInfo.getLastChange())
-                .append(")\n----------\n")
-                .append(OperatingSystem.osName())
-                .append(" ")
-                .append(OperatingSystem.osVersion())
-                .append(" ")
-                .append(System.getProperty("os.arch"))
-                .append(" (")
-                .append(OperatingSystem.userLanguage())
-                .append(")\n----------\n")
-                .append(System.getProperty("java.vendor"))
-                .append(" ")
-                .append(System.getProperty("java.version"))
-                .append(")\n----------\n")
-                .append(OperatingSystem.userName())
-                .append("\n----------\n");
+            .append(BuildInfo.getProduct())
+            .append(" ")
+            .append(BuildInfo.getVersion())
+            .append(" (")
+            .append(BuildInfo.getLastChange())
+            .append(")\n----------\n")
+            .append(OperatingSystem.osName())
+            .append(" ")
+            .append(OperatingSystem.osVersion())
+            .append(" ")
+            .append(System.getProperty("os.arch"))
+            .append(" (")
+            .append(OperatingSystem.userLanguage())
+            .append(")\n----------\n")
+            .append(System.getProperty("java.vendor"))
+            .append(" ")
+            .append(System.getProperty("java.version"))
+            .append(")\n----------\n")
+            .append(OperatingSystem.userName())
+            .append("\n----------\n");
 
         for (final Object key : properties.keySet()) {
             additionalInfoText.append(key).append(" = ").append(properties.get(key)).append("\n");
         }
         additionalInfoText
-                .append("----------\n");
+            .append("----------\n");
         SystemOutView.setAdditionalInfoText(additionalInfoText.toString());
 
         final String displayLanguageFromPropertyFile = properties.getProperty("docuteamPacker.displayLanguage", "");
         final String usedDisplayLanguage = displayLanguageFromPropertyFile.isEmpty() ? OperatingSystem.userLanguage()
-                : displayLanguageFromPropertyFile;
+            : displayLanguageFromPropertyFile;
         I18N.initialize(usedDisplayLanguage, "translations.Translations");
         Logger.info("    displayLanguage: " + usedDisplayLanguage);
 
@@ -1183,32 +1203,32 @@ public class LauncherView extends JFrame {
         if (!defaultChecksumAlgorithm.equals("")) {
             try {
                 ch.docuteam.darc.premis.Object.setDefaultMessageDigestAlgorithm(Algorithm.lookup(
-                        defaultChecksumAlgorithm));
+                    defaultChecksumAlgorithm));
                 Logger.info("    defaultChecksumAlgorithm: " + defaultChecksumAlgorithm);
             } catch (final NoSuchAlgorithmException e) {
                 Logger.error(I18N.translate("MessageNoSuchAlgorithmException", defaultChecksumAlgorithm,
-                        ch.docuteam.darc.premis.Object.getDefaultMessageDigestAlgorithm().getCode()));
+                    ch.docuteam.darc.premis.Object.getDefaultMessageDigestAlgorithm().getCode()));
             }
         }
 
         newSIPDeleteSourcesByDefault = Boolean.parseBoolean(properties.getProperty(
-                "docuteamPacker.newSIPDeleteSourcesByDefault", NEW_SIP_DEFAULT_DELETE_SOURCES));
+            "docuteamPacker.newSIPDeleteSourcesByDefault", NEW_SIP_DEFAULT_DELETE_SOURCES));
         Logger.info("    newSIPDeleteSourcesByDefault: " + newSIPDeleteSourcesByDefault);
 
         newSIPZippedByDefault = Boolean.parseBoolean(properties.getProperty("docuteamPacker.newSIPDefaultsToZipped",
-                NEW_SIP_DEFAULTS_TO_ZIPPED));
+            NEW_SIP_DEFAULTS_TO_ZIPPED));
         Logger.info("    newSIPDefaultsToZipped: " + newSIPZippedByDefault);
 
         migrateFileKeepOriginal = Boolean.parseBoolean(properties.getProperty(
-                "docuteamPacker.migrateFileKeepOriginal",
-                MIGRATE_FILE_KEEP_ORIGINAL));
+            "docuteamPacker.migrateFileKeepOriginal",
+            MIGRATE_FILE_KEEP_ORIGINAL));
         Logger.info("    migrateFileKeepOriginal: " + migrateFileKeepOriginal);
 
         // Initialize various directories:
 
         // SIPDir, create if not existing
         sipDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.SIPDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, USER_HOME));
+            PROPERTY_FILE_PATH_OS_SUFFIX, USER_HOME));
         final Path sipDirPath = FileSystems.getDefault().getPath(sipDirectory);
         try {
             Files.createDirectories(sipDirPath);
@@ -1220,7 +1240,7 @@ public class LauncherView extends JFrame {
 
         // dataDir, create if not existing
         dataDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.dataDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
+            PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
         try {
             final Path dataDirectoryPath = FileSystems.getDefault().getPath(dataDirectory);
             Files.createDirectories(dataDirectoryPath);
@@ -1230,32 +1250,32 @@ public class LauncherView extends JFrame {
         Logger.info("    dataDirectory: " + dataDirectory);
 
         templateDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
-                "docuteamPacker.templateDir" + PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
+            "docuteamPacker.templateDir" + PROPERTY_FILE_PATH_OS_SUFFIX, sipDirectory));
         Logger.info("    templateDirectory: " + templateDirectory);
 
         exportsDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
-                "docuteamPacker.exportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/exports/"));
+            "docuteamPacker.exportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/exports/"));
         Logger.info("    exportsDirectory: " + exportsDirectory);
 
         reportsDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
-                "docuteamPacker.reportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/reports/"));
+            "docuteamPacker.reportsDir" + PROPERTY_FILE_PATH_OS_SUFFIX, "./templates/reports/"));
         Logger.info("    reportsDirectory: " + reportsDirectory);
 
         reportsDestinationDirectory = FileUtil.asCanonicalFileName(properties.getPropertyOrDefaultIfEmpty(
-                "docuteamPacker.reportsDestinationDir" + PROPERTY_FILE_PATH_OS_SUFFIX,
-                OperatingSystem
-                        .userHome() + "Desktop"));
+            "docuteamPacker.reportsDestinationDir" + PROPERTY_FILE_PATH_OS_SUFFIX,
+            OperatingSystem
+                .userHome() + "Desktop"));
         Logger.info("    reportsDestinationDirectory: " + reportsDestinationDirectory);
 
         Document.setBackupFolder(properties.getProperty("docuteamPacker.backupDir" + PROPERTY_FILE_PATH_OS_SUFFIX));
         Logger.info("    backupDirectory: " + Document.getBackupFolder());
 
         FileUtil.setTempFolder(properties.getPropertyOrDefaultIfEmpty("docuteamPacker.tempDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, OperatingSystem.javaTempDir() + "DocuteamPacker"));
+            PROPERTY_FILE_PATH_OS_SUFFIX, OperatingSystem.javaTempDir() + "DocuteamPacker"));
         Logger.info("    tempDirectory: " + FileUtil.getTempFolder());
 
         Document.setLockFilesDirectory(properties.getProperty("docuteamPacker.lockFilesDir" +
-                PROPERTY_FILE_PATH_OS_SUFFIX));
+            PROPERTY_FILE_PATH_OS_SUFFIX));
         Logger.info("    lockFilesDirectory: " + Document.getLockFilesDirectory());
 
         try {
@@ -1267,7 +1287,7 @@ public class LauncherView extends JFrame {
             }
         } catch (final Exception e) {
             Logger.warn(I18N.translate("MessageAIPCreatorInitializationException", properties.getProperty(
-                    "docuteamPacker.AIPCreator.className")), e);
+                "docuteamPacker.AIPCreator.className")), e);
             // Leave the AIPCreatorProxy uninitialized
             AIPCreatorProxy.initializeImpl((AIPCreator) null);
         }
@@ -1313,13 +1333,13 @@ public class LauncherView extends JFrame {
                     // dialog.
 
                     final StringBuilder confirmMessage = new StringBuilder(
-                            I18N.translate("QuestionDeleteExcessiveSAs") + "\n");
+                        I18N.translate("QuestionDeleteExcessiveSAs") + "\n");
                     for (final String s : saNamesToBeDeleted) {
                         confirmMessage.append("\n").append(s);
                     }
 
                     final JOptionPane optionPane = new JOptionPane(confirmMessage, JOptionPane.QUESTION_MESSAGE,
-                            JOptionPane.YES_NO_OPTION);
+                        JOptionPane.YES_NO_OPTION);
                     final JDialog dialog = optionPane.createDialog("Confirmation");
                     dialog.pack();
 
@@ -1347,7 +1367,7 @@ public class LauncherView extends JFrame {
         }
 
         OOConverter.initializeDontWait(properties.getProperty("docuteamPacker.OOConverter.path" +
-                PROPERTY_FILE_PATH_OS_SUFFIX, ""));
+            PROPERTY_FILE_PATH_OS_SUFFIX, ""));
         Logger.info("    ooConverterPath: " + OOConverter.getConverterPath());
 
         // Initialize 3-Heights Document Converter:
@@ -1363,7 +1383,7 @@ public class LauncherView extends JFrame {
 
         // Initialize FilePreviewer:
         final String filePreviewCacheSizeLimit = properties.getProperty("docuteamPacker.filePreviewer.cacheSizeLimit",
-                "");
+            "");
         if (!filePreviewCacheSizeLimit.isEmpty()) {
             FilePreviewer.setCacheSizeLimit(new Integer(filePreviewCacheSizeLimit));
         }
@@ -1372,7 +1392,7 @@ public class LauncherView extends JFrame {
         // Initialize UIManager:
         try {
             if (Boolean.parseBoolean(properties.getProperty("docuteamPacker.useSystemLookAndFeel",
-                    USE_SYSTEM_LOOK_AND_FEEL))) {
+                USE_SYSTEM_LOOK_AND_FEEL))) {
                 // com.sun.java.swing.plaf.windows.WindowsLookAndFeel on Windows, com.apple.laf.AquaLookAndFeel on OS
                 // X.
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -1416,7 +1436,7 @@ public class LauncherView extends JFrame {
         } catch (final MalformedURLException ex) {
             // MainFrame might be null here (on application startup):
             JOptionPane.showMessageDialog(this, I18N.translate("MessageCantUpdateSAsFromServer"),
-                    I18N.translate("TitleCantUpdateSAsFromServer"), JOptionPane.ERROR_MESSAGE);
+                I18N.translate("TitleCantUpdateSAsFromServer"), JOptionPane.ERROR_MESSAGE);
         } catch (final Exception e) {
             Logger.error(e.getMessage(), e);
         }
@@ -1492,13 +1512,13 @@ public class LauncherView extends JFrame {
     }
 
     public KeyStroke getKeyStroke(final int macKeyEvent, final int macModifiers, final int pcKeyEvent,
-            final int pcModifiers) {
+                                  final int pcModifiers) {
         return getKeyStroke(macKeyEvent, macModifiers, pcKeyEvent, pcModifiers, pcKeyEvent, pcModifiers);
     }
 
     public KeyStroke getKeyStroke(final int macKeyEvent, final int macModifiers, final int winKeyEvent,
-            final int winModifiers,
-            final int linuxKeyEvent, final int linuxModifiers) {
+                                  final int winModifiers,
+                                  final int linuxKeyEvent, final int linuxModifiers) {
         if (OperatingSystem.isMacOSX()) {
             return KeyStroke.getKeyStroke(macKeyEvent, macModifiers);
         } else if (OperatingSystem.isWindows()) {
@@ -1628,7 +1648,7 @@ public class LauncherView extends JFrame {
             public Integer doInBackground() {
                 footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName + "...");
                 final SmallPeskyMessageWindow waitWindow = SmallPeskyMessageWindow.openBlocking(LauncherView.this,
-                        I18N.translate("MessageTempCreatingSIP"));
+                    I18N.translate("MessageTempCreatingSIP"));
 
                 Document document = null;
                 try {
@@ -1643,26 +1663,26 @@ public class LauncherView extends JFrame {
 
                     ExceptionCollector.clear();
                     document = createEmptySIP
-                            ? Document.createNewWithRootFolderName(newSIPFileName, initialSourceFileOrFolder,
-                                    selectedSAid, selectedDSSid, OPERATOR, waitWindow)
-                            : Document.createNewWithRoot(newSIPFileName, initialSourceFileOrFolder, selectedSAid,
-                                    selectedDSSid, OPERATOR, waitWindow);
+                        ? Document.createNewWithRootFolderName(newSIPFileName, initialSourceFileOrFolder,
+                        selectedSAid, selectedDSSid, OPERATOR, waitWindow)
+                        : Document.createNewWithRoot(newSIPFileName, initialSourceFileOrFolder, selectedSAid,
+                        selectedDSSid, OPERATOR, waitWindow);
 
                     footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName);
 
                     Util.showAllFromExceptionCollector(waitWindow, LauncherView.this);
 
                     if (deleteSources &&
-                            JOptionPane.showConfirmDialog(LauncherView.this,
-                                    I18N.translate("QuestionDeleteSources"), I18N.translate("TitleDeleteSources"),
-                                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        JOptionPane.showConfirmDialog(LauncherView.this,
+                            I18N.translate("QuestionDeleteSources"), I18N.translate("TitleDeleteSources"),
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         // TODO is it possible to move this to the trash instead of deleting directly?
                         try {
                             FileUtil.delete(initialSourceFileOrFolder);
                         } catch (final FileUtilExceptionListException e) {
                             JOptionPane.showMessageDialog(LauncherView.this, e.toString(), I18N.translate(
                                     "TitleCouldNotDeleteSources"),
-                                    JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.WARNING_MESSAGE);
                         }
                     }
                 } catch (final java.lang.Exception e) {
@@ -1676,7 +1696,7 @@ public class LauncherView extends JFrame {
                     waitWindow.close();
                     JOptionPane.showMessageDialog(LauncherView.this, e.toString(), I18N.translate(
                             "TitleCantCreateSIP"),
-                            JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);
                 } finally {
                     // At this point, document may or may not be null:
                     if (document != null) {
@@ -1686,12 +1706,12 @@ public class LauncherView extends JFrame {
                         } catch (final Exception e) {
                             Logger.error(e.getMessage(), e);
                             JOptionPane.showMessageDialog(LauncherView.this, e.toString(),
-                                    "Unable to cleanup working folder due to errors", JOptionPane.ERROR_MESSAGE);
+                                "Unable to cleanup working folder due to errors", JOptionPane.ERROR_MESSAGE);
                         }
 
                         sipTable.rereadSIPTable(); // Refresh the SIP list
                         final FileProperty fileProperty = findFilePropertyInSIPList(
-                                new File(document.getOriginalSIPFolder()));
+                            new File(document.getOriginalSIPFolder()));
                         openSIP(fileProperty, Mode.ReadWrite, null);
                     }
 
@@ -1706,7 +1726,7 @@ public class LauncherView extends JFrame {
 
     protected void createNewSIPFromTemplate() {
         final CreateNewSIPFromTemplateDialog createNewSIPFromTemplateDialog = new CreateNewSIPFromTemplateDialog(
-                this);
+            this);
         if (!createNewSIPFromTemplateDialog.goButtonWasClicked) {
             return;
         }
@@ -1738,7 +1758,7 @@ public class LauncherView extends JFrame {
             public Integer doInBackground() {
                 footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName + "...");
                 final SmallPeskyMessageWindow waitWindow = SmallPeskyMessageWindow.openBlocking(LauncherView.this,
-                        I18N.translate("MessageTempCreatingSIP"));
+                    I18N.translate("MessageTempCreatingSIP"));
 
                 Document document = null;
                 try {
@@ -1746,7 +1766,7 @@ public class LauncherView extends JFrame {
 
                     ExceptionCollector.clear();
                     document = Document.createNewFromTemplate(templateDirectory + "/" + templateName, newSIPFileName,
-                            OPERATOR);
+                        OPERATOR);
 
                     footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName);
 
@@ -1761,7 +1781,7 @@ public class LauncherView extends JFrame {
                     // the MessageDialog:
                     waitWindow.close();
                     JOptionPane.showMessageDialog(LauncherView.this, e.toString(),
-                            I18N.translate("TitleCantCreateSIP"), JOptionPane.ERROR_MESSAGE);
+                        I18N.translate("TitleCantCreateSIP"), JOptionPane.ERROR_MESSAGE);
                 } finally {
                     // At this point, document may or may not be null:
                     if (document != null) {
@@ -1771,15 +1791,98 @@ public class LauncherView extends JFrame {
                         } catch (final Exception e) {
                             Logger.error(e.getMessage(), e);
                             JOptionPane.showMessageDialog(LauncherView.this, e.toString(),
-                                    "Unable to cleanup working folder due to errors", JOptionPane.ERROR_MESSAGE);
+                                "Unable to cleanup working folder due to errors", JOptionPane.ERROR_MESSAGE);
                         }
 
                         final FileProperty fileProperty = findFilePropertyInSIPList(
-                                new File(document.getOriginalSIPFolder()));
+                            new File(document.getOriginalSIPFolder()));
                         openSIP(fileProperty, Mode.ReadWrite, null);
                     }
 
                     waitWindow.close(); // In case it was not closed yet...
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+
+                return 0;
+            }
+        }.execute();
+    }
+
+    protected void createNewSIPFromCSV() {
+        final CreateNewSIPFromCSVDialog createNewSIPFromCSVDialog = new CreateNewSIPFromCSVDialog(
+            this);
+        if (!createNewSIPFromCSVDialog.goButtonWasClicked) {
+            return;
+        }
+
+        final Path configPath = Path.of(configDirectory, "csv-sip-mapping.xml");
+        final Path sourceCSVPath = Path.of(createNewSIPFromCSVDialog.sourceFileTextField.getText());
+        final String destinationFolderName = createNewSIPFromCSVDialog.destinationFolderTextField.getText();
+        String destinationFileName = createNewSIPFromCSVDialog.destinationNameTextField.getText();
+        final boolean beZIP = createNewSIPFromCSVDialog.beZIPCheckBox.isSelected();
+        final Overview saOverview = (Overview) createNewSIPFromCSVDialog.saComboBox.getSelectedItem();
+
+        if (destinationFileName.isEmpty()) {
+            return;
+        }
+
+        if (beZIP) {
+            if (!destinationFileName.toLowerCase().endsWith(ZIP_EXT)) {
+                destinationFileName += ZIP_EXT;
+            }
+        } else {
+            if (destinationFileName.toLowerCase().endsWith(ZIP_EXT)) {
+                destinationFileName = destinationFileName.substring(0, destinationFileName.length() - ZIP_EXT.length());
+            }
+        }
+
+        final String newSIPFileName = Path.of(destinationFolderName, destinationFileName).toString();
+
+        new SwingWorker<Integer, Object>() {
+            @Override
+            public Integer doInBackground() {
+                footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName + "...");
+                final SmallPeskyMessageWindow waitWindow = SmallPeskyMessageWindow.openBlocking(LauncherView.this,
+                    I18N.translate("MessageTempCreatingSIP"));
+                ImportResult importResult = null;
+
+                try {
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                    String selectedSAid = null;
+                    String selectedDSSid = null;
+                    if (saOverview != null) {
+                        selectedSAid = saOverview.saId;
+                        selectedDSSid = saOverview.dssId;
+                    }
+
+                    final SipCreationArgs sipCreationArgs = new SipCreationArgs(Path.of(newSIPFileName), selectedSAid, selectedDSSid);
+                    ExceptionCollector.clear();
+                    importResult = CsvToSipImporter.createSipFromCsv(sipCreationArgs, sourceCSVPath, configPath);
+                    footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName);
+
+                    Util.showAllFromExceptionCollector(waitWindow, LauncherView.this);
+                } catch (final java.lang.Exception e) {
+                    Logger.error(e.getMessage(), e);
+
+                    footerTextField.setText(I18N.translate("MessageFooterCantCreateFile") + newSIPFileName);
+
+                    waitWindow.close();
+                    JOptionPane.showMessageDialog(LauncherView.this, e.toString(),
+                        I18N.translate("TitleCantCreateSIP"), JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    if (importResult != null) {
+                        if (importResult.isSuccess()) {
+                            JOptionPane.showMessageDialog(LauncherView.this, importResult.getSuccessMessagesWithPotentialWarnings(), I18N.translate("TitleImportCsvSuccess"), JOptionPane.INFORMATION_MESSAGE);
+
+                            final FileProperty fileProperty = findFilePropertyInSIPList(new File(newSIPFileName));
+                            openSIP(fileProperty, Mode.ReadWrite, null);
+                        } else {
+                            JOptionPane.showMessageDialog(LauncherView.this, I18N.translate(importResult.getError().getMessageKey(), importResult.getAdditionalErrorObjects()), I18N.translate("TitleImportCsvFailure"), JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    waitWindow.close();
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
 
@@ -1856,9 +1959,9 @@ public class LauncherView extends JFrame {
         while (keepLooping) {
             // hiding .zip extension
             newSIPName = hasZipExtension ? textFieldContent.substring(0, textFieldContent.lastIndexOf(DOT_ZIP))
-                    : textFieldContent;
+                : textFieldContent;
             newSIPName = (String) JOptionPane.showInputDialog(this, message, title, messageType, null, null,
-                    newSIPName);
+                newSIPName);
             if (newSIPName == null) {
                 // dialog was canceled
                 return Optional.empty();
@@ -1881,7 +1984,7 @@ public class LauncherView extends JFrame {
             if (!FileUtil.isFileNameAllowed(newSIPName)) {
                 title = I18N.translate("TitleCantRenameSIP");
                 message = I18N.translate("MessageBadSIPName") + "\n" + newSIPName + "\n" + I18N.translate(
-                        "MessageEnterNewSIPName");
+                    "MessageEnterNewSIPName");
                 messageType = JOptionPane.WARNING_MESSAGE;
                 continue;
             }
@@ -1889,7 +1992,7 @@ public class LauncherView extends JFrame {
             if (newSIP.exists()) {
                 title = I18N.translate("TitleCantRenameSIP");
                 message = I18N.translate("MessageSIPAlreadyExists") + "\n" + newSIPName + "\n" + I18N.translate(
-                        "MessageEnterNewSIPName");
+                    "MessageEnterNewSIPName");
                 messageType = JOptionPane.WARNING_MESSAGE;
                 continue;
             }
@@ -1912,13 +2015,13 @@ public class LauncherView extends JFrame {
             }
             try {
                 FileUtil.renameTo(selectedSIP.getFile(),
-                        new File(selectedSIP.getFile().getParent() + File.separator + theNewSIPName.get()));
+                    new File(selectedSIP.getFile().getParent() + File.separator + theNewSIPName.get()));
                 break;
             } catch (final java.lang.Exception ex) {
                 JOptionPane.showMessageDialog(this,
-                        ex.getMessage() + "\n" + I18N.translate("MessageEnterNewSIPName"),
-                        I18N.translate("TitleCantRenameSIP"),
-                        JOptionPane.WARNING_MESSAGE);
+                    ex.getMessage() + "\n" + I18N.translate("MessageEnterNewSIPName"),
+                    I18N.translate("TitleCantRenameSIP"),
+                    JOptionPane.WARNING_MESSAGE);
                 continue;
             }
         } while (true);
@@ -1950,7 +2053,7 @@ public class LauncherView extends JFrame {
             if (!FileUtil.isFileNameAllowed(newItemName)) {
                 title = I18N.translate("TitleCantCopySIP");
                 message = I18N.translate("MessageBadLettersInFilename") + "\n" + I18N.translate(
-                        "MessageEnterNewSIPName");
+                    "MessageEnterNewSIPName");
                 textFieldContent = FileUtil.asFilePathWithoutExtension(newItemName);
                 continue;
             }
@@ -1993,7 +2096,7 @@ public class LauncherView extends JFrame {
         }
 
         if (JOptionPane.showConfirmDialog(this, I18N.translate("QuestionDeleteSIP"), I18N.translate("TitleDeleteSIP"),
-                JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+            JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
             return;
         }
 
@@ -2015,27 +2118,27 @@ public class LauncherView extends JFrame {
 
         try {
             final List<String> feedbackFoundForSIPs = AIPCreatorProxy.getAIPCreator().checkIngestFeedback(
-                    sipDirectory);
+                sipDirectory);
 
             Logger.debug("Found ingest feedback: " + feedbackFoundForSIPs);
 
             if (feedbackFoundForSIPs == null || feedbackFoundForSIPs.isEmpty()) {
                 if (withFeedbackIfNothingFound) {
                     JOptionPane.showMessageDialog(this, I18N.translate("MessageCheckIngestFeedbackEmpty"),
-                            I18N.translate("HeaderCheckIngestFeedback"), JOptionPane.INFORMATION_MESSAGE);
+                        I18N.translate("HeaderCheckIngestFeedback"), JOptionPane.INFORMATION_MESSAGE);
                 }
 
                 return;
             }
 
             final StringBuilder feedbackFoundForSIPsMessage = new StringBuilder(
-                    I18N.translate("MessageCheckIngestFeedbackFound"));
+                I18N.translate("MessageCheckIngestFeedbackFound"));
             for (final String sipName : feedbackFoundForSIPs) {
                 feedbackFoundForSIPsMessage.append("\n").append(sipName);
             }
 
             new ScrollableMessageDialog(this, I18N.translate("HeaderCheckIngestFeedback"),
-                    feedbackFoundForSIPsMessage.toString());
+                feedbackFoundForSIPsMessage.toString());
 
             // Refresh the SIP table:
             rereadWorkspaceFolder();
@@ -2099,7 +2202,7 @@ public class LauncherView extends JFrame {
         // Don't allow opening document if it is just being saved:
         if (sipsWithSavingInProgress.contains(fileProperty)) {
             JOptionPane.showMessageDialog(this, I18N.translate("MessageCantOpenSIPWhileBeingSaved"),
-                    I18N.translate("TitleOpenSIP"), JOptionPane.INFORMATION_MESSAGE);
+                I18N.translate("TitleOpenSIP"), JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 

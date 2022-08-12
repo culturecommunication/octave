@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sipImportTableConfig
+        xmlns="ch:docuteam:mapping:csv"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="ch:docuteam:mapping:csv csv-sip-mapping.xsd">
+
+    <csvFormat>
+        <charset>UTF-8</charset>
+        <delimiter>;</delimiter>
+        <quoteCharacter>&quot;</quoteCharacter>
+    </csvFormat>
+
+    <sipImportColumnMapping>
+        <sipImportColumn tableHeaderLabel="ID" paramID="ID"/>
+        <sipImportColumn tableHeaderLabel="ParentID" paramID="parentID"/>
+        <sipImportColumn tableHeaderLabel="File" paramID="path"/>
+        <sipImportColumn tableHeaderLabel="DescriptionLevel" paramID="descriptionLevel"/>
+        <sipImportColumn tableHeaderLabel="Title" paramID="title"/>
+    </sipImportColumnMapping>
+
+</sipImportTableConfig>

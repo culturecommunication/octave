@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.3.1</version>
+    <version>6.4.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>6.3.1</version>
+  <version>6.4.0</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
@@ -79,8 +79,8 @@
       <version>${com.drewnoakes.metadata-extractor.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>xercesImpl</artifactId>
           <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -105,8 +105,8 @@
       <version>${uk.gov.nationalarchives.droid.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
           <groupId>*</groupId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -116,8 +116,8 @@
       <version>${uk.gov.nationalarchives.droid.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
           <groupId>*</groupId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -127,8 +127,8 @@
       <version>${uk.gov.nationalarchives.droid.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
           <groupId>*</groupId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -143,8 +143,8 @@
       <version>${xerces.xercesImpl.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -182,8 +182,8 @@
       <version>${net.harawata.appdirs.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -193,8 +193,8 @@
       <version>${dom4j.dom4j.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -217,6 +217,14 @@
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${org.apache.logging.log4j.version}</version>
+      <type>test-jar</type>
+      <classifier>tests</classifier>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>

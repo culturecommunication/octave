@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="ch:docuteam:mapping:csv" targetNamespace="ch:docuteam:mapping:csv"
+           elementFormDefault="qualified">
+    <xs:element name="csvFormat">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="charset" type="xs:string" default="UTF-8" minOccurs="0"/>
+                <xs:element name="delimiter" type="delimiter" default=";" minOccurs="0"/>
+                <xs:element name="escapeCharacter" type="escapeCharacter" minOccurs="0"/>
+                <xs:element name="quoteCharacter" type="quoteCharacter" default="&quot;" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:simpleType name="delimiter">
+        <xs:restriction base="xs:string">
+            <xs:length fixed="true" value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="escapeCharacter">
+        <xs:restriction base="xs:string">
+            <xs:length fixed="true" value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="quoteCharacter">
+        <xs:restriction base="xs:string">
+            <xs:length fixed="true" value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

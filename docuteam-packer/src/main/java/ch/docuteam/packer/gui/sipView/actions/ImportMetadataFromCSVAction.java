@@ -24,9 +24,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.stream.Collectors;
 
 import javax.swing.Action;
 import javax.swing.JFileChooser;
@@ -35,7 +33,6 @@ import javax.swing.JOptionPane;
 import ch.docuteam.darc.exceptions.DocumentIsReadOnlyException;
 import ch.docuteam.darc.exceptions.FileOrFolderIsInUseException;
 import ch.docuteam.darc.exceptions.OriginalSIPIsMissingException;
-import ch.docuteam.mapping.csv.CsvImportWarning;
 import ch.docuteam.mapping.csv.CsvToMetsImporter;
 import ch.docuteam.packer.gui.launcher.LauncherView;
 import ch.docuteam.packer.gui.sipView.SIPView;
@@ -73,7 +70,7 @@ public class ImportMetadataFromCSVAction extends AbstractSIPViewAction {
 
         final var importResult = CsvToMetsImporter.importCsv(sipView.getDocument(), pathToCsv, configLocation, getSaveHandler());
         if (importResult.isSuccess()) {
-            JOptionPane.showMessageDialog(sipView, getSuccessMessagesWithPotentialWarnings(importResult.getWarnings()), I18N.translate("TitleImportCsvSuccess"), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(sipView, importResult.getSuccessMessagesWithPotentialWarnings(), I18N.translate("TitleImportCsvSuccess"), JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(sipView, I18N.translate(importResult.getError().getMessageKey(), importResult.getAdditionalErrorObjects()), I18N.translate("TitleImportCsvFailure"), JOptionPane.ERROR_MESSAGE);
         }
@@ -94,19 +91,6 @@ public class ImportMetadataFromCSVAction extends AbstractSIPViewAction {
             }
             return false;
         };
-    }
-
-    private String getSuccessMessagesWithPotentialWarnings(List<CsvImportWarning> warnings) {
-        final var successMessage = I18N.translate("ImportCsvSuccess");
-        if (warnings.isEmpty()) {
-            return successMessage;
-        }
-        final var formattedWarnings = warnings.stream()
-            .map(warning -> I18N.translate(warning.getWarningType().getMessageKey(), warning.getNode(), warning.getProperty(), warning.getValue()))
-            .collect(Collectors.joining(System.lineSeparator()));
-        final var warningsHeader = I18N.translate("ImportCsvWarningHeader");
-
-        return String.join(System.lineSeparator(), successMessage, warningsHeader, formattedWarnings);
     }
 
     private Path getPathToCsv() {
