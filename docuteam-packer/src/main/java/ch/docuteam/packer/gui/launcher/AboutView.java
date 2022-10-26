@@ -1,5 +1,5 @@
 /*
- * Copyright (C) since 2011  Docuteam GmbH
+ * Copyright (C) since 2011 by docuteam AG
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui.launcher;
 
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
@@ -80,7 +79,7 @@ public class AboutView extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         docuteamLink = new JEditorPane("text/html",
-                "<span style='font-family:Arial'><a href='http://www.docuteam.ch'>Docuteam GmbH</a></span>");
+                "<span style='font-family:Arial'><a href='http://www.docuteam.ch'>docuteam AG</a></span>");
         docuteamLink.setEditable(false);
         docuteamLink.setOpaque(false);
         docuteamLink.addHyperlinkListener(new HyperlinkListener() {

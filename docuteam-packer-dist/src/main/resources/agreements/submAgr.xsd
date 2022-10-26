@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (c) 2008-2011 Docuteam GmbH -->
+<!-- Copyright (C) since 2008 by docuteam AG -->
 <xs:schema xmlns="http://www.docuteam.ch/xmlns/submAgr" targetNamespace="http://www.docuteam.ch/xmlns/submAgr" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:dcterms="http://purl.org/dc/terms/" elementFormDefault="qualified"
 	attributeFormDefault="unqualified">

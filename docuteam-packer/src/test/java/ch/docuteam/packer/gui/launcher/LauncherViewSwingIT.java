@@ -1,5 +1,5 @@
 /*
- * Copyright (C) since 2011  Docuteam GmbH
+ * Copyright (C) since 2011 by docuteam AG
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui.launcher;
 
 import static ch.docuteam.packer.gui.ComponentNames.DuplicatesTableDialog_REMOVE;
@@ -65,7 +64,6 @@ import static org.assertj.swing.timing.Pause.pause;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,7 +101,6 @@ import org.jdesktop.swingx.util.OS;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class LauncherViewSwingIT {
@@ -115,6 +112,8 @@ public class LauncherViewSwingIT {
     private static final String SAMPLE_SIP_1 = "sipwithlongpathnames";
 
     private static final String SAMPLE_SIP_ZIP_2 = "sampleSIP.zip";
+
+    private static final String SAMPLE_SIP_NO_FILES = "sampleSIP_FilesMissing";
 
     private static final String SAMPLE_SIP_CREATE_SOURCE_FOLDER = "INPUT_FOLDER_FOR_PACKER";
 
@@ -187,13 +186,14 @@ public class LauncherViewSwingIT {
         }
         // assert that the workspace has at least one sip
         if (new File(WORKSPACE_FOLDER).exists() && !(new File(WORKSPACE_FOLDER).list().length > 0)) {
-            final File sipSrcFile = ResourceUtil.getResource("data/" + SAMPLE_SIP_ZIP_1);
-            final File destFile = new File(WORKSPACE_FOLDER, SAMPLE_SIP_ZIP_1);
-            FileUtils.copyFile(sipSrcFile, destFile);
-            assertTrue("ERROR: destFile does not exist!", destFile.exists());
+            FileUtils.copyFile(ResourceUtil.getResource("data/" + SAMPLE_SIP_ZIP_1), new File(WORKSPACE_FOLDER,
+                    SAMPLE_SIP_ZIP_1));
 
             FileUtils.copyFile(ResourceUtil.getResource("data/" + SAMPLE_SIP_ZIP_2), new File(WORKSPACE_FOLDER,
                     SAMPLE_SIP_ZIP_2));
+
+            FileUtils.copyDirectory(ResourceUtil.getResource("data/" + SAMPLE_SIP_NO_FILES), new File(
+                    WORKSPACE_FOLDER, SAMPLE_SIP_NO_FILES));
         }
         // WORKSPACE_FOLDER = WORKSPACE_FOLDER.replaceAll("\\\\", "/");
         INPUT_FOLDER = ResourceUtil.getResourceCanonicalPath("data/" + SAMPLE_SIP_CREATE_SOURCE_FOLDER);
@@ -461,6 +461,29 @@ public class LauncherViewSwingIT {
     }
 
     /**
+     * Check that editing metadata is allowed even if referenced files are missing/not readable
+     * 
+     * @throws InterruptedException
+     */
+    @Test
+    public void test_editSIPFilesMissing() throws InterruptedException {
+        sipWindow = openSIPInWorkspace(SAMPLE_SIP_NO_FILES);
+
+        final JXTreeTableComponentFixture treeFixture = JXTreeTableComponentFixtureExtension.treeWithName(
+                SIP_VIEW_TREE).createFixture(robot, sipWindow.target());
+
+        sipWindow.tabbedPane().selectTab(1);
+        assertEquals("single-file", sipWindow.textBox(SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD).text());
+        assertTrue(sipWindow.textBox(SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD).isEnabled());
+        sipWindow.textBox(SIP_VIEW_METADATA_UNITTITLE_TEXTFIELD).setText("editedTitle");
+        treeFixture.focus();
+
+        // assert modified
+        AssertionHelper.assertText(sipWindow.label(SIP_VIEW_INFO_LABEL), I18N.translate("LabelIsModified"),
+                ASSERTION_TIMEOUT);
+    }
+
+    /**
      * Replaces a file from an existing SIP, and asserts that the action was successful.
      * 
      * @throws InterruptedException
@@ -507,7 +530,6 @@ public class LauncherViewSwingIT {
 
         final TableCellFinder cellFinder = new CustomTableCellFinder(sipName, 0);
         window.table().cell(cellFinder).rightClick();
-        // window.table().cell(sipName).rightClick();
 
         // click on menuItem
         window.menuItem(SIP_OPEN_IN_WORKSPACE_MENU_ITEM).click();
@@ -662,24 +684,6 @@ public class LauncherViewSwingIT {
         AssertionHelper.assertText(sipWindow.textBox(SIP_VIEW_FOOTER_TEXT_FIELD), sipViewPattern, ASSERTION_TIMEOUT);
     }
 
-    @Ignore
-    @Test
-    public void test_createSIPWithAlternativeLevels() {
-        fail("Not implemented");
-    }
-
-    @Ignore
-    @Test
-    public void test_updateSAsFromServer() {
-        fail("Not implemented");
-    }
-
-    @Ignore
-    @Test
-    public void test_elementExport() {
-        fail("Not implemented");
-    }
-
     @Test
     public void test_metadataCSVImport() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
@@ -725,18 +729,6 @@ public class LauncherViewSwingIT {
         assertTrue(exportedFile.exists());
     }
 
-    @Ignore
-    @Test
-    public void test_metadataCSVExport() {
-        fail("Not implemented");
-    }
-
-    @Ignore
-    @Test
-    public void test_changeMetadataFieldsToDescription() {
-        fail("Not implemented");
-    }
-
     @Test
     public void test_searchInSIP() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);
@@ -769,35 +761,15 @@ public class LauncherViewSwingIT {
 
     }
 
-    @Ignore
-    @Test
-    public void test_searchInWorkspace() {
-        fail("Not implemented");
-    }
-
-    @Ignore
-    @Test
-    public void test_checksum() {
-        fail("Not implemented");
-    }
-
-    @Ignore
-    @Test
-    public void test_exit() {
-        fail("Not implemented");
-    }
-
-    @Ignore
     @Test
     public void test_pattern() {
         final String uniqueSIPName = "_SIP_junit_out_1490345885412";
         final String pathName =
-                "Neue Datei: C:\\Users\\lavinia\\AppData\\Local\\Temp\\packer_junit8606340865719849073\\workspace/INPUT_FOLDER_FOR_PACKER_SIP_junit_out_1490345885412.zip";
+                "Neue Datei: C:\\Users\\test\\AppData\\Local\\Temp\\packer_junit8606340865719849073\\workspace/INPUT_FOLDER_FOR_PACKER_SIP_junit_out_1490345885412.zip";
         assertTrue(Pattern.matches("a*b", "aaaaab"));
         assertTrue(Pattern.matches("Neue Datei:" + ".*" + uniqueSIPName + ".*", pathName));
     }
 
-    @Ignore // runs OK locally, but fails on Jenkins
     @Test
     public void test_removeDuplicates() throws InterruptedException {
         sipWindow = openSIPInWorkspace(SAMPLE_SIP_ZIP_2);

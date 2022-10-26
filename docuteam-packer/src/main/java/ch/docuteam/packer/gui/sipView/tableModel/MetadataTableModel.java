@@ -1,5 +1,5 @@
 /*
- * Copyright (C) since 2011  Docuteam GmbH
+ * Copyright (C) since 2011 by docuteam AG
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui.sipView.tableModel;
 
 import static ch.docuteam.packer.gui.PackerConstants.CLICK_COUNT_TO_START;
@@ -169,10 +168,6 @@ public class MetadataTableModel extends AbstractTableModel implements TableModel
         }
 
         if (!sipView.getDocument().canWrite()) {
-            return false;
-        }
-
-        if (!fileStructureNode.fileExists() || !fileStructureNode.canRead() || !fileStructureNode.canWrite()) {
             return false;
         }
 

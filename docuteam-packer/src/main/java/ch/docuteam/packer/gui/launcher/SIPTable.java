@@ -1,5 +1,5 @@
 /*
- * Copyright (C) since 2011  Docuteam GmbH
+ * Copyright (C) since 2011 by docuteam AG
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

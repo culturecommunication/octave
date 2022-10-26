@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<METS:mets xmlns:METS="http://www.loc.gov/METS/" xmlns:EAD="urn:isbn:1-931666-22-9" xmlns:PREMIS="info:lc/xmlns/premis-v2" xmlns:OAI_DC="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:DC="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="   http://www.loc.gov/METS/      http://www.loc.gov/standards/mets/mets.xsd   urn:isbn:1-931666-22-9       http://www.loc.gov/ead/ead.xsd   info:lc/xmlns/premis-v2       http://www.loc.gov/premis/v2/premis.xsd   http://www.openarchives.org/OAI/2.0/oai_dc/  http://www.openarchives.org/OAI/2.0/oai_dc.xsd   http://www.w3.org/1999/xlink     http://www.loc.gov/standards/mets/xlink.xsd" PROFILE="http://www.docuteam.ch/xmlns/sip-profile.xml" TYPE="sa_all-formats-01_dss-01">
+	<METS:metsHdr CREATEDATE="2022-08-19T12:09:19" LASTMODDATE="2022-10-07T16:35:01" RECORDSTATUS="New" ADMID="_20220819120919758">
+		<METS:agent ROLE="CREATOR" TYPE="INDIVIDUAL">
+			<METS:name>nef</METS:name>
+		</METS:agent>
+	</METS:metsHdr>
+	<METS:dmdSec ID="_20220819120919824">
+		<METS:mdWrap MDTYPE="EAD">
+			<METS:xmlData>
+				<EAD:ead>
+					<EAD:eadheader>
+						<EAD:eadid/>
+						<EAD:filedesc>
+							<EAD:titlestmt>
+								<EAD:titleproper/>
+							</EAD:titlestmt>
+						</EAD:filedesc>
+					</EAD:eadheader>
+					<EAD:archdesc level="otherlevel">
+						<EAD:did>
+							<EAD:unittitle/>
+						</EAD:did>
+						<EAD:dsc>
+							<EAD:c level="otherlevel" otherlevel="Undefiniert">
+								<EAD:did>
+									<EAD:unittitle label="main">single-file</EAD:unittitle>
+									<EAD:unitid type="isVisible">true</EAD:unitid>
+									<EAD:physdesc><EAD:extent unit="Datei(en)">1</EAD:extent></EAD:physdesc>
+								</EAD:did>
+								<EAD:accessrestrict type="accessRestrictionsPrivacy">
+									<EAD:p>false</EAD:p>
+								</EAD:accessrestrict>
+								<EAD:accessrestrict type="accessRestrictionsIsPublic">
+									<EAD:p>false</EAD:p>
+								</EAD:accessrestrict>
+								<EAD:accessrestrict type="accessRestrictionsIsMetadataPublic">
+									<EAD:p>true</EAD:p>
+								</EAD:accessrestrict>
+								<EAD:processinfo type="date">
+									<EAD:p>19.08.2022</EAD:p>
+								</EAD:processinfo>
+							<EAD:dao xlink:role="simple" xlink:href="This should be within the DAO element"/></EAD:c>
+						</EAD:dsc>
+					</EAD:archdesc>
+				</EAD:ead>
+			</METS:xmlData>
+		</METS:mdWrap>
+	</METS:dmdSec>
+	<METS:dmdSec ID="_20220819121018746">
+		<METS:mdWrap MDTYPE="EAD">
+			<METS:xmlData>
+				<EAD:ead>
+					<EAD:eadheader>
+						<EAD:eadid/>
+						<EAD:filedesc>
+							<EAD:titlestmt>
+								<EAD:titleproper/>
+							</EAD:titlestmt>
+						</EAD:filedesc>
+					</EAD:eadheader>
+					<EAD:archdesc level="otherlevel">
+						<EAD:did>
+							<EAD:unittitle/>
+						</EAD:did>
+						<EAD:dsc>
+							<EAD:c level="otherlevel" otherlevel="Undefiniert">
+								<EAD:did>
+									<EAD:unittitle label="main">Passivierungsreport.pdf</EAD:unittitle>
+									<EAD:unittitle label="original">Passivierungsreport.pdf</EAD:unittitle>
+									<EAD:unitid type="refCodeAdmin">d000033</EAD:unitid>
+								</EAD:did>
+								<EAD:scopecontent>
+									<EAD:p>Version: 1</EAD:p>
+									<EAD:p>RendererGuid: 00000000000000000000000000000000</EAD:p>
+									<EAD:p>RendererBezeichnung: Original</EAD:p>
+									<EAD:p>EingechecktVon: Administrator</EAD:p>
+									<EAD:p>CheckInDate: 29.06.2022 14:16:55</EAD:p>
+									<EAD:p>CheckInKommentar:</EAD:p>
+									<EAD:p/>
+								</EAD:scopecontent>
+							</EAD:c>
+						</EAD:dsc>
+					</EAD:archdesc>
+				</EAD:ead>
+			</METS:xmlData>
+		</METS:mdWrap>
+	</METS:dmdSec>
+	<METS:amdSec>
+		<METS:digiprovMD ID="_20220819120919758">
+			<METS:mdWrap MDTYPE="PREMIS">
+				<METS:xmlData>
+					<PREMIS:premis version="2.2">
+						<PREMIS:object xsi:type="PREMIS:representation"><PREMIS:objectIdentifier>
+								<PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+								<PREMIS:objectIdentifierValue>_20220819120919763</PREMIS:objectIdentifierValue>
+							</PREMIS:objectIdentifier><PREMIS:environment>
+								<PREMIS:software>
+									<PREMIS:swName>docuteam-packer</PREMIS:swName>
+									<PREMIS:swType>6.5.0-SNAPSHOT</PREMIS:swType>
+								</PREMIS:software>
+							</PREMIS:environment></PREMIS:object>
+					</PREMIS:premis>
+				</METS:xmlData>
+			</METS:mdWrap>
+		</METS:digiprovMD>
+		<METS:digiprovMD ID="_20220819120919809">
+			<METS:mdWrap MDTYPE="PREMIS">
+				<METS:xmlData>
+					<PREMIS:premis version="2.2">
+						<PREMIS:object xsi:type="PREMIS:representation"><PREMIS:objectIdentifier>
+								<PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+								<PREMIS:objectIdentifierValue>_20220819120919811</PREMIS:objectIdentifierValue>
+							</PREMIS:objectIdentifier><PREMIS:originalName xlink:type="simple">single-file</PREMIS:originalName></PREMIS:object>
+						<PREMIS:event>
+							<PREMIS:eventIdentifier>
+								<PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+								<PREMIS:eventIdentifierValue>_20220819120919823</PREMIS:eventIdentifierValue>
+							</PREMIS:eventIdentifier>
+							<PREMIS:eventType>Creation</PREMIS:eventType>
+							<PREMIS:eventDateTime>2022-08-19T12:09:19</PREMIS:eventDateTime>
+							<PREMIS:eventDetail>Performed by: 'X'</PREMIS:eventDetail>
+							<PREMIS:eventOutcomeInformation>
+								<PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+							</PREMIS:eventOutcomeInformation>
+							<PREMIS:linkingObjectIdentifier xlink:type="simple">
+								<PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+								<PREMIS:linkingObjectIdentifierValue>_20220819120919811</PREMIS:linkingObjectIdentifierValue>
+							</PREMIS:linkingObjectIdentifier>
+						</PREMIS:event>
+					</PREMIS:premis>
+				</METS:xmlData>
+			</METS:mdWrap>
+		</METS:digiprovMD>
+		<METS:digiprovMD ID="_20220819121018706">
+			<METS:mdWrap MDTYPE="PREMIS">
+				<METS:xmlData>
+					<PREMIS:premis version="2.2">
+						<PREMIS:object xsi:type="PREMIS:file"><PREMIS:objectIdentifier>
+								<PREMIS:objectIdentifierType>Docuteam</PREMIS:objectIdentifierType>
+								<PREMIS:objectIdentifierValue>_20220819121018717</PREMIS:objectIdentifierValue>
+							</PREMIS:objectIdentifier><PREMIS:objectCharacteristics>
+								<PREMIS:compositionLevel>0</PREMIS:compositionLevel>
+								<PREMIS:fixity>
+									<PREMIS:messageDigestAlgorithm>SHA-1</PREMIS:messageDigestAlgorithm>
+									<PREMIS:messageDigest>015423c194b1bbdb2eb6b83a7e4ca753380bb505</PREMIS:messageDigest>
+								</PREMIS:fixity>
+								<PREMIS:size>22797</PREMIS:size>
+								<PREMIS:format>
+									<PREMIS:formatDesignation>
+										<PREMIS:formatName>Microsoft Word for Windows</PREMIS:formatName>
+									</PREMIS:formatDesignation>
+									<PREMIS:formatRegistry>
+										<PREMIS:formatRegistryName>PRONOM</PREMIS:formatRegistryName>
+										<PREMIS:formatRegistryKey>fmt/412</PREMIS:formatRegistryKey>
+									</PREMIS:formatRegistry>
+								</PREMIS:format>
+							</PREMIS:objectCharacteristics><PREMIS:originalName xlink:type="simple">MS Word.docx</PREMIS:originalName></PREMIS:object>
+						<PREMIS:event>
+							<PREMIS:eventIdentifier>
+								<PREMIS:eventIdentifierType>Docuteam</PREMIS:eventIdentifierType>
+								<PREMIS:eventIdentifierValue>_20220819121018745</PREMIS:eventIdentifierValue>
+							</PREMIS:eventIdentifier>
+							<PREMIS:eventType>Creation</PREMIS:eventType>
+							<PREMIS:eventDateTime>2022-08-19T12:10:18</PREMIS:eventDateTime>
+							<PREMIS:eventDetail>Performed by: 'X'</PREMIS:eventDetail>
+							<PREMIS:eventOutcomeInformation>
+								<PREMIS:eventOutcome>Success</PREMIS:eventOutcome>
+							</PREMIS:eventOutcomeInformation>
+							<PREMIS:linkingObjectIdentifier xlink:type="simple">
+								<PREMIS:linkingObjectIdentifierType>Docuteam</PREMIS:linkingObjectIdentifierType>
+								<PREMIS:linkingObjectIdentifierValue>_20220819121018717</PREMIS:linkingObjectIdentifierValue>
+							</PREMIS:linkingObjectIdentifier>
+						</PREMIS:event>
+					</PREMIS:premis>
+				</METS:xmlData>
+			</METS:mdWrap>
+		</METS:digiprovMD>
+	</METS:amdSec>
+	<METS:fileSec>
+		<METS:fileGrp>
+			<METS:file ID="_20220819121012739" MIMETYPE="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+				<METS:FLocat LOCTYPE="URL" xlink:href="file:///single-file/MS Word.docx"/>
+			</METS:file>
+		</METS:fileGrp>
+	</METS:fileSec>
+	<METS:structMap>
+
+		<METS:div LABEL="single-file" TYPE="rootfolder" ADMID="_20220819120919809" ORDER="1">
+			<METS:div LABEL="EAD" TYPE="metadata" DMDID="_20220819120919824"/>
+			<METS:div LABEL="MS Word.docx" TYPE="file" ADMID="_20220819121018706" ORDER="1">
+				<METS:div LABEL="Content" TYPE="content">
+					<METS:fptr FILEID="_20220819121012739"/>
+				</METS:div>
+				<METS:div LABEL="EAD" TYPE="metadata" DMDID="_20220819121018746"/>
+			</METS:div>
+		</METS:div>
+	</METS:structMap>
+</METS:mets>

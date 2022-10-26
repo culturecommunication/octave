@@ -1,5 +1,5 @@
 /*
- * Copyright (C) since 2011  Docuteam GmbH
+ * Copyright (C) since 2011 by docuteam AG
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui.sipView;
 
 import static ch.docuteam.mapping.util.ExporterUtil.PACKER_CONSTANTS_OPERATOR;
@@ -3670,8 +3669,6 @@ public class SIPView extends JFrame {
         } else {
             saveAction.setEnabled(true);
             testOrAssignSAAction.setEnabled(true);
-            removeTrashAction.setEnabled(true);
-            removeDuplicatesAction.setEnabled(true);
 
             // The submit actions are only possible if the AIPCreator is initialized:
             if (AIPCreatorProxy.isUsable()) {
@@ -3744,6 +3741,8 @@ public class SIPView extends JFrame {
                 }
             }
 
+            removeTrashAction.setEnabled(canDelete);
+            removeDuplicatesAction.setEnabled(canDelete);
             deleteItemAction.setEnabled(canDelete);
             deleteItemDontAskAction.setEnabled(canDelete);
             submitRequestAction.setEnabled(hasUnsubmitted);
@@ -3770,119 +3769,43 @@ public class SIPView extends JFrame {
             return;
         }
 
-        if (!documentIsWritable) {
-            // Document is not writable:
-            redisplayNodeAction.setEnabled(selectedNode.isFolder());
-            exportAction.setEnabled(true);
+        redisplayNodeAction.setEnabled(selectedNode.isFolder());
+        exportAction.setEnabled(selectedNode.fileExists() && selectedNode.canRead());
 
+        // subsequent actions need at least write support for metadata
+        if (!documentIsWritable) {
             return;
         }
 
-        if (selectedNode.isFolder()) {
-            // Node is folder:
+        if (selectedNode.doesSubmitStatusAllowEditing()) {
+            openAssignLevelsByLayerViewAction.setEnabled(true);
+            openAssignLevelsByLabelViewAction.setEnabled(true);
+            enableDynamicMetadataActions();
+            enableOnlyAllowedSetLevelActions();
+            submitRequestAction.setEnabled(true);
+        } else if (selectedNode.getSubmitStatus().equals(SubmitStatus.SubmitRequested)) {
+            submitRetractAction.setEnabled(true);
+        }
 
-            redisplayNodeAction.setEnabled(true);
+        // subsequent actions need full read/write support
+        if (document.isReadWrite()) {
+            boolean canFolderAddAction = selectedNode.fileExists() && selectedNode.canRead() && selectedNode
+                    .canWrite() && selectedNode.isFolder();
+            createFolderAction.setEnabled(canFolderAddAction);
+            insertAction.setEnabled(canFolderAddAction);
 
-            if (!selectedNode.fileExists() || !selectedNode.canRead()) {
-                ;
-            } else if (!selectedNode.canWrite()) {
-                // Folder is not writable:
-                exportAction.setEnabled(true);
-            } else if (selectedNode.hasPredecessorNotWritableByCurrentUser()) {
-                // A predecessor folder is not writable:
-                openAssignLevelsByLayerViewAction.setEnabled(true);
-                openAssignLevelsByLabelViewAction.setEnabled(true);
-                exportAction.setEnabled(true);
-
-                enableDynamicMetadataActions();
-                enableOnlyAllowedSetLevelActions();
-            } else if (((NodeFolder) selectedNode).hasDescendantNotWritableByCurrentUser()) {
-                // Folder has read-only children:
-                final boolean structureEnabled = document.isReadWrite();
-                final boolean metadataEnabled = document.getMode().equals(Mode.ReadWrite) || document.getMode()
-                        .equals(Mode.ReadWriteNoFileOps);
-                // boolean enabled = document.isReadWrite();
-                renameItemAction.setEnabled(structureEnabled);
-                sortAction.setEnabled(structureEnabled);
-                createFolderAction.setEnabled(structureEnabled);
-                insertAction.setEnabled(structureEnabled);
-                openAssignLevelsByLayerViewAction.setEnabled(metadataEnabled);
-                openAssignLevelsByLabelViewAction.setEnabled(metadataEnabled);
-                exportAction.setEnabled(true);
-
-                enableDynamicMetadataActions();
-                enableOnlyAllowedSetLevelActions();
-            } else if (!selectedNode.doesSubmitStatusAllowEditing()) {
-                // Submit status doesn't allow editing:
-                createFolderAction.setEnabled(true);
-                insertAction.setEnabled(true);
-                exportAction.setEnabled(true);
-                if (selectedNode.getSubmitStatus().equals(SubmitStatus.SubmitRequested)) {
-                    submitRetractAction.setEnabled(true);
-                }
-            } else {
-                // Folder is readable and writable:
-                final boolean structureEnabled = document.isReadWrite();
-                final boolean metadataEnabled = document.getMode().equals(Mode.ReadWrite) || document.getMode()
-                        .equals(Mode.ReadWriteNoFileOps);
-                if (!selectedNode.isRoot()) {
-                    deleteItemAction.setEnabled(structureEnabled);
-                    deleteItemDontAskAction.setEnabled(structureEnabled);
-                }
-
-                submitRequestAction.setEnabled(true);
-
-                renameItemAction.setEnabled(structureEnabled);
-                sortAction.setEnabled(structureEnabled);
-                createFolderAction.setEnabled(structureEnabled);
-                insertAction.setEnabled(structureEnabled);
-                openAssignLevelsByLayerViewAction.setEnabled(metadataEnabled);
-                openAssignLevelsByLabelViewAction.setEnabled(metadataEnabled);
-                exportAction.setEnabled(true);
-                normalizeAction.setEnabled(structureEnabled);
-
-                enableDynamicMetadataActions();
-                enableOnlyAllowedSetLevelActions();
-            }
-        } else {
-            // Node is file:
-
-            if (!selectedNode.fileExists() || !selectedNode.canRead()) {
-                ;
-            } else if (!selectedNode.canWrite()) {
-                // File is not writable:
-                exportAction.setEnabled(true);
-            } else if (selectedNode.hasPredecessorNotWritableByCurrentUser()) {
-                // A predecessor folder is not writable:
-                exportAction.setEnabled(true);
-
-                enableDynamicMetadataActions();
-                enableOnlyAllowedSetLevelActions();
-            } else if (!selectedNode.doesSubmitStatusAllowEditing()) {
-                // Submit status doesn't allow editing:
-                exportAction.setEnabled(true);
-                if (selectedNode.getSubmitStatus().equals(SubmitStatus.SubmitRequested)) {
-                    submitRetractAction.setEnabled(true);
-                }
-            } else {
-                // File is readable and writable:
-                final boolean enabled = document.isReadWrite();
-                if (!selectedNode.isRoot()) {
-                    deleteItemAction.setEnabled(enabled);
-                    deleteItemDontAskAction.setEnabled(enabled);
-                }
-
-                submitRequestAction.setEnabled(true);
-
-                renameItemAction.setEnabled(enabled);
-                sortAction.setEnabled(false);
-                normalizeAction.setEnabled(enabled);
-                exportAction.setEnabled(enabled);
-                replaceFileAction.setEnabled(enabled);
-
-                enableDynamicMetadataActions();
-                enableOnlyAllowedSetLevelActions();
-            }
+            boolean canFileEditAction = selectedNode.fileExists() && selectedNode.canRead() && selectedNode
+                    .canWrite() && !selectedNode.hasPredecessorNotWritableByCurrentUser() && selectedNode
+                            .doesSubmitStatusAllowEditing() && (selectedNode.isFile() || selectedNode.isFolder() &&
+                                    !((NodeFolder) selectedNode).hasDescendantNotWritableByCurrentUser());
+            removeTrashAction.setEnabled(canFileEditAction);
+            removeDuplicatesAction.setEnabled(canFileEditAction);
+            renameItemAction.setEnabled(canFileEditAction);
+            normalizeAction.setEnabled(canFileEditAction);
+            sortAction.setEnabled(canFileEditAction);
+            deleteItemAction.setEnabled(canFileEditAction && !selectedNode.isRoot());
+            deleteItemDontAskAction.setEnabled(canFileEditAction && !selectedNode.isRoot());
+            replaceFileAction.setEnabled(canFileEditAction && selectedNode.isFile());
         }
     }
 
