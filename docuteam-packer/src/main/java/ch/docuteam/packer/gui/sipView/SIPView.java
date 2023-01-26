@@ -328,6 +328,8 @@ public class SIPView extends JFrame {
 
     protected Action exportAsCSVFileAction;
 
+    private Action exportAsSEDA22Action;
+
     private Action exportAsSEDA21Action;
 
     private Action exportAsSEDA1Action;
@@ -805,11 +807,6 @@ public class SIPView extends JFrame {
 
         replaceFileAction = new AbstractAction(I18N.translate("ButtonReplaceFile"), getImageIcon("Replace.png")) {
 
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 replaceFileButtonClicked();
@@ -824,11 +821,6 @@ public class SIPView extends JFrame {
         openSAExternallyAction = new AbstractAction(I18N.translate("ButtonOpenSAExternally"), getImageIcon(
                 "View.png")) {
 
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 openSAExternallyButtonClicked();
@@ -839,11 +831,6 @@ public class SIPView extends JFrame {
 
         testOrAssignSAAction = new AbstractAction(I18N.translate("ButtonTestOrAssignSA"), getImageIcon(
                 "CheckSA.png")) {
-
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
 
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -856,11 +843,6 @@ public class SIPView extends JFrame {
         openAssignLevelsByLayerViewAction = new AbstractAction(I18N.translate("ButtonOpenAssignLevelsByLayerView"),
                 getImageIcon("Structure.png")) {
 
-            /**
-                     *
-                     */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 openAssignLevelsByLayerViewButtonClicked();
@@ -872,11 +854,6 @@ public class SIPView extends JFrame {
 
         openAssignLevelsByLabelViewAction = new AbstractAction(I18N.translate("ButtonOpenAssignLevelsByLabelView"),
                 getImageIcon("Structure.png")) {
-
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
 
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -893,11 +870,6 @@ public class SIPView extends JFrame {
         exportAsEADFileAction = new AbstractAction(I18N.translate("ButtonExportAsEADFile"), getImageIcon(
                 "ExportAsEADFile.png")) {
 
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 exportAsEADFileButtonClicked();
@@ -909,11 +881,6 @@ public class SIPView extends JFrame {
         exportAsCSVFileAction = new AbstractAction(I18N.translate("ButtonExportAsCSVFile"), getImageIcon(
                 "ExportAsCSVFile.png")) {
 
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 exportAsCSVFileButtonClicked();
@@ -922,13 +889,20 @@ public class SIPView extends JFrame {
         exportAsCSVFileAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExportAsCSVFile"));
         exportAsCSVFileAction.setEnabled(true);
 
+        exportAsSEDA22Action = new AbstractAction(I18N.translate("ExportAsSEDA22Action"), getImageIcon(
+                "ExportAsSEDA22.png")) {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                exportAsSEDA_ActionButtonClicked(new ch.docuteam.mapping.seda22.Exporter(),
+                        "TitleSaveSIPAsSEDA22_SIP", "ExportAsSEDA22ActionSuccess", "ExportAsSEDA22ActionFailure");
+            }
+        };
+        exportAsSEDA22Action.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExportAsSEDA22Action"));
+        exportAsSEDA22Action.setEnabled(true);
+
         exportAsSEDA21Action = new AbstractAction(I18N.translate("ExportAsSEDA21Action"), getImageIcon(
                 "ExportAsSEDA21.png")) {
-
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
 
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -942,11 +916,6 @@ public class SIPView extends JFrame {
         exportAsSEDA1Action = new AbstractAction(I18N.translate("ExportAsSEDA1Action"), getImageIcon(
                 "ExportAsSEDA1.png")) {
 
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 exportAsSEDA_ActionButtonClicked(new ch.docuteam.mapping.seda1.Exporter(), "TitleSaveSIPAsSEDA1_SIP",
@@ -957,11 +926,6 @@ public class SIPView extends JFrame {
         exportAsSEDA1Action.setEnabled(true);
 
         exportAction = new AbstractAction(I18N.translate("ButtonExport"), getImageIcon("Export.png")) {
-
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
 
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -1304,6 +1268,7 @@ public class SIPView extends JFrame {
         sipExportSubMenu = new JMenu(I18N.translate("MenuSIPExport"));
         sipExportSubMenu.setIcon(getImageIcon("SIPExport.png"));
         sipExportSubMenu.setToolTipText(I18N.translate("ToolTipSIPExport"));
+        sipExportSubMenu.add(new JMenuItem(exportAsSEDA22Action));
         sipExportSubMenu.add(new JMenuItem(exportAsSEDA21Action));
         sipExportSubMenu.add(new JMenuItem(exportAsSEDA1Action));
 
@@ -3928,14 +3893,14 @@ public class SIPView extends JFrame {
 
     private void removeTrash() {
         try {
-            saveSIP(null, false);
             final Optional<LevelOfDescription> optionalTrashLevel = document.getLevels().getTrashLevel();
             if (!optionalTrashLevel.isPresent()) {
                 JOptionPane.showMessageDialog(this, I18N.translate("MessageTitleNoTrashLevelDefined"), I18N.translate(
                         "MessageNoTrashLevelDefined"), JOptionPane.WARNING_MESSAGE);
             } else {
+                saveSIP(null, false);
                 document = document.removeAllWithLevel(optionalTrashLevel.get());
-                populateView(getDocument());
+                updateTree();
             }
         } catch (final NodeWithLevelNotRemovableException e) {
             JOptionPane.showMessageDialog(this, I18N.translate("MessageTitleRemoveTrashNotPossible"), I18N.translate(

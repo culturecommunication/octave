@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.5.0</revision>
+		<revision>6.6.0</revision>
 		<changelist/>
 		<sha1/>
 
@@ -25,7 +25,7 @@
 		<maven-jar-plugin.plugin.version>3.0.2</maven-jar-plugin.plugin.version>
 		<maven-install-plugin.plugin.version>2.5.2</maven-install-plugin.plugin.version>
 		<maven-assembly-plugin.plugin.version>3.1.1</maven-assembly-plugin.plugin.version>
-		<build-helper-maven-plugin.plugin.version>3.0.0</build-helper-maven-plugin.plugin.version>
+		<build-helper-maven-plugin.plugin.version>3.3.0</build-helper-maven-plugin.plugin.version>
 		<launch4j-maven-plugin.plugin.version>2.1.0</launch4j-maven-plugin.plugin.version>
 		<cxf-codegen.plugin.version>3.4.5</cxf-codegen.plugin.version>
 		<net.sourceforge.spnego.spnego>7.0</net.sourceforge.spnego.spnego>
@@ -60,8 +60,8 @@
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
         <org.jodconverter.jodconverter-local.version>4.4.2</org.jodconverter.jodconverter-local.version>
 		<com.exlibris.dps-sdk.version>6.3.0</com.exlibris.dps-sdk.version>
-		<com.google.code.gson.gson.version>2.9.1</com.google.code.gson.gson.version>
-		<com.kerb4j.kerb4j-client.version>0.1.2</com.kerb4j.kerb4j-client.version>
+		<com.google.code.gson.gson.version>2.10</com.google.code.gson.gson.version>
+		<com.kerb4j.kerb4j-client.version>0.1.3</com.kerb4j.kerb4j-client.version>
 		<com.opentext.cws.version>10.5.1</com.opentext.cws.version>
 		<com.oracle.ojdbc6.version>12.1.0</com.oracle.ojdbc6.version>
 		<com.pdftools.converter.version>2.0.1.0</com.pdftools.converter.version>
@@ -87,11 +87,11 @@
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
 		<org.apache.logging.log4j.version>2.19.0</org.apache.logging.log4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>5.1.1</org.apache.xmlbeans.xmlbeans.version>
-		<org.apache.xmlgraphics.fop.version>2.7</org.apache.xmlgraphics.fop.version>
+		<org.apache.xmlgraphics.fop.version>2.8</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
 		<org.assertj.assertj-swing-junit.version>3.17.1</org.assertj.assertj-swing-junit.version>
 		<org.fcrepo.fcrepo.version>3.8.1</org.fcrepo.fcrepo.version>
-		<com.twelvemonkeys.imageio.version>3.8.3</com.twelvemonkeys.imageio.version>
+		<com.twelvemonkeys.imageio.version>3.9.4</com.twelvemonkeys.imageio.version>
 		<org.icepdf.os.icepdf-viewer.version>6.2.2</org.icepdf.os.icepdf-viewer.version>
 		<org.jsoup.jsoup.version>1.15.3</org.jsoup.jsoup.version>
 		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
@@ -107,13 +107,13 @@
 		<jopt-simple.version>4.9</jopt-simple.version>
 		<jaxws-rt.version>2.3.5</jaxws-rt.version>
 		<javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
-		<org.glassfish.jaxb.version>2.3.6</org.glassfish.jaxb.version>
-		<rdf4j.version>4.2.0</rdf4j.version>
+		<org.glassfish.jaxb.version>2.3.7</org.glassfish.jaxb.version>
+		<rdf4j.version>4.2.2</rdf4j.version>
 		<apache.commons.io.version>2.11.0</apache.commons.io.version>
 		<org.pdftools.version>6.15.0.1</org.pdftools.version>
-		<org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
-        <org.apache.cxf.version>3.5.4</org.apache.cxf.version>
-		<org.springframework.version>5.3.23</org.springframework.version>
+		<org.apache.httpcomponents.version>4.5.14</org.apache.httpcomponents.version>
+		<org.apache.cxf.version>3.5.5</org.apache.cxf.version>
+		<org.springframework.version>5.3.24</org.springframework.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<xerces.xercesImpl.version>2.12.2</xerces.xercesImpl.version>
 		<gov.loc.bagit.version>5.2.0</gov.loc.bagit.version>

@@ -53,7 +53,9 @@
 	</LEVELS:MetadataElements>
 
 	<LEVELS:Levels>
-		<!-- NOTE: The 1st element in this list always has to be the "undefined" level! -->
+		<!-- NOTE: 
+			The first element in this list is the default level for the root node!
+			The first element in the list of allowedSublevelNameRefs is the default level for the child nodes! -->
 		<LEVELS:Level nameID="Undefined"		iconFileName="images/LevelUndefined.png"		allowedSublevelNameRefs="Undefined Archive Department Fonds Subfonds Series Subseries File Subfile Document">
 			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeSeparator"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="refCodeIsVisible"						isMandatory="false"	isRepeatable="false"	isAlwaysDisplayed="true"/>
