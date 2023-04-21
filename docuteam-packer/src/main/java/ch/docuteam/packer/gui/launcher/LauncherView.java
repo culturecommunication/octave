@@ -19,6 +19,7 @@ package ch.docuteam.packer.gui.launcher;
 import static ch.docuteam.packer.gui.ComponentNames.FOOTER_TEXT_FIELD;
 import static ch.docuteam.packer.gui.ComponentNames.POPUP_MENU;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_NEW_MENU_ITEM;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_MENU;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_OPEN_IN_WORKSPACE_MENU_ITEM;
 import static ch.docuteam.packer.gui.ComponentNames.WORKSPACE_MENU;
@@ -845,7 +846,9 @@ public class LauncherView extends JFrame {
         sipMenu.add(createNewMenuItem);
 
         sipMenu.add(new JMenuItem(createNewSIPFromTemplateAction));
-        sipMenu.add(new JMenuItem(createNewSIPFromCSVAction));
+        final JMenuItem createNewSIPFromCSVActionMenuItem = new JMenuItem(createNewSIPFromCSVAction);
+        createNewSIPFromCSVActionMenuItem.setName(SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM);
+        sipMenu.add(createNewSIPFromCSVActionMenuItem);
         sipMenu.addSeparator();
         sipMenu.add(new JMenuItem(openSIPAction));
         sipMenu.add(new JMenuItem(openSIPReadWriteNoFileOpsAction));
@@ -1808,13 +1811,24 @@ public class LauncherView extends JFrame {
     }
 
     protected void createNewSIPFromCSV() {
+        final String[] csvMappingOptions;
+        if (properties.containsKey("docuteamPacker.CSV.mappings")) {
+            csvMappingOptions = properties.getProperty("docuteamPacker.CSV.mappings").split(";");
+        } else {
+            csvMappingOptions = new String[]{Path.of(configDirectory, "csv-sip-mapping.xml").toString()};
+        }
+
         final CreateNewSIPFromCSVDialog createNewSIPFromCSVDialog = new CreateNewSIPFromCSVDialog(
-            this);
+            this, csvMappingOptions);
         if (!createNewSIPFromCSVDialog.goButtonWasClicked) {
             return;
         }
+        final String csvMappingPath = (String) createNewSIPFromCSVDialog.csvMappingComboBox.getSelectedItem();
+        if (csvMappingPath == null) {
+            return;
+        }
 
-        final Path configPath = Path.of(configDirectory, "csv-sip-mapping.xml");
+        final Path configPath = Path.of(csvMappingPath);
         final Path sourceCSVPath = Path.of(createNewSIPFromCSVDialog.sourceFileTextField.getText());
         final String destinationFolderName = createNewSIPFromCSVDialog.destinationFolderTextField.getText();
         String destinationFileName = createNewSIPFromCSVDialog.destinationNameTextField.getText();

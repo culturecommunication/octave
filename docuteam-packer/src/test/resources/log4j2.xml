@@ -23,8 +23,8 @@
 		<Logger name="uk.gov.nationalarchives.droid.xmlReader"
 			level="error" />
 
-		<Root level="info">
-			<AppenderRef ref="STDOUT" level="warn" />
+		<Root level="warn">
+			<AppenderRef ref="STDOUT" />
 		</Root>
 	</Loggers>
 

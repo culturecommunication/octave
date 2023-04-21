@@ -16,7 +16,11 @@
  */
 package ch.docuteam.packer.gui.launcher;
 
+import static ch.docuteam.packer.gui.ComponentNames.SIP_CREATE_OK_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_DESTINATION_NAME_TEXT_FIELD;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_CSV_MAPPING_FILE_BUTTON;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_CSV_MAPPING_FILE_CHOOSER;
+import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_CSV_MAPPING_FILE_COMBO_BOX;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FILE_OR_FOLDER_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER;
@@ -39,6 +43,7 @@ import java.io.File;
 import java.nio.file.Path;
 
 import javax.swing.AbstractAction;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -50,9 +55,9 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileFilter;
 
 import ch.docuteam.darc.sa.SubmissionAgreement;
+import ch.docuteam.tools.file.FileFilter;
 import ch.docuteam.tools.gui.GUIUtil;
 import ch.docuteam.tools.gui.GridBagPanel;
 import ch.docuteam.tools.translations.I18N;
@@ -77,7 +82,11 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
 
     protected JCheckBox beZIPCheckBox;
 
-    protected JComboBox saComboBox;
+    protected JComboBox<String> saComboBox;
+
+    protected JButton selectCsvMappingButton;
+
+    protected JComboBox<String> csvMappingComboBox;
 
     protected JLabel messageLabel;
 
@@ -85,7 +94,7 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
 
     protected boolean goButtonWasClicked = false;
 
-    protected CreateNewSIPFromCSVDialog(final LauncherView owner) {
+    protected CreateNewSIPFromCSVDialog(final LauncherView owner, final String[] csvMappingOptions) {
         super(owner, I18N.translate("TitleCreateNewSIPFromCSV"), true);
         launcherView = owner;
 
@@ -154,9 +163,19 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         saComboBox = new JComboBox(SubmissionAgreement.getAllFinalOverviews().toArray());
         saComboBox.setToolTipText(I18N.translate("ToolTipSelectSA"));
 
+        selectCsvMappingButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
+        selectCsvMappingButton.setName(SIP_SELECT_CSV_MAPPING_FILE_BUTTON);
+        selectCsvMappingButton.setToolTipText(I18N.translate("ToolTipSelectCSVMappingFile"));
+        selectCsvMappingButton.addActionListener(e -> CreateNewSIPFromCSVDialog.this.selectCsvMappingButtonClicked());
+
+        csvMappingComboBox = new JComboBox<>(csvMappingOptions);
+        csvMappingComboBox.setName(SIP_SELECT_CSV_MAPPING_FILE_COMBO_BOX);
+        csvMappingComboBox.setToolTipText(I18N.translate("ToolTipSelectCSVMappingFile"));
+
         messageLabel = new JLabel();
 
         goButton = new JButton(getImageIcon(SAVE_PNG));
+        goButton.setName(SIP_CREATE_OK_BUTTON);
         goButton.setToolTipText(I18N.translate("ToolTipCreateNew"));
         goButton.addActionListener(e -> CreateNewSIPFromCSVDialog.this.goButtonClicked());
 
@@ -164,23 +183,26 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         gridBag.add(new JLabel(I18N.translate("LabelNewSIPSourceFile")), 1, 1, GridBagConstraints.EAST);
         gridBag.add(selectSourceFileButton, 1, 3);
         gridBag.add(sourceFileTextField, 1, 1, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPCSVMapping")), 2, 1, GridBagConstraints.EAST);
+        gridBag.add(selectCsvMappingButton, 2, 3);
+        gridBag.add(csvMappingComboBox, 2, 2, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
 
-        gridBag.add(new JLabel(" "), 2, 2);
-        gridBag.add(new JLabel(I18N.translate("LabelNewSIPDestination")), 3, 1, GridBagConstraints.EAST);
-        gridBag.add(selectDestinationIsWorkspaceButton, 3, 2);
-        gridBag.add(selectDestinationZIPOrFolderButton, 3, 3);
-        gridBag.add(destinationFolderTextField, 3, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 2,
+        gridBag.add(new JLabel(" "), 3, 3);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPDestination")), 4, 1, GridBagConstraints.EAST);
+        gridBag.add(selectDestinationIsWorkspaceButton, 4, 2);
+        gridBag.add(selectDestinationZIPOrFolderButton, 4, 3);
+        gridBag.add(destinationFolderTextField, 4, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 2,
             0);
-        gridBag.add(destinationNameTextField, 3, 5, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
-        gridBag.add(beZIPCheckBox, 3, 6);
-        gridBag.add(new JLabel(I18N.translate("LabelNewSIPSA")), 4, 1, GridBagConstraints.EAST);
-        gridBag.add(saComboBox, 4, 4, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(destinationNameTextField, 4, 5, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(beZIPCheckBox, 4, 6);
+        gridBag.add(new JLabel(I18N.translate("LabelNewSIPSA")), 5, 1, GridBagConstraints.EAST);
+        gridBag.add(saComboBox, 5, 5, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
 
-        gridBag.add(messageLabel, 6, 6, 0, 5, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, 1, 0);
-        gridBag.add(goButton, 6, 6, GridBagConstraints.EAST);
+        gridBag.add(messageLabel, 7, 7, 0, 5, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(goButton, 7, 6, GridBagConstraints.EAST);
         this.add(gridBag);
 
-        setPreferredSize(new Dimension(800, 190));
+        setPreferredSize(new Dimension(800, 220));
         pack();
         setLocationRelativeTo(owner);
 
@@ -191,17 +213,7 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         final JFileChooser fileChooser = new JFileChooser(sourceFileTextField.getText());
         fileChooser.setName(SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER);
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setFileFilter(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.getName().toLowerCase().endsWith(".csv");
-            }
-
-            @Override
-            public String getDescription() {
-                return "CSV files";
-            }
-        });
+        fileChooser.setFileFilter(FileFilter.CSV_OR_DIRECTORY);
         fileChooser.setDialogTitle(I18N.translate("TitleSelectSourceFile"));
         fileChooser.setMultiSelectionEnabled(false);
         final int result = fileChooser.showOpenDialog(this);
@@ -237,10 +249,42 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         destinationFolderTextField.setText(launcherView.getSipDirectory());
     }
 
+    protected void selectCsvMappingButtonClicked() {
+        final JFileChooser fileChooser = new JFileChooser(new File(launcherView.getDataDirectory()).getAbsolutePath());
+        fileChooser.setName(SIP_SELECT_CSV_MAPPING_FILE_CHOOSER);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".xml");
+            }
+
+            @Override
+            public String getDescription() {
+                return "XML files";
+            }
+        });
+        fileChooser.setDialogTitle(I18N.translate("TitleSelectSourceFile"));
+        fileChooser.setMultiSelectionEnabled(false);
+        final int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.CANCEL_OPTION) {
+            return;
+        }
+
+        final String csvPath = fileChooser.getSelectedFile().getPath();
+
+        // If the option is not present in the combobox, add it
+        if (((DefaultComboBoxModel<String>) csvMappingComboBox.getModel()).getIndexOf(csvPath) == -1) {
+            csvMappingComboBox.addItem(csvPath);
+        }
+        csvMappingComboBox.setSelectedItem(csvPath);
+    }
+
     protected void goButtonClicked() {
         final var sourceFileOrFolder = sourceFileTextField.getText();
         final var destinationFolder = destinationFolderTextField.getText();
         var destinationName = destinationNameTextField.getText();
+        final String csvMapping = (String) csvMappingComboBox.getSelectedItem();
 
         // Don't accept empty SIP name:
         if (destinationName.isEmpty()) {
@@ -273,6 +317,16 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         if (destinationFile.exists()) {
             GUIUtil.shake(this);
             messageLabel.setText(I18N.translate("MessageSIPExistsAlready"));
+            return;
+        }
+
+        // Don't accept empty or not file csv mapping:
+        if (csvMapping.isEmpty()) {
+            GUIUtil.shake(this);
+            messageLabel.setText(I18N.translate("MessageCSVMappingIsEmpty"));
+            return;
+        } else if (!new File(csvMapping).isFile()) {
+            messageLabel.setText(I18N.translate("MessageCSVMappingDoesNotExist"));
             return;
         }
 

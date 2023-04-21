@@ -62,6 +62,7 @@
 		<LEVELS:MetadataElement					accessorNameID="sourceType"/>
 		<LEVELS:MetadataElement					accessorNameID="modeOfAcquisition"/>
 		<LEVELS:MetadataElement					accessorNameID="PID"/>
+		<LEVELS:MetadataElement					accessorNameID="registrationURL"/>
 		<LEVELS:MetadataElement					accessorNameID="abstract"/>
 		<LEVELS:MetadataElement					accessorNameID="languageNotes"/>
 		<LEVELS:MetadataElement					accessorNameID="language"/>
@@ -102,6 +103,11 @@
 		<LEVELS:MetadataElement					accessorNameID="projectTitle"/>
 		<LEVELS:MetadataElement					accessorNameID="usage"/>
 		<LEVELS:MetadataElement					accessorNameID="event"/>
+		<LEVELS:MetadataElement					accessorNameID="harvestingURL"/>
+		<LEVELS:MetadataElement					accessorNameID="harvestingDate"/>
+		<LEVELS:MetadataElement					accessorNameID="harvestingFrequency"/>
+		<LEVELS:MetadataElement					accessorNameID="harvestingEntryPoint"/>
+		<LEVELS:MetadataElement					accessorNameID="harvestingEmailRights"/>
 		<LEVELS:MetadataElement					accessorNameID="locationOfOriginals"/>
 		<LEVELS:MetadataElement					accessorNameID="findingAids"/>
 		<LEVELS:MetadataElement					accessorNameID="characteristics"/>
@@ -144,6 +150,7 @@
 		<LEVELS:MetadataElement					accessorNameID="occupation"/>
 		<LEVELS:MetadataElement					accessorNameID="ISBN"/>
 		<LEVELS:MetadataElement					accessorNameID="ISSN"/>
+		<LEVELS:MetadataElement					accessorNameID="URN"/>
 		<LEVELS:MetadataElement					accessorNameID="placeOfPublication"/>
 		<LEVELS:MetadataElement					accessorNameID="subjectGeneral"/>
 		<LEVELS:MetadataElement					accessorNameID="uniformTitle"/>
@@ -217,6 +224,7 @@
 			<LEVELS:LevelMetadataElement		accessorNameRef="sourceType"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="registrationURL"						isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="false"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"/>
@@ -257,6 +265,11 @@
 			<LEVELS:LevelMetadataElement		accessorNameRef="projectTitle"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="usage"									isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="event"									isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="harvestingURL"							isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="harvestingDate"						isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="harvestingFrequency"					isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="harvestingEntryPoint"					isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="harvestingEmailRights"					isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="locationOfOriginals"					isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="findingAids"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="characteristics"						isMandatory="false"	isRepeatable="true"/>
@@ -299,6 +312,7 @@
 			<LEVELS:LevelMetadataElement		accessorNameRef="occupation"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="ISBN"									isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="ISSN"									isMandatory="false"	isRepeatable="false"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="URN"									isMandatory="false"	isRepeatable="false"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="placeOfPublication"					isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="subjectGeneral"						isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="uniformTitle"							isMandatory="false"	isRepeatable="true"/>

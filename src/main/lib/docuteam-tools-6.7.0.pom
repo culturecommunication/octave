@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.6.1</version>
+    <version>6.7.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>6.6.1</version>
+  <version>6.7.0</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
@@ -220,10 +220,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
+      <artifactId>log4j-core-test</artifactId>
       <version>${org.apache.logging.log4j.version}</version>
-      <type>test-jar</type>
-      <classifier>tests</classifier>
       <scope>test</scope>
     </dependency>
   </dependencies>

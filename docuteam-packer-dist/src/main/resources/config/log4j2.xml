@@ -20,6 +20,8 @@
 		<Logger
 			name="uk.gov.nationalarchives.droid.core.signature.droid6.InternalSignature"
 			level="error" />
+		<Logger name="uk.gov.nationalarchives.droid.xmlReader"
+			level="error" />
 		<Logger name="org.apache.fop.apps" level="error" />
 		<Logger
 			name="com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection"

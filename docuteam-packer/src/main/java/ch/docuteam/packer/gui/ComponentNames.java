@@ -40,11 +40,19 @@ public class ComponentNames {
 
     public static final String SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD = "SIP_CREATE_NEW_SIP_ROOT_NAME_TEXT_FIELD";
 
+    public static final String SIP_SELECT_CSV_MAPPING_FILE_BUTTON = "SIP_SELECT_CSV_MAPPING_BUTTON";
+
+    public static final String SIP_SELECT_CSV_MAPPING_FILE_COMBO_BOX = "SIP_SELECT_CSV_MAPPING_COMBO_BOX";
+
+    public static final String SIP_SELECT_CSV_MAPPING_FILE_CHOOSER = "SIP_SELECT_CSV_MAPPING_FILE_CHOOSER";
+
     public static final String SIP_CREATE_OK_BUTTON = "SIP_CREATE_OK_BUTTON";
 
     public static final String SIP_MENU = "SIP_MENU";
 
     public static final String SIP_CREATE_NEW_MENU_ITEM = "SIP_CREATE_NEW_MENU_ITEM";
+
+    public static final String SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM = "SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM";
 
     public static final String WORKSPACE_MENU = "WORKSPACE_MENU";
 
