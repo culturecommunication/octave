@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>6.7.0</version>
+    <version>6.8.0</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-mapping</artifactId>
-  <version>6.7.0</version>
+  <version>6.8.0</version>
   <name>docuteam mapping</name>
   <url>http://maven.apache.org</url>
   <licenses>
@@ -151,6 +151,19 @@
               <encoding>utf-8</encoding>
               <sources>
                 <source>src/main/xsd/edidoc</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>xjc-ediakt</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+            <configuration>
+              <encoding>utf-8</encoding>
+              <sources>
+                <source>src/main/xsd/ediakt</source>
               </sources>
             </configuration>
           </execution>
