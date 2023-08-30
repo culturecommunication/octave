@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.8.0</revision>
+		<revision>6.9.0</revision>
 		<changelist/>
 		<sha1/>
 
@@ -83,11 +83,11 @@
 		<net.iharder.base64.version>2.3.7</net.iharder.base64.version>
 		<net.sf.saxon.Saxon-HE.version>9.9.1-8</net.sf.saxon.Saxon-HE.version>
 		<org.apache.commons.commons-csv.version>1.10.0</org.apache.commons.commons-csv.version>
-		<org.apache.commons.commons-lang3.version>3.12.0</org.apache.commons.commons-lang3.version>
+		<org.apache.commons.commons-lang3.version>3.13.0</org.apache.commons.commons-lang3.version>
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
 		<org.apache.logging.log4j.version>2.20.0</org.apache.logging.log4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>5.1.1</org.apache.xmlbeans.xmlbeans.version>
-		<org.apache.xmlgraphics.fop.version>2.8</org.apache.xmlgraphics.fop.version>
+		<org.apache.xmlgraphics.fop.version>2.9</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
 		<org.assertj.assertj-swing-junit.version>3.17.1</org.assertj.assertj-swing-junit.version>
 		<org.fcrepo.fcrepo.version>3.8.1</org.fcrepo.fcrepo.version>
@@ -103,17 +103,17 @@
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
 		<com.jcraft.jsch.version>0.1.55</com.jcraft.jsch.version>
-		<com.google.guava.version>30.1.1-jre</com.google.guava.version>
+		<com.google.guava.version>32.1.2-jre</com.google.guava.version>
 		<jopt-simple.version>4.9</jopt-simple.version>
 		<jaxws-rt.version>2.3.6</jaxws-rt.version>
 		<javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
 		<org.glassfish.jaxb.version>2.3.8</org.glassfish.jaxb.version>
-		<rdf4j.version>4.3.1</rdf4j.version>
-		<apache.commons.io.version>2.12.0</apache.commons.io.version>
+		<rdf4j.version>4.3.5</rdf4j.version>
+		<apache.commons.io.version>2.13.0</apache.commons.io.version>
 		<org.pdftools.version>6.15.0.1</org.pdftools.version>
 		<org.apache.httpcomponents.version>4.5.14</org.apache.httpcomponents.version>
-		<org.apache.cxf.version>3.6.0</org.apache.cxf.version>
-		<org.springframework.version>5.3.27</org.springframework.version>
+		<org.apache.cxf.version>3.6.1</org.apache.cxf.version>
+		<org.springframework.version>5.3.29</org.springframework.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<xerces.xercesImpl.version>2.12.2</xerces.xercesImpl.version>
 		<gov.loc.bagit.version>5.2.0</gov.loc.bagit.version>

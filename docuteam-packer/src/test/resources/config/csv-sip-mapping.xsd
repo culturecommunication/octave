@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="ch:docuteam:mapping:csv" targetNamespace="ch:docuteam:mapping:csv"
-           elementFormDefault="qualified">
+    elementFormDefault="qualified">
     <xs:include schemaLocation="csv-format.xsd"/>
     <xs:element name="sipImportTableConfig">
         <xs:complexType>
@@ -45,6 +45,7 @@
             <xs:enumeration value="path"/>
             <xs:enumeration value="descriptionLevel"/>
             <xs:enumeration value="title"/>
+            <xs:enumeration value="checksum"/>
         </xs:restriction>
     </xs:simpleType>
 

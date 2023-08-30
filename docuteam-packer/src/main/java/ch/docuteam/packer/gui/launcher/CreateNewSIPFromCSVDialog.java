@@ -24,9 +24,11 @@ import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_CSV_MAPPING_FILE_
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_DESTINATION_IS_WORKSPACE_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FILE_OR_FOLDER_BUTTON;
 import static ch.docuteam.packer.gui.ComponentNames.SIP_SELECT_SOURCE_FOLDER_FILE_CHOOSER;
+import static ch.docuteam.packer.gui.PackerConstants.CHECKSUM;
 import static ch.docuteam.packer.gui.PackerConstants.OPEN_FOLDER_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.PACKER_PNG;
 import static ch.docuteam.packer.gui.PackerConstants.SAVE_PNG;
+import static ch.docuteam.packer.gui.PackerConstants.SKIP_LEVEL_VALIDATION;
 import static ch.docuteam.packer.gui.PackerConstants.ZIP;
 import static ch.docuteam.packer.gui.PackerConstants.ZIP_EXT;
 import static ch.docuteam.packer.gui.PackerConstants.getImage;
@@ -83,6 +85,10 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
     protected JCheckBox beZIPCheckBox;
 
     protected JComboBox<String> saComboBox;
+
+    protected JCheckBox checksumCheckbox;
+
+    protected JCheckBox skipLevelValidationCheckbox;
 
     protected JButton selectCsvMappingButton;
 
@@ -163,6 +169,12 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         saComboBox = new JComboBox(SubmissionAgreement.getAllFinalOverviews().toArray());
         saComboBox.setToolTipText(I18N.translate("ToolTipSelectSA"));
 
+        checksumCheckbox = new JCheckBox(CHECKSUM, false);
+        checksumCheckbox.setToolTipText(I18N.translate("ToolTipChecksum"));
+
+        skipLevelValidationCheckbox = new JCheckBox(SKIP_LEVEL_VALIDATION, false);
+        skipLevelValidationCheckbox.setToolTipText(I18N.translate("ToolTipSkipLevelValidation"));
+
         selectCsvMappingButton = new JButton(getImageIcon(OPEN_FOLDER_PNG));
         selectCsvMappingButton.setName(SIP_SELECT_CSV_MAPPING_FILE_BUTTON);
         selectCsvMappingButton.setToolTipText(I18N.translate("ToolTipSelectCSVMappingFile"));
@@ -197,6 +209,8 @@ public class CreateNewSIPFromCSVDialog extends JDialog {
         gridBag.add(beZIPCheckBox, 4, 6);
         gridBag.add(new JLabel(I18N.translate("LabelNewSIPSA")), 5, 1, GridBagConstraints.EAST);
         gridBag.add(saComboBox, 5, 5, 4, 6, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 1, 0);
+        gridBag.add(checksumCheckbox, 6, 4);
+        gridBag.add(skipLevelValidationCheckbox, 6, 5);
 
         gridBag.add(messageLabel, 7, 7, 0, 5, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, 1, 0);
         gridBag.add(goButton, 7, 6, GridBagConstraints.EAST);

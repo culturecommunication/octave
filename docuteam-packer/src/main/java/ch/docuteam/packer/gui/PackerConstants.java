@@ -34,6 +34,10 @@ public class PackerConstants {
 
     public static final String ZIP = "ZIP";
 
+    public static final String CHECKSUM = "Check checksums";
+
+    public static final String SKIP_LEVEL_VALIDATION = "Skip level validation";
+
     public static final String PROPERTY_FILE_NAME = "docuteamPacker.properties";
 
     public static final String DEFAULT_LEVELS_CONFIG_FILE_NAME = "./config/levels.xml";

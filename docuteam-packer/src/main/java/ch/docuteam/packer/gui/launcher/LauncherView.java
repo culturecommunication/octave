@@ -1834,6 +1834,8 @@ public class LauncherView extends JFrame {
         String destinationFileName = createNewSIPFromCSVDialog.destinationNameTextField.getText();
         final boolean beZIP = createNewSIPFromCSVDialog.beZIPCheckBox.isSelected();
         final Overview saOverview = (Overview) createNewSIPFromCSVDialog.saComboBox.getSelectedItem();
+        final boolean checksum = createNewSIPFromCSVDialog.checksumCheckbox.isSelected();
+        final boolean skipLevelValidation = createNewSIPFromCSVDialog.skipLevelValidationCheckbox.isSelected();
 
         if (destinationFileName.isEmpty()) {
             return;
@@ -1869,7 +1871,8 @@ public class LauncherView extends JFrame {
                         selectedDSSid = saOverview.dssId;
                     }
 
-                    final SipCreationArgs sipCreationArgs = new SipCreationArgs(Path.of(newSIPFileName), selectedSAid, selectedDSSid);
+                    //TODO Implement option
+                    final SipCreationArgs sipCreationArgs = new SipCreationArgs(Path.of(newSIPFileName), selectedSAid, selectedDSSid, checksum, skipLevelValidation);
                     ExceptionCollector.clear();
                     importResult = CsvToSipImporter.createSipFromCsv(sipCreationArgs, sourceCSVPath, configPath);
                     footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName);

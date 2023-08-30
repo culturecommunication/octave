@@ -25,3 +25,6 @@
 .env
 .class
 .flattened-pom.xml
+
+/*.patch
+/merge.sh
