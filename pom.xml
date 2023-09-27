@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>6.9.0</revision>
+		<revision>6.9.1</revision>
 		<changelist/>
 		<sha1/>
 
@@ -108,7 +108,7 @@
 		<jaxws-rt.version>2.3.6</jaxws-rt.version>
 		<javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
 		<org.glassfish.jaxb.version>2.3.8</org.glassfish.jaxb.version>
-		<rdf4j.version>4.3.5</rdf4j.version>
+		<rdf4j.version>4.3.6</rdf4j.version>
 		<apache.commons.io.version>2.13.0</apache.commons.io.version>
 		<org.pdftools.version>6.15.0.1</org.pdftools.version>
 		<org.apache.httpcomponents.version>4.5.14</org.apache.httpcomponents.version>
