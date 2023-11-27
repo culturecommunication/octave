@@ -1,4 +1,8 @@
-# docuteam packer
+# OCTAVE/docuteam packer
+
+Ce github contient toutes les versions successives d’OCTAVE, l’Outil de Constitution et de Traitement Automatisé des Versements Électroniques développé à la demande des Archives de France par la société docuteam sur la base de l’outil docuteam packer , vous en trouverez les caractéristiques générales sur la page https://francearchives.gouv.fr/fr/article/88482499 ainsi que le manuel publié en même temps que la version initiale le 1er octobre 2019, la version en vigueur est à télécharger sous forme de zip dans « Releases », « Latest ». 
+
+# Developpement
 
 This is a Maven project, see pom.xml
 
